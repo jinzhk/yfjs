@@ -1,0 +1,31 @@
+.nav-pagination {
+    padding: 20px 0;
+}
+.nav-pagination-left {
+    text-align: left;
+}
+.nav-pagination-right {
+    text-align: right;
+}
+.nav-pagination-center {
+    text-align: center;
+}
+.nav-pagination .pagination,
+.nav-pagination .pagination-info,
+.nav-pagination .pagination-info-page,
+.nav-pagination .pagination-numbers {
+    margin: 0;
+    padding: 7px 8px 7px 7px;
+    vertical-align: middle;
+}
+.nav-pagination .pagination {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.nav-pagination .pagination-info,
+.nav-pagination .pagination-info-page,
+.nav-pagination .pagination-numbers {
+    display: inline-block;
+    line-height: 1.42857143;
+    font-weight: normal;
+}

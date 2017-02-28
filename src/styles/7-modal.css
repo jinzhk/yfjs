@@ -1,0 +1,204 @@
+.dialog-modal {
+
+}
+.dialog-modal .modal-header {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.dialog-modal .modal-header.draggable.mousedown {
+    cursor: move;
+}
+.dialog-modal .modal-title {
+    color: #fff;
+    display: inline-block;
+}
+.dialog-modal.type-default .modal-title {
+    color: #333;
+}
+.dialog-modal .modal-title {
+    font-size: 16px;
+}
+.dialog-modal.size-large .modal-title {
+    font-size: 24px;
+}
+.dialog-modal .modal-header button.close {
+    font-size: 20px;
+}
+.dialog-modal.size-large .modal-header button.close {
+    font-size: 30px;
+}
+.dialog-modal .modal-content {
+    font-size: 14px;
+}
+.dialog-modal.size-large .modal-content {
+    font-size: 18px;
+}
+.dialog-modal.type-default .modal-header {
+    background-color: #fff;
+}
+.dialog-modal.type-info .modal-header {
+    background-color: #5bc0de;
+}
+.dialog-modal.type-primary .modal-header {
+    background-color: #428bca;
+}
+.dialog-modal.type-success .modal-header {
+    background-color: #5cb85c;
+}
+.dialog-modal.type-warning .modal-header {
+    background-color: #f0ad4e;
+}
+.dialog-modal.type-error .modal-header {
+    background-color: #d9534f;
+}
+.dialog-modal-button-icon {
+    margin-right: 3px;
+}
+
+.type-alert .modal-body,
+.type-confirm .modal-body {
+    padding: 15px 15px 35px 3.15em;
+}
+
+.dialog-modal .loader img {
+    max-width: 100%;
+}
+.dialog-modal .loader-text {
+    margin: 10px 0 0;
+    text-align: center;
+}
+
+.dialog-modal .alert {
+    position: relative;
+}
+.dialog-modal .alert button.close {
+    position: absolute;
+    right: 0.3em;
+    top: 0.15em;
+}
+
+.dialog-modal .popover {
+    z-index: 1260;
+}
+
+.dialog-modal.fade.type-note-processing.closing,
+.dialog-modal.fade.type-note-info.closing,
+.dialog-modal.fade.type-note-warning.closing,
+.dialog-modal.fade.type-note-error.closing,
+.dialog-modal.fade.type-note-success.closing {
+    -webkit-transition: opacity .3s linear;
+    -o-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+}
+.dialog-modal.fade.type-note-processing.closing,
+.dialog-modal.fade.type-note-info.closing,
+.dialog-modal.fade.type-note-warning.closing,
+.dialog-modal.fade.type-note-error.closing,
+.dialog-modal.fade.type-note-success.closing {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.dialog-modal.type-note-processing .alert,
+.dialog-modal.type-note-info .alert,
+.dialog-modal.type-note-warning .alert,
+.dialog-modal.type-note-error .alert,
+.dialog-modal.type-note-success .alert {
+    margin-bottom: 0;
+    overflow: hidden; *zoom: 1;
+}
+.dialog-modal.type-note-processing .alert > i,
+.dialog-modal.type-note-info .alert > i,
+.dialog-modal.type-note-warning .alert > i,
+.dialog-modal.type-note-error .alert > i,
+.dialog-modal.type-note-success .alert > i {
+    display: block;
+    float: left;
+    margin-top: 0.215em;
+}
+.dialog-modal.type-note-processing .alert > p,
+.dialog-modal.type-note-info .alert > p,
+.dialog-modal.type-note-warning .alert > p,
+.dialog-modal.type-note-error .alert > p,
+.dialog-modal.type-note-success .alert > p {
+    margin: 0 .75em 0 1.5em;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.modal-icon-alert,
+.modal-icon-confirm {
+    position: absolute;
+    left: 0.625em;
+    top: 13px;
+    color: #36b3df;
+    font: normal 1.725em/1 FontAwesome;
+    margin-right: .35em;
+    vertical-align: sub;
+}
+.modal-icon-alert:before {
+    content: '\f06a';
+}
+.modal-icon-confirm:before {
+    content: '\f059';
+}
+.modal-icon-alert.warning,
+.modal-icon-confirm.warning,
+.type-warning .modal-icon-alert,
+.type-warning .modal-icon-confirm {
+    color: #ef6c03;
+}
+
+/**
+ * Icon animation
+ * Copied from font-awesome: http://fontawesome.io/
+ **/
+.icon-spin {
+    display: inline-block;
+    -moz-animation: spin 2s infinite linear;
+    -o-animation: spin 2s infinite linear;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
+}
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(359deg);
+    }
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+    }
+}
+@-o-keyframes spin {
+    0% {
+        -o-transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(359deg);
+    }
+}
+@-ms-keyframes spin {
+    0% {
+        -ms-transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}
+/** End of icon animation **/

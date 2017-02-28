@@ -1,0 +1,132 @@
+.multiselect-column-title {
+    padding: 5px 0;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.multiselect-column-filter {
+    position: relative;
+    padding: 5px;
+    margin: 0;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+}
+.multiselect-column-filter > input.form-control {
+    height: 28px;
+    padding: 6px 20px 6px 8px;
+}
+.multiselect-icon-search,
+.multiselect-icon-add,
+.multiselect-icon-delete {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -0.5em;
+    cursor: pointer;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+.multiselect-icon-search {
+    color: #999;
+}
+.multiselect-icon-search:hover {
+    color: #555;
+}
+.multiselect-icon-search:before {
+    content: "\f002";
+}
+.multiselect-column-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #e5e5e5;
+    border-top: 0 none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.multiselect-column-item {
+    position: relative;
+}
+.multiselect-column-item>a {
+    display: block;
+    cursor: default;
+    padding: 5px 25px 6px 10px;
+    line-height: 1.42857143;
+    color: #555;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.multiselect-column-item:hover>a {
+    color: #262626;
+    text-decoration: none;
+    background-color: #F1F5F6;
+}
+.multiselect-icon-add,
+.multiselect-icon-delete {
+    color: #519857;
+}
+.multiselect-icon-delete {
+    color: #CB6A6A;
+}
+.multiselect-icon-add:before {
+    content: "\f055";
+}
+.multiselect-icon-delete:before {
+    content: "\f056";
+}
+.multiselect-column-more {
+    padding: 0 10px;
+}
+.multiselect-column-more > a {
+    display: block;
+    padding: 4px 0;
+    color: #337ab7;
+    text-align: center;
+    text-decoration: none;
+    border: 1px dashed transparent;
+}
+.multiselect-column-more > a:hover {
+    color: #31708f;
+    border-color: #dddddd;
+    background-color: #F1F5F6;
+}
+.multiselect-column-more.loading > a,
+.multiselect-column-more.loading > a:hover,
+.multiselect-column-more.done > a,
+.multiselect-column-more.done > a:hover {
+    cursor: default;
+}
+.multiselect-column-more.loading > a,
+.multiselect-column-more.loading > a:hover {
+    color: #8a6d3b;
+}
+.multiselect-column-more.loading > a:hover,
+.multiselect-column-more.done > a:hover {
+    border-color: transparent;
+    background-color: transparent;
+}
+.multiselect-column-more.loading > a:before {
+    display: inline-block;
+    font-family: FontAwesome;
+    content: '\f110';
+    -webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
+    margin-right: .25em;
+}
+.multiselect-column-more.done > a,
+.multiselect-column-more.done > a:hover {
+    color: #777;
+}
+.multiselect-column-more.error > a,
+.multiselect-column-more.error > a:hover {
+    color: #a94442;
+}

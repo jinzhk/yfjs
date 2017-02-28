@@ -1,0 +1,77 @@
+.spinbox {
+  display: inline-block;
+  position: relative;
+}
+.spinbox.digits-3 {
+  width: 60px;
+}
+.spinbox.disabled .spinbox-buttons {
+  cursor: not-allowed;
+}
+.spinbox .spinbox-input {
+  float: left;
+  height: 30px;
+  padding-bottom: 3px;
+  /* Magic number */
+  padding: 0px 25px 0px 7px;
+}
+.spinbox .spinbox-input::-ms-clear {
+  display: none;
+}
+.spinbox .spinbox-input:focus + .btn-group .btn {
+    border-color: #66afe9;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 4px rgba(102, 175, 233, .3);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 4px rgba(102, 175, 233, .3);
+}
+.spinbox .btn {
+  position: relative;
+  width: 20px;
+  height: 15px;
+  padding-top: 0;
+  padding-right: 9px;
+  padding-left: 9px;
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.spinbox .btn:focus,
+.spinbox .btn:active {
+    outline: 0 none;
+}
+.spinbox .btn.disabled {
+  cursor: not-allowed;
+}
+.spinbox .spinbox-buttons {
+  position: absolute;
+  height: 28px;
+  width: 20px;
+  right: 0;
+}
+.spinbox .spinbox-up {
+  padding: 0 0 14px 1px;
+  top: 0;
+}
+.spinbox .spinbox-up .glyphicon-chevron-up {
+  position: relative;
+  top: 0;
+}
+.spinbox .btn-group > .btn.spinbox-up,
+.spinbox .btn-group > .btn.spinbox-up:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 4px;
+}
+.spinbox .btn-group > .btn.spinbox-down,
+.spinbox .btn-group > .btn.spinbox-down:last-child:not(:first-child) {
+  padding: 0 0 8px 1px;
+  top: 0;
+  height: 15px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 4px;
+}
+.spinbox .spinbox-down .glyphicon-chevron-down {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.spinbox input::-ms-clear {
+  display: none;
+}
