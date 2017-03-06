@@ -12,21 +12,39 @@ YFjs是一个组件库，其中大部分是一些第三方的库（感谢众多�
 
 YFjs组件库的编译和文档运行依赖于 Node.js 环境。如果您本地没有安装过 Node.js，请先访问 [下载 | nodejs中文网](http://nodejs.cn/download/) 网站下载适合您系统的版本进行安装。
 
-Node.js自 `0.6.x` 系列版本开始已集成了 NPM (Node Package Manager, nodejs的包管理工具)，建议下载最新版本的 Node.js 使用。
+Node.js 自 `0.6.x` 系列版本开始集成了 NPM (Node Package Manager, Node.js 的包管理工具)，建议下载最新版本的 Node.js 使用。
 
 ### 准备编译环境
 
 目前组件库使用 Grunt 工具编译各组件模块。
 
-首先，在全局环境下安装 Grunt 核心库：
+首先，为了更方便执行编译命令，请在全局环境下安装 Grunt 的命令行接口插件：
 
     npm install -g grunt-cli
 
 在组件库的工程根目录下，安装组件库依赖：
 
     npm install
+
+### 运行文档
+
+组件库的文档可以在项目网站 <http://jinzhk.github.io/yfjs/> 上查阅。
+
+如果您在调试某（些）组件，并想查看调试结果，可以运行文档。
+
+组件库的文档使用了 Express(4) 框架进行编写，在组件库的工程根目录下运行
+
+    npm start
+
+即可启动文档页面。访问地址为 <http://localhost:3000/>
+
+某（些）组件被更改后，需要在组件库根目录下执行编译命令
+
+    grunt
     
-### 编译包
+重新刷新页面后，即可查看或使用更改组件的内容。
+
+### 编译完整包
 
 在组件库的工程根目录下，运行：
 
@@ -36,17 +54,9 @@ Node.js自 `0.6.x` 系列版本开始已集成了 NPM (Node Package Manager, nod
 
 **minified** 目录下是混淆压缩后的代码文件；**original** 目录下是经过合并未压缩的代码文件。可酌情使用。
 
-### 运行文档
-
-组件库的文档使用了 Express(4) 框架进行编写，在根目录下运行
-
-    npm start
-    
-即可启动文档页面。访问地址为 <http://localhost:3000/>
-
 ### 使用组件库
 
-将组件库编译生成的文件拷贝至自己所开发得工程的固定目录下即可使用。建议 **minified** 和 **original** 目录都拷贝，便于开发阶段进行调试。
+将组件库编译生成的文件拷贝至自己所开发的工程的固定目录下即可使用。建议 **minified** 和 **original** 目录都拷贝，便于开发阶段进行调试。
 
 然后在页面中引入样式文件 `styles/base.css` 和 JS入口文件 `scripts/yfjs.js` 即可，如：
 
