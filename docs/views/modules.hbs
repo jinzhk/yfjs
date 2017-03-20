@@ -1,11 +1,938 @@
 <div class="banner">
   <div class="container">
     <h1>YFjs Modules</h1>
-    <p>介绍 YFjs 组件库内包含的所有第三方组件。通过组件模块的 ID 可以按需动态引入各功能组件，方便您快速实现页面功能。</p>
+    <p>介绍 YFjs 组件库内包含的所有第三方组件。通过组件模块的 ID 可以按需动态引入各功能组件，便于您快速实现页面功能。</p>
   </div>
 </div>
 <div class="container">
-
+  <aside>
+    <ul class="nav sidenav">
+      <li>
+        <a class="link-anchor" href="#bs">Bootstrap插件 <small>( 16 )</small></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a class="link-anchor" href="#bs-modal">模态框</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a class="link-anchor" href="#bs-modal-require">引入依赖</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#bs-modal-normal">通用框</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#bs-modal-alert">警告框</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#bs-modal-confirm">询问框</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#bs-modal-loading">加载框</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#bs-modal-processing">过程框</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#bs-modal-tip">提示框</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-tab">标签页</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-tooltip">工具提示</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-popover">弹出框</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-alert">警告框</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-button">按钮</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-collapse">折叠插件</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-carousel">轮播插件</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-clockpicker">圆形时钟</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-datetimepicker">日期选择</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-daterangepicker">日期区间选择</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-switcher">开关</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-slider">滑块</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-paging">分页插件</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-spinbox">整数旋转框</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#bs-wizard">步骤向导</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="link-anchor" href="#jq">jQuery插件 <small>( 13 )</small></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a class="link-anchor" href="#jq-cookie">Cookie</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-urlp">URL解析</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-chosen">下拉框</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-multipicker">双列选择框</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-dataTables">表格插件</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-form">表单增强</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-form-validator">表单验证</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-form-wizard">表单步骤向导</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-dragsort">拖拽插件</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-mCustomScrollbar">定制滚动条</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-webuploader">上传组件</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-zeroclipboard">复制兼容插件</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-ztree">树组件</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#jq-qrcode">二维码</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="link-anchor" href="#json">JSON</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#es5-shim">ES5 Shim</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#es6-shim">ES6 Shim</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#highlight">代码加亮</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#codemirror">代码编辑框</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#crypto">加密解密</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#d3">D3</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#echarts">Echarts</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#moment">日期处理</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#plupload">Plupload</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#remarkable">Markdown语法</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#nicescroll">滚动条美化</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#zeroclipboard">复制插件</a>
+      </li>
+    </ul>
+  </aside>
+  <div class="content">
+    <section class="lead">
+      <h1 id="bs">
+        <a class="link-anchor icon-anchor" href="#bs"></a>Bootstrap插件 <small>( 16 )</small>
+      </h1>
+    </section>
+    <section>
+      <h2 id="bs-modal">
+        <a class="link-anchor icon-anchor" href="#bs-modal"></a>模态框 <small>ID: <code>bs/modal</code></small>
+      </h2>
+      <p class="lead">
+        在 Bootstrap 3 的模态框插件基础上进行了功能增强，支持自动生成模态框元素并弹出；支持非模态设置；支援加载远程内容；支持警告框(alert)、询问框(confirm)、加载框(loading)、提示框(info)等多种形式的模态框。
+      </p>
+      <p>
+        模态框示例效果可以前往 <a href="/modules/modal">模态框示例</a> 页面查看。
+      </p>
+      <h3 id="bs-modal-require">
+        <a class="link-anchor icon-anchor" href="#bs-modal-require"></a>引入依赖
+      </h3>
+      <p>
+        在使用之前，需要在自己的模块依赖项中加入模态框依赖。
+      </p>
+      <figure>
+        <pre><code class="javascript">define(['bs/modal'], function(Modal) {
+    // Now you can use Modal plugin via Modal variable.
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        当然，也可以直接引入使用。
+      </p>
+      <figure>
+        <pre><code class="javascript">require(['bs/modal'], function(Modal) {
+    // Now you can also use Modal plugin via Modal variable.
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h3 id="bs-modal-normal">
+        <a class="link-anchor icon-anchor" href="#bs-modal-normal"></a>通用框
+      </h3>
+      <p>
+        直接使用 <code>Modal.show()</code> 方法即可快速弹出一个模态框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.show({
+    title: 'Dialog Title',
+    message: 'Dialog Content',
+    onshown: function(dialog) {
+        // init dialog content
+    },
+    buttons: [{
+        label: "取消",
+        action: function(dialog) {
+            dialog.close();
+        }
+    }, {
+        label: "确定",
+        cssClass: "btn-primary",
+        action: function(dialog) {
+            // do something
+            dialog.close();
+        }
+    }]
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-normal-remote">
+        <a class="link-anchor icon-anchor" href="#bs-modal-normal-remote"></a>加载远程内容
+      </h4>
+      <p>
+        使用 <code>remote</code> 配置项可以加载远程内容。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.show({
+    remote: 'remote.html'
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        如果在请求远程内容需要传递参数等一些额外的内容，可以像使用 ajax 那样设置 <code>remote</code> 配置项。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.show({
+    remote: {
+        url: 'remote.html',
+        data: {param: '111'}
+    }
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        另外，<code>remote</code> 配置项还支持设置为 <mark>Promise</mark> 或 <mark>Deferred</mark> 对象。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.show({
+    remote: function(dialog) {
+        var def = $.Deferred();
+        setTimeout(function() {
+            def.resolve("Dialog content from promise.");
+        }, 300);
+        return def.promise(); // OR return def;
+    }
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-normal-options">
+        <a class="link-anchor icon-anchor" href="#bs-modal-normal-options"></a>配置项
+      </h4>
+      <p>
+        通用形式的模态框可以使用以下配置项：
+      </p>
+      <ul class="list-options">
+        <li id="bs-modal-normal-options-type">
+          <mark>type</mark>: 模态框类型。可选为 <code>Modal.TYPE_DEFAULT</code>、<code>Modal.TYPE_INFO</code>、<code>Modal.TYPE_PRIMARY</code>、<code>Modal.TYPE_SUCCESS</code>、<code>Modal.TYPE_WARNING</code>、<code>Modal.TYPE_ERROR</code>。默认为 <code>Dialog.TYPE_PRIMARY</code>。
+        </li>
+        <li id="bs-modal-normal-options-title">
+          <mark>title</mark>: 模态框标题。
+        </li>
+        <li id="bs-modal-normal-options-message">
+          <mark>message</mark>: 模态框内容。
+        </li>
+        <li id="bs-modal-normal-options-remote">
+          <mark>remote</mark>: 模态框远程内容。可为Ajax配置项、Promise对象或返回相应类型值的方法。
+        </li>
+        <li id="bs-modal-normal-options-nl2br">
+          <mark>nl2br</mark>: 是否将内容中的换行符自动转化为换行标签 &lt;br&gt;。默认为 <code>false</code>。
+        </li>
+        <li id="bs-modal-normal-options-buttons">
+          <mark>buttons</mark>: 模态框按钮设置。数组类型，可设置任意多的按钮。每项可设置配置项如下：
+          <ul class="list-options">
+            <li>
+              <mark>id</mark>: 按钮的 ID。可以通过模态框对象的 <code>.getButton()</code> 方法获取指定 ID 的按钮的jQuery元素对象。
+            </li>
+            <li>
+              <mark>icon</mark>: 按钮的图标样式 class。默认为 <code>null</code>。
+            </li>
+            <li>
+              <mark>label</mark>: 按钮的文本内容。
+            </li>
+            <li>
+              <mark>cssClass</mark>: 按钮的样式 class。
+            </li>
+            <li>
+              <mark>autospin</mark>: 设置点击按钮后是否自动显示加载中的转圈动画，布尔类型，在设置 <mark>icon</mark> 时生效。可以通过按钮的jQuery元素对象的 <code>.stopSpin()</code> 方法停止动画效果。
+            </li>
+            <li>
+              <mark>hotkey</mark>: 按钮热键(全小写)。应设为相应的 keyCode (如回车的 keyCode 为13，字符A的 keyCode 为65)。
+            </li>
+            <li>
+              <mark>action</mark>: 按钮被点击或触发热键后的回调方法。传入模态框对象参数。
+            </li>
+          </ul>
+        </li>
+        <li id="bs-modal-normal-options-data">
+          <mark>data</mark>: 模态框绑定数据。可以通过模态框对象的 <code>.getData()</code> 方法获取指定数据（未传入参数则返回所有数据）。
+        </li>
+        <li id="bs-modal-normal-options-onshow">
+          <mark>onshow</mark>: 模态框弹出之前（尚未执行切入动画）触发回调。传入模态框对象参数。
+        </li>
+        <li id="bs-modal-normal-options-onshown">
+          <mark>onshown</mark>: 模态框弹出之后（已执行切入动画且内容已显示）触发回调。传入模态框对象参数。
+        </li>
+        <li id="bs-modal-normal-options-onhide">
+          <mark>onhide</mark>: 模态框关闭之前（尚未执行切出动画）触发回调。传入模态框对象参数。
+        </li>
+        <li id="bs-modal-normal-options-onhidden">
+          <mark>onhidden</mark>: 模态框消失之后（已执行完切出动画且元素已从文档中移除）触发回调。传入模态框对象参数。
+        </li>
+        <li id="bs-modal-normal-options-onloaded">
+          <mark>onloaded</mark>: 存在 <mark>remote</mark> 配置项时生效，等同于 <mark>onshown</mark> 配置项。传入模态框对象参数。
+        </li>
+        <li id="bs-modal-normal-options-backdrop">
+          <mark>backdrop</mark>: 模态效果。设为 false 及其等效值时不显示模态效果。另可设为数组，类似于[<mark>模态背景色</mark>, <mark>模态背景透明度</mark>]，如 <code>['#fff', 0.5]</code>。默认为 <code>'static'</code>（显示默认模态效果）。
+        </li>
+        <li id="bs-modal-normal-options-position">
+          <mark>position</mark>: 模态框初始位置。可设为字符串 "<mark>左位置</mark> <mark>上位置</mark>" 或数组 [<mark>左位置</mark>, <mark>上位置</mark>]，规则如下：
+          <ul class="list-options">
+            <li>
+              <mark>左位置</mark> 可设为 left|center|right 三者之一，<mark>上位置</mark> 可设为 top|center|bottom 三者之一。左位置和上位置顺序可任意
+            </li>
+            <li>
+              <mark>左位置</mark> 和 <mark>上位置</mark> 亦可设为百分比字符串值（如"15%"）、px/em单位字符串值(如"200px"或"200em")、数字（如200，单位默认为px）
+            </li>
+            <li>
+              若 <mark>左位置</mark> 和 <mark>上位置</mark> 值相等，则可简写为 "[左&上位置]"，如 "center center" 或 ["center","center"] 可简写为 "center" 或 ["center"]，"200 200px" 可简写为 ["200"] 或者 ["200px"] 等
+            </li>
+            <li>
+              默认值为 <code>'center'</code>（居中）
+            </li>
+          </ul>
+        </li>
+        <li id="bs-modal-normal-options-size">
+          <mark>size</mark>: 模态框大小。若为数字(字符串)或px、(r)em、%结尾的字符串，将直接作为弹出框宽度进行设置；否则，将作为模态框的 class 样式。另支持设为对象，允许配置项为：
+          <ul class="list-options">
+            <li>
+              <mark>width</mark>: 弹出框的宽度。数字(字符串)或px、(r)em、%结尾的字符串
+            </li>
+            <li>
+              <mark>height</mark>: 弹出框的高度。数字(字符串)或px、(r)em、%结尾的字符串
+            </li>
+            <li>
+              <mark>minWidth</mark>: 弹出框的最小宽度，常配合 width:'auto' 使用。数字(字符串)或px、(r)em、%结尾的字符串
+            </li>
+            <li>
+              <mark>maxWidth</mark>: 弹出框的最大宽度。数字(字符串)或px、(r)em、%结尾的字符串
+            </li>
+            <li>
+              <mark>minHeight</mark>: 弹出框的最小高度，常配合 height:'auto' 使用。数字(字符串)或px、(r)em、%结尾的字符串
+            </li>
+            <li>
+              <mark>maxHeight</mark>: 弹出框的最大高度。数字(字符串)或px、(r)em、%结尾的字符串
+            </li>
+          </ul>
+          默认为 <code>Modal.SIZE_NORMAL</code>（默认 class 样式）
+        </li>
+        <li id="bs-modal-normal-options-cssClass">
+          <mark>cssClass</mark>: 模态框的 class 样式。
+        </li>
+        <li id="bs-modal-normal-options-closable">
+          <mark>closable</mark>: 是否显示模态框的"关闭"图标按钮并允许自动关闭模态框。默认为 <code>true</code>。
+        </li>
+        <li id="bs-modal-normal-options-closeByBackdrop">
+          <mark>closeByBackdrop</mark>: 是否允许点击模态效果背景时关闭弹出框（存在模态效果时生效），<mark>closable</mark> 设为 <code>true</code> 时生效。<mark>backdrop</mark> 设为数组值或 "static" 时默认为 <code>false</code>,
+        </li>
+        <li id="bs-modal-normal-options-closeByKeyboard">
+          <mark>closeByKeyboard</mark>: 是否响应键盘的 <kbd>Esc</kbd> 键关闭模态框，<mark>closable</mark> 设为 <code>true</code> 时生效。默认为 <code>true</code>。
+        </li>
+        <li id="bs-modal-normal-options-draggable">
+          <mark>draggable</mark>: 是否允许拖拽。默认为 <code>false</code>（不允许拖拽）。
+        </li>
+      </ul>
+      <h3 id="bs-modal-alert">
+        <a class="link-anchor icon-anchor" href="#bs-modal-alert"></a>警告框
+      </h3>
+      <p>
+        使用 <code>Modal.alert()</code> 方法可以弹出一个警告形式的模态框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.alert('Hi Apple!', function() {
+    // after closed.
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        另外，可以使用更多的配置项来丰富警告模态框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.alert({
+    title: 'WARNING',
+    message: 'Warning! No Banana!',
+    icon: false,
+    type: Modal.TYPE_WARNING,
+    closable: true,
+    draggable: true,
+    buttonLabel: 'Roar! Why!',
+    callback: function(result) {
+        alert('Result is: ' + result);
+    }
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-alert-options">
+        <a class="link-anchor icon-anchor" href="#bs-modal-alert-options"></a>配置项
+      </h4>
+      <p>
+        警告形式的模态框可以使用以下配置项：
+      </p>
+      <ul class="list-options">
+        <li>
+          <mark>title</mark>: 警告模态框标题。默认为 <code>'警告提示'</code>。
+        </li>
+        <li>
+          <mark>message</mark>: 警告模态框内容。
+        </li>
+        <li>
+          <mark>icon</mark>: 警告模态框内容图标。布尔或字符串类型。设为 <code>false</code> 时不显示图标，设为字符串时，将作为图标的额外 class 样式，可以通过 <code>.modal-icon-alert.xxx</code> 选择器更改图标样式。默认为 <code>true</code>。
+        </li>
+        <li>
+          <mark>type</mark>: 警告模态框类型。默认为 <code>Modal.TYPE_PRIMARY</code>。
+        </li>
+        <li>
+          <mark>closable</mark>: 是否显示警告模态框的"关闭"图标按钮。默认为 <code>false</code> 。
+        </li>
+        <li>
+          <mark>draggable</mark>: 是否允许拖拽。默认为 <code>false</code> (不允许拖拽)。
+        </li>
+        <li>
+          <mark>buttonLabel</mark>: 警告模态框按钮文本内容。默认为 <code>'确定'</code>。
+        </li>
+        <li>
+          <mark>callback</mark>: 警告模态框关闭后的回调方法。如果是通过点击 "确定" 按钮关闭了警告框，传入的参数 result 为 true，否则，为 false。
+        </li>
+      </ul>
+      <h3 id="bs-modal-confirm">
+        <a class="link-anchor icon-anchor" href="#bs-modal-confirm"></a>询问框
+      </h3>
+      <p>
+        使用 <code>Modal.confirm()</code> 方法可以弹出一个询问形式的模态框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.confirm('Hi Apple, are you sure?', function(bsure) {
+    if (bsure) {
+        // 点击了"确定"按钮
+    } else {
+        // 点击了"取消"按钮
+    }
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        另外，可以使用更多的配置项来丰富询问模态框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.confirm({
+    title: 'WARNING',
+    message: 'Warning! Drop your banana?',
+    type: Modal.TYPE_WARNING,
+    closable: false,
+    draggable: true,
+    btnCancelLabel: 'Do not drop it!',
+    btnOKLabel: 'Drop it!',
+    btnOKClass: 'btn-warning',
+    callback: function(bsure) {
+        if (bsure) {
+            // 点击了"确定"按钮
+        } else {
+            // 点击了"取消"按钮
+        }
+    }
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-confirm-options">
+        <a class="link-anchor icon-anchor" href="#bs-modal-confirm-options"></a>配置项
+      </h4>
+      <p>
+        询问形式的模态框可以使用以下配置项：
+      </p>
+      <ul class="list-options">
+        <li>
+          <mark>title</mark>: 询问模态框标题。默认为 <code>'确认提示'</code>。
+        </li>
+        <li>
+          <mark>message</mark>: 询问模态框内容。
+        </li>
+        <li>
+          <mark>icon</mark>: 询问模态框内容图标。布尔或字符串类型。设为 <code>false</code> 时不显示图标，设为字符串时，将作为图标的额外 class 样式，可以通过 <code>.modal-icon-confirm.xxx</code> 选择器更改图标样式。默认为 <code>true</code>。
+        </li>
+        <li>
+          <mark>type</mark>: 询问模态框类型。默认为 <code>Modal.TYPE_PRIMARY</code>。
+        </li>
+        <li>
+          <mark>closable</mark>: 是否显示询问模态框的"关闭"图标按钮。默认为 <code>true</code> 。
+        </li>
+        <li>
+          <mark>draggable</mark>: 是否允许拖拽。默认为 <code>false</code> (不允许拖拽)。
+        </li>
+        <li>
+          <mark>btnCancelLabel</mark>: 询问模态框"取消"按钮文本内容。默认为 <code>'取消'</code>。
+        </li>
+        <li>
+          <mark>btnOKLabel</mark>: 询问模态框"确定"按钮文本内容。默认为 <code>'确定'</code>。
+        </li>
+        <li>
+          <mark>btnOKClass</mark>: 询问模态框"确定"按钮 class 样式。默认为 <code>null</code>。
+        </li>
+        <li>
+          <mark>callback</mark>: 询问模态框关闭后的回调方法。如果是通过点击 "确定" 按钮关闭了询问框，传入的参数 bsure 为 true，否则，为 false。
+        </li>
+      </ul>
+      <h3 id="bs-modal-loading">
+        <a class="link-anchor icon-anchor" href="#bs-modal-loading"></a>加载框
+      </h3>
+      <p>
+        使用 <code>Modal.loading()</code> 方法可以弹出一个加载效果的模态框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.loading('5秒后手动关闭', function() {
+    // Loading done.
+});
+// 手动关闭加载效果模态框
+setTimeout(function() {
+    Modal.loading('remove');
+}, 5000);</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        也可以使用传入配置项的方式。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.loading({
+    message: '5秒后手动关闭',
+    delay: 80,
+    onhidden: function() {
+        // Loading done.
+    }
+});
+// 手动关闭加载效果模态框
+setTimeout(function() {
+    Modal.loading('remove');
+}, 5000);</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-loading-options">
+        <a class="link-anchor icon-anchor" href="#bs-modal-loading-options"></a>配置项
+      </h4>
+      <p>
+        加载效果的模态框可以使用以下配置项：
+      </p>
+      <ul class="list-options">
+        <li>
+          <mark>message</mark>: 加载效果模态框的文本内容。默认为 <code>null</code>。
+        </li>
+        <li>
+          <mark>size</mark>: 加载效果图标的大小。默认为 <code>32(px)</code>。
+        </li>
+        <li>
+          <mark>minin</mark>: 加载效果模态框最小显示时间。若销毁时刻距显示时刻的时间间隔小于这个值，则自动延时至最小时间间隔。默认为 <code>300(ms)</code>。
+        </li>
+        <li>
+          <mark>loader</mark>: 加载效果设置。若为图像地址，则使用指定图像作为加载效果；为其他有效值时，作为加载效果容器的 class 样式。默认为 <code>null</code>，使用默认的 <a href="/yfjs#dependencies-jquery-plugins-loader">loader</a> 插件。
+        </li>
+        <li>
+          <mark>beginFrame</mark>: 为默认加载效果时生效，等同于 <a href="/yfjs#dependencies-jquery-plugins-loader">loader</a> 插件的 <mark>data-frame</mark> 属性配置项。默认为 <code>1</code>。
+        </li>
+        <li>
+          <mark>delay</mark>: 为默认加载效果时生效，等同于 <a href="/yfjs#dependencies-jquery-plugins-loader">loader</a> 插件的 <mark>data-delay</mark> 属性配置项。默认为 <code>150</code>。
+        </li>
+        <li>
+          <mark>onshow</mark>: 加载效果模态框显示之前调用回调。传入模态框对象参数。
+        </li>
+        <li>
+          <mark>onhidden</mark>: 加载效果模态框关闭之后调用回调。传入模态框对象参数。
+        </li>
+      </ul>
+      <h3 id="bs-modal-processing">
+        <a class="link-anchor icon-anchor" href="#bs-modal-processing"></a>过程框
+      </h3>
+      <p>
+        使用 <code>Modal.processing()</code> 方法可以弹出一个表示处理过程的模态框。
+      </p>
+      <figure>
+        <pre><code class="javascript">var processor = Modal.processing('正在处理...');</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        处理过程的模态框需要自行手动关闭，并且可以根据处理结果的不同调用不同效果形式的关闭方法。
+      </p>
+      <figure>
+        <pre><code class="javascript">// 显示警告处理结果（延迟模拟处理过程）
+setTimeout(function() {
+    processor.warning('处理进程尚未开启.');
+}, 5000);</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <figure>
+        <pre><code class="javascript">// 显示失败处理结果（延迟模拟处理过程）
+setTimeout(function() {
+    processor.error('处理失败！');
+}, 5000);</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <figure>
+        <pre><code class="javascript">// 显示成功处理结果（延迟模拟处理过程）
+setTimeout(function() {
+    processor.success('处理成功！');
+}, 5000);</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-processing-options">
+        <a class="link-anchor icon-anchor" href="#bs-modal-processing-options"></a>配置项
+      </h4>
+      <p>
+        过程形式的模态框可以使用以下配置项：
+      </p>
+      <ul class="list-options">
+        <li>
+          <mark>message</mark>: 过程模态框的内容。默认为 <code>'Processing...'</code>。
+        </li>
+        <li>
+          <mark>nl2br</mark>: 是否将内容中的换行符自动转化为换行标签 &lt;br&gt;。默认为 <code>false</code>。
+        </li>
+        <li>
+          <mark>size</mark>: 规则同通用框的 <a class="link-anchor" href="#bs-modal-normal-options-size">size</a> 配置项。默认为：<code>{width: 'auto', minWidth: '20em', maxWidth: '40em'}</code>。
+        </li>
+        <li>
+          <mark>backdrop</mark>: 规则同通用框的 <a class="link-anchor" href="#bs-modal-normal-options-backdrop">backdrop</a> 配置项。默认为 <code>false</code>。
+        </li>
+        <li>
+          <mark>position</mark>: 规则同通用框的 <a class="link-anchor" href="#bs-modal-normal-options-position">position</a> 配置项。默认为 <code>'right top'</code>,
+        </li>
+        <li>
+          <mark>timeout</mark>: 过程模态框触发结束方法后的显示停留时间。单位 ms。可选配置项为：
+          <ul class="list-options">
+            <li>
+              <mark>success</mark>: 触发 success 结束方法后的显示停留时间。
+            </li>
+            <li>
+              <mark>error</mark>: 触发 error 结束方法后的显示停留时间。
+            </li>
+            <li>
+              <mark>warning</mark>: 触发 warning 结束方法后的显示停留时间。
+            </li>
+            <li>
+              <mark>default</mark>: 触发所有结束方法后的显示停留时间。
+            </li>
+            <li>
+              默认为 <code>{default: 3500}</code>。
+            </li>
+          </ul>
+        </li>
+        <li>
+          <mark>icons</mark>: 过程模态框内图标设置。可选配置项为：<ul class="list-options">
+          <li>
+            <mark>processing</mark>: 处理过程中的图标设置。设为图像时，以该图像作为图标；设为其他有效值时，作为图标容器的 class 样式。默认为 <code>null</code>。
+          </li>
+          <li>
+            <mark>success</mark>: 触发 success 结束方法后的图标设置。图标容器的 class 样式。默认为 <code>"fa fa-check-circle"</code>。
+          </li>
+          <li>
+            <mark>error</mark>: 触发 error 结束方法后的图标设置。图标容器的 class 样式。默认为 <code>"fa fa-bug"</code>。
+          </li>
+          <li>
+            <mark>warning</mark>: 触发 warning 结束方法后的图标设置。图标容器的 class 样式。默认为 <code>"fa fa-exclamation-triangle"</code>。
+          </li>
+        </ul>
+        </li>
+      </ul>
+      <h3 id="bs-modal-tip">
+        <a class="link-anchor icon-anchor" href="#bs-modal-tip"></a>提示框
+      </h3>
+      <p>
+        提示形式的模态框有四种形式：信息提示框、警告提示框、错误提示框、成功提示框。四种形式的提示框除了调用方法名不同外，具有相同的参数和方法。
+      </p>
+      <h4 id="bs-modal-info">
+        <a class="link-anchor icon-anchor" href="#bs-modal-info"></a>信息提示框
+      </h4>
+      <p>
+        使用 <code>Modal.info()</code> 方法可以弹出信息提示框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.info('自定义提示信息');</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        可以传入回调参数在提示框关闭后做后续处理。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.info('自定义提示信息', function() {
+    // info modal closed!
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        可以使用传入配置项的方式为提示框添加更多功能。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.info({
+    message: '自定义提示信息',
+    position: 'right 50',
+    onhidden: function() {
+        // info modal closed!
+    }
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-warning">
+        <a class="link-anchor icon-anchor" href="#bs-modal-warning"></a>警告提示框
+      </h4>
+      <p>
+        使用 <code>Modal.warning()</code> 方法可以弹出警告提示框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.warning('自定义警告信息');</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-error">
+        <a class="link-anchor icon-anchor" href="#bs-modal-error"></a>错误提示框
+      </h4>
+      <p>
+        使用 <code>Modal.error()</code> 方法可以弹出错误提示框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.error('自定义错误信息');</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-success">
+        <a class="link-anchor icon-anchor" href="#bs-modal-success"></a>成功提示框
+      </h4>
+      <p>
+        使用 <code>Modal.success()</code> 方法可以弹出成功提示框。
+      </p>
+      <figure>
+        <pre><code class="javascript">Modal.success('自定义成功信息');</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h4 id="bs-modal-options">
+        <a class="link-anchor icon-anchor" href="#bs-modal-options"></a>配置项
+      </h4>
+      <p>
+        提示形式的模态框可以使用以下配置项：
+      </p>
+      <ul class="list-options">
+        <li>
+          <mark>message</mark>: 提示框的文本内容。信息提示框默认为 <code>'Info.'</code>；警告提示框默认为 <code>'Warning!'</code>；错误提示框默认为 <code>'Error!'</code>；成功提示框默认为 <code>'Success!'</code>。
+        </li>
+        <li>
+          <mark>nl2br</mark>: 是否将内容中的换行符自动转化为换行标签 &lt;br&gt;。默认为 <code>false</code>。
+        </li>
+        <li>
+          <mark>size</mark>: 规则同通用框的 <a class="link-anchor" href="#bs-modal-normal-options-size">size</a> 配置项。默认为：<code>{width: 'auto', minWidth: '20em', maxWidth: '40em'}</code>
+        </li>
+        <li>
+          <mark>backdrop</mark>: 规则同通用框的 <a class="link-anchor" href="#bs-modal-normal-options-backdrop">backdrop</a> 配置项。默认为 <code>false</code>。
+        </li>
+        <li>
+          <mark>position</mark>: 规则同通用框的 <a class="link-anchor" href="#bs-modal-normal-options-position">position</a> 配置项。默认为 <code>'right top'</code>,
+        </li>
+        <li>
+          <mark>timeout</mark>: 提示框的显示停留时间。单位 ms。默认为 <code>3500</code>。
+        </li>
+        <li>
+          <mark>icon</mark>: 提示框内图标设置。图标容器的 class 样式。信息提示框默认为 <code>'fa fa-info-circle'</code>；警告提示框默认为 <code>'fa fa-exclamation-triangle'</code>；错误提示框默认为 <code>'fa fa-bug'</code>；成功提示框默认为 <code>'fa fa-check-circle'</code>。
+        </li>
+      </ul>
+      <h2 id="bs-tab">
+        <a class="link-anchor icon-anchor" href="#bs-tab"></a>标签页 <small>ID: <code>bs/tab</code></small>
+      </h2>
+      <h2 id="bs-tooltip">
+        <a class="link-anchor icon-anchor" href="#bs-tooltip"></a>工具提示 <small>ID: <code>bs/tooltip</code></small>
+      </h2>
+      <h2 id="bs-popover">
+        <a class="link-anchor icon-anchor" href="#bs-popover"></a>弹出框 <small>ID: <code>bs/popover</code></small>
+      </h2>
+      <h2 id="bs-alert">
+        <a class="link-anchor icon-anchor" href="#bs-alert"></a>警告框 <small>ID: <code>bs/alert</code></small>
+      </h2>
+      <h2 id="bs-button">
+        <a class="link-anchor icon-anchor" href="#bs-button"></a>按钮 <small>ID: <code>bs/button</code></small>
+      </h2>
+      <h2 id="bs-collapse">
+        <a class="link-anchor icon-anchor" href="#bs-collapse"></a>折叠插件 <small>ID: <code>bs/collapse</code></small>
+      </h2>
+      <h2 id="bs-carousel">
+        <a class="link-anchor icon-anchor" href="#bs-carousel"></a>轮播插件 <small>ID: <code>bs/carousel</code></small>
+      </h2>
+      <h2 id="bs-clockpicker">
+        <a class="link-anchor icon-anchor" href="#bs-clockpicker"></a>圆形时钟 <small>ID: <code>bs/clockpicker</code></small>
+      </h2>
+      <h2 id="bs-datetimepicker">
+        <a class="link-anchor icon-anchor" href="#bs-datetimepicker"></a>日期选择 <small>ID: <code>bs/datetimepicker</code></small>
+      </h2>
+      <h2 id="bs-daterangepicker">
+        <a class="link-anchor icon-anchor" href="#bs-daterangepicker"></a>日期区间选择 <small>ID: <code>bs/daterangepicker</code></small>
+      </h2>
+      <h2 id="bs-switcher">
+        <a class="link-anchor icon-anchor" href="#bs-switcher"></a>开关 <small>ID: <code>bs/switcher</code></small>
+      </h2>
+      <h2 id="bs-slider">
+        <a class="link-anchor icon-anchor" href="#bs-slider"></a>滑块 <small>ID: <code>bs/slider</code></small>
+      </h2>
+      <h2 id="bs-paging">
+        <a class="link-anchor icon-anchor" href="#bs-paging"></a>分页插件 <small>ID: <code>bs/paging</code></small>
+      </h2>
+      <h2 id="bs-spinbox">
+        <a class="link-anchor icon-anchor" href="#bs-spinbox"></a>整数旋转框 <small>ID: <code>bs/spinbox</code></small>
+      </h2>
+      <h2 id="bs-wizard">
+        <a class="link-anchor icon-anchor" href="#bs-wizard"></a>步骤向导 <small>ID: <code>bs/wizard</code></small>
+      </h2>
+    </section>
+    <section class="lead">
+      <h1 id="jq">
+        <a class="link-anchor icon-anchor" href="#jq"></a>jQuery插件 <small>( 13 )</small>
+      </h1>
+    </section>
+    <section>
+      <h2 id="jq-cookie">
+        <a class="link-anchor icon-anchor" href="#jq-cookie"></a>Cookie <small>ID: <code>jq/cookie</code></small>
+      </h2>
+      <h2 id="jq-urlp">
+        <a class="link-anchor icon-anchor" href="#jq-urlp"></a>URL解析 <small>ID: <code>jq/urlp</code></small>
+      </h2>
+      <h2 id="jq-chosen">
+        <a class="link-anchor icon-anchor" href="#jq-chosen"></a>下拉框 <small>ID: <code>jq/chosen</code></small>
+      </h2>
+      <h2 id="jq-multipicker">
+        <a class="link-anchor icon-anchor" href="#jq-multipicker"></a>双列选择框 <small>ID: <code>jq/multipicker</code></small>
+      </h2>
+      <h2 id="jq-dataTables">
+        <a class="link-anchor icon-anchor" href="#jq-dataTables"></a>表格插件 <small>ID: <code>jq/dataTables</code></small>
+      </h2>
+      <h2 id="jq-form">
+        <a class="link-anchor icon-anchor" href="#jq-form"></a>表单增强 <small>ID: <code>jq/form</code></small>
+      </h2>
+      <h2 id="jq-form-validator">
+        <a class="link-anchor icon-anchor" href="#jq-form-validator"></a>表单验证 <small>ID: <code>jq/form/validator</code></small>
+      </h2>
+      <h2 id="jq-form-wizard">
+        <a class="link-anchor icon-anchor" href="#jq-form-wizard"></a>表单步骤向导 <small>ID: <code>jq/form/wizard</code></small>
+      </h2>
+      <h2 id="jq-dragsort">
+        <a class="link-anchor icon-anchor" href="#jq-dragsort"></a>拖拽插件 <small>ID: <code>jq/dragsort</code></small>
+      </h2>
+      <h2 id="jq-mCustomScrollbar">
+        <a class="link-anchor icon-anchor" href="#jq-mCustomScrollbar"></a>定制滚动条 <small>ID: <code>jq/mCustomScrollbar</code></small>
+      </h2>
+      <h2 id="jq-webuploader">
+        <a class="link-anchor icon-anchor" href="#jq-webuploader"></a>上传组件 <small>ID: <code>jq/webuploader</code></small>
+      </h2>
+      <h2 id="jq-zeroclipboard">
+        <a class="link-anchor icon-anchor" href="#jq-zeroclipboard"></a>复制兼容插件 <small>ID: <code>jq/zeroclipboard</code></small>
+      </h2>
+      <h2 id="jq-ztree">
+        <a class="link-anchor icon-anchor" href="#jq-ztree"></a>树组件 <small>ID: <code>jq/ztree</code></small>
+      </h2>
+      <h2 id="jq-qrcode">
+        <a class="link-anchor icon-anchor" href="#jq-qrcode"></a>二维码 <small>ID: <code>jq/qrcode</code></small>
+      </h2>
+    </section>
+    <section>
+      <h2 id="json">
+        <a class="link-anchor icon-anchor" href="#json"></a>JSON <small>ID: <code>json</code></small>
+      </h2>
+      <h2 id="es5-shim">
+        <a class="link-anchor icon-anchor" href="#es5-shim"></a>ES5 Shim <small>ID: <code>es5-shim</code></small>
+      </h2>
+      <h2 id="es6-shim">
+        <a class="link-anchor icon-anchor" href="#es6-shim"></a>ES6 Shim <small>ID: <code>es6-shim</code></small>
+      </h2>
+      <h2 id="highlight">
+        <a class="link-anchor icon-anchor" href="#highlight"></a>代码加亮 <small>ID: <code>highlight</code></small>
+      </h2>
+      <h2 id="codemirror">
+        <a class="link-anchor icon-anchor" href="#codemirror"></a>代码编辑框 <small>ID: <code>codemirror</code></small>
+      </h2>
+      <h2 id="crypto">
+        <a class="link-anchor icon-anchor" href="#crypto"></a>加密解密 <small>ID: <code>crypto-js</code></small>
+      </h2>
+      <h2 id="d3">
+        <a class="link-anchor icon-anchor" href="#d3"></a>D3 <small>ID: <code>d3</code></small>
+      </h2>
+      <h2 id="echarts">
+        <a class="link-anchor icon-anchor" href="#echarts"></a>Echarts <small>ID: <code>echarts</code></small>
+      </h2>
+      <h2 id="moment">
+        <a class="link-anchor icon-anchor" href="#moment"></a>日期处理 <small>ID: <code>moment</code></small>
+      </h2>
+      <h2 id="plupload">
+        <a class="link-anchor icon-anchor" href="#plupload"></a>Plupload <small>ID: <code>plupload</code></small>
+      </h2>
+      <h2 id="remarkable">
+        <a class="link-anchor icon-anchor" href="#remarkable"></a>Markdown语法 <small>ID: <code>remarkable</code></small>
+      </h2>
+      <h2 id="nicescroll">
+        <a class="link-anchor icon-anchor" href="#nicescroll"></a>滚动条美化 <small>ID: <code>nicescroll</code></small>
+      </h2>
+      <h2 id="zeroclipboard">
+        <a class="link-anchor icon-anchor" href="#zeroclipboard"></a>复制插件 <small>ID: <code>zeroclipboard</code></small>
+      </h2>
+    </section>
+  </div>
 </div>
 
 <script src="/javascripts/docs.js"></script>

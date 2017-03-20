@@ -9,4 +9,12 @@ router.get('/', function (req, res, next) {
     });
 });
 
+// Example pages
+router.get('/:md', function (req, res, next) {
+    res.render('modules/modal', {
+        title: 'YFjs Modal Example',
+        navIndex: 4
+    });
+});
+
 module.exports = router;

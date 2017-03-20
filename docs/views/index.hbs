@@ -16,13 +16,13 @@
   <aside>
     <ul class="nav sidenav">
       <li>
-        <a class="link-anchor" href="#介绍">介绍</a>
+        <a class="link-anchor" href="#introduction">介绍</a>
       </li>
       <li>
-        <a class="link-anchor" href="#使用说明">使用说明</a>
+        <a class="link-anchor" href="#usage-guide">使用说明</a>
       </li>
       <li>
-        <a class="link-anchor" href="#浏览器兼容性">浏览器兼容性</a>
+        <a class="link-anchor" href="#compatible">浏览器兼容性</a>
       </li>
     </ul>
     <ul class="nav sidetools">
@@ -33,8 +33,8 @@
   </aside>
   <div class="content">
     <section>
-      <h2 id="介绍">
-        <a class="link-anchor icon-anchor" href="#介绍"></a>介绍
+      <h2 id="introduction">
+        <a class="link-anchor icon-anchor" href="#introduction"></a>介绍
       </h2>
       <p>
         YoungFront（简称 Y&sdot;F）是一个由几个“年轻”但热爱前端技术的前端人组成的兴趣小组，寄意于“年轻有活力”。
@@ -60,8 +60,8 @@
     </section>
     -->
     <section>
-      <h2 id="使用说明">
-        <a class="link-anchor icon-anchor" href="#使用说明"></a>使用说明
+      <h2 id="usage-guide">
+        <a class="link-anchor icon-anchor" href="#usage-guide"></a>使用说明
       </h2>
       <p>
         编译包内包含 <strong>minified</strong> 和 <strong>original</strong> 两个目录，分别对应 <strong>压缩后</strong> 和 <strong>未压缩</strong> 的组件库代码，可酌情使用。
@@ -73,16 +73,16 @@
       <pre><code class="no-highlight">- yfjs-lib
   - minified
     - fonts
-      + FontAwesome        <<< FontAwesome图标库字体
-      + GlyphiconHalflings <<< Bootstrap内含图标字体
-      + Loader             <<< 默认加载中样式图标字体
+      + FontAwesome        <-- FontAwesome图标库字体
+      + GlyphiconHalflings <-- Bootstrap内含图标字体
+      + Loader             <-- 默认加载中样式图标字体
     - scripts
-      + ...      <<< 已打包的各组件模块
-      | yfjs.js  <<< 组件库入口js文件
+      + ...      <-- 已打包的各组件模块
+      | yfjs.js  <-- 组件库入口js文件
     - styles
-      | base.css <<< 基本样式文件
+      | base.css <-- 基本样式文件
   - original
-    ...      <<< 与 minified 目录下结构一致</code></pre>
+    ...      <-- 与 minified 目录下结构一致</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <p>
@@ -100,21 +100,21 @@
 | Requirejs (enhanced on v2.1.17)
 | jQuery (v1.9.1)
 | jquery Plugins
-  - | $.fn.serializeObject <<< 将表单内容序列化为 json 对象
-  - | $.parseQuery         <<< 将 URL 路径上的参数字符串解析为 json 对象
+  - | $.fn.serializeObject <-- 将表单内容序列化为 json 对象
+  - | $.parseQuery         <-- 将 URL 路径上的参数字符串解析为 json 对象
   - Bootstrap Plugins (enhanced on v3.3.4)
-    - | transition  <<< 动画效果适配插件
-    - | scrollspy   <<< 滚动监听插件
-    - | affix       <<< 固定元素插件
-    - | dropdown    <<< 下拉框组件
+    - | transition  <-- 动画效果适配插件
+    - | scrollspy   <-- 滚动监听插件
+    - | affix       <-- 固定元素插件
+    - | dropdown    <-- 下拉框组件
   - Other Plugins
-    - | Loader     <<< 默认加载中效果组件
-    - | metismenu  <<< 折叠菜单组件
-    - | iCheck     <<< 单选按钮和复选框美化组件
-| YFjs (v0.8.0)  <<< 组件库工具类</code></pre>
+    - | Loader     <-- 默认加载中效果组件
+    - | metismenu  <-- 折叠菜单组件
+    - | iCheck     <-- 单选按钮和复选框美化组件
+| YFjs (v0.8.0)  <-- 组件库工具类</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
-      <p>一个完整引入组件库资源的 HTML 页面类似于：</p>
+      <p id="usage-guide-index">一个完整引入组件库资源的 HTML 页面类似于：</p>
       <figure>
         <pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html class="no-js"&gt;
@@ -136,41 +136,45 @@
       </figure>
     </section>
     <section>
-      <h2 id="浏览器兼容性">
-        <a class="link-anchor icon-anchor" href="#浏览器兼容性"></a>浏览器兼容版本
+      <h2 id="compatible">
+        <a class="link-anchor icon-anchor" href="#compatible"></a>浏览器兼容版本
       </h2>
-      <p><code><i class="fa fa-check"></i></code> 表示支持的版本；<code>优</code>表示更佳体验版本。</p>
-      <table class="table table-bordered text-center">
-        <tr>
-          <td>类型</td>
-          <td><i class="icon-browser ie8"></i></td>
-          <td><i class="icon-browser ff"></i></td>
-          <td><i class="icon-browser chrome"></i></td>
-          <td><i class="icon-browser opera"></i></td>
-          <td><i class="icon-browser safari"></i></td>
-        </tr>
-        <tr>
-          <td>版本</td>
-          <td>
-            <label class="control-label">(<i class="fa fa-check"></i>) IE 8+</label>
-            <label class="control-label">(优) IE 9+</label>
-          </td>
-          <td>
-            <label class="control-label">(<i class="fa fa-check"></i>) FireFox 2.0+</label>
-            <label class="control-label">(优) FireFox 4.0+</label>
-          </td>
-          <td>
-            <label class="control-label">(<i class="fa fa-check"></i>) Chrome 1.0+</label>
-            <label class="control-label">(优) Chrome 4.0+</label>
-          </td>
-          <td>
-            <label class="control-label">(<i class="fa fa-check"></i>) Opera 10.6+</label>
-          </td>
-          <td>
-            <label class="control-label">(<i class="fa fa-check"></i>) Safari 3.1+</label>
-          </td>
-        </tr>
-      </table>
+      <p>
+        <code><i class="fa fa-check"></i></code> 表示支持的版本；<code>优</code>表示更佳体验版本。
+      </p>
+      <div class="table-responsive">
+        <table class="table table-bordered text-center" id="table-compatible-browsers">
+          <tr>
+            <td>类型</td>
+            <td><i class="icon-browser ie8"></i></td>
+            <td><i class="icon-browser ff"></i></td>
+            <td><i class="icon-browser chrome"></i></td>
+            <td><i class="icon-browser opera"></i></td>
+            <td><i class="icon-browser safari"></i></td>
+          </tr>
+          <tr>
+            <td>版本</td>
+            <td>
+              <label class="control-label">(<i class="fa fa-check"></i>) IE 8+</label>
+              <label class="control-label">(优) IE 9+</label>
+            </td>
+            <td>
+              <label class="control-label">(<i class="fa fa-check"></i>) FireFox 2.0+</label>
+              <label class="control-label">(优) FireFox 4.0+</label>
+            </td>
+            <td>
+              <label class="control-label">(<i class="fa fa-check"></i>) Chrome 1.0+</label>
+              <label class="control-label">(优) Chrome 4.0+</label>
+            </td>
+            <td>
+              <label class="control-label">(<i class="fa fa-check"></i>) Opera 10.6+</label>
+            </td>
+            <td>
+              <label class="control-label">(<i class="fa fa-check"></i>) Safari 3.1+</label>
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
   </div>
 </div>

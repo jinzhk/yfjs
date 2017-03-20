@@ -1,11 +1,3373 @@
 <div class="banner">
   <div class="container">
     <h1>YFjs SPA</h1>
-    <p>介绍 YFjs 组件库内含的 SPA 框架。配合组件库内的其他组件和插件，您可以基于模块的模式快速实现一个单页面应用系统。</p>
+    <p>介绍 YFjs 组件库内含的 SPA 框架。配合组件库内的其他组件和插件，您可以基于模块的方式快速实现一个单页面应用系统。</p>
   </div>
 </div>
 <div class="container">
+  <aside>
+    <ul class="nav sidenav">
+      <li>
+        <a class="link-anchor" href="#intro">介绍</a>
+      </li>
+      <li>
+        <a class="link-anchor" href="#hello-world">Hello World</a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a class="link-anchor" href="#hello-world-step0">准备</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#hello-world-step1">第一步：配置应用入口</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#hello-world-step2">第二步：构建应用目录</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#hello-world-step3">第三步：编写首页内容</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#hello-world-layouts">使用布局</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="link-anchor" href="#convention-configuration">约定与配置</a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a class="link-anchor" href="#convention-rules">约定规则</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a class="link-anchor" href="#convention-rules-router">路由约定</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#convention-rules-widgets">分层渲染</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="link-anchor" href="#configuration-extends">配置和扩展</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="link-anchor" href="#app">应用层</a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a class="link-anchor" href="#app-lifecycle">生命周期</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a class="link-anchor" href="#app-lifecycle-hooks">生命周期钩子</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-lifecycle-imgs">生命周期图示</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="link-anchor" href="#app-options">配置项</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a class="link-anchor" href="#app-options-container">container</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-baseUrl">baseUrl</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-index">index</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-cssPrefix">cssPrefix</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-loading">loading</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-filter">filter</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-binds">binds</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-cache">cache</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-template">template</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-styleLoader">styleLoader</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-mode">mode</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-ajax">ajax</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-websocket">websocket</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-cookie">cookie</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-error">error</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-errorFilter">errorFilter</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-onError">onError</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-Widget">Widget</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-Layout">Layout</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-options-View">View</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="link-anchor" href="#app-attrs">实例属性</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a class="link-anchor" href="#app-attrs-json">.json</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-cookie">.cookie</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-url">.url</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-container">.container</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-rootContext">.rootContext</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-mode">.mode</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-remote">.remote</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-template">.template</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-ajax">.ajax</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-ws">.ws</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-attrs-styleLoader">.styleLoader</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="link-anchor" href="#app-methods">实例方法</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a class="link-anchor" href="#app-methods-get">.get()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-set">.set()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getOptions">.getOptions()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getFilter">.getFilter()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getFilters">.getFilters()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getCache">.getCache()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getCookie">.getCookie()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-setCookie">.setCookie()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-removeCookie">.removeCookie()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getRootUrl">.getRootUrl()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getResourceUrl">.getResourceUrl()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getStyleUrl">.getStyleUrl()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getFullUrl">.getFullUrl()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getUrl">.getUrl()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-go">.go()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-back">.back()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-forward">.forward()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-helper">.helper()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-helpers">.helpers()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getCache">.getCache()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-setCache">.setCache()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-bind">.bind()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-on">.on()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-one">.one()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-unbind">.unbind()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-off">.off()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-trigger">.trigger()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-makeError">.makeError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-setError">.setError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getError">.getError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-addError">.addError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-removeError">.removeError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-assignError">.assignError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-includeError">.includeError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-excludeError">.excludeError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-inError">.inError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-onError">.onError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getStateIndex">.getStateIndex()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-inState">.inState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-beforeState">.beforeState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-afterState">.afterState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-isBeforeCreate">.isBeforeCreate()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-isCreated">.isCreated()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-isBeforeReady">.isBeforeReady()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-isReady">.isReady()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-isBeforeLoad">.isBeforeLoad()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-isLoaded">.isLoaded()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-isBeforeDestroy">.isBeforeDestroy()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-isDestroyed">.isDestroyed()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-View">.View()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-Layout">.Layout()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getView">.getView()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getState">.getState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getPath">.getPath()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getPathId">.getPathId()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getParam">.getParam()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-getParams">.getParams()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-prevState">.prevState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-prevPath">.prevPath()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-prevPathId">.prevPathId()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-prevParam">.prevParam()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-prevParams">.prevParams()</a>
+              </li>
+            </ul>
+          </li>
 
+        </ul>
+      </li>
+      <li>
+        <a class="link-anchor" href="#widget">视图/布局层</a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a class="link-anchor" href="#app-lifecycle">生命周期</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#widget-options">配置项</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a class="link-anchor" href="#widget-options-title">title</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-template">template</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-data">data</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-dataFilter">dataFilter</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-rendered">rendered</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-styles">styles</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-binds">binds</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-loading">loading</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-cache">cache</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-styleLoader">styleLoader</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-mode">mode</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-ajax">ajax</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-websocket">websocket</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-cookie">cookie</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-errorFilter">errorFilter</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-onError">onError</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-statechange">statechange</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-beforeCreate">beforeCreate</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-created">created</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-beforeLoad">beforeLoad</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-loaded">loaded</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-beforeReady">beforeReady</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-ready">ready</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-beforeDestroy">beforeDestroy</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-options-destroyed">destroyed</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="link-anchor" href="#widget-attrs">实例属性</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a class="link-anchor" href="#widget-attrs-container">.container</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-attrs-rootContext">.rootContext</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-attrs-context">.context</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-attrs-template">.template</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-attrs-mode">.mode</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-attrs-ajax">.ajax</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-attrs-ws">.ws</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-attrs-styleLoader">.styleLoader</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-attrs-cookie">.cookie</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="link-anchor" href="#widget-methods">实例方法</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a class="link-anchor" href="#widget-methods-get">.get()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-set">.set()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getOptions">.getOptions()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getState">.getState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-setState">.setState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getStateIndex">.getStateIndex()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-inState">.inState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-beforeState">.beforeState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-afterState">.afterState()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-isBeforeCreate">.isBeforeCreate()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-isCreated">.isCreated()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-isBeforeLoad">.isBeforeLoad()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-isLoaded">.isLoaded()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-isBeforeReady">.isBeforeReady()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-isReady">.isReady()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-isBeforeDestroy">.isBeforeDestroy()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-isDestroyed">.isDestroyed()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-isDispose">.isDispose()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getUrl">.getUrl()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getPath">.getPath()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getPathId">.getPathId()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getParam">.getParam()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getParams">.getParams()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getData">.getData()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-setData">.setData()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getCache">.getCache()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-setCache">.setCache()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-removeCache">.removeCache()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-findInclude">.findInclude()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-firstInclude">.firstInclude()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-lastInclude">.lastInclude()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-$">.$()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-bind">.bind()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-on">.on()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-one">.one()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-unbind">.unbind()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-off">.off()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-trigger">.trigger()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-makeError">.makeError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-setError">.setError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getError">.getError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-addError">.addError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-removeError">.removeError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-includeError">.includeError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-excludeError">.excludeError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-inError">.inError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-onError">.onError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-assignError">.assignError()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-render">.render()</a>
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-load">.load()</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="link-anchor" href="#components">内置组件</a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a class="link-anchor" href="#components-template">Template</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#components-ajax">Ajax</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#components-StyleLoader">StyleLoader</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#components-websocket">WebSocket</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#components-cookie">Cookie</a>
+          </li>
+          <li>
+            <a class="link-anchor" href="#components-loading">Loading</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav sidetools">
+      <li>
+        <a class="link-back-top" href="javascript:;">返回顶部</a>
+      </li>
+    </ul>
+  </aside>
+  <div class="content">
+    <section>
+      <h2 id="intro">
+        <a class="link-anchor icon-anchor" href="#intro"></a>介绍
+      </h2>
+      <p class="lead">
+        YFjs 组件库包含了一款我们精心设计的 Web 渲染框架 <code>yfjs/spa</code>。它是一款采用单页面形式渲染的前端框架，在设计上借鉴了目前流行的轻量级前端框架 <a href="http://cn.vuejs.org/" target="_blank">Vue</a>，同样只关注视图层、渐进式设计等。同时，参考了 Node.js 环境下的框架 <a href="http://www.expressjs.com.cn/" target="_blank">Express</a> 的部分特性，模板语法、回调参数形式、布局的使用等迎合前端大流，便于您快速入手。
+      </p>
+      <h3 id="intro-features">
+        <a class="link-anchor icon-anchor" href="#intro-features"></a>特性
+      </h3>
+      <p>
+        目前 <code>yfjs/spa</code> 框架尚处于起步阶段，功能上固然是离 <a href="https://angularjs.org/" target="_blank">Angular</a>、<a href="http://cn.vuejs.org/" target="_blank">Vue</a>、<a href="https://facebook.github.io/react/" target="_blank">React</a> 等著名框架相差甚远，但不妨花两分钟浏览下框架的一些特性介绍，决定是否值得做下尝试：
+      </p>
+      <ul>
+        <li>
+          框架采用 AMD 规范组织模块，无需关心 <code>module.exports</code>、<code>exports</code> 等写法，且依赖在头部声明，便于非专业前端开发人员理解。
+        </li>
+        <li>
+          在 jQuery 库基础上提供丰富的扩展工具插件，同时优化了众多常用的第三方库，以更少的代码实现复杂功能。
+        </li>
+        <li>
+          框架层次简洁明了，自底向上增量开发，提高功能代码重用率。
+        </li>
+        <li>
+          丰富页面片段功能，各页面着重模块化，提高页面重用率。
+        </li>
+        <li>
+          提供页面布局功能，布局可动态指定，一页多用。
+        </li>
+        <li>
+          配置项可全局渗透，且可动态计算，简约并便于维护。
+        </li>
+        <li>
+          各功能组件完全配置化，参照文档即可快速使用。
+        </li>
+        <li>
+          ... ...
+        </li>
+      </ul>
+      <div class="callout callout-warning">
+        <h4>您应当具备的基础知识</h4>
+        <p>
+          在继续下面的教程之前，您需要确定自己对 HTML 和 JavaScript 的知识有基本的了解，使用过 <a href="https://jquery.com/" target="_blank">jQuery</a> 更佳。如果您对这些知识（特别是 JavaScript）还是一知半解的状态，使用此框架会处于很艰难的情况。推荐前往 <a href="http://www.w3school.com.cn/" target="_blank">w3school</a> 网站学习 HTML 和 JavaScript 的相关知识。
+        </p>
+      </div>
+    </section>
+    <section>
+      <h2 id="hello-world">
+        <a class="link-anchor icon-anchor" href="#hello-world"></a>Hello World
+      </h2>
+      <p class="lead">
+        通过创建一个 Hello World 基本应用，简单认识一下 <code>yfjs/spa</code> 框架。
+      </p>
+      <h3 id="hello-world-step0">
+        <a class="link-anchor icon-anchor" href="#hello-world-step0"></a>准备
+      </h3>
+      <p>
+        在创建 Hello World 应用之前，请确保入口页面已按照 <a href="/#usage-guide-index">开始使用 / 使用说明</a> 章节介绍的内容准备好了组件库资源的引入。
+      </p>
+      <p>
+        那么，目前我们的入口页面（index）内容应该类似于下面：
+      </p>
+      <figure>
+        <pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html class="no-js"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;meta name="renderer" content="webkit"&gt;
+    &lt;title&gt;Web Title&lt;/title&gt;
+    &lt;!-- base context --&gt;
+    &lt;base href="/"&gt;
+    &lt;!-- styles --&gt;
+    &lt;link rel="stylesheet" href="/yfjs-lib/styles/base.css"&gt;
+    &lt;!-- scripts --&gt;
+    &lt;script src="/yfjs-lib/scripts/yfjs.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        <strong class="text-danger">如果入口页面存在访问上下文（如 <code>http://example.com/context/</code> 的访问上下文是 <code>/context/</code>）</strong>，则 <code>head</code> 标签内的 <code>base</code> 标签应设为：
+      </p>
+      <figure>
+        <pre><code class="html">&lt;base href="/context/"&gt;</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        接下来，经过简单三步就可以快速创建一个基本的 Hello World 应用。
+      </p>
+      <h3 id="hello-world-step1">
+        <a class="link-anchor icon-anchor" href="#hello-world-step1"></a>第一步：配置应用入口
+      </h3>
+      <p>
+        在引入 <code>yfjs.js</code> 文件的 Script 标签上添加属性 <code>data-main</code> 和 <code>data-require-base</code>。
+      </p>
+      <ul class="list-options">
+        <li>
+          <mark>data-main</mark>: 应用的入口 JS 文件。建议为 <code>app</code>。
+        </li>
+        <li>
+          <mark>data-require-base</mark>: 引入本地资源的基路径。建议为 <code>app</code>。
+        </li>
+      </ul>
+      <p>
+        另外，还有属性 <code>data-cache</code>，用来设置是否开启缓存。调试阶段建议关闭缓存。
+      </p>
+      <ul class="list-options">
+        <li>
+          <mark>data-cache</mark>: 全局缓存开关，控制模板文件、JS 文件等是否缓存。默认开启缓存，设置为 <code>false</code> 则关闭缓存。
+        </li>
+      </ul>
+      <p>
+        设置属性后的 Script 标签类似于：
+      </p>
+      <figure>
+        <pre><code class="html">&lt;script src="/yfjs-lib/scripts/yfjs.js"
+        data-main="app"
+        data-require-base="app"
+        data-cache="false"&gt;
+&lt;/script&gt;</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <h3 id="hello-world-step2">
+        <a class="link-anchor icon-anchor" href="#hello-world-step2"></a>第二步：构建应用目录
+      </h3>
+      <p>
+        在访问根目录下，创建 <code>data-require-base</code> 属性指定的目录名（下文称为 <mark>应用目录</mark>）：
+      </p>
+      <figure>
+        <pre><code class="no-highlight">+ app      <-- 应用目录
+index.html <-- 表示应用目录应在访问根目录下，并不意味着要与index入口文件同层</code></pre>
+      </figure>
+      <p>
+        在应用目录下，创建 <code>data-main</code> 属性指定的应用入口文件 <code>app.js</code>:
+      </p>
+      <figure>
+        <pre><code class="no-highlight">- app
+  app.js   <-- 应用入口文件
+index.html</code></pre>
+      </figure>
+      <p>
+        在应用目录下，创建视图目录 <code>views</code>、布局目录 <code>layouts</code>、视图模板目录 <code>templates</code>、布局模板目录 <code>templates/layouts</code>:
+      </p>
+      <figure>
+        <pre><code class="no-highlight">- app
+  + layouts     <-- 布局目录
+  - templates   <-- 视图模板目录
+      + layouts <-- 布局模板目录
+  + views       <-- 视图目录
+  app.js
+index.html</code></pre>
+      </figure>
+      <h3 id="hello-world-step3">
+        <a class="link-anchor icon-anchor" href="#hello-world-step3"></a>第三步：编写首页内容
+      </h3>
+      <p>
+        编写应用入口文件内容，引入框架 <code>yfjs/spa</code>：
+      </p>
+      <figure>
+        <pre><code class="javascript">define(['yfjs/spa'], function(SPA) {
+    SPA.create();
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        在视图目录下创建文件 <code>home.js</code>，并编写内容：
+      </p>
+      <figure>
+        <pre><code class="javascript">define(['App'], function(App) {
+    return App.View();
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        在视图模板目录下创建文件 <code>home.html</code>，并编写内容：
+      </p>
+      <figure>
+        <pre><code class="html">&lt;div class="container"&gt;
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;/div&gt;</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        此时，应用目录结构应类似于：
+      </p>
+      <figure>
+        <pre><code class="no-highlight">- app
+  + layouts
+  - templates
+      + layouts
+      home.html <-- 首页模板
+  - views
+      home.js   <-- 首页入口
+  app.js
+index.html</code></pre>
+      </figure>
+      <p>
+        将当前工程在 HTTP 环境下运行起来，直接访问入口页面（即默认首页 /），即可看到 Hello World! 内容。
+      </p>
+      <h3 id="hello-world-layouts">
+        <a class="link-anchor icon-anchor" href="#hello-world-layouts"></a>使用布局
+      </h3>
+      <p class="lead">
+        <strong>布局</strong> 是 <code>yfjs/spa</code> 框架的一大特色，我们可以将页面的公共部分抽离成布局，提升页面渲染效率。
+      </p>
+      <p>
+        接下来，我们在上面的 Hello World 应用基础上，使用布局改写。
+      </p>
+      <p>
+        首先，改写首页视图入口文件 <code>views/home.js</code>：
+      </p>
+      <figure>
+        <pre><code class="javascript">define(['App'], function(App) {
+    return App.View({
+        layout: "default"
+    });
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        其次，在布局目录下创建布局文件 <code>default.js</code>，并编写内容：
+      </p>
+      <figure>
+        <pre><code class="javascript">define(['App'], function(App) {
+    return App.Layout();
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        然后，改写首页默认模板文件 <code>templates/home.html</code>：
+      </p>
+      <figure>
+        <pre><code class="html">&lt;h1&gt;Hello World! - layout "default" used.&lt;/h1&gt;</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        最后，在布局模板目录下创建文件 <code>default.html</code>，并编写内容：
+      </p>
+      <figure>
+        <pre><code class="html">&lt;div class="container"&gt;
+  &#123;&#123;body&#125;&#125;
+&lt;/div&gt;</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        此时，应用目录结构应类似于：
+      </p>
+      <figure>
+        <pre><code class="no-highlight">- app
+  - layouts
+      default.js       <-- default布局入口
+  - templates
+      - layouts
+          default.html <-- default布局模板
+      home.html        <-- 首页模板
+  - views
+      home.js          <-- 首页入口
+  app.js
+index.html</code></pre>
+      </figure>
+      <p>
+        刷新页面，即可看到改用布局后的结果。
+      </p>
+    </section>
+    <section>
+      <h2 id="convention-configuration">
+        <a class="link-anchor icon-anchor" href="#convention-configuration"></a>约定与配置
+      </h2>
+      <p class="lead">
+        正如在 <a href="/#introduction">介绍</a> 章节我们提到过：<code>yfjs/spa</code> 框架是一个 <strong>配置和约定共同驱动</strong> 的框架。配置的是功能接口，约定的是路由等规则。下面分别介绍约定和配置的相关内容。
+      </p>
+      <h3 id="convention-rules">
+        <a class="link-anchor icon-anchor" href="#convention-rules"></a>约定规则
+      </h3>
+      <h4 id="convention-rules-router">
+        <a class="link-anchor icon-anchor" href="#convention-rules-router"></a>路由约定
+      </h4>
+      <p>
+        框架内置了页面路由，页面的定向遵守框架既定规则：
+      </p>
+      <ul>
+        <li>
+          页面的路由在 URL 上默认体现为 hash 模式。即形如 <code>http://127.0.0.1/#/path?param1=value1</code>，则页面路径为 <code>/path</code>，其后内容为页面的参数。
+        </li>
+        <li>
+          页面路径对应<mark>视图目录 <span class="text-danger">views</span></mark>下的同路径同名的 JavaScript 文件。
+        </li>
+        <li>
+          页面的默认模板对应<mark>模板目录 <span class="text-danger">templates</span></mark>下的同路径同名的 HTML 文件。
+        </li>
+        <li>
+          页面使用的布局（若存在）对应<mark>布局目录 <span class="text-danger">layouts</span></mark>下的同路径同名的 JavaScript 文件。
+        </li>
+        <li>
+          页面布局的默认模板对应<mark>布局模板目录 <span class="text-danger">templates/layouts</span></mark>下的同路径同名的 HTML 文件。
+        </li>
+      </ul>
+      <h4 id="convention-rules-widgets">
+        <a class="link-anchor icon-anchor" href="#convention-rules-widgets"></a>分层渲染
+      </h4>
+      <p>
+        为了充分体现单页面应用的局部加载、按需加载的特性，框架将页面内容进行了区段划分，并由上至下分层渲染。
+      </p>
+      <p>
+        框架将当前页面窗口定义为 App 层（应用层），页面主体内容定义为 View 层（视图层），页面外层布局定义为 Layout 层（布局层）。其中 View 层可任意嵌套并定义加载时机，在最上层的 View 层可指定采用的 Layout 层。App 层则负责整体状态切换、页面路由等。
+      </p>
+      <p>
+        整体分层可参看下图：
+        <img class="img-responsive" src="/images/spa-widgets.png" alt="框架分层示意图">
+      </p>
+      <h3 id="configuration-extends">
+        <a class="link-anchor icon-anchor" href="#configuration-extends"></a>配置和扩展
+      </h3>
+      <p>
+        在创建当前应用时，可以为当前应用指定一些配置项：
+      </p>
+      <figure>
+        <pre><code class="javascript">SPA.create({
+    baseUrl: {
+        style: "/assets/css",  // 设置样式文件基路径
+        resource: "/assets"    // 设置其他资源基路径
+    }
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        同时，也可以添加一些扩展功能方法：
+      </p>
+      <figure>
+        <pre><code class="javascript">SPA.create({
+    // 配置项 baseUrl
+    baseUrl: {
+        style: "/assets/css",
+        resource: "/assets"
+    },
+    // 扩展功能
+    doSomething: function() {
+        return "do " + this.getSomething();
+    },
+    getSomething: function() {
+        return "something.";
+    }
+});</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
+      <p>
+        在使用应用实例 <code>App</code> 创建一个视图实例时，可以使用 <code>App</code> 实例的扩展功能（方法或属性）：
+      </p>
+      <figure>
+        <pre><code class="javascript">App.View({
+    // 配置项 layout 布局
+    layout: "default",
+    // 配置项 ready 页面渲染后执行
+    ready: function() {
+        console.log(
+            this.doSomething()
+        );
+    },
+    // 扩展功能
+    doSomething: function() {
+        // 调用 App 实例的扩展功能
+        App.doSomething();
+    }
+});</code></pre>
+      </figure>
+      <div class="callout callout-danger">
+        <h4>扩展功能注意事项</h4>
+        <p>
+          目前应用实例或视图/布局实例的配置项和扩展功能（方法或属性）在同等位置上定义，使用时应注意扩展方法或属性名称不能与实例的固有配置项和属性、方法等重名。<strong class="text-danger">与实例的属性、方法重名的扩展属性或方法将被忽略并产生错误提示</strong>。
+        </p>
+      </div>
+    </section>
+    <section>
+      <h2 id="app">
+        <a class="link-anchor icon-anchor" href="#app"></a>应用层
+      </h2>
+      <p class="lead">
+        框架结构顶层称为应用层。应用层主要负责路由自动切换、维护全局状态、提供全局功能等。应用开始启动后，框架将自动生成一个应用实例来负责应用层的一应事务。
+      </p>
+      <h3 id="app-lifecycle">
+        <a class="link-anchor icon-anchor" href="#app-lifecycle"></a>生命周期
+      </h3>
+      <div class="callout callout-warning">
+        <p>
+          生命周期章节只是为了便于您理解框架的一些运行原理，对于使用框架并不是必须掌握的内容。在了解了常用的生命周期钩子后，您可以选择跳过此章节，等使用过框架一段时间后再回头理解这些内容。
+        </p>
+      </div>
+      <p>
+        应用实例从页面开始访问时创建，一直存在到页面顶层窗口关闭。期间页面内容的更新由内置的路由器（Router）自动加载视图层进行处理。这个过程称为<strong>应用实例生命周期</strong>。
+      </p>
+      <h4 id="app-lifecycle-hooks">
+        <a class="link-anchor icon-anchor" href="#app-lifecycle-hooks"></a>生命周期钩子
+      </h4>
+      <p>
+        框架提供了相应的钩子方法（hook）以在应用实例生命周期变化时做动态处理：
+      </p>
+      <ul class="list-options">
+        <li>
+          <mark>statechange</mark>: 在状态改变时调用（优先于其他状态钩子）。
+        </li>
+        <li>
+          <mark>beforeCreate</mark>: 在应用实例初始化之前调用。
+        </li>
+        <li>
+          <mark>created</mark>: 在应用实例初始化完成后调用。
+        </li>
+        <li>
+          <mark>created</mark>: 在应用实例初始化完成后调用。
+        </li>
+        <li>
+          <mark>beforeReady</mark>: 在应用实例初始化完成，事件绑定等执行之前调用。
+        </li>
+        <li>
+          <mark>ready</mark>: 在应用实例初始化完成，事件绑定等执行之后调用。
+        </li>
+        <li>
+          <mark>beforeLoad</mark>: 在加载当前视图实例之前调用。
+        </li>
+        <li>
+          <mark>loaded</mark>: 在当前视图实例加载并准备完成之后调用。
+        </li>
+        <li>
+          <mark>beforeDestroy</mark>: 在准备关闭当前标签页，销毁应用实例之前调用。
+          <ul>
+            <li>
+              返回非 <code>undefined|null</code> 值时不关闭页面，并将返回值作为提示信息内容。
+            </li>
+          </ul>
+        </li>
+        <li>
+          <mark>destroyed</mark>: 在销毁应用实例之后，关闭当前标签页时调用。
+        </li>
+      </ul>
+      <p>
+        钩子方法的 <code>this</code> 指针指向当前的应用实例。
+      </p>
+      <p>
+        使用示例：
+      </p>
+      <figure>
+        <pre><code class="javascript">SPA.create({
+    statechange: function() {
+        // state changed.
+    },
+    beforeCreate: function() {
+        // before create
+    },
+    created: function() {
+        // App created
+    },
+    beforeReady: function() {
+        // before ready
+    },
+    ready: function() {
+        // already
+    },
+    beforeLoad: function() {
+        // before View load
+    },
+    loaded: function() {
+        // View loaded
+    },
+    beforeDestroy: function() {
+        // can be destroyed ?
+    },
+    destroyed: function() {
+        // destroyed
+    }
+});</code></pre>
+        <button class="btn btn-clipboard zeroclipboard-is-hover" type="button">复制</button>
+      </figure>
+      <h4 id="app-lifecycle-imgs">
+        <a class="link-anchor icon-anchor" href="#app-lifecycle-imgs"></a>生命周期图示
+      </h4>
+      <p>
+        概括来看，应用实例的生命周期分四个阶段：
+      </p>
+      <p>
+        <img class="img-responsive center-block" src="/images/spa-lifecycle-desc-app.png" alt="应用实例生命周期阶段图">
+      </p>
+      <p>
+        在设计上，应用实例详细的生命周期过程为：
+      </p>
+      <p>
+        <img class="img-responsive center-block" src="/images/spa-lifecycle-app.png" alt="应用实例生命周期示意图">
+      </p>
+      <h3 id="app-options">
+        <a class="link-anchor icon-anchor" href="#app-options"></a>配置项
+      </h3>
+      <p>
+        应用实例除了钩子方法外，还提供以下配置项：
+      </p>
+      <div class="api-group">
+        <h4 id="app-options-container">
+          <a class="link-anchor icon-anchor" href="#app-options-container"></a>
+          <span class="api-title-label"><strong>container</strong></span>
+          <span class="api-title-type">String|DOM|jQuery|Function</span>
+        </h4>
+        <p>
+          <mark>default: "body"</mark>
+        </p>
+        <p>
+          放置当前应用内容的元素容器。可为 DOM 元素对象、选择器字符串、jQuery元素对象。
+        </p>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+        <p class="lead-code">
+          使用示例：
+        </p>
+        <figure>
+          <pre><code class="javascript">container: "#container-id"</code></pre>
+          <button class="btn btn-clipboard zeroclipboard-is-hover" type="button">复制</button>
+        </figure>
+        <p class="lead-code">
+          等效于：
+        </p>
+        <figure>
+          <pre><code class="javascript">container: function() {
+    return "#container-id";
+}</code></pre>
+          <button class="btn btn-clipboard zeroclipboard-is-hover" type="button">复制</button>
+        </figure>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-baseUrl">
+          <a class="link-anchor icon-anchor" href="#app-options-baseUrl"></a>
+          <span class="api-title-label"><strong>baseUrl</strong></span>
+          <span class="api-title-type">Object|String|Function</span>
+        </h4>
+        <p>
+          <mark>default: { ... }</mark>
+        </p>
+        <p>
+          当前应用资源的相对路径。
+        </p>
+        <p>
+          为 Object（不含 <code>NULL</code> 值，下同）类型时，包含以下配置项：
+        </p>
+        <ul class="list-options">
+          <li>
+            <mark>root</mark>: 应用根路径。String 类型。
+            <ul>
+              <li>
+                若以双斜杠（如 //example.com）或资源协议（如 http: https: 等）开头，则为指定的远程地址
+              </li>
+              <li>
+                非远程地址时，则和当前域名连接作为应用根路径
+              </li>
+              <li>
+                <mark>default</mark>: 设置为 base 标签的值，若不存在 base 标签，默认为当前域名
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>resource</mark>: 静态资源的相对路径。String 类型。
+            <ul>
+              <li>
+                若以双斜杠（如 //example.com）或资源协议（如 http: https: 等）开头，则为指定的远程地址
+              </li>
+              <li>
+                若以斜杠开头，则相对于应用根路径（root），否则，相对于入口（data-main）JS文件所在的目录
+              </li>
+              <li>
+                <mark>default: "/"</mark>（相对于应用根路径）
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>style</mark>: 样式文件的相对路径。String 类型。
+            <ul>
+              <li>
+                若以双斜杠（如 //example.com）或资源协议（如 http: https: 等）开头，则为指定的远程地址
+              </li>
+              <li>
+                若以斜杠开头，则相对于应用根路径（root），否则，相对入口（data-main）JS文件所在的目录
+              </li>
+              <li>
+                <mark>default: "/"</mark>（相对于应用根路径）
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>view</mark>: 视图的脚本文件的相对路径。String 类型。
+            <ul>
+              <li>
+                若以双斜杠（如 //example.com）或资源协议（如 http: https: 等）开头，则为指定的远程地址
+              </li>
+              <li>
+                若以斜杠开头，则相对于应用根路径（root），否则，相对入口（data-main）JS文件所在的目录
+              </li>
+              <li>
+                <mark>default: "views"</mark>（入口（data-main）JS文件所在目录下的 views 目录）
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>layout</mark>: 布局的脚本文件的相对路径。String 类型。
+            <ul>
+              <li>
+                若以双斜杠（如 //example.com）或资源协议（如 http: https: 等）开头，则为指定的远程地址
+              </li>
+              <li>
+                若以斜杠开头，则相对于应用根路径（root），否则，相对入口（data-main）JS文件所在的目录
+              </li>
+              <li>
+                <mark>default: "layouts"</mark>（入口（data-main）JS文件所在目录下的 layouts 目录）
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>template</mark>: 模板文件的相对路径。String 类型。
+            <ul>
+              <li>
+                若以双斜杠（如 //example.com）或资源协议（如 http: https: 等）开头，则为指定的远程地址
+              </li>
+              <li>
+                若以斜杠开头，则相对于应用根路径（root），否则，相对入口（data-main）JS文件所在的目录
+              </li>
+              <li>
+                模板的加载使用了 Ajax 技术，若为跨域远程地址，需自行处理跨域问题
+              </li>
+              <li>
+                <mark>default: "templates"</mark>（入口（data-main）JS文件所在目录下的 templates 目录）
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          为 String 类型时，等效于设置 <code>root</code>，即同 <code>{root: [baseUrl]}</code>。
+        </p>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+        <p class="lead-code">
+          使用示例：
+        </p>
+        <figure>
+          <pre><code class="javascript">baseUrl: {
+    resource: "/assets",
+    style: "/assets/css"
+}</code></pre>
+          <button class="btn btn-clipboard zeroclipboard-is-hover" type="button">复制</button>
+        </figure>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-index">
+          <a class="link-anchor icon-anchor" href="#app-options-index"></a>
+          <span class="api-title-label"><strong>index</strong></span>
+          <span class="api-title-type">String|Function</span>
+        </h4>
+        <p>
+          <mark>default: "/home"</mark>
+        </p>
+        <p>
+          应用默认首页。
+        </p>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-cssPrefix">
+          <a class="link-anchor icon-anchor" href="#app-options-cssPrefix"></a>
+          <span class="api-title-label"><strong>cssPrefix</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          <mark>default: { ... }</mark>
+        </p>
+        <p>
+          页面的 <code>html</code> 标签上当前视图和布局实例的 class 样式标记的前缀。
+        </p>
+        <p>
+          为 Object 类型时，包含以下配置项：
+        </p>
+        <ul class="list-options">
+          <li>
+            <mark>view</mark>: 当前视图的 class 样式标记的前缀。String 类型。
+            <ul>
+              <li>
+                <mark>default: "app-view_"</mark>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>layout</mark>: 当前布局的 class 样式标记的前缀。String 类型。
+            <ul>
+              <li>
+                <mark>default: "app-layout_"</mark>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>include</mark>: 子实例的 class 样式标记的前缀。String 类型。
+            <ul>
+              <li>
+                <mark>default: "app-include_"</mark>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-loading">
+          <a class="link-anchor icon-anchor" href="#app-options-loading"></a>
+          <span class="api-title-label"><strong>loading</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          <mark>default: { ... }</mark>
+        </p>
+        <p>
+          页面加载中效果设置。
+        </p>
+        <p>
+          为 Object 类型时，包含以下配置项：
+        </p>
+        <ul class="list-options">
+          <li>
+            <mark>html</mark>: 加载效果对应的 html 字符串。String|Function 类型。
+            <ul>
+              <li>
+                为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+              </li>
+              <li>
+                <mark>default:</mark>
+                <figure>
+                  <pre><code class="html">&lt;div class="loader"&gt;&lt;/div&gt;'</code></pre>
+                  <button class="btn btn-clipboard" type="button">复制</button>
+                </figure>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>ready</mark>: 触发加载效果的执行方法。Function 类型。
+            <ul>
+              <li>
+                <mark>default:</mark>
+                <figure>
+                  <pre><code class="javascript">function($container) {
+    $(".loader", $container).loader();
+    return this;
+}</code></pre>
+                  <button class="btn btn-clipboard" type="button">复制</button>
+                </figure>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>destroy</mark>: 销毁加载效果的执行方法。Function 类型。
+            <ul>
+              <li>
+                <mark>default:</mark>
+                <figure>
+                  <pre><code class="javascript">function($container) {
+    $(".loader", $container).loader('destroy');
+    return this;
+}</code></pre>
+                  <button class="btn btn-clipboard" type="button">复制</button>
+                </figure>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-filter">
+          <a class="link-anchor icon-anchor" href="#app-options-filter"></a>
+          <span class="api-title-label"><strong>filter</strong></span>
+          <span class="api-title-type">Object|Array|Function</span>
+        </h4>
+        <p>
+          <mark>default: undefined</mark>
+        </p>
+        <p>
+          过滤器配置。
+        </p>
+        <p>
+          为 Object 类型时，包含以下配置项：
+        </p>
+        <ul class="list-options">
+          <li>
+            <mark>name</mark>: 过滤器名称。String 类型。
+          </li>
+          <li>
+            <mark>access</mark>: 过滤器执行过滤判断的方法，需返回 true|false。Function 类型。
+            <ul>
+              <li>
+                传入当前状态（state）参数，其 <code>this</code> 指针指向当前应用实例
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>do</mark>: 过滤器执行过滤效果的函数。Function 类型。
+            <ul>
+              <li>
+                传入当前状态（state）参数，其 <code>this</code> 指针指向当前应用实例
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>includes</mark>: 需要拦截的页面的路径（过滤器黑名单）。String|RegExp|Array 类型。
+            <ul>
+              <li>
+                支持字符串和正则表达式，字符串支持通配符的写法。如 <code>'*'</code> 表示匹配所有路径。
+              </li>
+              <li>
+                默认从头开始匹配，不匹配结尾。匹配结尾则在末尾添加 <mark>$</mark> 符号标记，如 <code>'/home$'</code>。
+              </li>
+              <li>
+                为字符串时，需要注意以下规则：
+                <ol>
+                  <li>
+                    合法的文件名字符包括: 字母/数字/下划线/小数点/短横线;
+                  </li>
+                  <li>
+                    合法的路径分隔符为斜杠"/";
+                  </li>
+                  <li>
+                    星号"*"代表0个或多个文件名字符;
+                  </li>
+                  <li>
+                    问号"?"代表1个文件名字符;
+                  </li>
+                  <li>
+                    连续两个星号"**"代表0个或多个文件名字符或路径分隔符;
+                  </li>
+                  <li>
+                    不能连续出现3个星号"***";
+                  </li>
+                  <li>
+                    不能连续出现2个路径分隔符;
+                  </li>
+                  <li>
+                    连续两个星号"**"的前后只能是路径分隔符.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                多个拦截路径可写成数组（Array）类型
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>excludes</mark>: 不需要拦截的页面的路径（过滤器白名单）。String|RegExp|Array 类型。
+            <ul>
+              <li>
+                规则同 <mark>includes</mark>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          多个过滤器时可写成数组（Array）类型。
+        </p>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-binds">
+          <a class="link-anchor icon-anchor" href="#app-options-binds"></a>
+          <span class="api-title-label"><strong>binds</strong></span>
+          <span class="api-title-type">Array|Function</span>
+        </h4>
+        <p>
+          <mark>default: undefined</mark>
+        </p>
+        <p>
+          事件预绑定配置。
+        </p>
+        <p>
+          为数组（Array）类型时，每项亦为数组类型，配置项按顺序为：
+        </p>
+        <ol class="list-options">
+          <li>
+            <mark>eventName</mark>: 事件名称，支持以空格间隔的多个事件。String 类型。
+          </li>
+          <li>
+            <mark>element</mark>: 事件绑定元素。可选。DOM|String|jQuery 类型。
+            <ul>
+              <li>
+                可为 DOM 元素对象、选择器字符串、jQuery对象。
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>data</mark>: 事件绑定数据。可选。Object 类型。
+          </li>
+          <li>
+            <mark>handler</mark>: 事件绑定回调方法。Function 类型。
+            <ul>
+              <li>
+                其 <code>this</code> 指针指向当前应用实例。
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>one</mark>: 设为 1 时只绑定一次事件。可选。Number 类型。
+          </li>
+        </ol>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-cache">
+          <a class="link-anchor icon-anchor" href="#app-options-cache"></a>
+          <span class="api-title-label"><strong>cache</strong></span>
+          <span class="api-title-type">Boolean|Function</span>
+        </h4>
+        <p>
+          <mark>default: true</mark>
+        </p>
+        <p>
+          全局缓存开关配置。设置远程模板、样式文件等是否开启缓存。默认使用引入组件库入口文件时的 <code>data-cache</code> 属性设置。
+        </p>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-template">
+          <a class="link-anchor icon-anchor" href="#app-options-template"></a>
+          <span class="api-title-label"><strong>template</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          <mark>default: null</mark>
+        </p>
+        <p>
+          模板引擎的全局配置。
+        </p>
+        <p>
+          为 Object 类型时，包含以下配置项：
+        </p>
+        <ul class="list-options">
+          <li>
+            <mark>cache</mark>: 是否开启模板缓存。Boolean 类型。
+            <ul>
+              <li>
+                <mark>default</mark>: 使用应用实例的 <mark>cache</mark> 配置项的值。
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>escape</mark>: 是否编码输出变量的 HTML 字符。Boolean 类型。
+            <ul>
+              <li>
+                <mark>default: true</mark>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>comment</mark>: 是否显示 HTML 注释（<code>&lt;!-- ... --&gt;</code>）内容。Boolean 类型。
+            <ul>
+              <li>
+                设为 <code>false</code> 则忽略 HTML 注释标签。
+              </li>
+              <li>
+                <mark>default: true</mark>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>compress</mark>: 是否压缩输出。Boolean 类型。
+            <ul>
+              <li>
+                <mark>default: false</mark>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>rendered</mark>: 输出内容预处理。Function 类型。
+            <ul>
+              <li>
+                传入参数为编译错误信息 err、编译后的输出内容 htmlText。
+              </li>
+              <li>
+                必须返回数组类型。第 0 项为错误信息；第 1 项为处理后的输出内容。
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>helpers</mark>: 模板辅助方法。Object 类型。
+            <ul>
+              <li>
+                键值分别为 [名称] : [方法实现]。
+              </li>
+              <li>
+                辅助方法的 <code>this</code> 指针指向当前视图/布局实例。
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>remote</mark>: 加载远程模板时的 Ajax 配置项。
+          </li>
+        </ul>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-styleLoader">
+          <a class="link-anchor icon-anchor" href="#app-options-styleLoader"></a>
+          <span class="api-title-label"><strong>styleLoader</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          <mark>default: null</mark>
+        </p>
+        <p>
+          样式文件加载器全局配置。
+        </p>
+        <p>
+          为 Object 类型时，包含以下配置项：
+        </p>
+        <ul class="list-options">
+          <li>
+            <mark>cache</mark>: 是否开启样式文件缓存。Boolean 类型。
+            <ul>
+              <li>
+                <mark>default</mark>: 使用应用实例的 <mark>cache</mark> 配置项的值。
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>remote</mark>: 加载远程样式文件时的 Ajax 配置项。
+          </li>
+        </ul>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-mode">
+          <a class="link-anchor icon-anchor" href="#app-options-mode"></a>
+          <span class="api-title-label"><strong>mode</strong></span>
+          <span class="api-title-type">String|Function</span>
+        </h4>
+        <p>
+          <mark>default: null</mark>
+        </p>
+        <p>
+          全局环境模式配置项。模式可完全自定义，例如：
+        </p>
+        <figure>
+          <pre><code class="no-highlight">- "mock"  <-- 模拟阶段
+- "test"  <-- 测试阶段
+- "dev"   <-- 开发阶段
+- "pro"   <-- 产品阶段</code></pre>
+        </figure>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-ajax">
+          <a class="link-anchor icon-anchor" href="#app-options-ajax"></a>
+          <span class="api-title-label"><strong>ajax</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          <mark>default: { ... }</mark>
+        </p>
+        <p>
+          Ajax 全局配置项。
+        </p>
+        <p>
+          为 Object 类型时，除了支持 jQuery.ajax 的所有配置项外，还支持以下配置项：
+        </p>
+        <ul class="list-options">
+          <li>
+            <mark>base</mark>: 请求地址的基路径。String 类型。
+            <ul>
+              <li>
+                <mark>default</mark>: 使用应用实例的 <mark>baseUrl.root</mark> 配置值。
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>respFilter</mark>: 响应数据的预处理方法。Function 类型。
+            <ul>
+              <li>
+                传入参数为 错误信息 err、请求响应的数据 resp、当前请求对象 xhr。
+              </li>
+              <li>
+                必须返回数组类型。第 0 项为错误信息，第 1 项和第 2 项为经过处理后的响应数据和 xhr 对象
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>mode</mark>: 发送请求时对应的当前环境参数。String类型。
+          </li>
+          <li>
+            <mark>urls</mark>: 请求地址别名配置。Object 类型。
+            <ul>
+              <li>
+                键值分别为 [别名] : [各模式下的请求地址]。
+              </li>
+              <li>
+                发送请求时 url 可使用此配置项下定义的别名代替。
+              </li>
+              <li>
+                如：
+                <figure>
+                  <pre><code class="json">{
+   "examples.get": {
+       "mock": "...",
+       "pro": "..."
+   },
+   "examples.delete": {
+       "mock": "...",
+       "pro": "..."
+   }
+}</code></pre>
+                </figure>
+                <p>发送请求时的替代写法为：</p>
+                <figure>
+                  <pre><code class="js">ajax.get('examples.get');
+ajax.delete('examples.delete');</code></pre>
+                </figure>
+                其请求地址会基于当前的 <mark>mode</mark> 配置项对应查找。
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>args</mark>: RESTful 接口地址中的动态参数值。Object|Array类型。
+            <ul>
+              <li>
+                为 Object 类型时按键名索引。如：
+                <figure>
+                  <pre><code class="json">{
+    "url":  "/api/example/page/{page}/{pageLen}",
+    "args": {
+        "page": 1,
+        "pageLen": 10
+    }
+}</code></pre>
+                </figure>
+              </li>
+              <li>
+                为 Array 类型时按数字索引替换。
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-websocket">
+          <a class="link-anchor icon-anchor" href="#app-options-websocket"></a>
+          <span class="api-title-label"><strong>websocket</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          <mark>default: { ... }</mark>
+        </p>
+        <p>
+          WebSocket 全局配置项。
+        </p>
+        <p>
+          为 Object 类型时，包含以下配置项：
+        </p>
+        <ul class="list-options">
+          <li>
+            <mark>base</mark>: WebSocket 请求地址的基路径。String 类型。
+            <ul>
+              <li>
+                <mark>default</mark>: 使用应用实例的 <mark>baseUrl.root</mark> 配置值。
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>respFilter</mark>: 响应数据的预处理方法。Function 类型。
+            <ul>
+              <li>
+                传入参数为 错误信息 err、请求响应的数据 resp、当前 WebSocket 对象 ws。
+              </li>
+              <li>
+                必须返回数组类型。第 0 项为错误信息，第 1 项和第 2 项为经过处理后的响应数据和 ws 对象
+              </li>
+            </ul>
+          </li>
+          <li>
+            <mark>mode</mark>: 发送 WebSocket 请求时对应的当前环境参数。String类型。
+          </li>
+          <li>
+            <mark>urls</mark>: WebSocket 请求地址别名配置。Object 类型。
+            <ul>
+              <li>
+                键值分别为 [别名] : [各模式下的请求地址]。
+              </li>
+              <li>
+                发送请求时 url 可使用此配置项下定义的别名代替。
+              </li>
+              <li>
+                如：
+                <figure>
+                  <pre><code class="json">{
+   "examples.update": {
+       "mock": "...",
+       "pro": "..."
+   }
+}</code></pre>
+                </figure>
+                <p>发送请求时的替代写法为：</p>
+                <figure>
+                  <pre><code class="js">ws.open("examples.update");</code></pre>
+                </figure>
+                其请求地址会基于当前的 <mark>mode</mark> 配置项对应查找。
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-cookie">
+          <a class="link-anchor icon-anchor" href="#app-options-cookie"></a>
+          <span class="api-title-label"><strong>cookie</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          全局的 cookie 工具增强方法配置项。
+        </p>
+        <p>
+          为 Object 类型时：
+        </p>
+        <ul>
+          <li>
+            键值分别为 [方法名称] : [方法实现]。
+          </li>
+          <li>
+            增强方法的 <code>this</code> 指针指向全局的 cookie 工具对象
+          </li>
+        </ul>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-error">
+          <a class="link-anchor icon-anchor" href="#app-options-error"></a>
+          <span class="api-title-label"><strong>error</strong></span>
+          <span class="api-title-type">String|Object|Remote|Function</span>
+        </h4>
+        <p>
+          <mark>default:</mark>
+        </p>
+        <figure>
+          <pre><code class="html">&lt;div class="container"&gt;
+  &lt;h1&gt;Error&lt;/h1&gt;
+  &#123;&#123;if isArray(error)&#125;&#125;
+    &lt;dl&gt;
+    &#123;&#123;each error as err&#125;&#125;
+      &#123;&#123;if err&#125;&#125;
+      &lt;dt&gt;&amp;diams;&ensp;&#123;&#123;err.type&#125;&#125;&lt;/dt&gt;
+      &lt;dd&gt;&#123;&#123;err.message&#125;&#125;&lt;/dd&gt;
+      &#123;&#123;/if&#125;&#125;
+    &#123;&#123;/each&#125;&#125;
+    &lt;/dl&gt;
+  &#123;&#123;else if error&#125;&#125;
+    &lt;dl&gt;
+      &lt;dt&gt;&amp;diams;&ensp;&#123;&#123;error.type&#125;&#125;&lt;/dt&gt;
+      &lt;dd&gt;&#123;&#123;error.message&#125;&#125;&lt;/dd&gt;
+    &lt;/dl&gt;
+  &#123;&#123;/if&#125;&#125;
+&lt;/div&gt;</code></pre>
+          <button class="btn btn-clipboard" type="button">复制</button>
+        </figure>
+        <p>
+          错误页面配置。触发页面（PAGE）级错误时按此配置项加载错误页面。
+        </p>
+        <p>
+          为 String 类型时作为错误信息的模板文本内容。
+        </p>
+        <p>
+          为 Object 类型时作为错误页面配置。包含以下配置项：
+        </p>
+        <ul class="list-options">
+          <li>
+            <mark>path</mark>: 错误页面视图路径。String 类型。
+          </li>
+          <li>
+            另可配置一个 <a class="link-anchor" href="#widget-options">视图实例所有的配置项</a>。
+          </li>
+        </ul>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-errorFilter">
+          <a class="link-anchor icon-anchor" href="#app-options-errorFilter"></a>
+          <span class="api-title-label"><strong>errorFilter</strong></span>
+          <span class="api-title-type">Function</span>
+        </h4>
+        <p>
+          <mark>default: null</mark>
+        </p>
+        <p>
+          全局错误过滤处理方法配置项。
+        </p>
+        <ul>
+          <li>
+            发生错误时，会优先调用此配置方法进行处理。
+          </li>
+          <li>
+            处理过程中可结合使用实例的以下错误处理方法进行处理：
+            <ul>
+              <li>
+                <a class="link-anchor" href="#widget-methods-getError"><code>getError</code></a> - 获取错误对象
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-assignError"><code>assignError</code></a> - 设置错误对象属性值
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-addError"><code>addError</code></a> - 添加错误对象并向上抛出
+              </li>
+              <li>
+                <a class="link-anchor" href="#widget-methods-removeError"><code>removeError</code></a> - 移除错误对象不再抛出
+              </li>
+            </ul>
+          </li>
+          <li>
+            方法的 <code>this</code> 指针根据实际调用情况动态指向当前应用或视图/布局实例。
+          </li>
+        </ul>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-onError">
+          <a class="link-anchor icon-anchor" href="#app-options-onError"></a>
+          <span class="api-title-label"><strong>onError</strong></span>
+          <span class="api-title-type">Function</span>
+        </h4>
+        <p>
+          <mark>default: null</mark>
+        </p>
+        <p>
+          应用层监控到错误触发时的处理方法配置项。
+        </p>
+        <ul>
+          <li>
+            错误触发时，会调用此配置方法进行处理。
+          </li>
+          <li>
+            处理过程中可结合使用应用实例的以下错误处理方法进行处理：
+            <ul>
+              <li>
+                <a class="link-anchor" href="#app-methods-getError"><code>getError</code></a> - 获取错误对象
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-assignError"><code>assignError</code></a> - 设置错误对象属性值
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-addError"><code>addError</code></a> - 添加错误对象并向上抛出
+              </li>
+              <li>
+                <a class="link-anchor" href="#app-methods-removeError"><code>removeError</code></a> - 移除错误对象不再抛出
+              </li>
+            </ul>
+          </li>
+          <li>
+            方法的 <code>this</code> 指针指向当前应用实例。
+          </li>
+        </ul>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-Widget">
+          <a class="link-anchor icon-anchor" href="#app-options-Widget"></a>
+          <span class="api-title-label"><strong>Widget</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          <mark>default: null</mark>
+        </p>
+        <p>
+          为 Object 类型时，作为 <a class="link-anchor" href="#widget-options">视图层/布局层</a> 共用的默认配置项。
+        </p>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-Layout">
+          <a class="link-anchor icon-anchor" href="#app-options-Layout"></a>
+          <span class="api-title-label"><strong>Layout</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          <mark>default: null</mark>
+        </p>
+        <p>
+          为 Object 类型时，作为 <a class="link-anchor" href="#widget-options">布局层</a> 的默认配置项。
+        </p>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <div class="api-group">
+        <h4 id="app-options-View">
+          <a class="link-anchor icon-anchor" href="#app-options-View"></a>
+          <span class="api-title-label"><strong>View</strong></span>
+          <span class="api-title-type">Object|Function</span>
+        </h4>
+        <p>
+          <mark>default: null</mark>
+        </p>
+        <p>
+          为 Object 类型时，作为 <a class="link-anchor" href="#widget-options">视图层</a> 的默认配置项。
+        </p>
+        <p>
+          为 Function 类型时执行并获取返回结果，其 <code>this</code> 指针指向当前应用实例。
+        </p>
+      </div>
+      <h3 id="app-attrs">
+        <a class="link-anchor icon-anchor" href="#app-attrs"></a>实例属性
+      </h3>
+      <h4 id="app-attrs-json">
+        <a class="link-anchor icon-anchor" href="#app-options-json"></a>
+        <span class="api-title-label"><strong><code>.json</code></strong></span>
+      </h4>
+      <p>
+        全局JSON工具。
+      </p>
+      <h4 id="app-attrs-cookie">
+        <a class="link-anchor icon-anchor" href="#app-attrs-cookie"></a>
+        <span class="api-title-label"><strong><code>.cookie</code></strong></span>
+      </h4>
+      <p>
+        全局Cookie工具。
+      </p>
+      <h4 id="app-attrs-url">
+        <a class="link-anchor icon-anchor" href="#app-attrs-url"></a>
+        <span class="api-title-label"><strong><code>.url</code></strong></span>
+      </h4>
+      <p>
+        应用资源基路径。
+      </p>
+      <h4 id="app-attrs-container">
+        <a class="link-anchor icon-anchor" href="#app-attrs-container"></a>
+        <span class="api-title-label"><strong><code>.container</code></strong></span>
+      </h4>
+      <p>
+        应用层容器元素。
+      </p>
+      <h4 id="app-attrs-rootContext">
+        <a class="link-anchor icon-anchor" href="#app-attrs-rootContext"></a>
+        <span class="api-title-label"><strong><code>.rootContext</code></strong></span>
+      </h4>
+      <p>
+        当前应用实例。
+      </p>
+      <h4 id="app-attrs-mode">
+        <a class="link-anchor icon-anchor" href="#app-attrs-mode"></a>
+        <span class="api-title-label"><strong><code>.mode</code></strong></span>
+      </h4>
+      <p>
+        全局环境模式参数。
+      </p>
+      <h4 id="app-attrs-remote">
+        <a class="link-anchor icon-anchor" href="#app-attrs-remote"></a>
+        <span class="api-title-label"><strong><code>.remote</code></strong></span>
+      </h4>
+      <p>
+        远程资源声明方法。
+      </p>
+      <h4 id="app-attrs-template">
+        <a class="link-anchor icon-anchor" href="#app-attrs-template"></a>
+        <span class="api-title-label"><strong><code>.template</code></strong></span>
+      </h4>
+      <p>
+        模板工具。
+      </p>
+      <h4 id="app-attrs-ajax">
+        <a class="link-anchor icon-anchor" href="#app-attrs-ajax"></a>
+        <span class="api-title-label"><strong><code>.ajax</code></strong></span>
+      </h4>
+      <p>
+        Ajax 工具。
+      </p>
+      <h4 id="app-attrs-ws">
+        <a class="link-anchor icon-anchor" href="#app-attrs-ws"></a>
+        <span class="api-title-label"><strong><code>.ws</code></strong></span>
+      </h4>
+      <p>
+        WebSocket 工具。
+      </p>
+      <h4 id="app-attrs-styleLoader">
+        <a class="link-anchor icon-anchor" href="#app-attrs-styleLoader"></a>
+        <span class="api-title-label"><strong><code>.styleLoader</code></strong></span>
+      </h4>
+      <p>
+        样式加载器工具。
+      </p>
+      <h3 id="app-methods">
+        <a class="link-anchor icon-anchor" href="#app-methods"></a>实例方法
+      </h3>
+      <h4 id="app-methods-get">
+        <a class="link-anchor icon-anchor" href="#app-methods-get"></a>
+        <span class="api-title-label"><strong><code>.get()</code></strong></span>
+      </h4>
+      <p>
+        获取某配置项或属性。
+      </p>
+      <h4 id="app-methods-set">
+        <a class="link-anchor icon-anchor" href="#app-methods-set"></a>
+        <span class="api-title-label"><strong><code>.set()</code></strong></span>
+      </h4>
+      <p>
+        设置某配置项或属性。
+      </p>
+      <h4 id="app-methods-getOptions">
+        <a class="link-anchor icon-anchor" href="#app-methods-getOptions"></a>
+        <span class="api-title-label"><strong><code>.getOptions()</code></strong></span>
+      </h4>
+      <p>
+        获取所有配置项。
+      </p>
+      <h4 id="app-methods-getFilter">
+        <a class="link-anchor icon-anchor" href="#app-methods-getFilter"></a>
+        <span class="api-title-label"><strong><code>.getFilter()</code></strong></span>
+      </h4>
+      <p>
+        获取某个过滤器。
+      </p>
+      <h4 id="app-methods-getFilters">
+        <a class="link-anchor icon-anchor" href="#app-methods-getFilters"></a>
+        <span class="api-title-label"><strong><code>.getFilters()</code></strong></span>
+      </h4>
+      <p>
+        获取所有过滤器。
+      </p>
+      <h4 id="app-methods-getCache">
+        <a class="link-anchor icon-anchor" href="#app-methods-getCache"></a>
+        <span class="api-title-label"><strong><code>.getCache()</code></strong></span>
+      </h4>
+      <p>
+        获取应用层的缓存。
+      </p>
+      <h4 id="app-methods-getCookie">
+        <a class="link-anchor icon-anchor" href="#app-methods-getCookie"></a>
+        <span class="api-title-label"><strong><code>.getCookie()</code></strong></span>
+      </h4>
+      <p>
+        获取Cookie数据。
+      </p>
+      <h4 id="app-methods-setCookie">
+        <a class="link-anchor icon-anchor" href="#app-methods-setCookie"></a>
+        <span class="api-title-label"><strong><code>.setCookie()</code></strong></span>
+      </h4>
+      <p>
+        设置Cookie数据。
+      </p>
+      <h4 id="app-methods-removeCookie">
+        <a class="link-anchor icon-anchor" href="#app-methods-removeCookie"></a>
+        <span class="api-title-label"><strong><code>.removeCookie()</code></strong></span>
+      </h4>
+      <p>
+        删除Cookie数据。
+      </p>
+      <h4 id="app-methods-getRootUrl">
+        <a class="link-anchor icon-anchor" href="#app-methods-getRootUrl"></a>
+        <span class="api-title-label"><strong><code>.getRootUrl()</code></strong></span>
+      </h4>
+      <p>
+        获取应用访问的根路径。
+      </p>
+      <h4 id="app-methods-getResourceUrl">
+        <a class="link-anchor icon-anchor" href="#app-methods-getResourceUrl"></a>
+        <span class="api-title-label"><strong><code>.getResourceUrl()</code></strong></span>
+      </h4>
+      <p>
+        获取应用资源的根路径。
+      </p>
+      <h4 id="app-methods-getStyleUrl">
+        <a class="link-anchor icon-anchor" href="#app-methods-getStyleUrl"></a>
+        <span class="api-title-label"><strong><code>.getStyleUrl()</code></strong></span>
+      </h4>
+      <p>
+        获取应用样式文件的根路径。
+      </p>
+      <h4 id="app-methods-getFullUrl">
+        <a class="link-anchor icon-anchor" href="#app-methods-getFullUrl"></a>
+        <span class="api-title-label"><strong><code>.getFullUrl()</code></strong></span>
+      </h4>
+      <p>
+        根据相对路径获取完整路径。
+      </p>
+      <h4 id="app-methods-getUrl">
+        <a class="link-anchor icon-anchor" href="#app-methods-getUrl"></a>
+        <span class="api-title-label"><strong><code>.getUrl()</code></strong></span>
+      </h4>
+      <p>
+        获取访问路径。
+      </p>
+      <h4 id="app-methods-go">
+        <a class="link-anchor icon-anchor" href="#app-methods-go"></a>
+        <span class="api-title-label"><strong><code>.go()</code></strong></span>
+      </h4>
+      <p>
+        页面跳转。
+      </p>
+      <h4 id="app-methods-back">
+        <a class="link-anchor icon-anchor" href="#app-methods-back"></a>
+        <span class="api-title-label"><strong><code>.back()</code></strong></span>
+      </h4>
+      <p>
+        页面回退。（第一次加载页面，回退时应刷新当前页面）
+      </p>
+      <h4 id="app-methods-forward">
+        <a class="link-anchor icon-anchor" href="#app-methods-forward"></a>
+        <span class="api-title-label"><strong><code>.forward()</code></strong></span>
+      </h4>
+      <p>
+        页面前进。（第一次加载页面，前进时应刷新当前页面）
+      </p>
+      <h4 id="app-methods-helper">
+        <a class="link-anchor icon-anchor" href="#app-methods-helper"></a>
+        <span class="api-title-label"><strong><code>.helper()</code></strong></span>
+      </h4>
+      <p>
+        添加全局模板辅助方法。等同于在 <a class="link-anchor" href="#app-options-template">template 配置项</a>中配置。
+      </p>
+      <h4 id="app-methods-helpers">
+        <a class="link-anchor icon-anchor" href="#app-methods-helpers"></a>
+        <span class="api-title-label"><strong><code>.helpers()</code></strong></span>
+      </h4>
+      <p>
+        批量添加全局模板辅助方法。
+      </p>
+      <h4 id="app-methods-getCache">
+        <a class="link-anchor icon-anchor" href="#app-methods-getCache"></a>
+        <span class="api-title-label"><strong><code>.getCache()</code></strong></span>
+      </h4>
+      <p>
+        获取应用层的缓存。
+      </p>
+      <h4 id="app-methods-setCache">
+        <a class="link-anchor icon-anchor" href="#app-methods-setCache"></a>
+        <span class="api-title-label"><strong><code>.setCache()</code></strong></span>
+      </h4>
+      <p>
+        设置应用层的缓存。
+      </p>
+      <h4 id="app-methods-bind">
+        <a class="link-anchor icon-anchor" href="#app-methods-bind"></a>
+        <span class="api-title-label"><strong><code>.bind()</code></strong></span>
+      </h4>
+      <p>
+        绑定应用层的事件。
+      </p>
+      <h4 id="app-methods-on">
+        <a class="link-anchor icon-anchor" href="#app-methods-on"></a>
+        <span class="api-title-label"><strong><code>.on()</code></strong></span>
+      </h4>
+      <p>
+        同 <code>.bind()</code> 方法，为兼容 jQuery 的写法。
+      </p>
+      <h4 id="app-methods-one">
+        <a class="link-anchor icon-anchor" href="#app-methods-one"></a>
+        <span class="api-title-label"><strong><code>.one()</code></strong></span>
+      </h4>
+      <p>
+        绑定应用层的事件并只生效一次。
+      </p>
+      <h4 id="app-methods-unbind">
+        <a class="link-anchor icon-anchor" href="#app-methods-unbind"></a>
+        <span class="api-title-label"><strong><code>.unbind()</code></strong></span>
+      </h4>
+      <p>
+        解绑应用层的事件。
+      </p>
+      <h4 id="app-methods-off">
+        <a class="link-anchor icon-anchor" href="#app-methods-off"></a>
+        <span class="api-title-label"><strong><code>.off()</code></strong></span>
+      </h4>
+      <p>
+        同 <code>.unbind()</code> 方法，为兼容 jQuery 的写法。
+      </p>
+      <h4 id="app-methods-trigger">
+        <a class="link-anchor icon-anchor" href="#app-methods-trigger"></a>
+        <span class="api-title-label"><strong><code>.trigger()</code></strong></span>
+      </h4>
+      <p>
+        触发应用层的事件。
+      </p>
+      <h4 id="app-methods-makeError">
+        <a class="link-anchor icon-anchor" href="#app-methods-makeError"></a>
+        <span class="api-title-label"><strong><code>.makeError()</code></strong></span>
+      </h4>
+      <p>
+        创建应用层的错误对象。
+      </p>
+      <h4 id="app-methods-setError">
+        <a class="link-anchor icon-anchor" href="#app-methods-setError"></a>
+        <span class="api-title-label"><strong><code>.setError()</code></strong></span>
+      </h4>
+      <p>
+        设置应用层的错误对象（将清空之前内容）。
+      </p>
+      <h4 id="app-methods-getError">
+        <a class="link-anchor icon-anchor" href="#app-methods-getError"></a>
+        <span class="api-title-label"><strong><code>.getError()</code></strong></span>
+      </h4>
+      <p>
+        获取应用层的错误对象。
+      </p>
+      <h4 id="app-methods-addError">
+        <a class="link-anchor icon-anchor" href="#app-methods-addError"></a>
+        <span class="api-title-label"><strong><code>.addError()</code></strong></span>
+      </h4>
+      <p>
+        添加应用层的错误对象。
+      </p>
+      <h4 id="app-methods-removeError">
+        <a class="link-anchor icon-anchor" href="#app-methods-removeError"></a>
+        <span class="api-title-label"><strong><code>.removeError()</code></strong></span>
+      </h4>
+      <p>
+        删除应用层的错误对象。
+      </p>
+      <h4 id="app-methods-assignError">
+        <a class="link-anchor icon-anchor" href="#app-methods-assignError"></a>
+        <span class="api-title-label"><strong><code>.assignError()</code></strong></span>
+      </h4>
+      <p>
+        更改应用层的错误对象的属性值。
+      </p>
+      <h4 id="app-methods-includeError">
+        <a class="link-anchor icon-anchor" href="#app-methods-includeError"></a>
+        <span class="api-title-label"><strong><code>.includeError()</code></strong></span>
+      </h4>
+      <p>
+        筛选在应用层错误缓冲区中的错误对象。
+      </p>
+      <h4 id="app-methods-excludeError">
+        <a class="link-anchor icon-anchor" href="#app-methods-excludeError"></a>
+        <span class="api-title-label"><strong><code>.excludeError()</code></strong></span>
+      </h4>
+      <p>
+        筛选不在应用层错误缓冲区中的错误对象。
+      </p>
+      <h4 id="app-methods-inError">
+        <a class="link-anchor icon-anchor" href="#app-methods-inError"></a>
+        <span class="api-title-label"><strong><code>.inError()</code></strong></span>
+      </h4>
+      <p>
+        获取指定的错误对象在应用层错误对象缓存中的位置。
+      </p>
+      <h4 id="app-methods-onError">
+        <a class="link-anchor icon-anchor" href="#app-methods-onError"></a>
+        <span class="api-title-label"><strong><code>.onError()</code></strong></span>
+      </h4>
+      <p>
+        为应用层的错误对象添加触发后的处理方法。
+      </p>
+      <h4 id="app-methods-getStateIndex">
+        <a class="link-anchor icon-anchor" href="#app-methods-getStateIndex"></a>
+        <span class="api-title-label"><strong><code>.getStateIndex()</code></strong></span>
+      </h4>
+      <p>
+        获取当前应用实例的状态索引。
+      </p>
+      <h4 id="app-methods-inState">
+        <a class="link-anchor icon-anchor" href="#app-methods-inState"></a>
+        <span class="api-title-label"><strong><code>.inState()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于某状态下。
+      </p>
+      <h4 id="app-methods-beforeState">
+        <a class="link-anchor icon-anchor" href="#app-methods-beforeState"></a>
+        <span class="api-title-label"><strong><code>.beforeState()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于某状态之前的状态。
+      </p>
+      <h4 id="app-methods-afterState">
+        <a class="link-anchor icon-anchor" href="#app-methods-afterState"></a>
+        <span class="api-title-label"><strong><code>.afterState()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于某状态之后的状态。
+      </p>
+      <h4 id="app-methods-isBeforeCreate">
+        <a class="link-anchor icon-anchor" href="#app-methods-isBeforeCreate"></a>
+        <span class="api-title-label"><strong><code>.isBeforeCreate()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于 beforeCreate 状态。
+      </p>
+      <h4 id="app-methods-isCreated">
+        <a class="link-anchor icon-anchor" href="#app-methods-isCreated"></a>
+        <span class="api-title-label"><strong><code>.isCreated()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于 created 状态。
+      </p>
+      <h4 id="app-methods-isBeforeReady">
+        <a class="link-anchor icon-anchor" href="#app-methods-isBeforeReady"></a>
+        <span class="api-title-label"><strong><code>.isBeforeReady()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于 beforeReady 状态。
+      </p>
+      <h4 id="app-methods-isReady">
+        <a class="link-anchor icon-anchor" href="#app-methods-isReady"></a>
+        <span class="api-title-label"><strong><code>.isReady()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于 ready 状态。
+      </p>
+      <h4 id="app-methods-isBeforeLoad">
+        <a class="link-anchor icon-anchor" href="#app-methods-isBeforeLoad"></a>
+        <span class="api-title-label"><strong><code>.isBeforeLoad()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于 beforeLoad 状态。
+      </p>
+      <h4 id="app-methods-isLoaded">
+        <a class="link-anchor icon-anchor" href="#app-methods-isLoaded"></a>
+        <span class="api-title-label"><strong><code>.isLoaded()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于 loaded 状态。
+      </p>
+      <h4 id="app-methods-isBeforeDestroy">
+        <a class="link-anchor icon-anchor" href="#app-methods-isBeforeDestroy"></a>
+        <span class="api-title-label"><strong><code>.isBeforeDestroy()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于 beforeDestroy 状态。
+      </p>
+      <h4 id="app-methods-isDestroyed">
+        <a class="link-anchor icon-anchor" href="#app-methods-isDestroyed"></a>
+        <span class="api-title-label"><strong><code>.isDestroyed()</code></strong></span>
+      </h4>
+      <p>
+        判断当前应用实例是否正处于 destroyed 状态。
+      </p>
+      <h4 id="app-methods-View">
+        <a class="link-anchor icon-anchor" href="#app-methods-View"></a>
+        <span class="api-title-label"><strong><code>.View()</code></strong></span>
+      </h4>
+      <p>
+        生成一个视图实例。
+      </p>
+      <h4 id="app-methods-Layout">
+        <a class="link-anchor icon-anchor" href="#app-methods-Layout"></a>
+        <span class="api-title-label"><strong><code>.Layout()</code></strong></span>
+      </h4>
+      <p>
+        生成一个布局实例。
+      </p>
+      <h4 id="app-methods-getView">
+        <a class="link-anchor icon-anchor" href="#app-methods-getView"></a>
+        <span class="api-title-label"><strong><code>.getView()</code></strong></span>
+      </h4>
+      <p>
+        获取当前正在运行的视图实例。
+      </p>
+      <h4 id="app-methods-getState">
+        <a class="link-anchor icon-anchor" href="#app-methods-getState"></a>
+        <span class="api-title-label"><strong><code>.getState()</code></strong></span>
+      </h4>
+      <p>
+        获取当前正在运行的视图实例的状态数据。
+      </p>
+      <h4 id="app-methods-getPath">
+        <a class="link-anchor icon-anchor" href="#app-methods-getPath"></a>
+        <span class="api-title-label"><strong><code>.getPath()</code></strong></span>
+      </h4>
+      <p>
+        获取当前正在运行的视图实例的路径。
+      </p>
+      <h4 id="app-methods-getPathId">
+        <a class="link-anchor icon-anchor" href="#app-methods-getPathId"></a>
+        <span class="api-title-label"><strong><code>.getPathId()</code></strong></span>
+      </h4>
+      <p>
+        获取当前正在运行的视图实例的路径ID。
+      </p>
+      <h4 id="app-methods-getParam">
+        <a class="link-anchor icon-anchor" href="#app-methods-getParam"></a>
+        <span class="api-title-label"><strong><code>.getParam()</code></strong></span>
+      </h4>
+      <p>
+        获取当前正在运行的视图实例的参数。
+      </p>
+      <h4 id="app-methods-getParams">
+        <a class="link-anchor icon-anchor" href="#app-methods-getParams"></a>
+        <span class="api-title-label"><strong><code>.getParams()</code></strong></span>
+      </h4>
+      <p>
+        获取当前正在运行的视图实例的所有参数。
+      </p>
+      <h4 id="app-methods-prevState">
+        <a class="link-anchor icon-anchor" href="#app-methods-prevState"></a>
+        <span class="api-title-label"><strong><code>.prevState()</code></strong></span>
+      </h4>
+      <p>
+        获取上一个视图实例的状态数据。
+      </p>
+      <h4 id="app-methods-prevPath">
+        <a class="link-anchor icon-anchor" href="#app-methods-prevPath"></a>
+        <span class="api-title-label"><strong><code>.prevPath()</code></strong></span>
+      </h4>
+      <p>
+        获取上一个视图实例的路径。
+      </p>
+      <h4 id="app-methods-prevPathId">
+        <a class="link-anchor icon-anchor" href="#app-methods-prevPathId"></a>
+        <span class="api-title-label"><strong><code>.prevPathId()</code></strong></span>
+      </h4>
+      <p>
+        获取上一个视图实例的路径ID。
+      </p>
+      <h4 id="app-methods-prevParam">
+        <a class="link-anchor icon-anchor" href="#app-methods-prevParam"></a>
+        <span class="api-title-label"><strong><code>.prevParam()</code></strong></span>
+      </h4>
+      <p>
+        获取上一个视图实例的参数。
+      </p>
+      <h4 id="app-methods-prevParams">
+        <a class="link-anchor icon-anchor" href="#app-methods-prevParams"></a>
+        <span class="api-title-label"><strong><code>.prevParams()</code></strong></span>
+      </h4>
+      <p>
+        获取上一个视图实例的所有参数。
+      </p>
+    </section>
+    <section>
+      <h2 id="widget">
+        <a class="link-anchor icon-anchor" href="#widget"></a>视图/布局层
+      </h2>
+      <h3 id="widget-lifecycle">
+        <a class="link-anchor icon-anchor" href="#widget-lifecycle"></a>生命周期
+      </h3>
+      <p>
+        <img class="img-responsive center-block" src="/images/spa-lifecycle-view.png" alt="视图实例声明周期">
+      </p>
+      <h3 id="widget-options">
+        <a class="link-anchor icon-anchor" href="#widget-options"></a>配置项
+      </h3>
+      <h4 id="widget-options-title">
+        <a class="link-anchor icon-anchor" href="#widget-options-title"></a>
+        <span class="api-title-label"><strong>title</strong></span>
+        <span class="api-title-type">String|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        当前实例渲染时的页面标题。
+      </p>
+      <ul>
+        <li>
+          当前最上层的视图实例和其布局实例（如果有）配置有效。
+        </li>
+        <li>
+          若当前视图实例和布局实例均配置了标题，则视图实例的配置优先。
+        </li>
+      </ul>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-template">
+        <a class="link-anchor icon-anchor" href="#widget-options-template"></a>
+        <span class="api-title-label"><strong>template</strong></span>
+        <span class="api-title-type">String|Object|Remote|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        当前实例渲染时使用的模板和模板配置项。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-data">
+        <a class="link-anchor icon-anchor" href="#widget-options-data"></a>
+        <span class="api-title-label"><strong>data</strong></span>
+        <span class="api-title-type">Object|Remote|Function</span>
+      </h4>
+      <p>
+        <mark>default: {}</mark>
+      </p>
+      <p>
+        当前实例渲染时使用的数据。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-dataFilter">
+        <a class="link-anchor icon-anchor" href="#widget-options-dataFilter"></a>
+        <span class="api-title-label"><strong>dataFilter</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        模板编译前对传入数据的格式化处理。
+      </p>
+      <h4 id="widget-options-rendered">
+        <a class="link-anchor icon-anchor" href="#widget-options-rendered"></a>
+        <span class="api-title-label"><strong>rendered</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        模板编译输出结果处理方法。
+      </p>
+      <h4 id="widget-options-styles">
+        <a class="link-anchor icon-anchor" href="#widget-options-styles"></a>
+        <span class="api-title-label"><strong>styles</strong></span>
+        <span class="api-title-type">String|Array|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        当前实例渲染时使用的样式文件。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-binds">
+        <a class="link-anchor icon-anchor" href="#widget-options-binds"></a>
+        <span class="api-title-label"><strong>binds</strong></span>
+        <span class="api-title-type">Array|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        事件绑定。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-loading">
+        <a class="link-anchor icon-anchor" href="#widget-options-loading"></a>
+        <span class="api-title-label"><strong>loading</strong></span>
+        <span class="api-title-type">Object|Function</span>
+      </h4>
+      <p>
+        <mark>default: {html: '&lt;div class="loader center-block"&gt;&lt;/div&gt;'}</mark>
+      </p>
+      <p>
+        子实例加载中效果设置。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-cache">
+        <a class="link-anchor icon-anchor" href="#widget-options-cache"></a>
+        <span class="api-title-label"><strong>cache</strong></span>
+        <span class="api-title-type">Object|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        当前实例下远程模板、样式文件缓存开关。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-styleLoader">
+        <a class="link-anchor icon-anchor" href="#widget-options-styleLoader"></a>
+        <span class="api-title-label"><strong>styleLoader</strong></span>
+        <span class="api-title-type">Object|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        当前实例下样式文件加载器配置。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-mode">
+        <a class="link-anchor icon-anchor" href="#widget-options-mode"></a>
+        <span class="api-title-label"><strong>mode</strong></span>
+        <span class="api-title-type">String|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        当前实例下环境模式参数。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-ajax">
+        <a class="link-anchor icon-anchor" href="#widget-options-ajax"></a>
+        <span class="api-title-label"><strong>ajax</strong></span>
+        <span class="api-title-type">Object|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        当前实例下 ajax 配置项。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-websocket">
+        <a class="link-anchor icon-anchor" href="#widget-options-websocket"></a>
+        <span class="api-title-label"><strong>websocket</strong></span>
+        <span class="api-title-type">Object|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        当前实例下 webSocket 配置项。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-cookie">
+        <a class="link-anchor icon-anchor" href="#widget-options-cookie"></a>
+        <span class="api-title-label"><strong>cookie</strong></span>
+        <span class="api-title-type">Object|Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        当前实例下 cookie 配置项。
+      </p>
+      <p>
+        为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
+      </p>
+      <h4 id="widget-options-errorFilter">
+        <a class="link-anchor icon-anchor" href="#widget-options-errorFilter"></a>
+        <span class="api-title-label"><strong>errorFilter</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        错误过滤处理方法。
+      </p>
+      <h4 id="widget-options-onError">
+        <a class="link-anchor icon-anchor" href="#widget-options-onError"></a>
+        <span class="api-title-label"><strong>onError</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        错误处理方法。
+      </p>
+      <h4 id="widget-options-statechange">
+        <a class="link-anchor icon-anchor" href="#widget-options-statechange"></a>
+        <span class="api-title-label"><strong>statechange</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        生命周期钩子 statechange
+      </p>
+      <h4 id="widget-options-beforeCreate">
+        <a class="link-anchor icon-anchor" href="#widget-options-beforeCreate"></a>
+        <span class="api-title-label"><strong>beforeCreate</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        生命周期钩子 beforeCreate
+      </p>
+      <h4 id="widget-options-created">
+        <a class="link-anchor icon-anchor" href="#widget-options-created"></a>
+        <span class="api-title-label"><strong>created</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        生命周期钩子 created
+      </p>
+      <h4 id="widget-options-beforeLoad">
+        <a class="link-anchor icon-anchor" href="#widget-options-beforeLoad"></a>
+        <span class="api-title-label"><strong>beforeLoad</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        生命周期钩子 beforeLoad
+      </p>
+      <h4 id="widget-options-loaded">
+        <a class="link-anchor icon-anchor" href="#widget-options-loaded"></a>
+        <span class="api-title-label"><strong>loaded</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        生命周期钩子 loaded
+      </p>
+      <h4 id="widget-options-beforeReady">
+        <a class="link-anchor icon-anchor" href="#widget-options-beforeReady"></a>
+        <span class="api-title-label"><strong>beforeReady</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        生命周期钩子 beforeReady
+      </p>
+      <h4 id="widget-options-ready">
+        <a class="link-anchor icon-anchor" href="#widget-options-ready"></a>
+        <span class="api-title-label"><strong>ready</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        生命周期钩子 ready
+      </p>
+      <h4 id="widget-options-beforeDestroy">
+        <a class="link-anchor icon-anchor" href="#widget-options-beforeDestroy"></a>
+        <span class="api-title-label"><strong>beforeDestroy</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        生命周期钩子 beforeDestroy
+      </p>
+      <h4 id="widget-options-destroyed">
+        <a class="link-anchor icon-anchor" href="#widget-options-destroyed"></a>
+        <span class="api-title-label"><strong>destroyed</strong></span>
+        <span class="api-title-type">Function</span>
+      </h4>
+      <p>
+        <mark>default: null</mark>
+      </p>
+      <p>
+        生命周期钩子 destroyed
+      </p>
+      <h3 id="widget-attrs">
+        <a class="link-anchor icon-anchor" href="#widget-attrs"></a>实例属性
+      </h3>
+      <h4 id="widget-attrs-container">
+        <a class="link-anchor icon-anchor" href="#widget-attrs-container"></a>
+        <span class="api-title-label"><strong><code>.container</code></strong></span>
+      </h4>
+      <p>
+        当前容器选择器。
+      </p>
+      <h4 id="widget-attrs-rootContext">
+        <a class="link-anchor icon-anchor" href="#widget-attrs-rootContext"></a>
+        <span class="api-title-label"><strong><code>.rootContext</code></strong></span>
+      </h4>
+      <p>
+        指向App实例。
+      </p>
+      <h4 id="widget-attrs-context">
+        <a class="link-anchor icon-anchor" href="#widget-attrs-context"></a>
+        <span class="api-title-label"><strong><code>.context</code></strong></span>
+      </h4>
+      <p>
+        指向上一层实例。
+      </p>
+      <h4 id="widget-attrs-template">
+        <a class="link-anchor icon-anchor" href="#widget-attrs-template"></a>
+        <span class="api-title-label"><strong><code>.template</code></strong></span>
+      </h4>
+      <p>
+        当前实例的模板对象。
+      </p>
+      <h4 id="widget-attrs-mode">
+        <a class="link-anchor icon-anchor" href="#widget-attrs-mode"></a>
+        <span class="api-title-label"><strong><code>.mode</code></strong></span>
+      </h4>
+      <p>
+        当前实例使用的环境模式参数。
+      </p>
+      <h4 id="widget-attrs-ajax">
+        <a class="link-anchor icon-anchor" href="#widget-attrs-ajax"></a>
+        <span class="api-title-label"><strong><code>.ajax</code></strong></span>
+      </h4>
+      <p>
+        当前实例的 Ajax 工具。
+      </p>
+      <h4 id="widget-attrs-ws">
+        <a class="link-anchor icon-anchor" href="#widget-attrs-ws"></a>
+        <span class="api-title-label"><strong><code>.ws</code></strong></span>
+      </h4>
+      <p>
+        当前实例的 WebSocket 工具。
+      </p>
+      <h4 id="widget-attrs-styleLoader">
+        <a class="link-anchor icon-anchor" href="#widget-attrs-styleLoader"></a>
+        <span class="api-title-label"><strong><code>.styleLoader</code></strong></span>
+      </h4>
+      <p>
+        当前实例的 StyleLoader 工具。
+      </p>
+      <h4 id="widget-attrs-cookie">
+        <a class="link-anchor icon-anchor" href="#widget-attrs-cookie"></a>
+        <span class="api-title-label"><strong><code>.cookie</code></strong></span>
+      </h4>
+      <p>
+        当前实例的 Cookie 工具。
+      </p>
+      <h3 id="widget-methods">
+        <a class="link-anchor icon-anchor" href="#widget-methods"></a>实例方法
+      </h3>
+      <h4 id="widget-methods-get">
+        <a class="link-anchor icon-anchor" href="#widget-methods-get"></a>
+        <span class="api-title-label"><strong><code>.get()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例的配置项或属性值。
+      </p>
+      <h4 id="widget-methods-set">
+        <a class="link-anchor icon-anchor" href="#widget-methods-set"></a>
+        <span class="api-title-label"><strong><code>.set()</code></strong></span>
+      </h4>
+      <p>
+        设置当前实例的配置项或属性值。
+      </p>
+      <h4 id="widget-methods-getOptions">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getOptions"></a>
+        <span class="api-title-label"><strong><code>.getOptions()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例的所有配置项。
+      </p>
+      <h4 id="widget-methods-getState">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getState"></a>
+        <span class="api-title-label"><strong><code>.getState()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例的状态数据。
+      </p>
+      <h4 id="widget-methods-setState">
+        <a class="link-anchor icon-anchor" href="#widget-methods-setState"></a>
+        <span class="api-title-label"><strong><code>.setState()</code></strong></span>
+      </h4>
+      <p>
+        设置当前实例的状态数据。
+      </p>
+      <h4 id="widget-methods-getStateIndex">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getStateIndex"></a>
+        <span class="api-title-label"><strong><code>.getStateIndex()</code></strong></span>
+      </h4>
+      <p>
+        设置当前实例的当前状态索引。
+      </p>
+      <h4 id="widget-methods-inState">
+        <a class="link-anchor icon-anchor" href="#widget-methods-inState"></a>
+        <span class="api-title-label"><strong><code>.inState()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否正处于指定状态。
+      </p>
+      <h4 id="widget-methods-beforeState">
+        <a class="link-anchor icon-anchor" href="#widget-methods-beforeState"></a>
+        <span class="api-title-label"><strong><code>.beforeState()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否在指定状态之前。
+      </p>
+      <h4 id="widget-methods-afterState">
+        <a class="link-anchor icon-anchor" href="#widget-methods-afterState"></a>
+        <span class="api-title-label"><strong><code>.afterState()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否在指定状态之后。
+      </p>
+      <h4 id="widget-methods-isBeforeCreate">
+        <a class="link-anchor icon-anchor" href="#widget-methods-isBeforeCreate"></a>
+        <span class="api-title-label"><strong><code>.isBeforeCreate()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否是 beforeCreate 。
+      </p>
+      <h4 id="widget-methods-isCreated">
+        <a class="link-anchor icon-anchor" href="#widget-methods-isCreated"></a>
+        <span class="api-title-label"><strong><code>.isCreated()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否是 created 。
+      </p>
+      <h4 id="widget-methods-isBeforeLoad">
+        <a class="link-anchor icon-anchor" href="#widget-methods-isBeforeLoad"></a>
+        <span class="api-title-label"><strong><code>.isBeforeLoad()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否是 beforeLoad 。
+      </p>
+      <h4 id="widget-methods-isLoaded">
+        <a class="link-anchor icon-anchor" href="#widget-methods-isLoaded"></a>
+        <span class="api-title-label"><strong><code>.isLoaded()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否是 loaded 。
+      </p>
+      <h4 id="widget-methods-isBeforeReady">
+        <a class="link-anchor icon-anchor" href="#widget-methods-isBeforeReady"></a>
+        <span class="api-title-label"><strong><code>.isBeforeReady()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否是 beforeReady 。
+      </p>
+      <h4 id="widget-methods-isReady">
+        <a class="link-anchor icon-anchor" href="#widget-methods-isReady"></a>
+        <span class="api-title-label"><strong><code>.isReady()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否是 ready 。
+      </p>
+      <h4 id="widget-methods-isBeforeDestroy">
+        <a class="link-anchor icon-anchor" href="#widget-methods-isBeforeDestroy"></a>
+        <span class="api-title-label"><strong><code>.isBeforeDestroy()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否是 beforeDestroy 。
+      </p>
+      <h4 id="widget-methods-isDestroyed">
+        <a class="link-anchor icon-anchor" href="#widget-methods-isDestroyed"></a>
+        <span class="api-title-label"><strong><code>.isDestroyed()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否是 destroyed 。
+      </p>
+      <h4 id="widget-methods-isDispose">
+        <a class="link-anchor icon-anchor" href="#widget-methods-isDispose"></a>
+        <span class="api-title-label"><strong><code>.isDispose()</code></strong></span>
+      </h4>
+      <p>
+        判断当前状态是否是 dispose 。
+      </p>
+      <h4 id="widget-methods-getUrl">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getUrl"></a>
+        <span class="api-title-label"><strong><code>.getUrl()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例下的访问链接。
+      </p>
+      <h4 id="widget-methods-getPath">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getPath"></a>
+        <span class="api-title-label"><strong><code>.getPath()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例的路径。
+      </p>
+      <h4 id="widget-methods-getPathId">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getPathId"></a>
+        <span class="api-title-label"><strong><code>.getPathId()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例的路径 ID。
+      </p>
+      <h4 id="widget-methods-getParam">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getParam"></a>
+        <span class="api-title-label"><strong><code>.getParam()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例的参数。
+      </p>
+      <h4 id="widget-methods-getParams">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getParams"></a>
+        <span class="api-title-label"><strong><code>.getParams()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例的所有参数。
+      </p>
+      <h4 id="widget-methods-getData">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getData"></a>
+        <span class="api-title-label"><strong><code>.getData()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例的数据。
+      </p>
+      <h4 id="widget-methods-setData">
+        <a class="link-anchor icon-anchor" href="#widget-methods-setData"></a>
+        <span class="api-title-label"><strong><code>.setData()</code></strong></span>
+      </h4>
+      <p>
+        设置当前实例的数据。
+      </p>
+      <h4 id="widget-methods-getCache">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getCache"></a>
+        <span class="api-title-label"><strong><code>.getCache()</code></strong></span>
+      </h4>
+      <p>
+        获取当前实例的缓存。
+      </p>
+      <h4 id="widget-methods-setCache">
+        <a class="link-anchor icon-anchor" href="#widget-methods-setCache"></a>
+        <span class="api-title-label"><strong><code>.setCache()</code></strong></span>
+      </h4>
+      <p>
+        设置当前实例的缓存。
+      </p>
+      <h4 id="widget-methods-removeCache">
+        <a class="link-anchor icon-anchor" href="#widget-methods-removeCache"></a>
+        <span class="api-title-label"><strong><code>.removeCache()</code></strong></span>
+      </h4>
+      <p>
+        移除当前实例的缓存。
+      </p>
+      <h4 id="widget-methods-findInclude">
+        <a class="link-anchor icon-anchor" href="#widget-methods-findInclude"></a>
+        <span class="api-title-label"><strong><code>.findInclude()</code></strong></span>
+      </h4>
+      <p>
+        查找指定元素容器下的子模块元素。
+      </p>
+      <h4 id="widget-methods-firstInclude">
+        <a class="link-anchor icon-anchor" href="#widget-methods-firstInclude"></a>
+        <span class="api-title-label"><strong><code>.firstInclude()</code></strong></span>
+      </h4>
+      <p>
+        查找指定元素容器下的第一个子模块元素。
+      </p>
+      <h4 id="widget-methods-lastInclude">
+        <a class="link-anchor icon-anchor" href="#widget-methods-lastInclude"></a>
+        <span class="api-title-label"><strong><code>.lastInclude()</code></strong></span>
+      </h4>
+      <p>
+        查找指定元素容器下的最后一个子模块元素。
+      </p>
+      <h4 id="widget-methods-$">
+        <a class="link-anchor icon-anchor" href="#widget-methods-$"></a>
+        <span class="api-title-label"><strong><code>.$()</code></strong></span>
+      </h4>
+      <p>
+        根据选择器参数获取当前容器下的 jquery 对象，并屏蔽子容器。
+      </p>
+      <h4 id="widget-methods-bind">
+        <a class="link-anchor icon-anchor" href="#widget-methods-bind"></a>
+        <span class="api-title-label"><strong><code>.bind()</code></strong></span>
+      </h4>
+      <p>
+        绑定事件。
+      </p>
+      <h4 id="widget-methods-on">
+        <a class="link-anchor icon-anchor" href="#widget-methods-on"></a>
+        <span class="api-title-label"><strong><code>.on()</code></strong></span>
+      </h4>
+      <p>
+        等效于 bind，为兼容 jquery 写法。
+      </p>
+      <h4 id="widget-methods-one">
+        <a class="link-anchor icon-anchor" href="#widget-methods-one"></a>
+        <span class="api-title-label"><strong><code>.one()</code></strong></span>
+      </h4>
+      <p>
+        绑定一次事件。
+      </p>
+      <h4 id="widget-methods-unbind">
+        <a class="link-anchor icon-anchor" href="#widget-methods-unbind"></a>
+        <span class="api-title-label"><strong><code>.unbind()</code></strong></span>
+      </h4>
+      <p>
+        解绑事件。
+      </p>
+      <h4 id="widget-methods-off">
+        <a class="link-anchor icon-anchor" href="#widget-methods-off"></a>
+        <span class="api-title-label"><strong><code>.off()</code></strong></span>
+      </h4>
+      <p>
+        等效于 unbind，为兼容 jquery 写法。
+      </p>
+      <h4 id="widget-methods-trigger">
+        <a class="link-anchor icon-anchor" href="#widget-methods-trigger"></a>
+        <span class="api-title-label"><strong><code>.trigger()</code></strong></span>
+      </h4>
+      <p>
+        触发事件。
+      </p>
+      <h4 id="widget-methods-makeError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-makeError"></a>
+        <span class="api-title-label"><strong><code>.makeError()</code></strong></span>
+      </h4>
+      <p>
+        创建错误对象。
+      </p>
+      <h4 id="widget-methods-setError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-setError"></a>
+        <span class="api-title-label"><strong><code>.setError()</code></strong></span>
+      </h4>
+      <p>
+        设置错误缓冲区中的错误对象。
+      </p>
+      <h4 id="widget-methods-getError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-getError"></a>
+        <span class="api-title-label"><strong><code>.getError()</code></strong></span>
+      </h4>
+      <p>
+        获取错误缓冲区中的错误对象。
+      </p>
+      <h4 id="widget-methods-addError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-addError"></a>
+        <span class="api-title-label"><strong><code>.addError()</code></strong></span>
+      </h4>
+      <p>
+        往错误缓冲区内添加错误信息。
+      </p>
+      <h4 id="widget-methods-removeError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-removeError"></a>
+        <span class="api-title-label"><strong><code>.removeError()</code></strong></span>
+      </h4>
+      <p>
+        从错误缓冲区中删除错误信息。
+      </p>
+      <h4 id="widget-methods-includeError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-includeError"></a>
+        <span class="api-title-label"><strong><code>.includeError()</code></strong></span>
+      </h4>
+      <p>
+        筛选在错误缓冲区内的错误对象。
+      </p>
+      <h4 id="widget-methods-excludeError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-excludeError"></a>
+        <span class="api-title-label"><strong><code>.excludeError()</code></strong></span>
+      </h4>
+      <p>
+        筛选不在错误缓冲区内的错误对象。
+      </p>
+      <h4 id="widget-methods-inError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-inError"></a>
+        <span class="api-title-label"><strong><code>.inError()</code></strong></span>
+      </h4>
+      <p>
+        获取错误对象在错误缓冲区内的位置。
+      </p>
+      <h4 id="widget-methods-onError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-onError"></a>
+        <span class="api-title-label"><strong><code>.onError()</code></strong></span>
+      </h4>
+      <p>
+        自定义错误信息的处理方法。
+      </p>
+      <h4 id="widget-methods-assignError">
+        <a class="link-anchor icon-anchor" href="#widget-methods-assignError"></a>
+        <span class="api-title-label"><strong><code>.assignError()</code></strong></span>
+      </h4>
+      <p>
+        设置错误对象的属性值。
+      </p>
+      <h4 id="widget-methods-render">
+        <a class="link-anchor icon-anchor" href="#widget-methods-render"></a>
+        <span class="api-title-label"><strong><code>.render()</code></strong></span>
+      </h4>
+      <p>
+        加载远程模板内容并渲染。
+      </p>
+      <h4 id="widget-methods-load">
+        <a class="link-anchor icon-anchor" href="#widget-methods-load"></a>
+        <span class="api-title-label"><strong><code>.load()</code></strong></span>
+      </h4>
+      <p>
+        加载(通过 include 方式引入的)子模块的内容。
+      </p>
+    </section>
+  </div>
 </div>
 
 <script src="/javascripts/docs.js"></script>

@@ -221,20 +221,23 @@ aside > .sidetools li > a.link-back-top:after {
 }
 
 .content {
-    margin-right: 268px;
     padding-bottom: 50px;
+}
+
+aside + .content {
+    margin-right: 268px;
 }
 
 section {
     color: #34495e;
 }
 
-section > h1,
-section > h2,
-section > h3,
-section > h4,
-section > h5,
-section > h6 {
+section h1,
+section h2,
+section h3,
+section h4,
+section h5,
+section h6 {
     position: relative;
     color: #2c3e50;
     font: normal bold 24px/1.1 "宋体", simsun;
@@ -243,61 +246,61 @@ section > h6 {
     border-bottom: 1px solid #ddd;
 }
 
-section > h3,
-section > h4,
-section > h5,
-section > h6 {
+section h3,
+section h4,
+section h5,
+section h6 {
     margin-top: 25px;
     margin-bottom: .6em;
     padding-bottom: 0;
     border-bottom: 0 none;
 }
 
-section > h1 {
+section h1 {
     font-size: 26px;
 }
 
-section > h4 {
+section h4 {
     font-size: 20px;
 }
 
-section > h5 {
+section h5 {
     font-size: 18px;
     margin-top: 20px;
     margin-bottom: .5em;
 }
 
-section > h6 {
+section h6 {
     font-size: 16px;
     margin-top: 15px;
     margin-bottom: .5em;
 }
 
-section > h1 .icon-anchor,
-section > h2 .icon-anchor,
-section > h3 .icon-anchor,
-section > h4 .icon-anchor,
-section > h5 .icon-anchor,
-section > h6 .icon-anchor {
+section h1 .icon-anchor,
+section h2 .icon-anchor,
+section h3 .icon-anchor,
+section h4 .icon-anchor,
+section h5 .icon-anchor,
+section h6 .icon-anchor {
     display: none;
 }
 
-section > h1 .icon-anchor:hover,
-section > h1:hover .icon-anchor,
-section > h2 .icon-anchor:hover,
-section > h2:hover .icon-anchor,
-section > h3 .icon-anchor:hover,
-section > h3:hover .icon-anchor,
-section > h4 .icon-anchor:hover,
-section > h4:hover .icon-anchor,
-section > h5 .icon-anchor:hover,
-section > h5:hover .icon-anchor,
-section > h6 .icon-anchor:hover,
-section > h6:hover .icon-anchor {
+section h1 .icon-anchor:hover,
+section h1:hover .icon-anchor,
+section h2 .icon-anchor:hover,
+section h2:hover .icon-anchor,
+section h3 .icon-anchor:hover,
+section h3:hover .icon-anchor,
+section h4 .icon-anchor:hover,
+section h4:hover .icon-anchor,
+section h5 .icon-anchor:hover,
+section h5:hover .icon-anchor,
+section h6 .icon-anchor:hover,
+section h6:hover .icon-anchor {
     display: block;
 }
 
-section > p {
+section p {
     line-height: 1.75em;
     margin: 1.2em 0 -1.2em;
     padding-bottom: 1.2em;
@@ -314,15 +317,19 @@ section a:hover {
     text-decoration: underline;
 }
 
-section > p.lead {
+section p.lead {
     font-size: 19px;
     margin-top: 0;
     padding-bottom: 0;
 }
 
-section.lead > p {
+section.lead p {
     font-size: 21px;
     margin-top: 0;
+}
+
+section p.lead-code {
+    padding-bottom: 5px;
 }
 
 .icon-anchor {
@@ -339,10 +346,18 @@ section.lead > p {
     content: "\f292";
 }
 
-section > figure,
-section > ul,
-section > .table-responsive {
+section figure,
+section ul,
+section ol,
+section .table-responsive {
     margin: 1.2em auto;
+}
+
+section li > mark + figure,
+section li > figure:first-child,
+section li > ul:first-child,
+section li > ol:first-child {
+    margin-top: 5px;
 }
 
 /*
@@ -372,10 +387,6 @@ figure pre code {
     font-size: inherit;
     color: #333; /* Effectively the base text color */
 }
-figure pre code:first-child {
-    display: inline-block;
-    padding-right: 45px;
-}
 figure .hljs {
     padding: 0;
     background: none;
@@ -388,7 +399,7 @@ figure .btn-clipboard {
     border-top: 0 none;
     border-right: 0 none;
     border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-top-right-radius: 4px;
     border-bottom-right-radius: 0;
 }
 
@@ -407,6 +418,33 @@ figure .btn-clipboard {
     color: #fff;
     background-color: #0E90D2;
     border-color: #0E90D2;
+}
+
+.list-options > li {
+    line-height: 1.625;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.list-options > li > ul,
+.list-options > li > ol {
+    margin-top: 10px;
+}
+
+.list-options > li .list-options > li {
+    margin-bottom: 5px;
+}
+
+.breadcrumb {
+    margin-top: 15px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+}
+
+.breadcrumb i {
+    color: #666;
 }
 
 .icon-browser {
@@ -436,7 +474,7 @@ figure .btn-clipboard {
     background-position: 0 -224px;
 }
 
-section > .table {
+section .table {
     margin-top: 1.2em;
 }
 
@@ -455,6 +493,71 @@ section > .table {
 .table > tbody > tr > td .control-label {
     display: block;
     font-weight: normal;
+}
+
+#table-compatible-browsers tr > td:nth-child(1) {
+    width: 8%;
+}
+
+#table-compatible-browsers tr > td:nth-child(2) {
+    width: 12%;
+}
+
+#table-compatible-browsers tr > td:nth-child(n+3) {
+    width: 20%;
+}
+
+.api-group {
+    position: relative; 
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.api-group h4 {
+    margin-top: 5px;
+}
+
+.api-group > figure {
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-left: 0 none;
+    border-right: 0 none;
+    border-radius: 0;
+}
+
+.api-group > figure:last-child {
+    margin-bottom: -10px;
+}
+
+.api-group > figure + p.lead-code {
+    margin-top: 5px;
+}
+
+.api-title-label,
+.api-title-type {
+    font-size: 80%;
+    font-weight: normal;
+}
+
+.api-title-label strong {
+    color: #2c3e50;
+    font-size: 125%;
+    font-weight: bold;
+}
+
+.api-title-label {
+    color: #777;
+    padding-right: 10px;
+}
+
+.api-title-type {
+    padding: 3px 0 3px 15px;
+    border-left: 1px solid #ccc;
 }
 
 /*
@@ -543,8 +646,8 @@ section > .table {
     width: auto;
 }
 
-section > .table-responsive:last-child,
-section > .table-responsive > .table:last-child,
+section .table-responsive:last-child,
+section .table-responsive > .table:last-child,
 .example-box > .alert:last-child,
 .example-box > .form-control:last-child,
 .example-box > .jumbotron:last-child,
@@ -565,11 +668,11 @@ section > .table-responsive > .table:last-child,
     margin-bottom: 0;
 }
 
-.example-box > p > .close {
+.example-box p > .close {
     float: none;
 }
 
-section > .example-code {
+section .example-code {
     margin-top: -1.2em;
 }
 
@@ -591,6 +694,10 @@ section > .example-code {
 .callout h4 {
     margin-top: 0;
     margin-bottom: 5px;
+}
+.callout p {
+    margin: 0 0 1.2em;
+    padding: 0;
 }
 .callout p:last-child {
     margin-bottom: 0;

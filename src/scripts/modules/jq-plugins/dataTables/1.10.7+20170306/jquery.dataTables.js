@@ -15,7 +15,9 @@
  * Updated by jinzhk on 2017/01/18
  * Fixed: 修复了fixedColumns插件左右两侧固定列定位不准确的问题
  * Updated by jinzhk on 2017/02/24
- * Fixed: 修复了计算表格宽度有时因 1px 误差导致显示滚动条的问题
+ * Fixed: 修复了计算表格宽度有时因浏览器（chrome）的 1px 误差导致显示滚动条的问题
+ * Updated by jinzhk on 2017/03/06
+ * Fixed: 修复了计算表格滚动条时因浏览器（chrome）的 1px 误差导致滚动条无法正常显示的问题
  */
 
 /**
@@ -3975,7 +3977,9 @@
 	
 		// Sanity check that the table is of a sensible width. If not then we are going to get
 		// misalignment - try to prevent this by not allowing the table to shrink below its min width
-		if ( table.outerWidth() < sanityWidth )
+		// 忽略 1px 的误差
+		var _sanityWidth = table.outerWidth();
+		if ( _sanityWidth < sanityWidth && sanityWidth - _sanityWidth > 1)
 		{
 			// The min width depends upon if we have a vertical scrollbar visible or not */
 			correction = ((divBodyEl.scrollHeight > divBodyEl.offsetHeight ||

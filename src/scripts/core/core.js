@@ -3,7 +3,7 @@
 
     var YFjs = {};
 
-    YFjs.VERSION = '0.8.0';
+    YFjs.VERSION = '0.8.0+20170311';
 
     // 判断浏览器版本
     YFjs.browser = (function() {

@@ -82,7 +82,7 @@ define('yfjs/spa/app', [
              * - 若以双斜杠（如 //example.com）或资源协议（如 http: https: 等）开头，则为指定的远程地址
              * - 若为跨域远程地址，需自行处理跨域问题
              * - 若以斜杠开头，则相对于应用根路径（root），否则，相对入口（data-main）js文件所在的目录
-             * - 默认为入口（data-main）js文件所在目录下的 layouts 目录
+             * - 默认为入口（data-main）js文件所在目录下的 templates 目录
              */
             template: "templates"
         },
@@ -202,7 +202,7 @@ define('yfjs/spa/app', [
          * - cache {Boolean}
          *       是否开启缓存。默认为true
          * - remote {Object}
-         *       请求远程模板时的配置项，内容同 ajax 配置项
+         *       请求远程样式文件时的配置项，内容同 ajax 配置项
          * - 为 Function 类型时获取返回结果
          */
         styleLoader: _.__undef__,
@@ -245,8 +245,8 @@ define('yfjs/spa/app', [
          *     上下文路径
          * - respFilter {Function}
          *     返回数据的处理函数
-         *     - 传入参数为 错误信息、请求返回的数据、当前xhr对象。
-         *     - 必须返回一个数组，数组第一项为错误信息，第二项和第三项为新处理后的数据和xhr对象
+         *     - 传入参数为 错误信息、请求返回的数据、当前 ws 对象。
+         *     - 必须返回一个数组，数组第一项为错误信息，第二项和第三项为新处理后的数据和 ws 对象
          * - mode {String}
          *     当前环境模式。模式可完全自定义，例如：
          *     - mock  模拟阶段
@@ -2179,7 +2179,7 @@ define('yfjs/spa/app', [
         isBeforeDestroy: View.Creator.prototype.isBeforeDestroy,
         isDestroyed:     View.Creator.prototype.isDestroyed,
         isDispose:       View.Creator.prototype.isDispose,
-        setState:  View.Creator.prototype.getState,
+        setState:  View.Creator.prototype.setState,
         getState:  View.Creator.prototype.getState,
         getPath:   View.Creator.prototype.getPath,
         getPathId: View.Creator.prototype.getPathId,

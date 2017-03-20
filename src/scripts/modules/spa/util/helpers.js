@@ -319,11 +319,11 @@ define('yfjs/spa/util/helpers', (function(root) {
         args = normalizeArgs(args);
         period = normalizePeriod(period);
 
-        (function(self, args, period) {
+        (function(self, callback, args, period) {
             setTimeout(function() {
-                callback.apply(self, args);
+                typeof callback === "function" && callback.apply(self, args);
             }, period);
-        })(this, args, period);
+        })(this, callback, args, period);
 
         function normalizeArgs(args) {
             var _args;

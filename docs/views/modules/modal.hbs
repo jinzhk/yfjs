@@ -1,0 +1,1826 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li>
+      <i class="fa fa-home"></i>
+      <a href="/">首页</a>
+    </li>
+    <li><a href="/modules#bs-modal">组件模块</a></li>
+    <li class="active">模态框</li>
+  </ol>
+  <div class="content">
+    <h2>Make use of Bootstrap's modal more monkey-friendly.</h2>
+    <hr />
+    <p>
+      Monkeys love the <a href="http://getbootstrap.com/javascript/#modals" target="_blank">Modal Dialog from Bootstrap</a>, but they're getting angry because they have to write this stuff:
+    </p>
+    <pre><code class="html">&lt;div class="modal fade"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;&times;&lt;/button&gt;
+        &lt;h4 class="modal-title"&gt;Modal title&lt;/h4&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        &lt;p&gt;One fine body&hellip;&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Close&lt;/button&gt;
+        &lt;button type="button" class="btn btn-primary"&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;&lt;!-- /.modal-content --&gt;
+  &lt;/div&gt;&lt;!-- /.modal-dialog --&gt;
+&lt;/div&gt;&lt;!-- /.modal --&gt;</code></pre>
+    <p>
+      What they want is more like this:
+    </p>
+    <div class="source-code runnable">
+Modal.alert('I want banana!');
+    </div>
+    <p></p>
+    <p>
+      Like it? See <a href="#available-options">Available Options</a> or try more <a href="#examples">Examples</a> below.
+    </p>
+
+    <!-- Examples -->
+    <a name="examples"></a>
+    <h2>Examples</h2>
+    <hr />
+
+    <h3>Simplest</h3>
+    <p>Provide only the message to show, and keep all other things default.</p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'Hi Apple!'
+});
+-->
+    </div>
+
+    <h3>Dialog Title</h3>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'Say-hello dialog',
+    message: 'Hi Apple!'
+});
+-->
+    </div>
+
+    <a name="manipulating-title-message"></a>
+    <h3>Manipulating Dialog Title</h3>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'Default Title',
+    message: 'Click buttons below.',
+    buttons: [{
+        label: 'Title 1',
+        action: function(dialog) {
+            dialog.setTitle('Title 1');
+        }
+    }, {
+        label: 'Title 2',
+        action: function(dialog) {
+            dialog.setTitle('Title 2');
+        }
+    }]
+});
+-->
+    </div>
+
+    <h3>Manipulating Dialog Message</h3>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'Default Title',
+    message: 'Click buttons below.',
+    buttons: [{
+        label: 'Message 1',
+        action: function(dialog) {
+            dialog.setMessage('Message 1');
+        }
+    }, {
+        label: 'Message 2',
+        action: function(dialog) {
+            dialog.setMessage('Message 2');
+        }
+    }]
+});
+-->
+    </div>
+
+    <a name="loading-remote-page"></a>
+    <h3>Loading remote page (1)</h3>
+    <p>
+      There are some workarounds for loading remote page into Modal as message, one of those workarounds is as below. <br />
+      Check out the <a href="./remote.html" target="_blank">remote.html</a>.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    remote: '/remote.html'
+});
+-->
+    </div>
+
+    <h3>Loading remote page (2)</h3>
+    <p>
+      Another solution of loading remote page into Modal. <br />
+      This one is more flexible and customizable, but it's also a bit more complicated to use.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: function(dialog) {
+        var $message = $('<div></div>');
+        var pageToLoad = dialog.getData('pageToLoad');
+        $message.load(pageToLoad);
+
+        return $message;
+    },
+    data: {
+        'pageToLoad': '/remote.html'
+    }
+});
+-->
+    </div>
+
+    <h3>Loading remote page (3)</h3>
+    <p>
+      remote option can be a function.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    remote: function(dialog) {
+        return dialog.getData('pageToLoad');
+    },
+    data: {
+        'pageToLoad': '/remote.html'
+    }
+});
+-->
+    </div>
+
+    <h3>Loading remote page (4)</h3>
+    <p>
+      remote option can be a object with ajax config.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    remote: {
+        url: '/remote.html',
+        data: {param: '111'}
+    }
+});
+-->
+    </div>
+
+    <h3>Loading remote page (5)</h3>
+    <p>
+      remote with ajax callback.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    remote: {
+        url: '/remote.html',
+        data: {param: '111'},
+        callback: function(response, status, xhr) {
+            return response + ' With ajax callback.';
+        }
+    }
+});
+-->
+    </div>
+
+    <h3>Loading remote page (6)</h3>
+    <p>
+      remote with ajax callback and handle content yourself.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    remote: {
+        url: '/remote.html',
+        data: {param: '111'},
+        callback: function(response, status, xhr) {
+            this.renderTo.html(response + ' With callback myself.')
+        }
+    }
+});
+-->
+    </div>
+
+    <h3>Loading remote page (7)</h3>
+    <p>
+      remote with ajax callback and handle content yourself.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    remote: function(dialog) {
+        return $.when($.get('/remote.html'));
+    },
+    onloaded: function(dialog) {
+        // do something
+    }
+});
+-->
+    </div>
+
+    <h3>Buttons</h3>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'Hi Apple!',
+    buttons: [{
+        label: 'Button 1'
+    }, {
+        label: 'Button 2',
+        cssClass: 'btn-primary',
+        action: function(){
+            alert('Hi Orange!');
+        }
+    }, {
+        icon: 'glyphicon glyphicon-ban-circle',
+        label: 'Button 3',
+        cssClass: 'btn-warning'
+    }, {
+        label: 'Close',
+        action: function(dialogItself){
+            dialogItself.close();
+        }
+    }]
+});
+-->
+    </div>
+
+    <h3>Manipulating Buttons</h3>
+    <p>
+      Buttons that created by Modal have some extra functions available: <br />
+      $button.toggleEnable(true|false); <br />
+      $button.enable(); // Equals to $button.toggleEnable(true); <br />
+      $button.disable(); // Equals to $button.toggleEnable(false); <br />
+      $button.toggleSpin(true|false); <br />
+      $button.spin(); // Equals to $button.toggleSpin(true);<br />
+      $button.stopSpin(); // Equals to $button.toggleSpin(false);<br />
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'Manipulating Buttons',
+    message: function(dialog) {
+        var $content = $('<div><button class="btn btn-success">Revert button status right now.</button></div>');
+        var $footerButton = dialog.getButton('btn-1');
+        $content.find('button').click({$footerButton: $footerButton}, function(event) {
+            event.data.$footerButton.enable();
+            event.data.$footerButton.stopSpin();
+            dialog.setClosable(true);
+        });
+
+        return $content;
+    },
+    buttons: [{
+        id: 'btn-1',
+        label: 'Click to disable and spin.',
+        action: function(dialog) {
+            var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
+            $button.disable();
+            $button.spin();
+            dialog.setClosable(false);
+        }
+    }]
+});
+-->
+    </div>
+
+    <a name="button-hotkey"></a>
+    <h3>Button Hotkey</h3>
+    <p>
+      Try to press the keys that have been associated with buttons below. <br />
+      The <strong>last button</strong> is disabled so nothing is going to happen when pressing its hotkey. <br />
+      Please note that if there are some components that require keyboard operations in your dialog, conflicts may occur, you can try next example.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'Button Hotkey',
+    message: 'Try to press some keys...',
+    onshow: function(dialog) {
+        dialog.getButton('button-c').disable();
+    },
+    buttons: [{
+        label: '(A) Button A',
+        hotkey: 65, // Keycode of keyup event of key 'A' is 65.
+        action: function() {
+            alert('Finally, you loved Button A.');
+        }
+    }, {
+        label: '(B) Button B',
+        hotkey: 66,
+        action: function() {
+            alert('Hello, this is Button B!');
+        }
+    }, {
+        id: 'button-c',
+        label: '(C) Button C',
+        hotkey: 67,
+        action: function(){
+            alert('This is Button C but you won\'t see me dance.');
+        }
+    }]
+});
+-->
+    </div>
+
+    <h3>Keys Conflicts</h3>
+    <p>Try to avoid doing similar in your code.</p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'Button Hotkey',
+    message: $('<textarea class="form-control" placeholder="Try to input multiple lines here..."></textarea>'),
+    buttons: [{
+        label: '(Enter) Button A',
+        cssClass: 'btn-primary',
+        hotkey: 13, // Enter.
+        action: function() {
+            alert('You pressed Enter.');
+        }
+    }]
+});
+-->
+    </div>
+
+    <a name="opening-multiple-dialogs"></a>
+    <h3>Opening multiple dialogs</h3>
+    <p>A good looking stacked dialogs. Please also note the second and the third dialog are draggable.</p>
+    <div class="source-code runnable">
+<!--
+var shortContent = '<p>Something here.</p>';
+var longContent = '';
+for(var i = 1; i <= 200; i++) {
+    longContent += shortContent;
+}
+Modal.show({
+    title: 'Another long dialog',
+    message: longContent
+});
+Modal.show({
+    title: 'Another short dialog',
+    message: shortContent,
+    draggable: true
+});
+Modal.show({
+    title: 'A long dialog',
+    message: longContent,
+    draggable: true
+});
+Modal.show({
+    title: 'A short dialog',
+    message: shortContent
+});
+-->
+    </div>
+
+    <h3>Creating dialog instances</h3>
+    <p>Modal.show(...) is just a shortcut method, if you need dialog instances, use 'new'.</p>
+    <div class="source-code runnable">
+<!--
+// Using init options
+var dialogInstance1 = new Modal({
+    title: 'Dialog instance 1',
+    message: 'Hi Apple!'
+});
+dialogInstance1.open();
+
+// Construct by using setters
+var dialogInstance2 = new Modal();
+dialogInstance2.setTitle('Dialog instance 2');
+dialogInstance2.setMessage('Hi Orange!');
+dialogInstance2.setType(Modal.TYPE_SUCCESS);
+dialogInstance2.open();
+
+// Using chain callings
+var dialogInstance3 = new Modal()
+    .setTitle('Dialog instance 3')
+    .setMessage('Hi Everybody!')
+    .setType(Modal.TYPE_INFO)
+    .open();
+-->
+    </div>
+    <p>In fact Modal.show(...) will also return the created dialog instance.</p>
+    <div class="source-code runnable">
+<!--
+// You can use dialogInstance later.
+var dialogInstance = Modal.show({
+    message: 'Hello Banana!'
+});
+-->
+    </div>
+
+    <h3>Open / Close multiple dialogs</h3>
+    <p>This example demonstrates opening and closing a batch of dialogs at one time. <br />Dialog that created by Modal will be in a container <strong>Modal.dialogs</strong> before it's closed and destroyed, iterate <strong>Modal.dialogs</strong> to find all dialogs that havn't been destroyed.</p>
+    <div class="source-code runnable">
+<!--
+var howManyDialogs = 5;
+for(var i = 1; i <= howManyDialogs; i++) {
+    var dialog = new Modal({
+        title: 'Dialog No.' + i,
+        message: 'Hello Houston, this is dialog No.' + i,
+        buttons: [{
+            label: 'Close this dialog.',
+            action: function(dialogRef){
+                dialogRef.close();
+            }
+        }, {
+            label: 'Close ALL opened dialogs',
+            cssClass: 'btn-warning',
+            action: function(){
+                // You can also use Modal.closeAll() to close all dialogs.
+                $.each(Modal.dialogs, function(id, dialog){
+                    dialog.close();
+                });
+            }
+        }]
+    });
+    dialog.open();
+}
+-->
+    </div>
+
+    <h3>Button with identifier</h3>
+    <div class="source-code runnable">
+<!--
+var dialog = new Modal({
+    message: 'Hi Apple!',
+    buttons: [{
+        id: 'btn-1',
+        label: 'Button 1'
+    }]
+});
+dialog.realize();
+var btn1 = dialog.getButton('btn-1');
+btn1.click({'name': 'Apple'}, function(event){
+    alert('Hi, ' + event.data.name);
+});
+dialog.open();
+-->
+    </div>
+
+    <h3>Message types</h3>
+    <div class="source-code runnable">
+<!--
+var types = [Modal.TYPE_DEFAULT,
+             Modal.TYPE_INFO,
+             Modal.TYPE_PRIMARY,
+             Modal.TYPE_SUCCESS,
+             Modal.TYPE_WARNING,
+             Modal.TYPE_ERROR];
+
+$.each(types, function(index, type){
+    Modal.show({
+        type: type,
+        title: 'Message type: ' + type,
+        message: 'What to do next?',
+        buttons: [{
+            label: 'I do nothing.'
+        }]
+    });
+});
+-->
+    </div>
+
+    <a name="changing-dialog-type"></a>
+    <h3>Changing dialog type</h3>
+    <div class="source-code runnable">
+<!--
+var types = [Modal.TYPE_DEFAULT,
+             Modal.TYPE_INFO,
+             Modal.TYPE_PRIMARY,
+             Modal.TYPE_SUCCESS,
+             Modal.TYPE_WARNING,
+             Modal.TYPE_ERROR];
+
+var buttons = [];
+$.each(types, function(index, type) {
+    buttons.push({
+        label: type,
+        cssClass: 'btn-default btn-sm',
+        action: function(dialog) {
+            dialog.setType(type);
+        }
+    });
+});
+
+Modal.show({
+    title: 'Changing dialog type',
+    message: 'Click buttons below...',
+    buttons: buttons
+});
+-->
+    </div>
+
+    <h3>Larger dialog</h3>
+    <p>
+      By default, the dialog size is 'size-normal' or Modal.SIZE_NORMAL, but you can have a larger dialog by setting option 'size' to 'size-large' or Modal.SIZE_LARGE.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    size: Modal.SIZE_LARGE,
+    message: 'Hi Apple!',
+    buttons: [{
+        label: 'Button 1'
+    }, {
+        label: 'Button 2',
+        cssClass: 'btn-primary',
+        action: function(){
+            alert('Hi Orange!');
+        }
+    }, {
+        icon: 'glyphicon glyphicon-ban-circle',
+        label: 'Button 3',
+        cssClass: 'btn-warning'
+    }, {
+        label: 'Close',
+        action: function(dialogItself){
+            dialogItself.close();
+        }
+    }]
+});
+-->
+    </div>
+
+    <a name="more-dialog-sizes"></a>
+    <h3>More dialog sizes by defaults</h3>
+    <p>
+      Please note that specifying Modal.SIZE_WIDE is equal to using css class 'modal-lg' on Bootstrap Modal.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'More dialog sizes with defaults',
+    message: 'Hi Apple!',
+    buttons: [{
+        label: 'Normal',
+        action: function(dialog){
+            dialog.setTitle('Normal');
+            dialog.setSize(Modal.SIZE_NORMAL);
+        }
+    }, {
+        label: 'Small',
+        action: function(dialog){
+            dialog.setTitle('Small');
+            dialog.setSize(Modal.SIZE_SMALL);
+        }
+    }, {
+        label: 'Wide',
+        action: function(dialog){
+            dialog.setTitle('Wide');
+            dialog.setSize(Modal.SIZE_WIDE);
+        }
+    }, {
+        label: 'Large',
+        action: function(dialog){
+            dialog.setTitle('Large');
+            dialog.setSize(Modal.SIZE_LARGE);
+        }
+    }]
+});
+-->
+    </div>
+
+    <h3>More dialog sizes by values</h3>
+    <p>
+      You can also set size(width) by values link number(String) or string ends with 'em'、'rem'、'px'、'%'.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'More dialog sizes with values',
+    message: 'Hi Apple! Hi Apple! Hi Apple! Hi Apple! Hi Apple! Hi Apple! Hi Apple!',
+    buttons: [{
+        label: 'auto',
+        action: function(dialog){
+            dialog.setTitle('Width auto');
+            dialog.setSize('auto');
+        }
+    }, {
+        label: '400(px)',
+        action: function(dialog){
+            dialog.setTitle('Width 400(px)');
+            // dialog.setSize('400');
+            dialog.setSize(400);
+        }
+    }, {
+        label: '550px',
+        action: function(dialog){
+            dialog.setTitle('Width 550px');
+            dialog.setSize('550px');
+        }
+    }, {
+        label: '45em',
+        action: function(dialog){
+            dialog.setTitle('Width 45em');
+            dialog.setSize('45em');
+        }
+    }, {
+        label: '50%',
+        action: function(dialog){
+            dialog.setTitle('Width 50%');
+            dialog.setSize('50%');
+        }
+    }]
+});
+-->
+    </div>
+
+    <h3>Define dialog size with an object</h3>
+    <p>
+      Set dialog size with an object. width、height、minWidth、maxWidth、minHeight、maxHeight can be number(String) or string ends with 'em'、'rem'、'px'、'%'.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'More dialog sizes',
+    message: $('#article-1').html(),
+    size: {
+        width: '100%',
+        maxHeight: '100%'
+    },
+    buttons: [
+        {
+            label: '关闭',
+            action: function(dialog){
+                dialog.close();
+            }
+        }
+    ]
+});
+-->
+    </div>
+
+    <h3>Rich message</h3>
+    <p>Modal supports displaying rich content, so you can even use a video clip as your message in the dialog.</p>
+    <div class="source-code runnable">
+<!--
+var $textAndPic = $('<div></div>');
+$textAndPic.append('Who\'s this? <br />');
+$textAndPic.append('<img src="./images/pig.ico" />');
+
+Modal.show({
+    title: 'Guess who that is',
+    message: $textAndPic,
+    buttons: [{
+        label: 'Acky',
+        action: function(dialogRef){
+            dialogRef.close();
+        }
+    }, {
+        label: 'Robert',
+        action: function(dialogRef){
+            dialogRef.close();
+        }
+    }]
+});
+-->
+    </div>
+
+    <h3>Dialog closable / unclosable</h3>
+    <p>
+      If option 'closable' is set to false, the default closing behaviors will be disabled, but you can still close the dialog by using dialog.close().
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'Hi Apple!',
+    closable: false,
+    buttons: [{
+        label: 'Dialog CLOSABLE!',
+        cssClass: 'btn-success',
+        action: function(dialogRef){
+            dialogRef.setClosable(true);
+        }
+    }, {
+        label: 'Dialog UNCLOSABLE!',
+        cssClass: 'btn-warning',
+        action: function(dialogRef){
+            dialogRef.setClosable(false);
+        }
+    }, {
+        label: 'Close the dialog',
+        action: function(dialogRef){
+            dialogRef.close();
+        }
+    }]
+});
+-->
+    </div>
+
+    <a name="more-close-controls"></a>
+    <h3>More controls on closing a dialog.</h3>
+    <p>
+      By default, when option 'closable' is set to true, dialog can be closed by these ways: clicking outside the dialog, pressing ESC key, clicking the close icon on the right of dialog header. <br />
+      If you want your dialog closes only when the close icon in dialog header was clicked, try setting both of the options 'closeByBackdrop' and 'closeByKeyboard' to false.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'Hi Apple!',
+    message: 'You can not close this dialog by clicking outside and pressing ESC key.',
+    closable: true,
+    closeByBackdrop: false,
+    closeByKeyboard: false,
+    buttons: [{
+        label: 'Close the dialog',
+        action: function(dialogRef){
+            dialogRef.close();
+        }
+    }]
+});
+-->
+    </div>
+
+    <a name="dialog-animate"></a>
+    <h3>Disabling Animation</h3>
+    <p>
+      Setting option 'animate' to false to disable animation for the opening dialog. <br />
+      If you want to disable animation globally, try to do this: <br />
+      Modal.configDefaultOptions({
+      animate: false
+      });
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'There is no fading effects on this dialog.',
+    animate: false,
+    buttons: [{
+        label: 'Close the dialog',
+        action: function(dialogRef){
+            dialogRef.close();
+        }
+    }]
+});
+-->
+    </div>
+
+    <h3>Auto spinning icon</h3>
+    <p>
+      Lazy guys must love this.
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'I send ajax request!',
+    buttons: [{
+        icon: 'glyphicon glyphicon-send',
+        label: 'Send ajax request',
+        cssClass: 'btn-primary',
+        autospin: true,
+        action: function(dialogRef){
+            dialogRef.enableButtons(false);
+            dialogRef.setClosable(false);
+            dialogRef.getModalBody().html('Dialog closes in 5 seconds.');
+            setTimeout(function(){
+                dialogRef.close();
+            }, 5000);
+        }
+    }, {
+        label: 'Close',
+        action: function(dialogRef){
+            dialogRef.close();
+        }
+    }]
+});
+-->
+    </div>
+
+    <a name="dialog-draggable"></a>
+    <h3>Dialog Draggable</h3>
+    <p>
+      When option 'draggable' is set to <strong>true</strong>, your dialog can be moved by dragging on its header. <br />
+      If you would like to change the cursor shape of hovering on dialog header, you can try the following css lines: <br />
+    <div class="source-code">
+.bootstrap-dialog .modal-header.bootstrap-dialog-draggable {
+  cursor: move;
+}
+    </div>
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'Draggable Dialog',
+    message: 'Try to drag on dialog title to move your dialog.',
+    backdrop: false,
+    draggable: true
+});
+-->
+    </div>
+
+    <h3>Manipulating your dialog</h3>
+    <div class="source-code runnable">
+<!--
+var dialog = new Modal({
+    message: function(dialogRef){
+        var $message = $('<div>OK, this dialog has no header and footer, but you can close the dialog using this button: </div>');
+        var $button = $('<button class="btn btn-primary btn-lg btn-block">Close the dialog</button>');
+        $button.on('click', {dialogRef: dialogRef}, function(event){
+            event.data.dialogRef.close();
+        });
+        $message.append($button);
+
+        return $message;
+    },
+    closable: false
+});
+dialog.realize();
+dialog.getModalHeader().hide();
+dialog.getModalFooter().hide();
+dialog.getModalBody().css('background-color', '#0088cc');
+dialog.getModalBody().css('color', '#fff');
+dialog.open();
+-->
+    </div>
+
+    <h3>Adding additional css classes to your dialog</h3>
+    <p>This is useful for applying effects to specific dialogs.<br />
+      For example if you would like to give your 'login-dialog' a smaller size, you can do this way:</p>
+    <div class="source-code">
+<!--
+<style>
+   .login-dialog .modal-dialog {
+        width: 300px;
+    }
+</style>
+-->
+    </div>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'Sign In',
+    message: 'Your sign-in form goes here.',
+    cssClass: 'login-dialog',
+    buttons: [{
+        label: 'Sign In Now!',
+        cssClass: 'btn-primary',
+        action: function(dialog){
+            dialog.close();
+        }
+    }]
+});
+-->
+    </div>
+
+    <h3>Adding a description to your dialog (for accessibility)</h3>
+    <p>This adds an 'aria-describedby' attribute to your dialog, which provides a description of the dialog for screen readers.</p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    title: 'Add Description',
+    message: 'The description is shown to screen readers.',
+    description: 'This is a Bootstrap Dialog'
+});
+-->
+    </div>
+
+    <h3>Data binding</h3>
+    <div class="source-code runnable">
+<!--
+var data1 = 'Apple';
+var data2 = 'Orange';
+var data3 = ['Banana', 'Pear'];
+Modal.show({
+    message: 'Hi Apple!',
+    data: {
+        'data1': data1,
+        'data2': data2,
+        'data3': data3
+    },
+    buttons: [{
+        label: 'See what you got',
+        cssClass: 'btn-primary',
+        action: function(dialogRef){
+            alert(dialogRef.getData('data1'));
+            alert(dialogRef.getData('data2'));
+            alert(dialogRef.getData('data3').join(', '));
+        }
+    }]
+});
+-->
+    </div>
+
+    <h3>Dialog events</h3>
+    <p>
+      Please note that if you're going to use setters to configure event handlers, use dialog.onShow(function) and dialog.onHide(function).
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'Hello world!',
+    onshow: function(dialogRef){
+        alert('Dialog is popping up, its message is ' + dialogRef.getMessage());
+    },
+    onshown: function(dialogRef){
+        alert('Dialog is popped up.');
+    },
+    onhide: function(dialogRef){
+        alert('Dialog is popping down, its message is ' + dialogRef.getMessage());
+    },
+    onhidden: function(dialogRef){
+        alert('Dialog is popped down.');
+    }
+});
+-->
+    </div>
+
+    <a name="stop-closing-dialog"></a>
+    <h3>Stop closing your dialog.</h3>
+    <p>
+      Option 'onhide' gives you an opportunity to stop closing the dialog according to some conditions, making your 'onhide' callback returns false to stop closing the dialog. <br />
+      In the following example, the dialog closes only when your most favorite fruit is '<strong>banana</strong>' (Case insensitive).
+    </p>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'Your most favorite fruit: <input type="text" class="form-control">',
+    onhide: function(dialogRef){
+        var fruit = dialogRef.getModalBody().find('input').val();
+        if($.trim(fruit.toLowerCase()) !== 'banana') {
+            alert('Need banana!');
+            return false;
+        }
+    },
+    buttons: [{
+        label: 'Close',
+        action: function(dialogRef) {
+            dialogRef.close();
+        }
+    }]
+});
+-->
+    </div>
+
+    <h2>More shortcut methods</h2>
+    <hr />
+    <h3>Alert</h3>
+    <div class="source-code runnable">
+<!--
+Modal.alert('Hi Apple!');
+-->
+    </div>
+
+    <h3>Alert with callback</h3>
+    <div class="source-code runnable">
+<!--
+Modal.alert('Hi Apple!', function(){
+    alert('Hi Orange!');
+});
+-->
+    </div>
+
+    <a name="advanced-alert-window"></a>
+    <h3>Customizing dialog type, title, and more.</h3>
+    <p>All options shown below are optional.</p>
+    <div class="source-code runnable">
+<!--
+Modal.alert({
+    title: 'WARNING',
+    message: 'Warning! No Banana!',
+    type: Modal.TYPE_WARNING, // <-- Default value is Modal.TYPE_PRIMARY
+    closable: true, // <-- Default value is false
+    draggable: true, // <-- Default value is false
+    buttonLabel: 'Roar! Why!', // <-- Default value is 'OK',
+    callback: function(result) {
+        // result will be true if button was click, while it will be false if users close the dialog directly.
+        alert('Result is: ' + result);
+    }
+});
+-->
+    </div>
+
+    <h3>Confirm</h3>
+    <div class="source-code runnable">
+<!--
+Modal.confirm('Hi Apple, are you sure?');
+-->
+    </div>
+
+    <h3>Confirm with callback</h3>
+    <div class="source-code runnable">
+<!--
+Modal.confirm('Hi Apple, are you sure?', function(result){
+    if(result) {
+        alert('Yup.');
+    }else {
+        alert('Nope.');
+    }
+});
+-->
+    </div>
+
+    <a name="advanced-confirm-window"></a>
+    <h3>Just like what we have done in alert, we can control confirm dialog more.</h3>
+    <div class="source-code runnable">
+<!--
+Modal.confirm({
+    title: 'WARNING',
+    message: 'Warning! Drop your banana?',
+    type: Modal.TYPE_WARNING, // <-- Default value is Modal.TYPE_PRIMARY
+    closable: false, // <-- Default value is true
+    draggable: true, // <-- Default value is false
+    btnCancelLabel: 'Do not drop it!', // <-- Default value is 'Cancel',
+    btnOKLabel: 'Drop it!', // <-- Default value is 'OK',
+    btnOKClass: 'btn-warning', // <-- If you didn't specify it, dialog type will be used,
+    callback: function(result) {
+        // result will be true if button was click, while it will be false if users close the dialog directly.
+        if(result) {
+            alert('Yup.');
+        }else {
+            alert('Nope.');
+        }
+    }
+});
+-->
+    </div>
+
+    <h3>Loading</h3>
+    <div class="source-code runnable">
+<!--
+Modal.loading('5秒后手动关闭');
+setTimeout(function() {
+    Modal.loading('remove');
+}, 5000);
+-->
+    </div>
+
+    <h3>Loading with callback</h3>
+    <div class="source-code runnable">
+<!--
+Modal.loading('5秒后手动关闭', function() {
+    alert('Loading done.');
+});
+setTimeout(function() {
+    Modal.loading('remove');
+}, 5000);
+-->
+    </div>
+
+    <h3>Loading delay option（defaults is 150ms）</h3>
+    <div class="source-code runnable">
+<!--
+Modal.loading({
+    message: '5秒后手动关闭',
+    delay: 80,
+    onhidden: function() {
+        alert('Loading done.');
+    }
+});
+setTimeout(function() {
+    Modal.loading('remove');
+}, 5000);
+-->
+    </div>
+
+    <h3>Position</h3>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'Position center（Default）'
+});
+Modal.show({
+    message: 'Position left',
+    position: 'left'
+});
+Modal.show({
+    message: 'Position bottom',
+    position: 'bottom'
+});
+Modal.show({
+    message: 'Position right',
+    position: 'right'
+});
+Modal.show({
+    message: 'Position top',
+    position: 'top'
+});
+-->
+    </div>
+
+    <h3>Position boundary</h3>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'Position bottom 30(px)',
+    position: 'b30'
+});
+Modal.show({
+    message: 'Position bottom 30em',
+    position: 'b30em'
+});
+Modal.show({
+    message: 'Position bottom 10%',
+    position: 'b10%'
+});
+Modal.show({
+    message: 'Position right 30(px)',
+    position: 'r30'
+});
+Modal.show({
+    message: 'Position right 30em',
+    position: 'r30em'
+});
+Modal.show({
+    message: 'Position right 10%',
+    position: 'r10%'
+});
+-->
+    </div>
+
+    <h3>Position mixture</h3>
+    <div class="source-code runnable">
+<!--
+Modal.show({
+    message: 'Position left & top',
+    position: 'left top'
+});
+Modal.show({
+    message: 'Position right & top',
+    position: 'right top'
+});
+Modal.show({
+    message: 'Position left & bottom',
+    position: 'left bottom'
+});
+Modal.show({
+    message: 'Position right & bottom',
+    position: 'right bottom'
+});
+-->
+    </div>
+
+    <h3>Processing</h3>
+    <div class="source-code runnable">
+<!--
+var processor = Modal.processing('正在处理...');
+setTimeout(function() {
+    processor.close();
+}, 5000);
+-->
+    </div>
+
+    <h3>Processing with warning callback</h3>
+    <div class="source-code runnable">
+<!--
+var processor = Modal.processing('正在处理...');
+setTimeout(function() {
+    processor.warning('处理进程尚未开启.');
+}, 5000);
+-->
+    </div>
+
+    <h3>Processing with error callback</h3>
+    <div class="source-code runnable">
+<!--
+var processor = Modal.processing('正在处理...');
+setTimeout(function() {
+    processor.error('处理失败！');
+}, 5000);
+-->
+    </div>
+
+    <h3>Processing with success callback</h3>
+    <div class="source-code runnable">
+<!--
+var processor = Modal.processing('正在处理...');
+setTimeout(function() {
+    processor.success('处理成功！');
+}, 5000);
+-->
+    </div>
+
+    <h3>Processing with handle callback</h3>
+    <div class="source-code runnable">
+<!--
+var processor = Modal.processing('正在处理...', function() {
+    alert("处理完毕！");
+});
+setTimeout(function() {
+    processor.success('处理成功！');
+}, 5000);
+-->
+    </div>
+
+    <h3>Info</h3>
+    <div class="source-code runnable">
+<!--
+Modal.info();
+-->
+    </div>
+
+    <h3>Info with message</h3>
+    <div class="source-code runnable">
+<!--
+Modal.info('自定义提示信息');
+-->
+    </div>
+
+    <h3>Info with position</h3>
+    <div class="source-code runnable">
+<!--
+Modal.info({
+    message: '自定义提示信息',
+    position: 'right 50'
+});
+-->
+    </div>
+
+    <h3>Info with callback 1</h3>
+    <div class="source-code runnable">
+<!--
+Modal.info('自定义提示信息', function() {
+    alert('info closed!');
+});
+-->
+    </div>
+
+    <h3>Info with callback 2</h3>
+    <div class="source-code runnable">
+<!--
+Modal.info({
+    message: '自定义提示信息',
+    position: 'right 50'
+}, function() {
+    alert('info closed!');
+});
+-->
+    </div>
+
+    <h3>Info with callback 3</h3>
+    <div class="source-code runnable">
+<!--
+Modal.info({
+    message: '自定义提示信息',
+    position: 'right 50',
+    onhidden: function() {
+        alert('info closed!');
+    }
+});
+-->
+    </div>
+
+    <h3>Warning</h3>
+    <div class="source-code runnable">
+<!--
+Modal.warning();
+-->
+    </div>
+
+    <h3>Warning with message</h3>
+    <div class="source-code runnable">
+<!--
+Modal.warning('自定义警告信息');
+-->
+    </div>
+
+    <h3>Warning with position</h3>
+    <div class="source-code runnable">
+<!--
+Modal.warning({
+    message: '自定义警告信息',
+    position: 'right 50'
+});
+-->
+    </div>
+
+    <h3>Warning with callback 1</h3>
+    <div class="source-code runnable">
+<!--
+Modal.warning('自定义警告信息', function() {
+    alert('warning closed!');
+});
+-->
+    </div>
+
+    <h3>Warning with callback 2</h3>
+    <div class="source-code runnable">
+<!--
+Modal.warning({
+    message: '自定义警告信息',
+    position: 'right 50'
+}, function() {
+    alert('warning closed!');
+});
+-->
+    </div>
+
+    <h3>Warning with callback 3</h3>
+    <div class="source-code runnable">
+<!--
+Modal.warning({
+    message: '自定义警告信息',
+    position: 'right 50',
+    onhidden: function() {
+        alert('warning closed!');
+    }
+});
+-->
+    </div>
+
+    <h3>Error</h3>
+    <div class="source-code runnable">
+<!--
+Modal.error();
+-->
+    </div>
+
+    <h3>Error with message</h3>
+    <div class="source-code runnable">
+<!--
+Modal.error('自定义错误信息');
+-->
+    </div>
+
+    <h3>Error with position</h3>
+    <div class="source-code runnable">
+<!--
+Modal.error({
+    message: '自定义错误信息',
+    position: 'right 50'
+});
+-->
+    </div>
+
+    <h3>Error with callback 1</h3>
+    <div class="source-code runnable">
+<!--
+Modal.error('自定义错误信息', function() {
+    alert('error closed!');
+});
+-->
+    </div>
+
+    <h3>Error with callback 2</h3>
+    <div class="source-code runnable">
+<!--
+Modal.error({
+    message: '自定义错误信息',
+    position: 'right 50'
+}, function() {
+    alert('error closed!');
+});
+-->
+    </div>
+
+    <h3>Error with callback 3</h3>
+    <div class="source-code runnable">
+<!--
+Modal.error({
+    message: '自定义错误信息',
+    position: 'right 50',
+    onhidden: function() {
+        alert('error closed!');
+    }
+});
+-->
+    </div>
+
+    <h3>Success</h3>
+    <div class="source-code runnable">
+<!--
+Modal.success();
+-->
+    </div>
+
+    <h3>Success with message</h3>
+    <div class="source-code runnable">
+<!--
+Modal.success('自定义成功信息');
+-->
+    </div>
+
+    <h3>Success with position</h3>
+    <div class="source-code runnable">
+<!--
+Modal.success({
+    message: '自定义成功信息',
+    position: 'right 50'
+});
+-->
+    </div>
+
+    <h3>Success with callback 1</h3>
+    <div class="source-code runnable">
+<!--
+Modal.success('自定义成功信息', function() {
+    alert('success closed!');
+});
+-->
+    </div>
+
+    <h3>Success with callback 2</h3>
+    <div class="source-code runnable">
+<!--
+Modal.success({
+    message: '自定义成功信息',
+    position: 'right 50'
+}, function() {
+    alert('success closed!');
+});
+-->
+    </div>
+
+    <h3>Success with callback 3</h3>
+    <div class="source-code runnable">
+<!--
+Modal.success({
+    message: '自定义成功信息',
+    position: 'right 50',
+    onhidden: function() {
+        alert('success closed!');
+    }
+});
+-->
+    </div>
+
+    <a name="i18n-message"></a>
+    <h3>I18N</h3>
+    <p>To provide local messages for you needed, reset those messages below before using Modal.</p>
+    <div class="source-code">
+<!--
+Modal.DEFAULT_TEXTS[Modal.TYPE_DEFAULT] = 'Information';
+Modal.DEFAULT_TEXTS[Modal.TYPE_INFO] = 'Information';
+Modal.DEFAULT_TEXTS[Modal.TYPE_PRIMARY] = 'Information';
+Modal.DEFAULT_TEXTS[Modal.TYPE_SUCCESS] = 'Success';
+Modal.DEFAULT_TEXTS[Modal.TYPE_WARNING] = 'Warning';
+Modal.DEFAULT_TEXTS[Modal.TYPE_ERROR] = 'Error';
+Modal.DEFAULT_TEXTS['OK'] = 'OK';
+Modal.DEFAULT_TEXTS['CANCEL'] = 'Cancel';
+Modal.DEFAULT_TEXTS['CONFIRM'] = 'Confirmation';
+-->
+    </div>
+
+    <!-- Available options -->
+    <a name="available-options"></a>
+    <h2>Available options</h2>
+    <hr />
+    <p>
+      Please note that all options described below are <strong>optional</strong>, but you will have a weird dialog if you don't even give it a message to display.
+      <br />
+      Most options can be set via init options or property setters.
+    </p>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th class="col-sm-1">
+          Option
+        </th>
+        <th>
+          Possible values
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>type</td>
+        <td>
+          Modal.TYPE_DEFAULT or 'type-default' <br />
+          Modal.TYPE_INFO or 'type-info' <br />
+          <strong>Modal.TYPE_PRIMARY or 'type-primary' (default)</strong> <br />
+          Modal.TYPE_SUCCESS or 'type-success' <br />
+          Modal.TYPE_WARNING or 'type-warning' <br />
+          Modal.TYPE_ERROR or 'type-error'
+        </td>
+        <td>
+          Give your dialog a specific look, color scheme can be seen on <a href="http://getbootstrap.com/css/#buttons" target="_blank">Bootstrap's Button</a>.
+        </td>
+      </tr>
+      <tr>
+        <td>size</td>
+        <td>
+          <strong>Modal.SIZE_NORMAL or 'size-normal' (default)</strong> <br />
+          Modal.SIZE_WIDE or 'size-wide' <br />
+          Modal.SIZE_LARGE or 'size-large' <br />
+        </td>
+        <td>
+          -
+        </td>
+      </tr>
+      <tr>
+        <td>cssClass</td>
+        <td>
+          -
+        </td>
+        <td>
+          Additional css classes that will be added to your dialog.
+        </td>
+      </tr>
+      <tr>
+        <td>title</td>
+        <td>
+          String or Object(html)
+        </td>
+        <td>
+          -
+        </td>
+      </tr>
+      <tr>
+        <td>message</td>
+        <td>
+          String or Object(html)
+        </td>
+        <td>
+          -
+        </td>
+      </tr>
+      <tr>
+        <td>buttons</td>
+        <td>
+          array
+        </td>
+        <td>
+          Examples:
+          <div class="source-code runnable">
+Modal.show({
+    title: 'Say-hello dialog',
+    message: 'Hello world!',
+    buttons: [{
+        id: 'btn-ok',
+        icon: 'glyphicon glyphicon-check',
+        label: 'OK',
+        cssClass: 'btn-primary',
+        autospin: false,
+        action: function(dialogRef){
+            dialogRef.close();
+        }
+    }]
+});
+          </div>
+          <strong>id</strong>: optional, if id is set, you can use dialogInstance.getButton(id) to get the button later. <br />
+          <strong>icon</strong>: optional, if set, the specified icon will be added to the button. <br />
+          <strong>cssClass</strong>: optional, additional css class to be added to the button. <br />
+          <strong>autospin</strong>: optinal, if it's true, after clicked the button a spinning icon appears. <br />
+          <strong>action</strong>: optional, if provided, the callback will be invoked after the button is clicked, and the dialog instance will be passed to the callback function.
+        </td>
+      </tr>
+      <tr>
+        <td>closable</td>
+        <td>
+          true | false
+        </td>
+        <td>
+          When set to <strong>true</strong>, you can close the dialog by: <br />
+          <ul>
+            <li>Clicking the close icon in dialog header.</li>
+            <li>Clicking outside the dialog.</li>
+            <li>ESC key.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>spinicon</td>
+        <td>
+          Icon class name, for example 'glyphicon glyphicon-check'. <br />
+          <strong>Default value is 'glyphicon glyphicon-asterisk'.</strong>
+        </td>
+        <td>
+          Specify what icon to be used as the spinning icon when button's 'autospin' is set to true.
+        </td>
+      </tr>
+      <tr>
+        <td>data</td>
+        <td>
+          Key-value object. For example {'id' : '100'}
+        </td>
+        <td>
+          Data to be bound to the dialog.
+        </td>
+      </tr>
+      <tr>
+        <td>onshow</td>
+        <td>
+          function
+        </td>
+        <td>
+          If provided, it will be invoked when the dialog is popping up. <br />
+        </td>
+      </tr>
+      <tr>
+        <td>onshown</td>
+        <td>
+          function
+        </td>
+        <td>
+          If provided, it will be invoked when the dialog is popped up. <br />
+        </td>
+      </tr>
+      <tr>
+        <td>onhide</td>
+        <td>
+          function
+        </td>
+        <td>
+          If provided, it will be invoked when the dialog is popping down. <br />
+        </td>
+      </tr>
+      <tr>
+        <td>onhidden</td>
+        <td>
+          function
+        </td>
+        <td>
+          If provided, it will be invoked when the dialog is popped down. <br />
+        </td>
+      </tr>
+      <tr>
+        <td>autodestroy</td>
+        <td>
+          <strong>true (default)</strong> | false
+        </td>
+        <td>
+          When it's true, all modal stuff will be removed from the DOM tree after the dialog is popped down, set it to false if you need your dialog (same instance) pups up and down again and again.
+        </td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>
+          String
+        </td>
+        <td>
+          If provided, 'aria-describedby' attribute will be added to the dialog with the description string as its value.  This can improve accessibility, as the description can be read by screen readers.
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+
+    <!-- Available methods -->
+    <a name="available-methods"></a>
+    <h2>Available methods</h2>
+    <hr />
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th class="col-sm-2">
+          Method
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>open()</td>
+        <td>Open the dialog. Usage: dialogInstance.open()</td>
+      </tr>
+      <tr>
+        <td>close()</td>
+        <td>Close the dialog. Usage: dialogInstance.close()</td>
+      </tr>
+      <tr>
+        <td>getModal()</td>
+        <td>Return the raw modal, equivalent to $('&lt;div class='modal fade'...&gt;&lt;/div&gt;')</td>
+      </tr>
+      <tr>
+        <td>getModalDialog()</td>
+        <td>Return the raw modal dialog.</td>
+      </tr>
+      <tr>
+        <td>getModalContent()</td>
+        <td>Return the raw modal content.</td>
+      </tr>
+      <tr>
+        <td>getModalHeader()</td>
+        <td>Return the raw modal header.</td>
+      </tr>
+      <tr>
+        <td>getModalBody()</td>
+        <td>Return the raw modal body.</td>
+      </tr>
+      <tr>
+        <td>getModalFooter()</td>
+        <td>Return the raw modal footer.</td>
+      </tr>
+      <tr>
+        <td>getData(key)</td>
+        <td>Get data entry according to the given key, returns null if no data entry found.</td>
+      </tr>
+      <tr>
+        <td>setData(key, value)</td>
+        <td>Bind data entry to dialog instance, value can be any types that javascript supports.</td>
+      </tr>
+      <tr>
+        <td>enableButtons(boolean)</td>
+        <td>Disable all buttons in dialog footer when it's false, enable all when it's true.</td>
+      </tr>
+      <tr>
+        <td>setClosable(boolean)</td>
+        <td>When set to true (default), dialog can be closed by clicking close icon in dialog header, or by clicking outside the dialog, or, ESC key is pressed.</td>
+      </tr>
+      <tr>
+        <td>realize()</td>
+        <td>Calling dialog.open() will automatically get this method called first, but if you want to do something on your dialog before it's shown, you can manually call dialog.realize() before calling dialog.open().</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <hr />
+    <footer class="text-center"><a href="https://github.com/nakupanda/bootstrap3-dialog">Go to the project.</a> | <a href="mailto:javanoob@hotmail.com">Contact me</a> if you can help to improve this example page.</footer>
+  </div>
+
+  <div id="article-1" style="display: none">
+    <h1 class="text-center">滕王阁序</h1>
+    <h4 class="text-center">【唐】王勃</h4>
+    <div class="contain-text" style="margin-top: 1em;">
+      <p>
+        豫章故郡，洪都新府。星分翼轸，地接衡庐。襟三江而带五湖，控蛮荆而引瓯越。物华天宝，龙光射牛斗之墟；人杰地灵，徐孺下陈蕃之榻。雄州雾列，俊采星驰。台隍枕夷夏之交，宾主尽东南之美。都督阎公之雅望，棨戟遥临；宇文新州之懿范，襜帷暂驻。十旬休假，胜友如云；千里逢迎，高朋满座。腾蛟起凤，孟学士之词宗；紫电青霜，王将军之武库。家君作宰，路出名区；童子何知，躬逢胜饯。(豫章故郡 一作：南昌故郡)
+      </p>
+      <p>
+        时维九月，序属三秋。潦水尽而寒潭清，烟光凝而暮山紫。俨骖騑于上路，访风景于崇阿。临帝子之长洲，得仙人之旧馆。层峦耸翠，上出重霄；飞阁流丹，下临无地。鹤汀凫渚，穷岛屿之萦回；桂殿兰宫，即冈峦之体势。（层峦  一作：层台；即冈 一作：列冈；天人 一作：仙人）
+      </p>
+      <p>
+        披绣闼，俯雕甍，山原旷其盈视，川泽纡其骇瞩。闾阎扑地，钟鸣鼎食之家；舸舰迷津，青雀黄龙之舳。云销雨霁，彩彻区明。落霞与孤鹜齐飞，秋水共长天一色。渔舟唱晚，响穷彭蠡之滨，雁阵惊寒，声断衡阳之浦。(轴 通：舳；迷津 一作：弥津；云销雨霁，彩彻区明 一作：虹销雨霁，彩彻云衢)
+      </p>
+      <p>
+        遥襟甫畅，逸兴遄飞。爽籁发而清风生，纤歌凝而白云遏。睢园绿竹，气凌彭泽之樽；邺水朱华，光照临川之笔。四美具，二难并。穷睇眄于中天，极娱游于暇日。天高地迥，觉宇宙之无穷；兴尽悲来，识盈虚之有数。望长安于日下，目吴会于云间。地势极而南溟深，天柱高而北辰远。关山难越，谁悲失路之人；萍水相逢，尽是他乡之客。怀帝阍而不见，奉宣室以何年？(遥襟甫畅 一作：遥吟俯畅)
+      </p>
+      <p>
+        嗟乎！时运不齐，命途多舛。冯唐易老，李广难封。屈贾谊于长沙，非无圣主；窜梁鸿于海曲，岂乏明时？所赖君子见机，达人知命。老当益壮，宁移白首之心？穷且益坚，不坠青云之志。酌贪泉而觉爽，处涸辙以犹欢。北海虽赊，扶摇可接；东隅已逝，桑榆非晚。孟尝高洁，空余报国之情；阮籍猖狂，岂效穷途之哭！(见机 一作：安贫)
+      </p>
+      <p>
+        勃，三尺微命，一介书生。无路请缨，等终军之弱冠；有怀投笔，慕宗悫之长风。舍簪笏于百龄，奉晨昏于万里。非谢家之宝树，接孟氏之芳邻。他日趋庭，叨陪鲤对；今兹捧袂，喜托龙门。杨意不逢，抚凌云而自惜；钟期既遇，奏流水以何惭？
+      </p>
+      <p>
+        呜乎！胜地不常，盛筵难再；兰亭已矣，梓泽丘墟。临别赠言，幸承恩于伟饯；登高作赋，是所望于群公。敢竭鄙怀，恭疏短引；一言均赋，四韵俱成。请洒潘江，各倾陆海云尔：
+      </p>
+      <p>
+        滕王高阁临江渚，佩玉鸣鸾罢歌舞。
+      </p>
+      <p>
+        画栋朝飞南浦云，珠帘暮卷西山雨。
+      </p>
+      <p>
+        闲云潭影日悠悠，物换星移几度秋。
+      </p>
+      <p>
+        阁中帝子今何在？槛外长江空自流。
+      </p>
+      <h3 class="text-center">译文</h3>
+      <p>
+        这里是汉代的豫章郡城，如今是洪州的都督府，天上的方位属于翼，轸两星宿的分野，地上的位置连结着衡山和庐山。以三江为衣襟，以五湖为衣带、控制着楚地，连接着闽越。物类的精华，是上天的珍宝，宝剑的光芒直冲上牛、斗二星的区间。人中有英杰，因大地有灵气，陈蕃专为徐孺设下几榻。雄伟的洪州城，房屋像雾一般罗列，英俊的人才，像繁星一样地活跃。城池座落在夷夏交界的要害之地，主人与宾客，集中了东南地区的英俊之才。都督阎公，享有崇高的名望，远道来到洪州坐镇，宇文州牧，是美德的楷模，赴任途中在此暂留。正逢十日休假的日子，杰出的友人云集，高贵的宾客，也都不远千里来到这里聚会。文坛领袖孟学士，文章的气势像腾起的蛟龙，飞舞的彩凤，王将军的武库里，藏有像紫电、青霜这样锋利的宝剑。由于父亲在交趾做县令，我在探亲途中经过这个著名的地方。我年幼无知，竟有幸亲身参加了这次盛大的宴会。
+      </p>
+      <p>
+        时当九月，秋高气爽。积水消尽，潭水清澈，天空凝结着淡淡的云烟，暮霭中山峦呈现一片紫色。在高高的山路上驾着马车，在崇山峻岭中访求风景。来到昔日帝子的长洲，找到仙人居住过的宫殿。这里山峦重叠，青翠的山峰耸入云霄。凌空的楼阁，红色的阁道犹如飞翔在天空，从阁上看不到地面。白鹤，野鸭停息的小洲，极尽岛屿的纡曲回环之势，雅浩的宫殿，跟起伏的山峦配合有致。
+      </p>
+      <p>
+        披开雕花的阁门，俯视彩饰的屋脊，山峰平原尽收眼底，湖川曲折令人惊讶。遍地是里巷宅舍，许多钟鸣鼎食的富贵人家。舸舰塞满了渡口，尽是雕上了青雀黄龙花纹的大船。正值雨过天晴，虹消云散，阳光朗煦，落霞与孤雁一起飞翔，秋水和长天连成一片。傍晚渔舟中传出的歌声，响彻彭蠡湖滨，雁群感到寒意而发出的惊叫，鸣声到衡阳之浦为止。
+      </p>
+      <p>
+        放眼远望，胸襟刚感到舒畅，超逸的兴致立即兴起，排箫的音响引来的徐徐清风，柔缓的歌声吸引住飘动的白云。像睢园竹林的聚会，这里善饮的人，酒量超过彭泽县令陶渊明，像邺水赞咏莲花，这里诗人的文采，胜过临川内史谢灵运。（音乐与饮食，文章和言语）这四种美好的事物都已经齐备，（良辰美景，赏心乐事）这两个难得的条件也凑合在一起了，向天空中极目远眺，在假日里尽情欢娱。苍天高远，大地寥廓，令人感到宇宙的无穷无尽。欢乐逝去，悲哀袭来，我知道了事物的兴衰成败是有定数的。西望长安，东指吴会，南方的陆地已到尽头，大海深不可测，北方的北斗星多么遥远，天柱高不可攀。关山重重难以越过，有谁同情不得志的人？萍水偶尔相逢，大家都是异乡之客．怀念着君王的宫门，但却不被召见，什么时候才能够去侍奉君王呢？
+      </p>
+      <p>
+        呵，各人的时机不同，人生的命运多有不顺。冯唐容易衰老，李广难得封侯。使贾谊遭受委屈，贬于长沙，并不是没有圣明的君主，使梁鸿逃匿到齐鲁海滨，难道不是政治昌明的时代？只不过由于君子安于贫贱，通达的人知道自己的命运罢了。年纪虽然老了，但志气应当更加旺盛，怎能在白头时改变心情？境遇虽然困苦，但节操应当更加坚定，决不能抛弃自己的凌云壮志。即使喝了贪泉的水，心境依然清爽廉洁；即使身处于干涸的主辙中，胸怀依然开朗愉快。北海虽然十分遥远，乘着羊角旋风还是能够达到，早晨虽然已经过去，而珍惜黄昏却为时不晚。孟尝君心地高洁，但白白地怀抱着报国的热情，阮籍为人放纵不羁，我们怎能学他那种穷途的哭泣！
+      </p>
+      <p>
+        我地位卑微，只是一个书生。虽然和终军一样年已二十一，却无处去请缨杀敌。我羡慕宗悫那种“乘长风破万里浪”的英雄气概，也有投笔从戎的志向。如今我抛弃了一生的功名，不远万里去朝夕侍奉父亲。虽然称不上谢家的“宝树”，但是能和贤德之士相交往。不久我将见到父亲，聆听他的教诲。今天我侥幸地奉陪各位长者，高兴地登上龙门。假如碰不上杨得意那样引荐的人，就只有抚拍着自己的文章而自我叹惜。既然已经遇到了钟子期，就弹奏一曲《流水》又有什么羞愧呢？
+      </p>
+      <p>
+        呵！名胜之地不能常存，盛大的宴会难以再逢。兰亭宴集已为陈迹，石崇的梓泽也变成了废墟。承蒙这个宴会的恩赐，让我临别时作了这一篇序文，至于登高作赋，这只有指望在座诸公了。我只是冒昧地尽我微薄的心意，作了短短的引言。在座诸位都按各自分到的韵字赋诗，我已写成了四韵八句。请在座诸位施展潘岳，陆机一样的才笔，各自谱写瑰丽的诗篇吧！
+      </p>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  require(['bs/modal'], function(Modal) {
+    $('.source-code').each(function(index){
+      var $section = $(this);
+      var code = $(this).html().replace('<!--', '').replace('-->', '').replace(/(^\s+)|(\s+$)/g, "");
+
+      // Code preview
+      var $codePreview = $('<pre></pre>'),
+          $code = $('<code class="javascript"></code>');
+      $code.text(code).appendTo($codePreview);
+      $section.html($codePreview);
+
+      // Run code
+      if ($section.hasClass('runnable')) {
+        var $button = $('<button class="btn btn-primary">Run the code</button>');
+        $button.on('click', {code: code}, function(event){
+          eval(event.data.code);
+        });
+        $button.insertAfter($section);
+        $('<div class="clearfix" style="margin-bottom: 10px;"></div>').insertAfter($button);
+      }
+    });
+  });
+</script>
+
+<script src="/javascripts/docs.js"></script>

@@ -16,7 +16,7 @@ require(['highlight', 'zeroclipboard', 'bs/tooltip'], function(hljs, ZeroClipboa
                 var $tar = $(event.target),
                     $code = $tar.siblings("pre").children("code");
                 var code = $code.data('original-code') + "";
-                code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+                code = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&#123;/g, "{").replace(/&#125;/g, "}");
                 clipboard.setText(code);
             });
             clipboard.on("aftercopy", function(event) {
@@ -39,7 +39,7 @@ require(['highlight', 'zeroclipboard', 'bs/tooltip'], function(hljs, ZeroClipboa
         });
         $this.on("mouseout", function(event) {
             var $this = $(event.currentTarget);
-            $this.removeClass("hover");
+            $this.removeClass("hover").blur();
             $this.tooltip("destroy");
         });
     });
@@ -51,34 +51,39 @@ function initSideNav() {
         $headerNext = $header.next(),
         $aside = $('aside'),
         $content = $('.content:first');
-    // set aside offsetTop
-    var offsetHead = $headerNext.offset(),
-        topHead = offsetHead ? offsetHead.top : 0;
-    var offsetSide = $aside.offset(), topSide;
-    topSide = offsetSide ? offsetSide.top : 0;
-    topSide -= topHead;
-    topSide -= 20;
-    $aside.data('offsetTop', topSide);
-    // set anchor link offsetTop
-    $('.link-anchor', $content).each(function () {
-        var offsetTop = calculateOffsetTop.call(this, $content);
-        var href = $(this).attr('href');
-        $('.link-anchor[href="' + href + '"]', $aside).data('offsetTop', offsetTop);
-    });
-    // affix side nav
-    affixSideNav();
-    // collapse side nav
-    collapseSideNav();
-    // listen scroll
-    var collapseSideTimeout, collapseSideTime = 30;
-    $win.scroll(function () {
+    if ($aside.length) {
+        // set aside offsetTop
+        var offsetHead = $headerNext.offset(),
+            topHead = offsetHead ? offsetHead.top : 0;
+        var offsetSide = $aside.offset(), topSide;
+        topSide = offsetSide ? offsetSide.top : 0;
+        topSide -= topHead;
+        topSide -= 20;
+        $aside.data('offsetTop', topSide);
+        // set anchor link offsetTop
+        $('.link-anchor', $content).each(function () {
+            var offsetTop = calculateOffsetTop.call(this, $content);
+            var href = $(this).attr('href');
+            $('.link-anchor[href="' + href + '"]', $aside).data('offsetTop', offsetTop);
+        });
+        // affix side nav
         affixSideNav();
-        // debounce 防抖处理
-        if (collapseSideTimeout) {
-            clearTimeout(collapseSideTimeout);
-        }
-        collapseSideTimeout = setTimeout(collapseSideNav, collapseSideTime);
-    });
+        // collapse side nav
+        collapseSideNav();
+        // listen scroll
+        var collapseSideTimeout, collapseSideTime = 30;
+        $win.scroll(function () {
+            affixSideNav();
+            // debounce 防抖处理
+            if (collapseSideTimeout) {
+                clearTimeout(collapseSideTimeout);
+            }
+            collapseSideTimeout = setTimeout(collapseSideNav, collapseSideTime);
+        });
+        $win.off('resize.sideNav').on('resize.sideNav', function() {
+            checkSideNavScrollBar();
+        });
+    }
     $(document).on('click', ".link-anchor", function (e) {
         e.preventDefault();
         var offsetTop = calculateOffsetTop.call(this, $content);
@@ -90,9 +95,6 @@ function initSideNav() {
     $(document).on('click', '.link-back-top', function() {
         $body.animate({scrollTop: 0}, 200);
         $(this).blur();
-    });
-    $win.off('resize.sideNav').on('resize.sideNav', function() {
-        checkSideNavScrollBar();
     });
     // scroll content by hash
     try {

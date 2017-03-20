@@ -10,6 +10,7 @@
         codemirror: '5.9.0',
         cryptoJS: '3.1.6',
         d3: '4.6.0',
+        'd3-v3': '3.5.16',
         bs: {
             alert: '3.3.4',
             button: '3.3.4+20150713',
@@ -30,7 +31,7 @@
         },
         jq: {
             migrate: '1.2.1',
-            dataTables: '1.10.7+20170224',
+            dataTables: '1.10.7+20170306',
             form: '3.51.0_x1',
             form_validator: '1.13.1',
             form_wizard: 'bs3',
@@ -41,6 +42,7 @@
             multipicker: '0.8.0',
             multiselect: '0.8.0',
             nicescroll: '3.6.0',
+            mCustomScrollbar: '3.1.5',
             qrcode: '1.0',
             urlp: '1.0.4',
             ztree: '3.5.18',
@@ -62,9 +64,10 @@
         plupload: '2.1.4',
         remarkable: '1.6.0',
         'es5-shim': '4.5.9',
+        'es6-shim': '0.35.3',
         highlight: '9.9.0+20170224',
         yfjs: {
-            spa: '1.0.0-rc+20170208'
+            spa: '1.0.0-rc+20170303'
         },
         zeroclipboard: '2.2.0'
     };
@@ -73,6 +76,7 @@
         codemirror: YFjs.baseMd+'/codemirror/'+Versions.codemirror,
         cryptoJS: YFjs.baseMd+'/crypto/'+Versions.cryptoJS,
         d3: YFjs.baseMd+'/d3/'+Versions.d3,
+        'd3-v3': YFjs.baseMd+'/d3/'+Versions['d3-v3'],
         json: YFjs.baseMd+'/json/'+Versions.json,
         respond: YFjs.baseMd+'/respond/'+Versions.respond,
         echarts: YFjs.baseMd+'/echarts/'+Versions.echarts,
@@ -81,6 +85,7 @@
         plupload: YFjs.baseMd+'/plupload/'+Versions.plupload,
         remarkable: YFjs.baseMd+'/remarkable/'+Versions.remarkable,
         'es5-shim': YFjs.baseMd+'/es5-shim/'+Versions['es5-shim'],
+        'es6-shim': YFjs.baseMd+'/es6-shim/'+Versions['es6-shim'],
         highlight: YFjs.baseMd+'/highlight/'+Versions['highlight'],
         zeroclipboard: YFjs.baseMd+'/zeroclipboard/'+Versions['zeroclipboard'],
         spa: YFjs.baseMd+'/spa'
@@ -170,8 +175,10 @@
             'yfjs/spa/util/widget': BaseUrls.spa+'/spa',
             'yfjs/spa/ui/loading': BaseUrls.spa+'/spa',
             'es5-shim': BaseUrls['es5-shim']+'/es5-shim',
+            'es6-shim': BaseUrls['es6-shim']+'/es6-shim',
             'crypto-js': BaseUrls.cryptoJS+'/crypto-js',
             'd3': BaseUrls.d3+'/d3',
+            'd3-v3': BaseUrls['d3-v3']+'/d3',
             'highlight': BaseUrls.highlight+'/highlight.pack',
             'bs/alert': BaseUrls.bs.alert+'/alert',
             'bs/button': BaseUrls.bs.button+'/button',
@@ -203,6 +210,7 @@
             'jq/multiselect':BaseUrls.jq.multiselect+'/multiselect',
             'jq/history':BaseUrls.jq.history+'/jquery.history',
             'jq/nicescroll':BaseUrls.jq.nicescroll+'/jquery.nicescroll',
+            'jq/mCustomScrollbar':BaseUrls.jq.mCustomScrollbar+'/jquery.mCustomScrollbar',
             'jq/qrcode':BaseUrls.jq.qrcode+'/jquery.qrcode',
             'jq/urlp':BaseUrls.jq.urlp+'/urlp',
             'jq/ztree':BaseUrls.jq.ztree+'/jquery.ztree',
@@ -450,6 +458,7 @@
                 'rq/css!'+BaseUrls.jq.dataTables+'/css/jquery.dataTables',
                 'rq/css!'+BaseUrls.jq.dataTables+'/css/dataTables.foundation'
             ],
+            'jq/mCustomScrollbar': ['rq/css!'+BaseUrls.jq.mCustomScrollbar+'/jquery.mCustomScrollbar'],
             'jq/multipicker': ['rq/css!'+BaseUrls.jq.multipicker+'/multipicker'],
             'jq/multiselect': ['rq/css!'+BaseUrls.jq.multiselect+'/multiselect'],
             'jq/ztree': ['rq/css!'+BaseUrls.jq.ztree+'/jquery.ztree'],

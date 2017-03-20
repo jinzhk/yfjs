@@ -299,15 +299,15 @@
       <p>
         <code>define</code> 方法用于定义模块，包含以下参数：
       </p>
-      <ul>
+      <ul class="list-options">
         <li>
-          id - 字符串类型。模块标识ID，可选。省略时为匿名模块。
+          <mark>id</mark>: 字符串类型。模块标识ID，可选。省略时为匿名模块。
         </li>
         <li>
-          dependencies - 字符串数组类型。模块依赖数组，可选。省略时为独立模块。
+          <mark>dependencies</mark>: 字符串数组类型。模块依赖数组，可选。省略时为独立模块。
         </li>
         <li>
-          factory - 对象或函数类型。必选。模块内容。
+          <mark>factory</mark>: 对象或函数类型。必选。模块内容。
         </li>
       </ul>
       <h4 id="dependencies-requirejs-define-alone">
@@ -317,7 +317,7 @@
         如果被定义的模块是一个独立模块，不需要依赖任何其他模块，可以直接用 <code>define</code> 方法生成。
       </p>
       <figure>
-        <pre><code class="js">//定义对象
+        <pre><code class="javascript">//定义对象
 define({
     method1: function() {},
     method2: function() {}
@@ -331,7 +331,7 @@ define({
         另一种等价的写法是，把对象写成一个函数，该函数的返回值就是输出的模块。
       </p>
       <figure>
-        <pre><code class="js">//定义方法
+        <pre><code class="javascript">//定义方法
 define(function () {
     return {
         method1: function() {},
@@ -354,7 +354,7 @@ define(function () {
         如果被定义的模块需要依赖其他模块，则define方法必须采用下面的格式。
       </p>
       <figure>
-        <pre><code class="js">define(['module1', 'module2'], function(m1, m2) {
+        <pre><code class="javascript">define(['module1', 'module2'], function(m1, m2) {
     ...
 });</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
@@ -369,7 +369,7 @@ define(function () {
         下面是一个依赖项实际运用的例子。
       </p>
       <figure>
-        <pre><code class="js">define(['module1', 'module2'], function(m1, m2) {
+        <pre><code class="javascript">define(['module1', 'module2'], function(m1, m2) {
 
     return {
         method: function() {
@@ -388,7 +388,7 @@ define(function () {
         有时，依赖模块可能会非常多：
       </p>
       <figure>
-        <pre><code class="js">define(
+        <pre><code class="javascript">define(
     ['dep1', 'dep2', 'dep3', 'dep4', 'dep5', 'dep6', 'dep7', 'dep8'],
     function(dep1, dep2, dep3, dep4, dep5, dep6, dep7, dep8){
         ...
@@ -400,7 +400,7 @@ define(function () {
         这时，可以使用以下等效写法：
       </p>
       <figure>
-        <pre><code class="js">define(
+        <pre><code class="javascript">define(
     function (require) {
         var dep1 = require('dep1'),
             dep2 = require('dep2'),
@@ -426,7 +426,7 @@ define(function () {
         如果想在一个文件内保存多个可供外部调用的模块，应为每个模块定义其标识 ID。模块 ID 在上下文环境下必须是唯一的。
       </p>
       <figure>
-        <pre><code class="js">// 定义具名模块
+        <pre><code class="javascript">// 定义具名模块
 define('moduleID', ['module1', 'module2'], function(m1, m2) {
 
     return {
@@ -446,7 +446,7 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         <code>require</code> 方法用于调用模块。它的参数与 <code>define</code> 方法类似。
       </p>
       <figure>
-        <pre><code class="js">require(['foo', 'bar'], function (foo, bar) {
+        <pre><code class="javascript">require(['foo', 'bar'], function (foo, bar) {
     foo.doSomething();
 });</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
@@ -458,7 +458,7 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         我们也可以在定义模块时使用 <code>require</code> 方法动态加载模块。
       </p>
       <figure>
-        <pre><code class="js">define(function (require) {
+        <pre><code class="javascript">define(function (require) {
     var isReady = false, foobar;
 
     require(['foo', 'bar'], function (foo, bar) {
@@ -478,7 +478,7 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         <code>require</code> 方法允许添加第三个参数，即错误处理的回调函数。
       </p>
       <figure>
-        <pre><code class="js">require(
+        <pre><code class="javascript">require(
     ["backbone"],
     function ( Backbone ) {
         return Backbone.View.extend({ /* ... */ });
@@ -496,7 +496,7 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         <code>require</code> 对象还允许指定一个全局性的 Error 事件的监听函数。所有没有被上面的方法捕获的错误，都会被触发这个监听函数。
       </p>
       <figure>
-        <pre><code class="js">requirejs.onError = function (err) {
+        <pre><code class="javascript">requirejs.onError = function (err) {
     // ...
 };</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
@@ -543,21 +543,21 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         如旧代码：
       </p>
       <figure>
-        <pre><code class="js">$("a.foo").live("click", fn);</code></pre>
+        <pre><code class="javascript">$("a.foo").live("click", fn);</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <p>
         可改写为：
       </p>
       <figure>
-        <pre><code class="js">$(document).on("click", "a.foo", fn);</code></pre>
+        <pre><code class="javascript">$(document).on("click", "a.foo", fn);</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <p>
         下面的写法原理是基于事件的冒泡，如果您理解事件冒泡的原理，应该知道绑定在 <code>document</code> 元素上不是必须的，我们可以将事件绑定在任意在文档中已存在的上层元素上。即：
       </p>
       <figure>
-        <pre><code class="js">$("#wrapper").on("click", "a.foo", fn);</code></pre>
+        <pre><code class="javascript">$("#wrapper").on("click", "a.foo", fn);</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <p>
@@ -573,14 +573,14 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         如旧代码：
       </p>
       <figure>
-        <pre><code class="js">$("a.foo").die("click");</code></pre>
+        <pre><code class="javascript">$("a.foo").die("click");</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <p>
         可改写为：
       </p>
       <figure>
-        <pre><code class="js">$(document).off("click", "a.foo");</code></pre>
+        <pre><code class="javascript">$(document).off("click", "a.foo");</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <p>
@@ -608,7 +608,7 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         我们认为对于“添加并返回”以前的结果集合这是一个更好的名字。新方法可以接受一个可选的选择器，该选择器可以用来过滤之前集合，将它添加到当前集合并返回。如代码：
       </p>
       <figure>
-        <pre><code class="js">$("section, aside").children("ul").addBack("aside");</code></pre>
+        <pre><code class="javascript">$("section, aside").children("ul").addBack("aside");</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <p>
@@ -633,7 +633,7 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         在jQuery 1.9中， 全局的 Ajax 事件(ajaxStart, ajaxStop, ajaxSend, ajaxComplete, ajaxError, and ajaxSuccess) 只能在 <code>document</code> 元素上触发。修改 Ajax 事件监听程序到 <code>document</code> 元素上。例如，如果目前的代码看起来像这样：
       </p>
       <figure>
-        <pre><code class="js">$("#status").ajaxStart(function(){
+        <pre><code class="javascript">$("#status").ajaxStart(function(){
     $(this).text("Ajax started");
 });</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
@@ -642,7 +642,7 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         修改成：
       </p>
       <figure>
-        <pre><code class="js">$(document).ajaxStart(function(){
+        <pre><code class="javascript">$(document).ajaxStart(function(){
     $("#status").text("Ajax started");
 });</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
@@ -666,7 +666,7 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         不幸的是，所有版本的Internet Explorer（6-10）触发焦点事件是异步的。当你在 IE 中使用 <code>.trigger("focus")</code>，jQuery 无法“预知”异步 focus 事件以后会发生什么。所以它总是会触发一个自己的 focus 事件，以确保功能正常。这可能会造成 focus 事件重覆执行，建议改用 DOM 内建的 <code>focus()</code> 较单纯，例如:
       </p>
       <figure>
-        <pre><code class="js">$("#boo").get(0).focus();</code></pre>
+        <pre><code class="javascript">$("#boo").get(0).focus();</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <h4 id="dependencies-jquery-version-selector">
@@ -721,7 +721,7 @@ define('moduleID', ['module1', 'module2'], function(m1, m2) {
         这里有一些例子，当在复选框上设置一个 checked 属性时正确的和不正确的使用方法；同样的规则也适用于 disabled 属性。请注意只有对象属性（property）在所有的浏览器始终反映和更新的复选框的当前状态；你很少会需要设置的属性（attribute）。
       </p>
       <figure>
-        <pre><code class="js">// Correct if changing the attribute is desired
+        <pre><code class="javascript">// Correct if changing the attribute is desired
 $(elem).attr("checked", "checked");
 // Correct for checking the checkbox
 $(elem).prop("checked", true);
@@ -968,7 +968,7 @@ $(elem).prop("checked", false);</code></pre>
         下面是一个使用例子。
       </p>
       <figure>
-        <pre><code class="js">$.parseQuery("file.js?a=1&b[c]=3.0&b[d]=four&a_false_value=false&a_null_value=null")
+        <pre><code class="javascript">$.parseQuery("file.js?a=1&b[c]=3.0&b[d]=four&a_false_value=false&a_null_value=null")
 // returns {"a":1,"b":{"c":3,"d":"four"},"a_false_value":false,"a_null_value":null}</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
@@ -976,7 +976,7 @@ $(elem).prop("checked", false);</code></pre>
         另外，也支持解析更深层次的数组类型值。
       </p>
       <figure>
-        <pre><code class="js">$.parseQuery("file.js?a[b]=1&a[c]=2&d[]=3&d[]=4&d[2][e]=5")
+        <pre><code class="javascript">$.parseQuery("file.js?a[b]=1&a[c]=2&d[]=3&d[]=4&d[2][e]=5")
 // returns {"a":{"b":1,"c":2},"d":[3,4,{"e":5}]}</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
@@ -990,7 +990,7 @@ $(elem).prop("checked", false);</code></pre>
         通过下面的 JavaScript 代码可以在全局范围禁用过渡效果：
       </p>
       <figure>
-        <pre><code class="js">$.support.transition = false;</code></pre>
+        <pre><code class="javascript">$.support.transition = false;</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <h3 id="dependencies-jquery-plugins-dropdown">
@@ -1165,7 +1165,7 @@ $(elem).prop("checked", false);</code></pre>
         通过 JavaScript 调用下拉菜单插件：
       </p>
       <figure>
-        <pre><code class="js">$('.dropdown-toggle').dropdown();</code></pre>
+        <pre><code class="javascript">$('.dropdown-toggle').dropdown();</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <div class="callout callout-info">
@@ -1219,7 +1219,7 @@ $(elem).prop("checked", false);</code></pre>
         </table>
       </div>
       <figure>
-        <pre><code class="js">$('#myDropdown').on('show.bs.dropdown', function () {
+        <pre><code class="javascript">$('#myDropdown').on('show.bs.dropdown', function () {
   // do something…
 });</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
@@ -1329,7 +1329,7 @@ $(elem).prop("checked", false);</code></pre>
         在 CSS 中添加 <code>position: relative;</code> 之后，通过 JavaScript 代码启动滚动监听插件：
       </p>
       <figure>
-        <pre><code class="js">$('body').scrollspy({ target: '#navbar-example' });</code></pre>
+        <pre><code class="javascript">$('body').scrollspy({ target: '#navbar-example' });</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <h4 id="dependencies-jquery-plugins-scrollspy-methods">
@@ -1342,7 +1342,7 @@ $(elem).prop("checked", false);</code></pre>
         当使用滚动监听插件的同时在 DOM 中添加或删除元素后，你需要像下面这样调用此刷新（ refresh） 方法：
       </p>
       <figure>
-        <pre><code class="js">$('[data-spy="scroll"]').each(function () {
+        <pre><code class="javascript">$('[data-spy="scroll"]').each(function () {
   var $spy = $(this).scrollspy('refresh')
 });</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
@@ -1446,7 +1446,7 @@ $(elem).prop("checked", false);</code></pre>
         Call the affix plugin via JavaScript:
       </p>
       <figure>
-        <pre><code class="js">$('#myAffix').affix({
+        <pre><code class="javascript">$('#myAffix').affix({
   offset: {
     top: 100,
     bottom: function () {
@@ -1498,7 +1498,7 @@ $(elem).prop("checked", false);</code></pre>
         Activates your content as affixed content. Accepts an optional options <code>object</code>.
       </p>
       <figure>
-        <pre><code class="js">$('#myAffix').affix({
+        <pre><code class="javascript">$('#myAffix').affix({
   offset: 15
 })</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
@@ -1510,7 +1510,7 @@ $(elem).prop("checked", false);</code></pre>
         Recalculates the state of the affix based on the dimensions, position, and scroll position of the relevant elements. The <code>.affix</code>, <code>.affix-top</code>, and <code>.affix-bottom</code> classes are added to or removed from the affixed content according to the new state. This method needs to be called whenever the dimensions of the affixed content or the target element are changed, to ensure correct positioning of the affixed content.
       </p>
       <figure>
-        <pre><code class="js">$('#myAffix').affix('checkPosition')</code></pre>
+        <pre><code class="javascript">$('#myAffix').affix('checkPosition')</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <h4 id="dependencies-jquery-plugins-affix-events">
@@ -1581,7 +1581,7 @@ $(elem).prop("checked", false);</code></pre>
         可以通过 JavaScript 调用 loader 插件。
       </p>
       <figure>
-        <pre><code class="js">$('#myLoader').loader();</code></pre>
+        <pre><code class="javascript">$('#myLoader').loader();</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
       <h5 id="dependencies-jquery-plugins-loader-usage-via-data-attr">
@@ -1590,26 +1590,18 @@ $(elem).prop("checked", false);</code></pre>
       <p>
         除了设置属性 <code>data-spy="loader"</code> 触发 loader 插件自动初始化外，还有以下属性设置项：
       </p>
-      <ul>
+      <ul class="list-options">
         <li>
-          <p>
-            <code>data-begin</code>：从[1, 7]区间选择的数字，动画显示开始的位置。
-          </p>
+          <mark>data-begin</mark>：从[1, 7]区间选择的数字，动画显示开始的位置。
         </li>
         <li>
-          <p>
-            <code>data-end</code>：从[1, 7]区间选择的数字，动画显示结束的位置。不能小于 begin 设置。
-          </p>
+          <mark>data-end</mark>：从[1, 7]区间选择的数字，动画显示结束的位置。不能小于 begin 设置。
         </li>
         <li>
-          <p>
-            <code>data-delay</code>：Number整数类型，单位 ms，动画显示延迟时间/频率。
-          </p>
+          <mark>data-delay</mark>：Number整数类型，单位 ms，动画显示延迟时间/频率。
         </li>
         <li>
-          <p>
-            <code>data-frame</code>：从[1, 7]区间选择的数字，动画开始的位置。
-          </p>
+          <mark>data-frame</mark>：从[1, 7]区间选择的数字，动画开始的位置。
         </li>
       </ul>
       <h4 id="dependencies-jquery-plugins-loader-methods">
@@ -2390,7 +2382,7 @@ $(elem).prop("checked", false);</code></pre>
         可以通过 JavaScript 调用 iCheck 插件。
       </p>
       <figure>
-        <pre><code class="js">// JavaScript
+        <pre><code class="javascript">// JavaScript
 $('input[type="checkbox"], input[type="radio"]').iCheck({
     checkboxClass: "icheckbox-primary icheckbox-lg",
     radioClass: "iradio-primary iradio-lg"
@@ -2412,16 +2404,12 @@ $('input[type="checkbox"], input[type="radio"]').iCheck({
       <p>
         调用 iCheck 插件时可以使用以下参数配置项：
       </p>
-      <ul>
+      <ul class="list-options">
         <li>
-          <p>
-            <code>checkboxClass</code>：base class added to customized checkboxes. base on "icheckbox".
-          </p>
+          <mark>checkboxClass</mark>：base class added to customized checkboxes. base on "icheckbox".
         </li>
         <li>
-          <p>
-            <code>radioClass</code>：base class added to customized radios. base on "iradio".
-          </p>
+          <mark>radioClass</mark>：base class added to customized radios. base on "iradio".
         </li>
       </ul>
     </section>
@@ -2439,7 +2427,7 @@ $('input[type="checkbox"], input[type="radio"]').iCheck({
         可以使用 <code>browser</code> 属性来判断当前使用的浏览器版本。
       </p>
       <figure>
-        <pre><code class="js">YFjs.browser = {
+        <pre><code class="javascript">YFjs.browser = {
     <script type="text/javascript">
             var browsers = [];
             if (YFjs && YFjs.browser) {
@@ -2453,26 +2441,18 @@ document.write(browsers.join(",\n    "))</script>
       <h3 id="core-yfjs-others">
         <a class="link-anchor icon-anchor" href="#core-yfjs-others"></a>其他属性
       </h3>
-      <ul>
+      <ul class="list-options">
         <li>
-          <p>
-            <code>mdCache</code>: 布尔类型值，是否开启了模块缓存
-          </p>
+          <mark>mdCache</mark>: 布尔类型值，是否开启了模块缓存
         </li>
         <li>
-          <p>
-            <code>baseUrl</code>: 字符串类型值，应用基路径
-          </p>
+          <mark>baseUrl</mark>: 字符串类型值，应用基路径
         </li>
         <li>
-          <p>
-            <code>baseMd</code>: 字符串类型值，组件库模块基路径
-          </p>
+          <mark>baseMd</mark>: 字符串类型值，组件库模块基路径
         </li>
         <li>
-          <p>
-            <code>baseRq</code>: 字符串类型值，自定义模块基路径
-          </p>
+          <mark>baseRq</mark>: 字符串类型值，自定义模块基路径
         </li>
       </ul>
     </section>
