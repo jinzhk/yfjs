@@ -10,21 +10,7 @@
 
 // UMD (Universal Module Definition)
 // see https://github.com/umdjs/umd/blob/master/returnExports.js
-(function (root, factory) {
-  /*global define, module, exports */
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(factory);
-  } else if (typeof exports === 'object') {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory();
-  } else {
-    // Browser globals (root is window)
-    root.returnExports = factory();
-  }
-}(this, function () {
+!function () {
   'use strict';
 
   var getGlobal = function () {
@@ -3984,6 +3970,17 @@ globals = (function(globals) {
   }
 
 })(globals);
+  
+  if (typeof module == 'object' && module.exports) {
+    module.exports = globals;
+  }
+
+  // Export for asynchronous module loaders.
+  if (typeof define === "function" && define.amd) {
+    define('es6-shim', function () {
+      return globals;
+    });
+  }
 
   return globals;
-}));
+}();

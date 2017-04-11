@@ -12,7 +12,7 @@
  * =====================================
  */
 
-define(['jquery'], function() {
+define(['jquery'], function($) {
     'use strict';
 
     // ALERT CLASS DEFINITION

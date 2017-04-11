@@ -685,7 +685,7 @@ section .example-code {
 
 /* Common styles for all types */
 .callout {
-    padding: 20px;
+    padding: 15px;
     margin: 20px 0;
     border: 1px solid #eee;
     border-left-width: 5px;

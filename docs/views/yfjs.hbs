@@ -1,7 +1,7 @@
 <div class="banner">
   <div class="container">
     <h1>YFjs Tools</h1>
-    <p>介绍 YFjs 入口文件内引入的所有默认插件和组件。包含 RequireJS、jQuery、jQuery 插件、 YFjs 对象等。</p>
+    <p>介绍 YFjs 核心 JS 文件内引入的所有默认插件和组件。包含 RequireJS、jQuery、jQuery 插件、YFjs 对象等。</p>
   </div>
 </div>
 <div class="container">
@@ -9,9 +9,6 @@
     <ul class="nav sidenav">
       <li>
         <a class="link-anchor" href="#overview">概述</a>
-      </li>
-      <li>
-        <a class="link-anchor" href="#dependencies-modernizr">Modernizr</a>
       </li>
       <li>
         <a class="link-anchor" href="#dependencies-requirejs">RequireJS</a>
@@ -221,7 +218,11 @@
         </ul>
       </li>
       <li>
-        <a class="link-anchor" href="#core-yfjs">YFjs 对象</a>
+        <a class="link-anchor" href="#yfjs">YFjs 对象</a>
+        <ul class="nav nav-second-level">
+          <li><a href="#yfjs-attrs" class="link-anchor">属性</a></li>
+          <li><a href="#yfjs-methods" class="link-anchor">方法</a></li>
+        </ul>
       </li>
     </ul>
     <ul class="nav sidetools">
@@ -236,36 +237,7 @@
         <a class="link-anchor icon-anchor" href="#overview"></a>概述
       </h1>
       <p>
-        在入口文件 <code>yfjs.js</code> 中，从上至下依次为整个组件库依赖的第三方插件Modernizr、RequireJS、jQuery、jQuery 插件，以及组件库的全局对象 YFjs。这些第三方插件以及 YFjs 对象暴露在全局环境中，可直接使用。
-      </p>
-    </section>
-    <section>
-      <h2 id="dependencies-modernizr">
-        <a class="link-anchor icon-anchor" href="#dependencies-modernizr"></a>Modernizr
-      </h2>
-      <p class="lead">
-        <a href="http://modernizr.cn/" target="_blank">Modernizr</a> 是一个 JavaScript 库，用于检测用户浏览器的 HTML5 与 CSS3 特性。
-      </p>
-      <h3 id="dependencies-modernizr-why">
-        <a class="link-anchor icon-anchor" href="#dependencies-modernizr-why"></a>为什么使用 Modernizr
-      </h3>
-      <p>
-        使用炫酷新颖的 web 技术是一件很有趣的事情，但很多时候，我们不得不面对落后的浏览器。
-      </p>
-      <p>
-        而相对于<strong>通过检测浏览器的类型和版本间接来判断自己的代码应呈现哪些功能</strong>的方式来说，<strong>直接检测新功能的支持情况</strong>显然更准确和高效。<a href="http://modernizr.cn/" target="_blank">Modernizr</a> 自动执行了常用功能兼容情况的检测，使我们可以方便地为各种情况编写 JavaScript 和 CSS，无论浏览器是否支持这些特性。这是处理渐进增强的完美方案。
-      </p>
-      <h3 id="dependencies-modernizr-principle">
-        <a class="link-anchor icon-anchor" href="#dependencies-modernizr-principle"></a>工作原理
-      </h3>
-      <p>
-        <a href="http://modernizr.cn/" target="_blank">Modernizr</a> 会在页面加载后立即检测特性；然后创建一个包含检测结果的 JavaScript 对象，同时在 <code>html</code> 元素加入方便调整 CSS 的类名。通常情况下，我们通过按 <kbd>F12</kbd> 键调出开发者工具窗口，在元素结构下的 <code>html</code> 元素上可以看到检测效果。
-      </p>
-      <p>
-        查看 <a href="http://modernizr.cn/" target="_blank">Modernizr</a> 检测的 <a href="http://modernizr.cn/docs/#features-css" target="_blank">特性列表</a>。
-      </p>
-      <p>
-        <a href="http://modernizr.cn/" target="_blank">Modernizr</a> 暴露的全局变量名为 <code>Modernizr</code>。
+        在核心库文件 <code>yfjs-core.js</code> 中，从上至下依次为整个组件库依赖的第三方插件RequireJS、jQuery、jQuery 插件，以及模块相关的初始化配置。而入口文件 <code>yfjs.js</code> 中包含组件库的全局对象 YFjs。这些第三方插件以及 YFjs 对象暴露在全局环境中，可直接使用。
       </p>
     </section>
     <section>
@@ -2414,15 +2386,18 @@ $('input[type="checkbox"], input[type="radio"]').iCheck({
       </ul>
     </section>
     <section>
-      <h2 id="core-yfjs">
-        <a class="link-anchor icon-anchor" href="#core-yfjs"></a>YFjs对象
+      <h2 id="yfjs">
+        <a class="link-anchor icon-anchor" href="#yfjs"></a>YFjs对象
       </h2>
       <p class="lead">
         YFjs 组件库创建了一个全局对象 <code>YFjs</code> （模块 ID 为 <code>yfjs</code>）去完成辅助模块加载和初始化一些浏览器的响应内容的工作，同时，提供了一些您可能用得到的属性和方法。
       </p>
-      <h3 id="core-yfjs-browser">
-        <a class="link-anchor icon-anchor" href="#core-yfjs-browser"></a>判断浏览器版本
+      <h3 id="yfjs-attrs">
+        <a class="link-anchor icon-anchor" href="#yfjs-attrs"></a>属性
       </h3>
+      <h4 id="yfjs-attrs-browser">
+        <a class="link-anchor icon-anchor" href="#yfjs-attrs-browser"></a>判断浏览器版本
+      </h4>
       <p>
         可以使用 <code>browser</code> 属性来判断当前使用的浏览器版本。
       </p>
@@ -2438,12 +2413,45 @@ $('input[type="checkbox"], input[type="radio"]').iCheck({
 document.write(browsers.join(",\n    "))</script>
 }</code></pre>
       </figure>
-      <h3 id="core-yfjs-others">
-        <a class="link-anchor icon-anchor" href="#core-yfjs-others"></a>其他属性
-      </h3>
+      <h4 id="yfjs-attrs-others">
+        <a class="link-anchor icon-anchor" href="#yfjs-attrs-others"></a>其他属性
+      </h4>
       <ul class="list-options">
         <li>
-          <mark>mdCache</mark>: 布尔类型值，是否开启了模块缓存
+          <mark>bCache</mark>: 布尔类型值，是否开启了全局缓存
+        </li>
+        <li>
+          <mark>bDebug</mark>: 布尔类型值，是否开启了调试
+        </li>
+        <li>
+          <mark>bDebugCss</mark>: 布尔类型值，是否开启了基本样式调试
+        </li>
+        <li>
+          <mark>bDebugModule</mark>: 布尔类型值，是否开启了模块调试
+        </li>
+        <li>
+          <mark>bBaseCss</mark>: 布尔类型值，是否引入基本样式
+        </li>
+        <li>
+          <mark>bCompatible</mark>: 布尔类型值，是否自动检测并引入兼容脚本
+        </li>
+        <li>
+          <mark>bCompatibleModernizr</mark>: 布尔类型值，是否引入 Modernizr 兼容脚本
+        </li>
+        <li>
+          <mark>bCompatibleRespond</mark>: 布尔类型值，是否引入 respond 兼容脚本
+        </li>
+        <li>
+          <mark>bCompatibleHtml5</mark>: 布尔类型值，是否引入 html5shiv 兼容脚本
+        </li>
+        <li>
+          <mark>bCompatibleES5</mark>: 布尔类型值，是否引入 es5 兼容脚本
+        </li>
+        <li>
+          <mark>bCompatibleES6</mark>: 布尔类型值，是否引入 es6 兼容脚本
+        </li>
+        <li>
+          <mark>bCompatibleJSON</mark>: 布尔类型值，是否引入 JSON 兼容脚本
         </li>
         <li>
           <mark>baseUrl</mark>: 字符串类型值，应用基路径
@@ -2455,8 +2463,75 @@ document.write(browsers.join(",\n    "))</script>
           <mark>baseRq</mark>: 字符串类型值，自定义模块基路径
         </li>
       </ul>
+      <h3 id="yfjs-methods">
+        <a class="link-anchor icon-anchor" href="#yfjs-methods"></a>方法
+      </h3>
+      <h4 id="yfjs-methods-ready">
+        <a class="link-anchor icon-anchor" href="#yfjs-methods-ready"></a> ready()
+      </h4>
+      <p>
+        定义 YFjs 核心库准备好后的回调方法。
+      </p>
+      <p>
+        YFjs 的核心库文件是异步加载的，如果未通过内置的 SPA 框架访问页面，直接执行页面之下的 Script 代码可能会导致找不到核心库中的全局变量。这时，需要将代码放在 ready 之后执行，如同使用 <code>$(document).ready()</code> 一样。
+      </p>
+      <figure>
+        <pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;meta name="renderer" content="webkit"&gt;
+    &lt;title&gt;Web Title&lt;/title&gt;
+    &lt;!-- scripts --&gt;
+    &lt;script src="[yfjs-lib path]/yfjs.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script type="text/javascript"&gt;
+    YFjs.ready(function() {
+      require(['moduleName'], function() {
+        // do something
+      });
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <button class="btn btn-clipboard" type="button">复制</button>
+      </figure>
     </section>
+    <!--
+    <section>
+      <h2 id="modernizr">
+        <a class="link-anchor icon-anchor" href="#modernizr"></a>Modernizr
+      </h2>
+      <p class="lead">
+        <a href="http://modernizr.cn/" target="_blank">Modernizr</a> 是一个 JavaScript 库，用于检测用户浏览器的 HTML5 与 CSS3 特性。
+      </p>
+      <h3 id="modernizr-why">
+        <a class="link-anchor icon-anchor" href="#modernizr-why"></a>为什么使用 Modernizr
+      </h3>
+      <p>
+        使用炫酷新颖的 web 技术是一件很有趣的事情，但很多时候，我们不得不面对落后的浏览器。
+      </p>
+      <p>
+        而相对于<strong>通过检测浏览器的类型和版本间接来判断自己的代码应呈现哪些功能</strong>的方式来说，<strong>直接检测新功能的支持情况</strong>显然更准确和高效。<a href="http://modernizr.cn/" target="_blank">Modernizr</a> 自动执行了常用功能兼容情况的检测，使我们可以方便地为各种情况编写 JavaScript 和 CSS，无论浏览器是否支持这些特性。这是处理渐进增强的完美方案。
+      </p>
+      <h3 id="modernizr-principle">
+        <a class="link-anchor icon-anchor" href="#dependencies-modernizr-principle"></a>工作原理
+      </h3>
+      <p>
+        <a href="http://modernizr.cn/" target="_blank">Modernizr</a> 会在页面加载后立即检测特性；然后创建一个包含检测结果的 JavaScript 对象，同时在 <code>html</code> 元素加入方便调整 CSS 的类名。通常情况下，我们通过按 <kbd>F12</kbd> 键调出开发者工具窗口，在元素结构下的 <code>html</code> 元素上可以看到检测效果。
+      </p>
+      <p>
+        查看 <a href="http://modernizr.cn/" target="_blank">Modernizr</a> 检测的 <a href="http://modernizr.cn/docs/#features-css" target="_blank">特性列表</a>。
+      </p>
+      <p>
+        <a href="http://modernizr.cn/" target="_blank">Modernizr</a> 暴露的全局变量名为 <code>Modernizr</code>。
+      </p>
+    </section>
+    -->
   </div>
 </div>
 
-<script src="/javascripts/docs.js"></script>
+<script src="/javascripts/docs.js" type="text/javascript"></script>

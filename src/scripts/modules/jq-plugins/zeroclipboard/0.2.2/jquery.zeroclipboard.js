@@ -6,10 +6,26 @@
  * https://github.com/zeroclipboard/jquery.zeroclipboard
  * v0.2.0
  */
-(function($, window, undefined) {
+(function(root, factory) {
+  if (typeof exports === "object" && typeof module === "object") {
+    var jQuery = require('jquery');
+    factory(jQuery, root);
+  } else if (typeof define === "function" && define.amd) {
+    define('window', function() {return root});
+    define(['jquery', 'window'], factory);
+  } else {
+    factory(root.jQuery, root);
+  }
+})(this, function($, window, undefined) {
   "use strict";
   var require, module, exports;
+
   var zcExistsAlready = !!window.ZeroClipboard;
+
+  if (!zcExistsAlready) {
+    delete window.ZeroClipboard;
+  }
+
   /*!
  * ZeroClipboard
  * The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible Adobe Flash movie and a JavaScript interface.
@@ -1676,18 +1692,9 @@
     ZeroClipboard.activeElement = function() {
       return _activeElement.apply(this, _args(arguments));
     };
-    if (typeof define === "function" && define.amd) {
-      define(function() {
-        return ZeroClipboard;
-      });
-    } else if (typeof module === "object" && module && typeof module.exports === "object" && module.exports) {
-      module.exports = ZeroClipboard;
-    } else {
-      window.ZeroClipboard = ZeroClipboard;
-    }
-  })(function() {
-    return this || window;
-  }());
+
+    window.ZeroClipboard = ZeroClipboard;
+  })(window);
   (function($, window, undefined) {
     var mouseEnterBindingCount = 0, customEventNamespace = ".zeroclipboard", ZeroClipboard = window.ZeroClipboard, _trustedDomains = ZeroClipboard.config("trustedDomains");
     function getSelectionData() {
@@ -1870,12 +1877,6 @@
     $.event.special.copy = copyEventDef;
     $.event.special.aftercopy = copyEventDef;
     $.event.special["copy-error"] = copyEventDef;
-  })(jQuery, function() {
-    return this || window;
-  }());
-  if (!zcExistsAlready) {
-    delete window.ZeroClipboard;
-  }
-})(jQuery, function() {
-  return this || window;
-}());
+  })($, window);
+  return window.ZeroClipboard;
+});

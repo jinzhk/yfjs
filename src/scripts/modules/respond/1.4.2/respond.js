@@ -198,4 +198,11 @@
   } else if (w.attachEvent) {
     w.attachEvent("onresize", callMedia);
   }
+
+  // Export for asynchronous module loaders.
+  if (typeof define === "function" && define.amd) {
+    define('respond', function () {
+      return respond;
+    });
+  }
 })(this);

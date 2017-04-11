@@ -3,7 +3,17 @@
  * https://github.com/jquery/jquery-migrate
  * Copyright 2005, 2013 jQuery Foundation, Inc. and other contributors; Licensed MIT
  */
-(function( jQuery, window, undefined ) {
+(function(root, factory) {
+	if (typeof exports === "object" && exports && typeof module === "object" && module) {
+		var jQuery = require('jquery');
+		factory(jQuery, root);
+	} else if (typeof define === "function" && define.amd) {
+		define('window', function() {return root;});
+		define(['jquery', 'window'], factory);
+	} else {
+		factory(root.jQuery, root);
+	}
+})(this, function( jQuery, window, undefined ) {
 // See http://bugs.jquery.com/ticket/13335
 // "use strict";
 
@@ -518,4 +528,4 @@ jQuery.each( ajaxEvents.split("|"),
 );
 
 
-})( jQuery, window );
+});

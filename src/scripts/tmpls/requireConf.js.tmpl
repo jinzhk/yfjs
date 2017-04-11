@@ -1,0 +1,253 @@
+!function(root, $, undefined) {
+    "use strict";
+
+    if(typeof require === "undefined" || typeof require.config !== "function" || typeof define !== "function" || !define.amd) { throw new Error("Requires AMD Require Plugin."); }
+    if(root.YFjs == null) { throw new Error("YFjs must be declared before requireConf."); }
+
+    var document = document || root.document;
+
+    var YFjs = root.YFjs;
+
+    var BaseMd = YFjs.baseMd + "/modules";
+
+    var reg_start_at = /^@+/,
+        reg_slash_start = /^\/+/,
+        reg_slash_end = /\/+$/,
+        reg_slash_back = /\\+/g,
+        reg_rq_plugin = /^rq\/[^\!]+\!/,
+        reg_protocol_start = /^https?:\/\/(?!\/)/;
+
+    var requireConf = {
+        paths: <%= paths %>,
+        packages: <%= packages %>,
+        map: <%= map %>,
+        shim: <%= shim %>
+    };
+
+    requireConf.paths = parsePathsUrl(requireConf.paths);
+
+    requireConf.packages = parsePackagesUrl(requireConf.packages);
+
+    requireConf.map = parseMapUrl(requireConf.map);
+
+    requireConf.shim = parseShimUrl(requireConf.shim);
+
+    var Versions = <%= versions %>;
+    
+    require.config({
+        waitSeconds: 0, // 关闭超时时间设置
+        baseUrl: YFjs.baseRq,
+        urlArgs: function(moduleName, url) {
+            var v = getModuleVersion(moduleName);
+            if (v == null) {
+                if (false === YFjs.bCache) {
+                    v = YFjs.VERSION + '+' + YFjs.timestamp;
+                } else {
+                    v = YFjs.VERSION
+                }
+            }
+            return 'v=' + v;
+        },
+        paths: requireConf.paths,
+        map: requireConf.map,
+        packages: requireConf.packages,
+        shim: requireConf.shim
+    });
+
+    function parsePathsUrl(paths) {
+        paths = paths || {};
+        for (var id in paths) {
+            paths[id] = joinPath(BaseMd, paths[id]);
+        }
+        return paths;
+    }
+
+    function parsePackagesUrl(packages) {
+        packages = packages || [];
+        var _package;
+        for (var i in packages) {
+            _package = packages[i];
+            if (_package && _package.location) {
+                _package.location = joinPath(BaseMd, _package.location);
+                packages[i] = _package;
+            }
+        }
+        return packages;
+    }
+
+    function parseMapUrl(map, level) {
+        map = map || {};
+        level = level || 0;
+        var _map;
+        for (var key in map) {
+            _map = map[key];
+            if (_map && typeof _map === "object" && level < 1000) {
+                _map = parseMapUrl(_map, level + 1);
+            } else if (_map) {
+                _map = joinPath(BaseMd, _map);
+            }
+            map[key] = _map;
+        }
+        return map;
+    }
+
+    function parseShimUrl(shim, level) {
+        shim = shim || {};
+        level = level || 0;
+        var _shim;
+        for (var name in shim) {
+            _shim = shim[name];
+            if (_shim) {
+                if (isArray(_shim)) {
+                    for (var i in _shim) {
+                        if (reg_rq_plugin.test(_shim[i])) {
+                            _shim[i] = (_shim[i]+'').replace(reg_rq_plugin, function(m) {return joinPath(m + BaseMd) + '/';})
+                        } else if (reg_start_at.test(_shim[i])) {
+                            _shim[i] = _shim[i].replace(reg_start_at, "");
+                        } else {
+                            _shim[i] = joinPath(BaseMd, _shim[i]);
+                        }
+                    }
+                } else if (isArray(_shim.deps) && level < 1000) {
+                    _shim.deps = parseShimUrl(_shim.deps, level + 1);
+                }
+            }
+            shim[name] = _shim;
+        }
+        return shim;
+    }
+
+    function joinPath() {
+        var paths = Array.prototype.slice.call(arguments);
+        var path, _paths = [];
+        for (var i=0; i<paths.length; i++) {
+            path = paths[i];
+            if (path != null) {
+                path += '';
+                if (reg_slash_start.test(path)) {
+                    path = path.replace(reg_slash_start, "");
+                }
+                if (reg_slash_end.test(path)) {
+                    path = path.replace(reg_slash_end, "");
+                }
+                path = path.replace(reg_slash_back, "");
+                _paths.push(path);
+            }
+        }
+        return _paths.join("/");
+    }
+
+    function getModuleVersion(moduleName) {
+        if (moduleName == null) return null;
+
+        moduleName += '';
+
+        var mdNames = moduleName.split('/'), mdName, v;
+
+        do {
+            mdName = getModuleNameByUrl(mdNames.join('/'));
+            mdNames = mdNames.slice(0, -1);
+            v = Versions[mdName];
+        } while (
+            mdNames.length && v == null
+        )
+
+        return v;
+    }
+
+    function getModuleNameByUrl(moduleUrl) {
+        if (moduleUrl == null) return '';
+
+        moduleUrl += '';
+
+        var moduleName;
+
+        if (reg_protocol_start.test(moduleUrl)) {
+            // find from map
+            for (var mapKey in requireConf.map) {
+                if (requireConf.map[mapKey]) {
+                    for (var key in requireConf.map[mapKey]) {
+                        if (requireConf.map[mapKey][key] == moduleUrl) {
+                            moduleName = key;
+                            break;
+                        }
+                    }
+                }
+                if (moduleName != null) break;
+            }
+            if (moduleName != null) return moduleName;
+            // find from shim
+            var deps, shim, dep;
+            for (var key in requireConf.shim) {
+                shim = requireConf.shim[key];
+                deps = isArray(shim) ? shim : (isArray(shim.deps) ? shim.deps : []);
+                for (var i in deps) {
+                    dep = deps[i] + '';
+                    if (reg_rq_plugin.test(dep)) {
+                        dep = dep.replace(reg_rq_plugin, "");
+                    }
+                    if (dep == moduleUrl) {
+                        moduleName = key;
+                        break;
+                    }
+                }
+                if (moduleName != null) break;
+            }
+        } else {
+            moduleName = moduleUrl;
+        }
+
+        return moduleName;
+    }
+
+    function isArray(o) {
+        if (o == null) return false;
+        if (typeof o !== "object") return false;
+        return Object.prototype.toString.call(o).slice(8, -1) === "Array";
+    }
+
+    define('echarts2', ['echarts2/echarts'], function (main) {return main;});
+    define('jquery', [], function() {return ($ && typeof $.noConflict === "function" ? ($ = $.noConflict()) : null)});
+    define('yfjs', [], function() {return YFjs});
+
+    // write compatible scripts
+    if (YFjs.bCompatibleModernizr) {
+        var scriptModernizr = YFjs.createScriptElement(requireConf.paths['modernizr'] + '.js?v=' + Versions['modernizr']);
+        if (scriptModernizr) {
+            YFjs.appendChild(scriptModernizr);
+        }
+    }
+    if (YFjs.bCompatibleRespond && !YFjs.testMediaQuery('all')) {
+        var scriptRespond = YFjs.createScriptElement(requireConf.paths['respond'] + '.js?v=' + Versions['respond']);
+        if (scriptRespond) {
+            YFjs.appendChild(scriptRespond);
+        }
+    }
+    if (YFjs.bCompatibleHtml5 && !YFjs.testHtml5Elements()) {
+        var scriptHtml5shiv = YFjs.createScriptElement(requireConf.paths['html5shiv'] + '.js?v=' + Versions['html5shiv']);
+        if (scriptHtml5shiv) {
+            YFjs.appendChild(scriptHtml5shiv);
+        }
+    }
+    if (YFjs.bCompatibleES5 && !YFjs.testSupportsES5()) {
+        var scriptES5 = YFjs.createScriptElement(requireConf.paths['es5-shim'] + '.js?v=' + Versions['es5-shim']);
+        if (scriptES5) {
+            YFjs.appendChild(scriptES5);
+        }
+    }
+    if (YFjs.bCompatibleES6 && !YFjs.testSupportsES6()) {
+        var scriptES6 = YFjs.createScriptElement(requireConf.paths['es6-shim'] + '.js?v=' + Versions['es6-shim']);
+        if (scriptES6) {
+            YFjs.appendChild(scriptES6);
+        }
+    }
+    var supportsJSON = YFjs.testJSON();
+    if (YFjs.bCompatibleJSON && !supportsJSON) {
+        var scriptJSON = YFjs.createScriptElement(requireConf.paths['json'] + '.js?v=' + Versions['json']);
+        if (scriptJSON) {
+            YFjs.appendChild(scriptJSON);
+        }
+    } else if (supportsJSON) {
+        define('json', function() {return root.JSON});
+    }
+}(this, jQuery);

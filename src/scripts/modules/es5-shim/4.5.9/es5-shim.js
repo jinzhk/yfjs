@@ -7,30 +7,24 @@
 // vim: ts=4 sts=4 sw=4 expandtab
 
 // Add semicolon to prevent IIFE from being passed as argument to concatenated code.
-;
+;!function() {
+  'use strict';
 
-// UMD (Universal Module Definition)
-// see https://github.com/umdjs/umd/blob/master/templates/returnExports.js
-(function (root, factory) {
-    'use strict';
+  var getGlobal = function () {
+    /* global self, window, global */
+      // the only reliable means to get the global object is
+      // `Function('return this')()`
+      // However, this causes CSP violations in Chrome apps.
+      if (typeof self !== 'undefined') { return self; }
+      if (typeof window !== 'undefined') { return window; }
+      if (typeof global !== 'undefined') { return global; }
+      return new Function('return this;')();
+  };
 
-    /* global define, exports, module */
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(factory);
-    } else if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like enviroments that support module.exports,
-        // like Node.
-        module.exports = factory();
-    } else {
-        // Browser globals (root is window)
-        root.returnExports = factory();
-    }
-}(this, function () {
+  var globals = getGlobal();
 
 // es5-shims
-(function() {
+(function(globals) {
 
     /**
      * Brings an environment as close to ECMAScript 5 compliance
@@ -2067,10 +2061,10 @@
         RegExp.prototype.toString = regexToString;
     }
 
-})();
+})(globals);
 
 // es5-shams
-(function() {
+(function(globals) {
 
     var call = Function.call;
     var prototypeOfObject = Object.prototype;
@@ -2603,6 +2597,18 @@
         };
     }
 
-})();
+})(globals);
 
-}));
+  if (typeof module == 'object' && module.exports) {
+    module.exports = globals;
+  }
+
+  // Export for asynchronous module loaders.
+  if (typeof define === "function" && define.amd) {
+    define('es5-shim', function () {
+      return globals;
+    });
+  }
+
+  return globals;
+}();

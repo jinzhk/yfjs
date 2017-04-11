@@ -1,0 +1,362 @@
+(function(root, document) {
+	var document = document || root.document || {};
+
+	var reg_slash_start = /^\/+/;
+		reg_slash_end = /\/+$/;
+
+    var PROTOCOL = document.location.protocol || '';
+    var HOST = document.location.hostname || document.location.host || '';
+    var PORT = document.location.port || '';
+
+    var ROOT_URL = (function() {
+        var rootUrl;
+
+        var portEnds = ':' + PORT,
+                posPortEnd = HOST.indexOf(portEnds);
+
+        if (posPortEnd == HOST.length - portEnds.length) {
+            HOST = HOST.substring(0, posPortEnd);
+        }
+
+        rootUrl = PROTOCOL + '//' + HOST;
+
+        if (PORT) {
+            rootUrl += portEnds;
+        }
+
+        if (rootUrl === '//') {
+            rootUrl = '';
+        }
+
+        rootUrl += '/';
+
+        return rootUrl;
+    })();
+
+    var path = (document.location.href || '').replace(ROOT_URL, '/');
+
+    var posHash = path.indexOf('#');
+    if (posHash > -1) {
+        path = path.substring(0, posHash);
+    }
+
+    var posQuery = path.indexOf('?');
+    if (posQuery > -1) {
+        path = path.substring(0, posQuery);
+    }
+
+    if (reg_slash_end.test(path)) {
+    	path = path.replace(reg_slash_end, "");
+    }
+
+    var posLastSlash = path.lastIndexOf('/');
+
+    if (posLastSlash > -1) {
+        path = path.substring(0, posLastSlash + 1);
+    } else {
+        path = path + '/';
+    }
+
+    var headElement = document.head || document.getElementsByTagName('head')[0];
+
+    var orgNodes = [];
+    if (headElement && headElement.childNodes) {
+    	for (var i=0; i<headElement.childNodes.length; i++) {
+    		orgNodes.push(headElement.childNodes[i]);
+    	}
+    }
+
+    var bodyElement = document.body || document.getElementsByTagName('body')[0];
+
+    var buildConf = <%= building %>;
+    var requireConf = <%= require %>;
+
+    var __YFjs = {};
+
+    __YFjs.basePath = joinPath(path, "..");
+
+    __YFjs.buildConf = buildConf;
+    __YFjs.requireConf = requireConf;
+
+	__YFjs.joinPath = joinPath;
+	__YFjs.relativePath = relativePath;
+
+	__YFjs.resetNodes = resetNodes;
+	__YFjs.resetModuleNode = resetModuleNode;
+
+	__YFjs.getLinkCssByUrl = getLinkCssByUrl;
+	__YFjs.getScriptByUrl = getScriptByUrl;
+
+    __YFjs.injectYFjs = injectYFjs;
+    __YFjs.injectModule = injectModule;
+
+    __YFjs.normalizeModuleName = normalizeModuleName;
+
+    __YFjs.requirejs = function() {
+    	try {
+    		return root.require.apply(root.require, arguments);
+    	} catch (e) {
+    		return undefined;
+    	}
+    };
+
+    function injectYFjs(props, callback) {
+
+		if (typeof props === "function") {
+			callback = props;
+			props = undefined;
+		}
+
+		resetNodes();
+
+		var yfjsSrc = joinPath(__YFjs.basePath, buildConf.dir.dest, "yfjs.js") + "?v=" + buildConf.version;
+	
+		var head = document.head || document.getElementsByTagName('head')[0];
+
+		var script = document.createElement("script");
+
+		if (props != null) {
+			for (var key in props) {
+				script.setAttribute(key, props[key]);
+			}
+		}
+
+		onLoad(script, function() {
+			typeof callback === "function" && callback.apply(root, arguments);
+		});
+
+		script.src = yfjsSrc;
+
+		head.appendChild(script);
+	}
+
+    function injectModule(moduleName, props, callback) {
+
+		if (typeof props === "function") {
+			callback = props;
+			props = undefined;
+		}
+
+		injectYFjs(props, function() {
+
+			resetModuleNode(moduleName);
+
+			root.onModuleLoaded = function(error) {
+				typeof callback === "function" && callback.apply(root, arguments);
+			};
+
+			var script = document.createElement('script');
+			var scriptText = document.createTextNode(
+				'(function(root) {' +
+					'YFjs.ready(function() {' +
+						'require(["' + moduleName + '"], function() {' +
+							'var args = Array.prototype.slice.call(arguments);' +
+							'args.unshift(undefined);' +
+							'typeof root.onModuleLoaded === "function" && root.onModuleLoaded.apply(root, args)' +
+						'}, function(error) {' +
+							'var args = [error];' +
+							'typeof root.onModuleLoaded === "function" && root.onModuleLoaded.apply(root, args)' +
+						'})' +
+					'});' +
+				'})(this);'
+			);
+			script.setAttribute('id', "script-md-test");
+			script.setAttribute('type', "text/javascript");
+			script.appendChild(scriptText);
+
+			bodyElement.appendChild(script);
+		});
+    }
+
+	function joinPath() {
+		var args = Array.prototype.slice.call(arguments);
+
+		var startWithSlash = false;
+
+		for (var i in args) {
+			if (args[i] == null) {
+				args[i] = '';
+			} else {
+				args[i] = args[i] + '';
+			}
+			args[i] = args[i]
+				.replace(reg_slash_start, function(m) {
+					if (i == 0) {
+						startWithSlash = m;
+					}
+					return "";
+				})
+				.replace(reg_slash_end, function(m, index, str) {
+					if (str.length > 1 && str.charAt(index - 1) == ":") {
+						// http:// file:///
+						return "//";
+					}
+					return "";
+				});
+		}
+
+		var path = args.join("/");
+		path = path.replace(/\\+/g, "/");
+
+		var posParentPath, posLastSlash, parentDelimiter = '/..';
+		while ((posParentPath = path.indexOf(parentDelimiter)) > -1) {
+			var parentPath = path.substring(0, posParentPath);
+			var suffixPath = path.substring(posParentPath + parentDelimiter.length);
+			
+			posLastSlash = parentPath.lastIndexOf("/");
+			if (posLastSlash > -1) {
+				parentPath = parentPath.substring(0, posLastSlash + 1);
+			} else {
+				parentPath = "/";
+			}
+
+			if (suffixPath) {
+				suffixPath = suffixPath.replace(/^\.+/, "").replace(reg_slash_start, "");
+			}
+
+			path = parentPath + suffixPath;
+		}
+		
+		path = path.replace("/./", "/")
+
+		if (startWithSlash) {
+			path = startWithSlash + path;
+		}
+
+		return path;
+	}
+
+	function relativePath(path) {
+		if (path == null) return "";
+
+		path += "";
+
+		if (path.indexOf(ROOT_URL) == 0) {
+			path = path.substring(ROOT_URL.length);
+		}
+
+		path = path.replace(reg_slash_start, "");
+
+		return path;
+	}
+
+	var isOpera = typeof opera !== 'undefined' && opera.toString() === '[object Opera]';
+
+	function onLoad(node, callback) {
+		if (node == null) return;
+		if (
+			node.attachEvent &&
+                //Check if node.attachEvent is artificially added by custom script or
+                //natively supported by browser
+                //if we can NOT find [native code] then it must NOT natively supported.
+                //in IE8, node.attachEvent does not have toString()
+                //Note the test for "[native code" with no closing brace
+                !(node.attachEvent.toString && node.attachEvent.toString().indexOf('[native code') < 0) &&
+                !isOpera
+        ) {
+			node.attachEvent("onreadystatechange", callback);
+		} else if (node.addEventListener) {
+			node.addEventListener("load", callback, false);
+			node.addEventListener("error", callback, false);
+		}
+	}
+
+	function removeLoadListener(node, callback, name, ieName) {
+		if (node == null) return;
+        //Favor detachEvent because of IE9
+        //issue, see attachEvent/addEventListener comment elsewhere
+        //in this file.
+        if (node.detachEvent && !isOpera) {
+            //Probably IE. If not it will throw an error, which will be
+            //useful to know.
+            node.detachEvent("onreadystatechange", callback);
+        } else if (node.removeEventListener) {
+            node.removeEventListener("load", callback, false);
+            node.removeEventListener("error", callback, false);
+        }
+    }
+
+    function resetNodes() {
+		// 还原nodes
+		var node;
+		if (headElement && headElement.childNodes) {
+			for (var i=0; i<headElement.childNodes.length; i++) {
+				node = headElement.childNodes[i];
+				if (node && inArray(node, orgNodes) < 0) {
+					node.parentNode && node.parentNode.removeChild(node);
+				}
+	    	}
+		}
+    }
+
+    function resetModuleNode(moduleName) {
+    	var node = document.getElementById('script-md-test');
+    	node && node.parentNode && node.parentNode.removeChild(node);
+    	var mdNode = document.getElementById('script-md-' + normalizeModuleName(moduleName) + '-test');
+    	mdNode && mdNode.parentNode && mdNode.parentNode.removeChild(mdNode);
+    	delete root.onModuleLoaded;
+    }
+
+    function normalizeModuleName(moduleName) {
+    	return (moduleName + '').replace(/\//g, "_");
+    }
+
+	function getLinkCssByUrl(url) {
+		var document = this;
+		var link;
+		if (url == null) return link;
+		try {
+			var links = document.getElementsByTagName("link");
+			if (links && links.length) {
+				for (var i in links) {
+					link = links[i];
+					if (link && link.href === url) {
+						break;
+					}
+					link = undefined;
+				}
+			}
+		} catch(e) {
+			link = undefined;
+		} finally {
+			return link;
+		}
+	}
+
+	function getScriptByUrl(url) {
+		var document = this;
+		var script;
+		if (url == null) return script;
+		try {
+			var scripts = document.getElementsByTagName("script");
+			if (scripts && scripts.length) {
+				for (var i in scripts) {
+					script = scripts[i];
+					if (script && script.src === url) {
+						break;
+					}
+					script = undefined;
+				}
+			}
+		} catch(e) {
+			script = undefined;
+		} finally {
+			return script;
+		}
+	}
+
+    function inArray(o, arr) {
+    	var pos = -1;
+    	if (arr != null) {
+    		for (var i in arr) {
+    			if (o === arr[i]) {
+    				pos = i;
+    				break;
+    			}
+    		}
+    	}
+    	return pos;
+    }
+
+    root.__YFjs = __YFjs;
+})(window || this || {});

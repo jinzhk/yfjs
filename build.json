@@ -1,0 +1,999 @@
+{
+  "testDir": "test",
+  "srcDir": "src",
+  "destDir": "dist/lib",
+  "orgDir": "original",
+  "minDir": "minified",
+  "scripts": {
+    "core": {
+      "src": [
+        "requirejs/*/*.js",
+        "requirejs-plugins/**/*.js",
+        "jquery/*/*.js",
+        "jquery-plugins/**/*.js",
+        "requireConf.js"
+      ],
+      "dest": "yfjs-core.js"
+    },
+    "modules": {
+      "codemirror": {
+        "version": "5.9.0",
+        "main": "lib/codemirror",
+        "package": true,
+        "shim": [
+          "rq/css!lib/codemirror"
+        ]
+      },
+      "crypto": {
+        "version": "3.1.6",
+        "main": "crypto-js"
+      },
+      "d3": "4.6.0",
+      "d3-v3": {
+        "version": "3.5.16",
+        "main": "d3",
+        "path": "d3"
+      },
+      "echarts": "3.1.10",
+      "echarts2": {
+        "version": "2.2.7",
+        "main": null,
+        "path": "echarts",
+        "modules": {
+          "echarts": {
+            "main": "@."
+          },
+          "chart": {
+            "main": "@/echarts",
+            "modules": {
+              "bar": {
+                "main": "@."
+              },
+              "chord": {
+                "main": "@."
+              },
+              "eventRiver": {
+                "main": "@."
+              },
+              "force": {
+                "main": "@."
+              },
+              "funnel": {
+                "main": "@."
+              },
+              "gauge": {
+                "main": "@."
+              },
+              "heatmap": {
+                "main": "@."
+              },
+              "k": {
+                "main": "@."
+              },
+              "line": {
+                "main": "@."
+              },
+              "map": {
+                "main": "@."
+              },
+              "pie": {
+                "main": "@."
+              },
+              "radar": {
+                "main": "@."
+              },
+              "scatter": {
+                "main": "@."
+              },
+              "tree": {
+                "main": "@."
+              },
+              "treemap": {
+                "main": "@."
+              },
+              "venn": {
+                "main": "@."
+              },
+              "wordCloud": {
+                "main": "@."
+              },
+              "base": {
+                "main": "@/echarts"
+              },
+              "island": {
+                "main": "@/echarts"
+              }
+            }
+          },
+          "component": {
+            "main": "@/echarts",
+            "modules": {
+              "axis": {
+                "main": "@/echarts"
+              },
+              "base": {
+                "main": "@/echarts"
+              },
+              "categoryAxis": {
+                "main": "@/echarts"
+              },
+              "dataRange": {
+                "main": "@."
+              },
+              "dataView": {
+                "main": "@/echarts"
+              },
+              "dataZoom": {
+                "main": "@/echarts"
+              },
+              "grid": {
+                "main": "@/echarts"
+              },
+              "legend": {
+                "main": "@/echarts"
+              },
+              "polar": {
+                "main": "@/chart/radar"
+              },
+              "roamController": {
+                "main": "@/chart/map"
+              },
+              "timeline": {
+                "main": "@/echarts"
+              },
+              "title": {
+                "main": "@/echarts"
+              },
+              "toolbox": {
+                "main": "@/echarts"
+              },
+              "tooltip": {
+                "main": "@/echarts"
+              },
+              "valueAxis": {
+                "main": "@/echarts"
+              }
+            }
+          },
+          "data": {
+            "version": null,
+            "modules": {
+              "Graph": {
+                "main": "@."
+              },
+              "KDTree": {
+                "main": "@/echarts"
+              },
+              "quickSelect": {
+                "main": "@/echarts"
+              },
+              "Tree": {
+                "main": "@."
+              }
+            }
+          },
+          "layer": {
+            "version": null,
+            "modules": {
+              "heatmap": {
+                "main": "@/chart/heatmap"
+              }
+            }
+          },
+          "layout": {
+            "version": null,
+            "modules": {
+              "Chord": {
+                "main": "@/chart/chord"
+              },
+              "EdgeBundling": {
+                "main": "@/echarts"
+              },
+              "eventRiver": {
+                "main": "@/chart/eventRiver"
+              },
+              "Force": {
+                "main": "@/chart/force"
+              },
+              "forceLayoutWorker": {
+                "main": "@/chart/force"
+              },
+              "Tree": {
+                "main": "@/chart/tree"
+              },
+              "TreeMap": {
+                "main": "@/chart/treemap"
+              },
+              "WordCloud": {
+                "main": "@/chart/wordCloud"
+              },
+              "WordCloudRectZero": {
+                "main": "@/chart/wordCloud"
+              }
+            }
+          },
+          "theme": {
+            "version": null,
+            "modules": {
+              "default": {
+                "main": "@/echarts"
+              },
+              "infographic": {
+                "main": "@/echarts"
+              },
+              "macarons": {
+                "main": "@/echarts"
+              }
+            }
+          },
+          "util": {
+            "version": null,
+            "modules": {
+              "mapData": {
+                "version": null,
+                "modules": {
+                  "geoJson": {
+                    "version": null,
+                    "modules": {
+                      "an_hui_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "ao_men_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "bei_jing_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "china_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "chong_qing_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "fu_jian_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "gan_su_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "guang_dong_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "guang_xi_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "gui_zhou_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "hai_nan_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "he_bei_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "he_nan_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "hei_long_jiang_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "hu_bei_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "hu_nan_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "ji_lin_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "jiang_su_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "jiang_xi_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "liao_ning_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "nei_meng_gu_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "ning_xia_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "qing_hai_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "shan_dong_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "shan_xi_1_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "shan_xi_2_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "shang_hai_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "si_chuan_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "tai_wan_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "tian_jin_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "world_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "xi_zang_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "xiang_gang_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "xin_jiang_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "yun_nan_geo": {
+                        "main": "@/chart/map"
+                      },
+                      "zhe_jiang_geo": {
+                        "main": "@/chart/map"
+                      }
+                    }
+                  },
+                  "geoCoord": {
+                    "main": "@/chart/map"
+                  },
+                  "params": {
+                    "main": "@/chart/map"
+                  },
+                  "textFixed": {
+                    "main": "@/chart/map"
+                  }
+                }
+              },
+              "projection": {
+                "version": null,
+                "modules": {
+                  "albers": {
+                    "main": "@/chart/map"
+                  },
+                  "mercator": {
+                    "main": "@/chart/map"
+                  },
+                  "normal": {
+                    "main": "@/chart/map"
+                  },
+                  "svg": {
+                    "main": "@/chart/map"
+                  }
+                }
+              },
+              "shape": {
+                "version": null,
+                "modules": {
+                  "Candle": {
+                    "main": "@/echarts"
+                  },
+                  "Chain": {
+                    "main": "@/echarts"
+                  },
+                  "Cross": {
+                    "main": "@/echarts"
+                  },
+                  "GaugePointer": {
+                    "main": "@/chart/gauge"
+                  },
+                  "HalfSmoothPolygon": {
+                    "main": "@/chart/line"
+                  },
+                  "HandlePolygon": {
+                    "main": "@."
+                  },
+                  "Icon": {
+                    "main": "@/echarts"
+                  },
+                  "MarkLine": {
+                    "main": "@/echarts"
+                  },
+                  "normalIsCover": {
+                    "main": "@/echarts"
+                  },
+                  "Ribbon": {
+                    "main": "@/chart/chord"
+                  },
+                  "Symbol": {
+                    "main": "@/echarts"
+                  }
+                }
+              },
+              "accMath": {
+                "main": "@/echarts"
+              },
+              "coordinates": {
+                "main": "@/chart/radar"
+              },
+              "date": {
+                "main": "@/echarts"
+              },
+              "ecAnimation": {
+                "main": "@/echarts"
+              },
+              "ecData": {
+                "main": "@/echarts"
+              },
+              "ecEffect": {
+                "main": "@/echarts"
+              },
+              "ecQuery": {
+                "main": "@/echarts"
+              },
+              "kwargs": {
+                "main": "@/echarts"
+              },
+              "ndarray": {
+                "main": "@/echarts"
+              },
+              "number": {
+                "main": "@/echarts"
+              },
+              "smartLogSteps": {
+                "main": "@/echarts"
+              },
+              "smartSteps": {
+                "main": "@/echarts"
+              }
+            }
+          },
+          "config": {
+            "main": "@/echarts"
+          }
+        }
+      },
+      "zrender2": {
+        "version": "2.2.7",
+        "main": "@echarts2/echarts",
+        "path": "echarts",
+        "modules": {
+          "animation": {
+            "version": null,
+            "modules": {
+              "Animation": {
+                "main": "@echarts2/echarts"
+              },
+              "Clip": {
+                "main": "@echarts2/echarts"
+              },
+              "easing": {
+                "main": "@echarts2/echarts"
+              }
+            }
+          },
+          "dep": {
+            "version": null,
+            "modules": {
+              "excanvas": {
+                "main": "@echarts2/echarts"
+              },
+              "excanvas2": {
+                "main": "@echarts2/echarts"
+              },
+              "excanvas3": {
+                "main": "@echarts2/echarts"
+              }
+            }
+          },
+          "loadingEffect": {
+            "version": null,
+            "modules": {
+              "Bar": {
+                "main": "@echarts2/echarts"
+              },
+              "Base": {
+                "main": "@echarts2/echarts"
+              },
+              "Bubble": {
+                "main": "@echarts2/echarts"
+              },
+              "DynamicLine": {
+                "main": "@echarts2/echarts"
+              },
+              "Ring": {
+                "main": "@echarts2/echarts"
+              },
+              "Spin": {
+                "main": "@echarts2/echarts"
+              },
+              "Whirling": {
+                "main": "@echarts2/echarts"
+              }
+            }
+          },
+          "mixin": {
+            "version": null,
+            "modules": {
+              "Eventful": {
+                "main": "@echarts2/echarts"
+              },
+              "Transformable": {
+                "main": "@echarts2/echarts"
+              }
+            }
+          },
+          "shape": {
+            "version": null,
+            "modules": {
+              "Base": {
+                "main": "@echarts2/echarts"
+              },
+              "BezierCurve": {
+                "main": "@echarts2/echarts"
+              },
+              "Circle": {
+                "main": "@echarts2/echarts"
+              },
+              "Droplet": {
+                "main": "@echarts2/echarts"
+              },
+              "Ellipse": {
+                "main": "@echarts2/chart/map"
+              },
+              "Heart": {
+                "main": "@echarts2/echarts"
+              },
+              "Image": {
+                "main": "@echarts2/echarts"
+              },
+              "Isogon": {
+                "main": "@echarts2/echarts"
+              },
+              "Line": {
+                "main": "@echarts2/echarts"
+              },
+              "Path": {
+                "main": "@echarts2/zrender/shape/Path"
+              },
+              "Polygon": {
+                "main": "@echarts2/echarts"
+              },
+              "Polyline": {
+                "main": "@echarts2/echarts"
+              },
+              "Rectangle": {
+                "main": "@echarts2/echarts"
+              },
+              "Ring": {
+                "main": "@echarts2/echarts"
+              },
+              "Rose": {
+                "main": "@echarts2/echarts"
+              },
+              "Sector": {
+                "main": "@echarts2/echarts"
+              },
+              "ShapeBundle": {
+                "main": "@echarts2/echarts"
+              },
+              "Star": {
+                "main": "@echarts2/echarts"
+              },
+              "Text": {
+                "main": "@echarts2/echarts"
+              },
+              "Trochoid": {
+                "main": "@echarts2/echarts"
+              },
+              "util": {
+                "version": null,
+                "modules": {
+                  "PathProxy": {
+                    "main": "@echarts2/echarts"
+                  },
+                  "dashedLineTo": {
+                    "main": "@echarts2/echarts"
+                  },
+                  "smoothBezier": {
+                    "main": "@echarts2/echarts"
+                  },
+                  "smoothSpline": {
+                    "main": "@echarts2/echarts"
+                  }
+                }
+              }
+            }
+          },
+          "tool": {
+            "version": null,
+            "modules": {
+              "area": {
+                "main": "@echarts2/echarts"
+              },
+              "color": {
+                "main": "@echarts2/echarts"
+              },
+              "computeBoundingBox": {
+                "main": "@echarts2/echarts"
+              },
+              "curve": {
+                "main": "@echarts2/echarts"
+              },
+              "env": {
+                "main": "@echarts2/echarts"
+              },
+              "event": {
+                "main": "@echarts2/echarts"
+              },
+              "guid": {
+                "main": "@echarts2/echarts"
+              },
+              "http": {
+                "main": "@echarts2/echarts"
+              },
+              "log": {
+                "main": "@echarts2/echarts"
+              },
+              "math": {
+                "main": "@echarts2/echarts"
+              },
+              "matrix": {
+                "main": "@echarts2/echarts"
+              },
+              "util": {
+                "main": "@echarts2/echarts"
+              },
+              "vector": {
+                "main": "@echarts2/echarts"
+              }
+            }
+          },
+          "Group": {
+            "main": "@echarts2/echarts"
+          },
+          "Handler": {
+            "main": "@echarts2/echarts"
+          },
+          "Layer": {
+            "main": "@echarts2/echarts"
+          },
+          "Painter": {
+            "main": "@echarts2/echarts"
+          },
+          "Storage": {
+            "main": "@echarts2/echarts"
+          },
+          "config": {
+            "main": "@echarts2/echarts"
+          },
+          "zrender": {
+            "main": "@echarts2/echarts"
+          }
+        }
+      },
+      "es5-shim": {
+        "version": "4.5.9",
+        "shim": {
+          "deps": [],
+          "exports": "globals"
+        }
+      },
+      "es6-shim": {
+        "version": "0.35.3",
+        "shim": {
+          "deps": [],
+          "exports": "globals"
+        }
+      },
+      "highlight": {
+        "version": "9.9.0+20170224",
+        "main": "highlight.pack",
+        "shim": [
+          "rq/css!highlight.pack"
+        ],
+        "deps": [
+          "*.png",
+          "*.jpg"
+        ]
+      },
+      "html5shiv": {
+        "version": "3.7.3",
+        "shim": {
+          "deps": [],
+          "exports": "html5"
+        }
+      },
+      "jq": {
+        "path": "jq-plugins",
+        "modules": {
+          "chosen": {
+            "version": "1.4.2+20170408",
+            "main": "chosen.jquery",
+            "shim": [
+              "rq/css!chosen-bs"
+            ],
+            "deps": [
+              "img/**"
+            ]
+          },
+          "cookie": {
+            "version": "1.4.1",
+            "main": "jquery.cookie"
+          },
+          "dataTables": {
+            "version": "1.10.7+20170306",
+            "main": "jquery.dataTables",
+            "package": true,
+            "shim": [
+              "rq/css!css/jquery.dataTables"
+            ]
+          },
+          "dataTables-bs3": {
+            "version": "1.10.7+20170306",
+            "main": "dataTables.bs3",
+            "path": "dataTables",
+            "shim": [
+              "@jq/dataTables",
+              "rq/css!css/dataTables.bootstrap3"
+            ]
+          },
+          "dragsort": "0.5.2",
+          "form": {
+            "version": "3.51.0_x1",
+            "main": "jquery.form",
+            "modules": {
+              "validator": {
+                "version": "1.13.1",
+                "package": true,
+                "main": "jquery.validate"
+              },
+              "validator-bs3": {
+                "version": "1.13.1",
+                "main": "jquery.validate.bs3",
+                "path": "validator",
+                "shim": [
+                  "@jq/form/validator",
+                  "@bs/popover"
+                ]
+              },
+              "wizard": {
+                "version": "bs3",
+                "shim": [
+                  "@bs/modal",
+                  "@bs/popover"
+                ]
+              }
+            }
+          },
+          "mCustomScrollbar": {
+            "version": "3.1.5",
+            "main": "jquery.mCustomScrollbar",
+            "shim": [
+              "rq/css!jquery.mCustomScrollbar"
+            ]
+          },
+          "migrate": {
+            "version": "1.2.1",
+            "main": "jquery-migrate"
+          },
+          "multipicker": {
+            "version": "0.8.0",
+            "shim": [
+              "rq/css!multipicker"
+            ]
+          },
+          "nicescroll": {
+            "version": "3.6.0",
+            "main": "jquery.nicescroll",
+            "deps": [
+              "zoomico.png"
+            ]
+          },
+          "qrcode": {
+            "version": "1.0",
+            "main": "jquery.qrcode"
+          },
+          "urlp": "1.0.4",
+          "webuploader": {
+            "version": "0.1.5",
+            "shim": [
+              "rq/css!webuploader"
+            ],
+            "deps": [
+              "Uploader.swf"
+            ]
+          },
+          "zeroclipboard": {
+            "version": "0.2.2",
+            "main": "jquery.zeroclipboard",
+            "deps": [
+              "ZeroClipboard.swf"
+            ]
+          },
+          "ztree": {
+            "version": "3.5.18",
+            "main": "jquery.ztree",
+            "shim": [
+              "rq/css!jquery.ztree"
+            ],
+            "deps": [
+              "awesomeStyle/img/**",
+              "metroStyle/img/**",
+              "zTreeStyle/img/**"
+            ]
+          }
+        }
+      },
+      "bs": {
+        "path": "jq-plugins/bootstrap",
+        "modules": {
+          "alert": "3.3.4",
+          "button": "3.3.4+20150713",
+          "carousel": "3.3.4",
+          "clockpicker": {
+            "version": "0.0.7",
+            "shim": [
+              "rq/css!clockpicker"
+            ]
+          },
+          "collapse": "3.3.4",
+          "daterangepicker": {
+            "version": "2.0.8",
+            "shim": [
+              "rq/css!daterangepicker-bs3"
+            ]
+          },
+          "datetimepicker": {
+            "version": "3.0.0",
+            "shim": [
+              "rq/css!datetimepicker"
+            ]
+          },
+          "modal": "3.3.4+20170125",
+          "paging": "1.0.2+20161114",
+          "popover": {
+            "version": "3.3.4+20150609",
+            "shim": [
+              "@bs/tooltip"
+            ]
+          },
+          "slider": {
+            "version": "4.5.6",
+            "shim": [
+              "rq/css!slider"
+            ]
+          },
+          "spinbox": "3.6.3+20150518",
+          "switcher": {
+            "version": "3.3.2+20150513",
+            "shim": [
+              "rq/css!switcher-bs2"
+            ]
+          },
+          "tab": "3.3.4",
+          "tooltip": "3.3.4+20150609",
+          "wizard": {
+            "version": "3.6.3+20151109",
+            "shim": [
+              "rq/css!wizard"
+            ]
+          }
+        }
+      },
+      "json": {
+        "version": "3.3.2",
+        "main": "json3",
+        "shim": {
+          "deps": [],
+          "exports": "JSON3"
+        }
+      },
+      "modernizr": {
+        "version": "3.4.0",
+        "main": "modernizr-custom",
+        "shim": {
+          "deps": [],
+          "exports": "Modernizr"
+        }
+      },
+      "moment": {
+        "version": "2.10.3",
+        "modules": {
+          "locale": null
+        }
+      },
+      "plupload": {
+        "version": "2.1.4",
+        "modules": {
+          "i18n": null
+        },
+        "deps": [
+          "flash/Moxie.swf",
+          "silverlight/Moxie.xap"
+        ]
+      },
+      "plupload-bs3": {
+        "version": "2.1.4",
+        "main": "jquery.plupload.bs3",
+        "path": "plupload",
+        "shim": [
+          "rq/css!css/jquery.plupload.bs3",
+          "@bs/button",
+          "@jq/dragsort"
+        ],
+        "deps": [
+          "css/img/**"
+        ]
+      },
+      "remarkable": "1.6.0",
+      "respond": {
+        "version": "1.4.2",
+        "shim": {
+          "deps": [],
+          "exports": "respond"
+        }
+      },
+      "rq": {
+        "path": "rq-plugins",
+        "modules": {
+          "cs": {
+            "version": "0.5.0",
+            "main": "cs.js",
+            "map": "*"
+          },
+          "css": {
+            "version": "0.1.8",
+            "main": "css.js",
+            "map": "*"
+          },
+          "i18n": {
+            "version": "2.0.4",
+            "main": "i18n.js",
+            "map": "*"
+          },
+          "text": {
+            "version": "2.0.12",
+            "main": "text.js",
+            "map": "*"
+          }
+        }
+      },
+      "zeroclipboard": {
+        "version": "2.2.0",
+        "main": "ZeroClipboard",
+        "deps": "ZeroClipboard.swf"
+      },
+      "yfjs/spa": {
+        "version": "1.0.0-rc.1",
+        "main": "spa",
+        "path": "spa",
+        "pathTo": "spa",
+        "modules": [
+          "app",
+          "version",
+          "util/ajax",
+          "util/console",
+          "util/cookie",
+          "util/error",
+          "util/event",
+          "util/filter",
+          "util/helpers",
+          "util/history",
+          "util/layout",
+          "util/path-wildcard-compiler",
+          "util/remote",
+          "util/route",
+          "util/style-loader",
+          "util/template",
+          "util/template-helpers",
+          "util/view",
+          "util/websocket",
+          "util/widget",
+          "ui/loading"
+        ]
+      }
+    }
+  }
+}

@@ -9,4 +9,12 @@ router.get('/', function (req, res, next) {
     });
 });
 
+/* GET YFjs SPA Demo. */
+router.get('/demo', function (req, res, next) {
+    res.render('spa/index', {
+        title: 'YFjs SPA Demo',
+        layout: false
+    });
+});
+
 module.exports = router;

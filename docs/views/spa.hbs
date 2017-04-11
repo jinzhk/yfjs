@@ -385,7 +385,7 @@
                 <a class="link-anchor" href="#widget-options-rendered">rendered</a>
               </li>
               <li>
-                <a class="link-anchor" href="#widget-options-styles">styles</a>
+                <a class="link-anchor" href="#widget-options-style">style</a>
               </li>
               <li>
                 <a class="link-anchor" href="#widget-options-binds">binds</a>
@@ -677,7 +677,7 @@
         <a class="link-anchor icon-anchor" href="#intro-features"></a>特性
       </h3>
       <p>
-        目前 <code>yfjs/spa</code> 框架尚处于起步阶段，功能上固然是离 <a href="https://angularjs.org/" target="_blank">Angular</a>、<a href="http://cn.vuejs.org/" target="_blank">Vue</a>、<a href="https://facebook.github.io/react/" target="_blank">React</a> 等著名框架相差甚远，但不妨花两分钟浏览下框架的一些特性介绍，决定是否值得做下尝试：
+        目前 <code>yfjs/spa</code> 框架尚处于起步阶段，功能上固然离 <a href="https://angularjs.org/" target="_blank">Angular</a>、<a href="http://cn.vuejs.org/" target="_blank">Vue</a>、<a href="https://facebook.github.io/react/" target="_blank">React</a> 等著名框架相差甚远，但不妨花两分钟浏览下框架的一些特性介绍，决定是否值得做下尝试：
       </p>
       <ul>
         <li>
@@ -910,10 +910,14 @@ index.html</code></pre>
       </p>
       <figure>
         <pre><code class="html">&lt;div class="container"&gt;
-  &#123;&#123;body&#125;&#125;
+  &#123;&#123;&#123;body&#125;&#125;&#125;
 &lt;/div&gt;</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
+      <div class="callout callout-danger">
+        <h4>版本不兼容提示</h4>
+        <p>在 0.8.1 版本之前，布局中的 body 占位符还是作为一个变量由两个大括号包括，即 <code>&#123;&#123;body&#125;&#125;</code>，自 0.8.1 版本开始，为了不污染模板变量 body，去除了这种方式，效仿 Express 框架改为三个大括号包含的关键字符，即 <code>&#123;&#123;&#123;body&#125;&#125;&#125;</code>。</p>
+      </div>
       <p>
         此时，应用目录结构应类似于：
       </p>
@@ -2700,9 +2704,9 @@ ajax.delete('examples.delete');</code></pre>
       <p>
         模板编译输出结果处理方法。
       </p>
-      <h4 id="widget-options-styles">
-        <a class="link-anchor icon-anchor" href="#widget-options-styles"></a>
-        <span class="api-title-label"><strong>styles</strong></span>
+      <h4 id="widget-options-style">
+        <a class="link-anchor icon-anchor" href="#widget-options-style"></a>
+        <span class="api-title-label"><strong>style</strong></span>
         <span class="api-title-type">String|Array|Function</span>
       </h4>
       <p>
@@ -2714,6 +2718,10 @@ ajax.delete('examples.delete');</code></pre>
       <p>
         为 Function 类型时运行并获取返回结果。其 <code>this</code> 指针指向当前实例。
       </p>
+      <div class="callout callout-danger">
+        <h4>版本不兼容提示</h4>
+        <p>在 0.8.1 版本之前，样式文件的配置项名称为 <code>styles</code>，自 0.8.1 版本开始，为符合框架整体配置项风格，去除复数写法，更名为 <code>style</code>，用法不变。</p>
+      </div>
       <h4 id="widget-options-binds">
         <a class="link-anchor icon-anchor" href="#widget-options-binds"></a>
         <span class="api-title-label"><strong>binds</strong></span>
@@ -3370,4 +3378,4 @@ ajax.delete('examples.delete');</code></pre>
   </div>
 </div>
 
-<script src="/javascripts/docs.js"></script>
+<script src="/javascripts/docs.js" type="text/javascript"></script>

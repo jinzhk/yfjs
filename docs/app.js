@@ -65,6 +65,7 @@ app.use('/users', users);
 app.use('/basecss', baseCss);
 app.use('/yfjs', yfjs);
 app.use('/spa', spa);
+app.use('/spa/demo', express.static(path.join(__dirname, 'views/spa')));
 app.use('/modules', modules);
 
 // catch 404 and forward to error handler
