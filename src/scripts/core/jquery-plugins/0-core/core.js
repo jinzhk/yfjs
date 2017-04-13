@@ -56,8 +56,6 @@ if (typeof jQuery === 'undefined') {
         // Remove url if need be
         params = params.substring(params.indexOf('?')+1);
         // params = params.substring(params.indexOf('#')+1);
-        // Change + to %20, the %20 is fixed up later with the decode
-        params = params.replace(/\+/g, '%20');
         // Do we have JSON string
         if ( likeJSON(params) ) {
             // We have a JSON string
