@@ -18,12 +18,14 @@
     var $Number = Number;
     var NumberPrototype = $Number.prototype;
 
-    var YFjs = {};
+    var document = document || root.document;
 
-    YFjs.VERSION = '0.8.1' || '@version';
+    var _docReadyStateIndex = checkDocReadyState();
 
-    // 判断浏览器版本
-    YFjs.browser = (function() {
+    var headElement = document.head || document.getElementsByTagName("head")[0];
+
+    // check browser
+    var _browser = (function() {
         //ie11: Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; InfoPath.3; rv:11.0) like Gecko
         //ie9 : Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
         //ie8 : Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -144,9 +146,153 @@
         }
     })();
 
-    var document = document || root.document;
+    var _Constructor = function() {
+        // 当前版本
+        this.VERSION = '0.8.1' || '@version';
 
-    var headElement = document.head || document.getElementsByTagName("head")[0];
+        // 浏览器版本
+        this.browser = _browser;
+
+        // 是否引入兼容脚本。不为 false 时将自动引入 moderrespond、html5-shiv 等兼容脚本
+        this.bCompatible = parseBooleanAttr('data-compatible');
+
+        // 是否引入 Modernizr 兼容脚本。不为 false 时将自动引入
+        this.bCompatibleModernizr = parseBooleanAttr('data-compatible-modernizr', this.bCompatible);
+        
+        // 是否引入 respond 兼容脚本。不为 false 时将自动引入
+        this.bCompatibleRespond = parseBooleanAttr('data-compatible-respond', this.bCompatible);
+        
+        // 是否引入 html5shiv 兼容脚本。不为 false 时将自动引入
+        this.bCompatibleHtml5 = parseBooleanAttr('data-compatible-html5', this.bCompatible);
+        
+        // 是否引入 ECMAScript 5 兼容脚本。不为 false 时将自动引入
+        this.bCompatibleES5 = parseBooleanAttr('data-compatible-es5', this.bCompatible);
+        
+        // 是否引入 ECMAScript 6 兼容脚本。不为 false 时将自动引入
+        this.bCompatibleES6 = parseBooleanAttr('data-compatible-es6', this.bCompatible);
+        
+        // 是否引入 JSON 兼容脚本。不为 false 时将自动引入
+        this.bCompatibleJSON = parseBooleanAttr('data-compatible-json', this.bCompatible);
+
+        // 是否引入基本样式文件。不为 false 时将自动引入框架的 base.css 文件
+        this.bBaseCss = parseBooleanAttr('data-basecss');
+
+        // 是否开启调试模式。调试模式下使用未压缩的代码
+        this.bDebug = parseBooleanAttr('data-debug');
+
+        // 是否开启基本样式调试模式。基本样式调试模式下使用未压缩的基本样式代码
+        this.bDebugCss = parseBooleanAttr('data-debug-css', this.bDebug);
+
+        // 是否开启模块调试模式。模块调试模式下使用未压缩的模块代码
+        this.bDebugModule = parseBooleanAttr('data-debug-module', this.bDebug);
+
+        if (this.bDebug == null) {
+            this.bDebug = this.bDebugModule != null ? this.bDebugModule : (this.bDebugCss != null ? this.bDebugCss : this.bDebug);
+        }
+
+        // 是否开启模块缓存。不启用缓存时则在引入模块时添加时间戳标记，防止浏览器缓存模块内容
+        this.bCache = parseBooleanAttr('data-cache');
+
+        // 当前应用 baseUrl
+        this.baseUrl = getBaseUrl();
+
+        // 框架基本样式 baseUrl
+        this.baseCss = getSrcBaseUrl(this.bDebugCss);
+
+        // 框架模块 baseUrl
+        this.baseMd = getSrcBaseUrl(this.bDebugModule);
+
+        // 自定义模块 baseUrl
+        this.baseRq = getBaseRq();
+
+        try {
+            this.timestamp = new Date().getTime();
+        } catch (e) {
+            this.timestamp = "@nowTime";
+        }
+
+        this.ready = function(callback) {
+            if (this.ready.__ready__) {
+                delete this.ready.__callback__;
+                typeof callback === "function" && callback.call(this);
+            } else {
+                this.ready.__callback__ = callback;
+            }
+        };
+
+        this.__initialized__ = false;
+    };
+
+    _Constructor.prototype.init = function() {
+        if (this.__initialized__) return;
+
+        var self = this;
+
+        // write style && script
+        var docWrites = '';
+
+        if (this.bBaseCss !== false) {
+            var baseCssSrc = getUrl("styles/base.css", this.baseCss) + '?v=' + this.VERSION;
+            if (_docReadyStateIndex < 2) {
+                docWrites += createLinkTag(baseCssSrc);
+            } else {
+                var baseCssLink = createLinkElement(baseCssSrc);
+                if (baseCssLink) {
+                    if (firstStyleLink) {
+                        insertBefore(baseCssLink, firstStyleLink);
+                    } else if (mainScript) {
+                        insertAfter(baseCssLink, mainScript);
+                    } else {
+                        appendChild(baseCssLink);
+                    }
+                }
+            }
+        }
+
+        var yfjsCoreSrc = getUrl("yfjs-core.js", this.baseMd) + '?v=' + this.VERSION,
+            yfjsCoreAttrs = mainScriptData != null ? {'data-main': mainScriptData} : null;
+        if (_docReadyStateIndex < 2) {
+            docWrites += createScriptTag(yfjsCoreSrc, yfjsCoreAttrs);
+            this.ready.__ready__ = true;
+        } else {
+            var yfjsCoreScript = createScriptElement(yfjsCoreSrc, yfjsCoreAttrs);
+            if (yfjsCoreScript) {
+                onLoad(yfjsCoreScript, function() {
+                    var callback = self.ready.__callback__;
+                    delete self.ready.__callback__;
+                    self.ready.__ready__ = true;
+                    typeof callback === "function" && callback.call(self);
+                });
+                if (mainScript) {
+                    insertAfter(yfjsCoreScript, mainScript);
+                } else {
+                    appendChild(yfjsCoreScript);
+                }
+            }
+        }
+        
+        docWrites && document.write(docWrites);
+
+        this.__initialized__ = true;
+    };
+
+    _Constructor.prototype.checkDocReadyState = checkDocReadyState;
+
+    _Constructor.prototype.createLinkElement = createLinkElement;
+    _Constructor.prototype.createLinkTag = createLinkTag;
+    _Constructor.prototype.createScriptElement = createScriptElement;
+    _Constructor.prototype.createScriptTag = createScriptTag;
+
+    _Constructor.prototype.insertBefore = insertBefore;
+    _Constructor.prototype.insertAfter = insertAfter;
+    _Constructor.prototype.appendChild = appendChild;
+
+    _Constructor.prototype.testMediaQuery = testMediaQuery;
+    _Constructor.prototype.testHtml5Elements = testHtml5Elements;
+    _Constructor.prototype.testJSON = testJSON;
+    _Constructor.prototype.testSupportsES5 = testSupportsES5;
+    _Constructor.prototype.testSupportsES6 = testSupportsES6;
+
     var baseElement = null;
 
     // base href
@@ -311,48 +457,9 @@
         } catch(e) {}
     }
 
-    // 是否引入兼容脚本。不为 false 时将自动引入 moderrespond、html5-shiv 等兼容脚本
-	YFjs.bCompatible = parseBooleanAttr('data-compatible');
+    var _baseUrl = getBaseUrl();
 
-    // 是否引入 Modernizr 兼容脚本。不为 false 时将自动引入
-    YFjs.bCompatibleModernizr = parseBooleanAttr('data-compatible-modernizr', YFjs.bCompatible);
-    
-    // 是否引入 respond 兼容脚本。不为 false 时将自动引入
-    YFjs.bCompatibleRespond = parseBooleanAttr('data-compatible-respond', YFjs.bCompatible);
-    
-    // 是否引入 html5shiv 兼容脚本。不为 false 时将自动引入
-    YFjs.bCompatibleHtml5 = parseBooleanAttr('data-compatible-html5', YFjs.bCompatible);
-    
-    // 是否引入 ECMAScript 5 兼容脚本。不为 false 时将自动引入
-    YFjs.bCompatibleES5 = parseBooleanAttr('data-compatible-es5', YFjs.bCompatible);
-    
-    // 是否引入 ECMAScript 6 兼容脚本。不为 false 时将自动引入
-    YFjs.bCompatibleES6 = parseBooleanAttr('data-compatible-es6', YFjs.bCompatible);
-    
-    // 是否引入 JSON 兼容脚本。不为 false 时将自动引入
-    YFjs.bCompatibleJSON = parseBooleanAttr('data-compatible-json', YFjs.bCompatible);
-
-    // 是否引入基本样式文件。不为 false 时将自动引入框架的 base.css 文件
-	YFjs.bBaseCss = parseBooleanAttr('data-basecss');
-
-    // 是否开启调试模式。调试模式下使用未压缩的代码
-	YFjs.bDebug = parseBooleanAttr('data-debug');
-
-    // 是否开启基本样式调试模式。基本样式调试模式下使用未压缩的基本样式代码
-    YFjs.bDebugCss = parseBooleanAttr('data-debug-css', YFjs.bDebug);
-
-    // 是否开启模块调试模式。模块调试模式下使用未压缩的模块代码
-    YFjs.bDebugModule = parseBooleanAttr('data-debug-module', YFjs.bDebug);
-
-    if (YFjs.bDebug == null) {
-        YFjs.bDebug = YFjs.bDebugModule != null ? YFjs.bDebugModule : (YFjs.bDebugCss != null ? YFjs.bDebugCss : YFjs.bDebug);
-    }
-
-    // 是否开启模块缓存。不启用缓存时则在引入模块时添加时间戳标记，防止浏览器缓存模块内容
-    YFjs.bCache = parseBooleanAttr('data-cache');
-
-    // 当前应用 baseUrl
-    YFjs.baseUrl = function() {
+    function getBaseUrl() {
         var base;
         try {
             base = mainScript.getAttribute('data-base');
@@ -363,13 +470,7 @@
             base = baseHref;
         }
         return getUrl(base, rootUrl);
-    }();
-
-    // 框架基本样式 baseUrl
-    YFjs.baseCss = getSrcBaseUrl(YFjs.bDebugCss);
-
-    // 框架模块 baseUrl
-    YFjs.baseMd = getSrcBaseUrl(YFjs.bDebugModule);
+    }
 
     function getSrcBaseUrl(bDebug) {
         var mainUrl;
@@ -385,8 +486,7 @@
         return getUrl(mainUrl);
     }
 
-    // 自定义模块 baseUrl
-    YFjs.baseRq = function() {
+    function getBaseRq() {
         var rqPath;
         try {
             rqPath = mainScript.getAttribute('data-base-require');
@@ -394,19 +494,13 @@
             rqPath = null;
         }
         return getUrl(rqPath);
-    }();
-
-    try {
-        YFjs.timestamp = new Date().getTime();
-    } catch (e) {
-        YFjs.timestamp = "nowTime";
     }
 
     function getUrl(path, relativeUrl) {
         var url;
 
         if (relativeUrl == null) {
-            relativeUrl = YFjs.baseUrl;
+            relativeUrl = _baseUrl;
         }
 
         path = path == null ? "" : (path + "").replace(/(^\s*)|(\s*$)/g, "");
@@ -456,6 +550,78 @@
 	    return val;
     }
 
+    function checkDocReadyState() {
+        // check document readyState
+        var docReadyState = document.readyState == null ? "" : (document.readyState + "").toLowerCase(),
+            docReadyStateList = ['uninitialized', 'loading', 'loaded', 'interactive', 'complete'],
+            docReadyStateIndex = -1;
+
+        if (docReadyState) {
+            for (var i=0; i<docReadyStateList.length; i++) {
+                if (docReadyState == docReadyStateList[i]) {
+                    docReadyStateIndex = i;
+                }
+            }
+        }
+        return docReadyStateIndex;
+    }
+
+    function createLinkElement(src, attrs) {
+        if (src == null) return null;
+
+        var link = document.createElement("link");
+
+        if (attrs == null) {
+            attrs = {};
+        }
+
+        if (attrs.rel == null) {
+            attrs.rel = "stylesheet";
+        }
+
+        if (attrs.rel = "stylesheet") {
+            attrs.type = "text/css";
+        }
+
+        for (var key in attrs) {
+            link.setAttribute(key, attrs[key]);
+        }
+
+        link.setAttribute('href', src);
+        
+        return link;
+    }
+
+    function createLinkTag(src, attrs) {
+        if (src == null) return '';
+
+        if (attrs == null) {
+            attrs = {};
+        }
+
+        if (attrs.rel == null) {
+            attrs.rel = "stylesheet";
+        }
+
+        if (attrs.rel = "stylesheet") {
+            attrs.type = "text/css";
+        }
+
+        var attrStr = [];
+        
+        for (var key in attrs) {
+            attrStr.push(
+                key + '="' + attrs[key] + '"'
+            );
+        }
+
+        attrStr = attrStr.join(' ');
+
+        return (
+            '<link href="' + src + '"' + (attrStr ? ' ' + attrStr : '') + '>'
+        );
+    }
+
     function createScriptElement(src, attrs) {
         if (src == null) return null;
 
@@ -471,6 +637,25 @@
         script.setAttribute('src', src);
 
         return script;
+    }
+
+    function createScriptTag(src, attrs) {
+        if (src == null) return '';
+
+        var attrStr;
+        if (attrs != null) {
+            attrStr = [];
+            for (var key in attrs) {
+                attrStr.push(
+                    key + '="' + attrs[key] + '"'
+                );
+            }
+            attrStr = attrStr.join(' ');
+        }
+
+        return (
+            '<script src="' + src + '" type="text/javascript"' + (attrStr ? ' ' + attrStr : '') + '><\/script>'
+        );
     }
 
     function insertBefore(newEl, targetEl) {
@@ -684,63 +869,10 @@
         }
     }
 
-    YFjs.testMediaQuery = testMediaQuery;
-    YFjs.testHtml5Elements = testHtml5Elements;
-    YFjs.testJSON = testJSON;
-    YFjs.testSupportsES5 = testSupportsES5;
-    YFjs.testSupportsES6 = testSupportsES6;
+    var YFjs = new _Constructor();
 
-    YFjs.createScriptElement = createScriptElement;
-
-    YFjs.insertBefore = insertBefore;
-    YFjs.insertAfter = insertAfter;
-    YFjs.appendChild = appendChild;
-
-    YFjs.ready = function(callback) {
-        if (YFjs.ready.__ready__) {
-            delete YFjs.ready.__callback__;
-            typeof callback === "function" && callback.call(YFjs);
-        } else {
-            YFjs.ready.__callback__ = callback;
-        }
-    };
+    YFjs.init();
 
     root.YFjs = YFjs;
-
-    // write style && script
-    if (YFjs.bBaseCss !== false) {
-        var baseCssLink = document.createElement("link");
-        baseCssLink.setAttribute('rel', "stylesheet");
-        baseCssLink.setAttribute('type', "text/css");
-        baseCssLink.setAttribute('href', getUrl("styles/base.css", YFjs.baseCss) + '?v=' + YFjs.VERSION);
-        if (baseElement) {
-            insertAfter(baseCssLink, baseElement);
-        } else if (firstStyleLink) {
-            insertBefore(baseCssLink, firstStyleLink);
-        } else if (mainScript) {
-            insertBefore(baseCssLink, mainScript);
-        } else {
-            appendChild(baseCssLink);
-        }
-    }
-
-    var yfjsCoreScript = createScriptElement(
-        getUrl("yfjs-core.js", YFjs.baseMd) + '?v=' + YFjs.VERSION,
-        mainScriptData != null ? { 'data-main': mainScriptData } : null
-    );
-
-    if (yfjsCoreScript) {
-        onLoad(yfjsCoreScript, function() {
-            var callback = YFjs.ready.__callback__;
-            delete YFjs.ready.__callback__;
-            YFjs.ready.__ready__ = true;
-            typeof callback === "function" && callback.call(YFjs);
-        });
-        if (mainScript) {
-            insertAfter(yfjsCoreScript, mainScript);
-        } else {
-            appendChild(yfjsCoreScript);
-        }
-    }
 
 }(this || window);

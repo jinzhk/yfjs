@@ -79,7 +79,9 @@ Node.js 自 `0.6.x` 系列版本开始集成了 NPM (Node Package Manager, Node.
 
 组件库中各组件通过 RequireJS 工具加载，各组件的使用方式请查阅文档。
 
-如果您没有通过使用内置的 SPA 框架访问页面，而是希望直接使用组件库中的组件，需要将代码包含在 `YFjs.ready()` 方法内，如：
+#### 异步延迟引入
+
+如果您项目中的入口文件是异步加载，并且没有通过使用内置的 SPA 框架访问页面，同时又希望直接使用组件库中的组件，则需要将代码包含在 `YFjs.ready()` 方法内，如以下情况：
 
 ```html
 <!DOCTYPE html>
@@ -90,20 +92,25 @@ Node.js 自 `0.6.x` 系列版本开始集成了 NPM (Node Package Manager, Node.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <title>Web Title</title>
-    <!-- YFjs Lib -->
-    <script src="[yfjs-lib path]/yfjs.js?v=0.8.1"></script>
   </head>
   <body>
     <script type="text/javascript">
-      YFjs.ready(function() {
-        require(['moduleName'], function() {
-          // do something
+      var yfjsScript = document.createElement("script");
+      yfjsScript.setAttribute('src', "[yfjs-lib path]/yfjs.js?v=0.8.1");
+      document.head.appendChild(yfjsScript);
+      yfjsScript.addEventListener("load", function() {
+        YFjs.ready(function() {
+          require(['moduleName'], function() {
+            // do something
+          });
         });
-      });
+      }, false);
     </script>
   </body>
 </html>
 ```
+
+当然，我们一般情况下很少会使用这种写法，我们也建议若非是当前需求，请在 `head` 标签最开始引入资源的地方引入组件库的入口文件。
 
 ## 更新说明
 

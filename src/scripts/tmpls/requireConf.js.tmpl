@@ -8,6 +8,8 @@
 
     var YFjs = root.YFjs;
 
+    var _docReadyStateIndex = YFjs.checkDocReadyState();
+
     var BaseMd = YFjs.baseMd + "/modules";
 
     var reg_start_at = /^@+/,
@@ -211,41 +213,72 @@
     define('yfjs', [], function() {return YFjs});
 
     // write compatible scripts
+    var docWrites = '';
     if (YFjs.bCompatibleModernizr) {
-        var scriptModernizr = YFjs.createScriptElement(requireConf.paths['modernizr'] + '.js?v=' + Versions['modernizr']);
-        if (scriptModernizr) {
-            YFjs.appendChild(scriptModernizr);
+        var scriptModernizrSrc = requireConf.paths['modernizr'] + '.js?v=' + Versions['modernizr'];
+        if (_docReadyStateIndex < 2) {
+            docWrites += YFjs.createScriptTag(scriptModernizrSrc);
+        } else {
+            var scriptModernizr = YFjs.createScriptElement(scriptModernizrSrc);
+            if (scriptModernizr) {
+                YFjs.appendChild(scriptModernizr);
+            }
         }
     }
     if (YFjs.bCompatibleRespond && !YFjs.testMediaQuery('all')) {
-        var scriptRespond = YFjs.createScriptElement(requireConf.paths['respond'] + '.js?v=' + Versions['respond']);
-        if (scriptRespond) {
-            YFjs.appendChild(scriptRespond);
+        var scriptRespondSrc = requireConf.paths['respond'] + '.js?v=' + Versions['respond'];
+        if (_docReadyStateIndex < 2) {
+            docWrites += YFjs.createScriptTag(scriptRespondSrc);
+        } else {
+            var scriptRespond = YFjs.createScriptElement(scriptRespondSrc);
+            if (scriptRespond) {
+                YFjs.appendChild(scriptRespond);
+            }
         }
     }
     if (YFjs.bCompatibleHtml5 && !YFjs.testHtml5Elements()) {
-        var scriptHtml5shiv = YFjs.createScriptElement(requireConf.paths['html5shiv'] + '.js?v=' + Versions['html5shiv']);
-        if (scriptHtml5shiv) {
-            YFjs.appendChild(scriptHtml5shiv);
+        var scriptHtml5shivSrc = requireConf.paths['html5shiv'] + '.js?v=' + Versions['html5shiv'];
+        if (_docReadyStateIndex < 2) {
+            docWrites += YFjs.createScriptTag(scriptHtml5shivSrc);
+        } else {
+            var scriptHtml5shiv = YFjs.createScriptElement(scriptHtml5shivSrc);
+            if (scriptHtml5shiv) {
+                YFjs.appendChild(scriptHtml5shiv);
+            }
         }
     }
     if (YFjs.bCompatibleES5 && !YFjs.testSupportsES5()) {
-        var scriptES5 = YFjs.createScriptElement(requireConf.paths['es5-shim'] + '.js?v=' + Versions['es5-shim']);
-        if (scriptES5) {
-            YFjs.appendChild(scriptES5);
+        var scriptES5Src = requireConf.paths['es5-shim'] + '.js?v=' + Versions['es5-shim'];
+        if (_docReadyStateIndex < 2) {
+            docWrites += YFjs.createScriptTag(scriptES5Src);
+        } else {
+            var scriptES5 = YFjs.createScriptElement(scriptES5Src);
+            if (scriptES5) {
+                YFjs.appendChild(scriptES5);
+            }
         }
     }
     if (YFjs.bCompatibleES6 && !YFjs.testSupportsES6()) {
-        var scriptES6 = YFjs.createScriptElement(requireConf.paths['es6-shim'] + '.js?v=' + Versions['es6-shim']);
-        if (scriptES6) {
-            YFjs.appendChild(scriptES6);
+        var scriptES6Src = requireConf.paths['es6-shim'] + '.js?v=' + Versions['es6-shim'];
+        if (_docReadyStateIndex < 2) {
+            docWrites += YFjs.createScriptTag(scriptES6Src);
+        } else {
+            var scriptES6 = YFjs.createScriptElement(scriptES6Src);
+            if (scriptES6) {
+                YFjs.appendChild(scriptES6);
+            }
         }
     }
     var supportsJSON = YFjs.testJSON();
     if (YFjs.bCompatibleJSON && !supportsJSON) {
-        var scriptJSON = YFjs.createScriptElement(requireConf.paths['json'] + '.js?v=' + Versions['json']);
-        if (scriptJSON) {
-            YFjs.appendChild(scriptJSON);
+        var scriptJSONSrc = requireConf.paths['json'] + '.js?v=' + Versions['json'];
+        if (_docReadyStateIndex < 2) {
+            docWrites += YFjs.createScriptTag(scriptJSONSrc);
+        } else {
+            var scriptJSON = YFjs.createScriptElement(scriptJSONSrc);
+            if (scriptJSON) {
+                YFjs.appendChild(scriptJSON);
+            }
         }
     } else if (supportsJSON) {
         define('json', function() {return root.JSON});
