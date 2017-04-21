@@ -779,7 +779,7 @@
             "main": "jquery-migrate"
           },
           "multipicker": {
-            "version": "0.8.0",
+            "version": "0.8.1",
             "shim": [
               "rq/css!multipicker"
             ]

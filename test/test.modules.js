@@ -55,6 +55,7 @@
 		'jq/form/wizard',
 		'jq/mCustomScrollbar',
 		'jq/migrate',
+		'jq/multipicker',
 		'jq/nicescroll',
 		'jq/qrcode',
 		'jq/urlp',

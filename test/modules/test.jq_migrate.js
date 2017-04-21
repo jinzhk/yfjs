@@ -55,7 +55,7 @@ describe("Test Module jq/migrate", function() {
 		it("can be required", function() {
 			should.not.exist(error);
 			should.exist(jq);
-			should.exist(jq.migrateTrace, true);
+			should.equal(jq.migrateTrace, true);
 		});
 
 	});

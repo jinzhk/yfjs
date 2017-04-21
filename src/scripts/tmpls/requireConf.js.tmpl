@@ -17,6 +17,7 @@
         reg_slash_end = /\/+$/,
         reg_slash_back = /\\+/g,
         reg_rq_plugin = /^rq\/[^\!]+\!/,
+        reg_rq_plugin_css = /^rq\/css!/,
         reg_protocol_start = /^https?:\/\/(?!\/)/;
 
     var requireConf = {
@@ -33,6 +34,7 @@
     requireConf.map = parseMapUrl(requireConf.map);
 
     requireConf.shim = parseShimUrl(requireConf.shim);
+    requireConf.shim = parseShimCss(requireConf.shim);
 
     var Versions = <%= versions %>;
     
@@ -117,6 +119,70 @@
             shim[name] = _shim;
         }
         return shim;
+    }
+
+    function parseShimCss(shim, level) {
+        shim = shim || {};
+        level = level || 0;
+        var _shim;
+        for (var name in shim) {
+            _shim = shim[name];
+            if (_shim) {
+                if (isArray(_shim)) {
+                    for (var i = 0; i<_shim.length; i++) {
+                        if (!reg_rq_plugin.test(_shim[i]) && _shim[i].indexOf(BaseMd)!=0) {
+                            var _shimCss = getShimCss(shim, _shim[i]);
+                            if (_shimCss.length) {
+                                _shimCss.unshift(_shim[i]);
+                                _shim.splice.apply(_shim, [i, 1].concat(_shimCss));
+                                i += _shimCss.length;
+                            }
+                        } 
+                    }
+                } else if (isArray(_shim.deps) && level < 1000) {
+                    _shim.deps = parseShimUrl(_shim.deps, level + 1);
+                }
+            }
+            shim[name] = _shim;
+        }
+        return shim;
+    }
+
+    function getShimCss(shim, mdName) {
+        mdName = getShimMdName(mdName);
+        var deps = shim[mdName];
+        if (deps && !isArray(deps)) {
+            if (isArray(deps.deps)) {
+                deps = deps.deps;
+            } else {
+                deps = [];
+            }
+        }
+        if (isArray(deps)) {
+            var _deps = [];
+            for (var i = 0; i < deps.length; i++) {
+                if (reg_rq_plugin_css.test(deps[i])) {
+                    _deps.push(deps[i]);
+                }
+            }
+            deps = _deps;
+        } else {
+            deps = [];
+        }
+        return deps;
+    }
+
+    function getShimMdName(mdName) {
+        if (isArray(requireConf.packages)) {
+            for (var i = 0; i < requireConf.packages.length; i++) {
+                var pkg = requireConf.packages[i];
+                if (pkg && pkg.name == mdName) {
+                    mdName = joinPath(mdName, pkg.main);
+                    break;
+                }
+            }
+        }
+        return mdName;
     }
 
     function joinPath() {
