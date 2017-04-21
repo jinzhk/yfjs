@@ -2473,32 +2473,38 @@ document.write(browsers.join(",\n    "))</script>
         定义 YFjs 核心库准备好后的回调方法。
       </p>
       <p>
-        YFjs 的核心库文件是异步加载的，如果未通过内置的 SPA 框架访问页面，直接执行页面之下的 Script 代码可能会导致找不到核心库中的全局变量。这时，需要将代码放在 ready 之后执行，如同使用 <code>$(document).ready()</code> 一样。
+        如果您项目中的入口文件是异步加载，并且没有通过使用内置的 SPA 框架访问页面，同时又希望直接使用组件库中的组件，则需要将代码包含在 <code>YFjs.ready()</code> 方法内，如以下情况：
       </p>
       <figure>
         <pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
+&lt;html class="no-js"&gt;
+  &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
     &lt;meta name="renderer" content="webkit"&gt;
     &lt;title&gt;Web Title&lt;/title&gt;
-    &lt;!-- scripts --&gt;
-    &lt;script src="[yfjs-lib path]/yfjs.js"&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;script type="text/javascript"&gt;
-    YFjs.ready(function() {
-      require(['moduleName'], function() {
-        // do something
-      });
-    });
-  &lt;/script&gt;
-&lt;/body&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;script type="text/javascript"&gt;
+      var yfjsScript = document.createElement("script");
+      yfjsScript.setAttribute('src', "[yfjs-lib path]/yfjs.js?v=0.8.1");
+      document.head.appendChild(yfjsScript);
+      yfjsScript.addEventListener("load", function() {
+        YFjs.ready(function() {
+          require(['moduleName'], function() {
+            // do something
+          });
+        });
+      }, false);
+    &lt;/script&gt;
+  &lt;/body&gt;
 &lt;/html&gt;</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
+      <p>
+        当然，我们一般情况下很少会使用这种写法，我们也建议若非是当前需求，请在 `head` 标签最开始引入资源的地方引入组件库的入口文件。
+      </p>
     </section>
     <!--
     <section>

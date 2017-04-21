@@ -763,14 +763,14 @@
         <a class="link-anchor icon-anchor" href="#hello-world-step1"></a>第一步：配置应用入口
       </h3>
       <p>
-        在引入 <code>yfjs.js</code> 文件的 Script 标签上添加属性 <code>data-main</code> 和 <code>data-require-base</code>。
+        在引入 <code>yfjs.js</code> 文件的 Script 标签上添加属性 <code>data-main</code> 和 <code>data-base-require</code>。
       </p>
       <ul class="list-options">
         <li>
           <mark>data-main</mark>: 应用的入口 JS 文件。建议为 <code>app</code>。
         </li>
         <li>
-          <mark>data-require-base</mark>: 引入本地资源的基路径。建议为 <code>app</code>。
+          <mark>data-base-require</mark>: 引入本地资源的基路径。建议为 <code>app</code>。
         </li>
       </ul>
       <p>
@@ -787,16 +787,20 @@
       <figure>
         <pre><code class="html">&lt;script src="/yfjs-lib/scripts/yfjs.js"
         data-main="app"
-        data-require-base="app"
+        data-base-require="app"
         data-cache="false"&gt;
 &lt;/script&gt;</code></pre>
         <button class="btn btn-clipboard" type="button">复制</button>
       </figure>
+      <div class="callout callout-danger">
+        <h4>版本不兼容提示</h4>
+        <p>在 0.8.1 版本之前，本地资源的基路径配置属性为 <code>data-require-base</code>，自 0.8.1 版本开始，为统一命名规范，更改为 <code>data-base-require</code>。</p>
+      </div>
       <h3 id="hello-world-step2">
         <a class="link-anchor icon-anchor" href="#hello-world-step2"></a>第二步：构建应用目录
       </h3>
       <p>
-        在访问根目录下，创建 <code>data-require-base</code> 属性指定的目录名（下文称为 <mark>应用目录</mark>）：
+        在访问根目录下，创建 <code>data-base-require</code> 属性指定的目录名（下文称为 <mark>应用目录</mark>）：
       </p>
       <figure>
         <pre><code class="no-highlight">+ app      <-- 应用目录
