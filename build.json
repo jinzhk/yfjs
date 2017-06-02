@@ -34,7 +34,136 @@
         "main": "d3",
         "path": "d3"
       },
-      "echarts": "3.1.10",
+      "echarts": {
+        "version": "3.5.4",
+        "main": "echarts",
+        "modules": {
+          "mapData": {
+            "main": null,
+            "modules": {
+              "world": {
+                "main": "@."
+              },
+              "china": {
+                "main": "@."
+              },
+              "china-cities": {
+                "main": "@."
+              },
+              "china-contour": {
+                "main": "@."
+              },
+              "province": {
+                "main": null,
+                "modules": {
+                  "anhui": {
+                    "main": "@."
+                  },
+                  "aomen": {
+                    "main": "@."
+                  },
+                  "beijing": {
+                    "main": "@."
+                  },
+                  "chongqing": {
+                    "main": "@."
+                  },
+                  "fujian": {
+                    "main": "@."
+                  },
+                  "gansu": {
+                    "main": "@."
+                  },
+                  "guangdong": {
+                    "main": "@."
+                  },
+                  "guangxi": {
+                    "main": "@."
+                  },
+                  "guizhou": {
+                    "main": "@."
+                  },
+                  "hainan": {
+                    "main": "@."
+                  },
+                  "hebei": {
+                    "main": "@."
+                  },
+                  "heilongjiang": {
+                    "main": "@."
+                  },
+                  "henan": {
+                    "main": "@."
+                  },
+                  "hubei": {
+                    "main": "@."
+                  },
+                  "hunan": {
+                    "main": "@."
+                  },
+                  "jiangsu": {
+                    "main": "@."
+                  },
+                  "jiangxi": {
+                    "main": "@."
+                  },
+                  "jilin": {
+                    "main": "@."
+                  },
+                  "liaoning": {
+                    "main": "@."
+                  },
+                  "neimenggu": {
+                    "main": "@."
+                  },
+                  "ningxia": {
+                    "main": "@."
+                  },
+                  "qinghai": {
+                    "main": "@."
+                  },
+                  "shandong": {
+                    "main": "@."
+                  },
+                  "shanghai": {
+                    "main": "@."
+                  },
+                  "shanxi": {
+                    "main": "@."
+                  },
+                  "shanxi1": {
+                    "main": "@."
+                  },
+                  "sichuan": {
+                    "main": "@."
+                  },
+                  "taiwan": {
+                    "main": "@."
+                  },
+                  "tianjin": {
+                    "main": "@."
+                  },
+                  "xianggang": {
+                    "main": "@."
+                  },
+                  "xinjiang": {
+                    "main": "@."
+                  },
+                  "xizang": {
+                    "main": "@."
+                  },
+                  "yunnan": {
+                    "main": "@."
+                  },
+                  "zhejiang": {
+                    "main": "@."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "echarts2": {
         "version": "2.2.7",
         "main": null,
@@ -723,7 +852,7 @@
             "main": "jquery.cookie"
           },
           "dataTables": {
-            "version": "1.10.7+20170306",
+            "version": "1.10.7+20170516",
             "main": "jquery.dataTables",
             "package": true,
             "shim": [
@@ -731,7 +860,7 @@
             ]
           },
           "dataTables-bs3": {
-            "version": "1.10.7+20170306",
+            "version": "1.10.7+20170516",
             "main": "dataTables.bs3",
             "path": "dataTables",
             "shim": [
@@ -779,7 +908,7 @@
             "main": "jquery-migrate"
           },
           "multipicker": {
-            "version": "0.8.1",
+            "version": "0.8.2",
             "shim": [
               "rq/css!multipicker"
             ]
@@ -851,7 +980,7 @@
               "rq/css!datetimepicker"
             ]
           },
-          "modal": "3.3.4+20170125",
+          "modal": "3.3.4+20170424",
           "paging": "1.0.2+20161114",
           "popover": {
             "version": "3.3.4+20150609",
@@ -959,6 +1088,11 @@
             "map": "*"
           }
         }
+      },
+      "ueditor": {
+        "version": "1.4.3.3",
+        "main": "ueditor.all",
+        "package": true
       },
       "zeroclipboard": {
         "version": "2.2.0",

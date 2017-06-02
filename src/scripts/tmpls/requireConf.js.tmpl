@@ -278,6 +278,22 @@
     define('jquery', [], function() {return ($ && typeof $.noConflict === "function" ? ($ = $.noConflict()) : null)});
     define('yfjs', [], function() {return YFjs});
 
+    // define ueditor home url
+    if (requireConf.paths && requireConf.paths['ueditor'] != null) {
+        root.UEDITOR_HOME_URL = requireConf.paths['ueditor'];
+    } else if (isArray(requireConf.packages)) {
+        for (var i=0; i<requireConf.packages.length; i++) {
+            var pkg = requireConf.packages[i];
+            if (pkg && pkg.name == "ueditor") {
+                root.UEDITOR_HOME_URL = pkg.location;
+                break;
+            }
+        }
+    }
+    if (root.UEDITOR_HOME_URL != null && !reg_slash_end.test(root.UEDITOR_HOME_URL)) {
+        root.UEDITOR_HOME_URL += '/';
+    }
+    
     // write compatible scripts
     var docWrites = '';
     if (YFjs.bCompatibleModernizr) {

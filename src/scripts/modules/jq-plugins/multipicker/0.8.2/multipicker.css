@@ -1,0 +1,156 @@
+.multipicker-wrapper {
+    *zoom: 1;
+}
+.multipicker-wrapper:before,
+.multipicker-wrapper:after {
+    display: table;
+    content: " ";
+}
+.multipicker-wrapper:after {
+    clear: both;
+}
+.multipicker-column-from,
+.multipicker-column-to {
+    padding-top: 10px;
+}
+.multipicker-column-from fieldset,
+.multipicker-column-to fieldset {
+    border: 1px solid #e5e5e5;
+}
+.multipicker-column-title {
+    width: auto;
+    padding: 5px;
+    padding-left: 3px;
+    margin-left: 5px;
+    margin-bottom: 0;
+    font-size: 15px;
+    border: 0 none;
+}
+.multipicker-column-filter {
+    position: relative;
+    padding: 5px;
+    margin: 0;
+}
+.multipicker-column-filter > input.form-control {
+    height: 28px;
+    padding: 6px 20px 6px 8px;
+}
+.multipicker-icon-search,
+.multipicker-icon-add,
+.multipicker-icon-delete {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -0.5em;
+    cursor: pointer;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+.multipicker-icon-search {
+    color: #999;
+}
+.multipicker-icon-search:hover {
+    color: #555;
+}
+.multipicker-icon-search:before {
+    content: "\f002";
+}
+.multipicker-column-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.multipicker-column-item {
+    position: relative;
+}
+.multipicker-column-item>a {
+    display: block;
+    cursor: default;
+    padding: 5px 25px 6px 10px;
+    line-height: 1.42857143;
+    color: #555;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.multipicker-column-item:hover>a {
+    color: #262626;
+    text-decoration: none;
+    background-color: #F1F5F6;
+}
+.multipicker-icon-add,
+.multipicker-icon-delete {
+    color: #519857;
+}
+.multipicker-icon-delete {
+    color: #CB6A6A;
+}
+.multipicker-icon-add:before {
+    content: "\f055";
+}
+.multipicker-icon-delete:before {
+    content: "\f056";
+}
+.multipicker-column-empty {
+    padding: 4px 5px;
+    color: #777;
+    font-size: 85%;
+    text-align: center;
+}
+.multipicker-column-more {
+    padding: 0 10px;
+}
+.multipicker-column-more > a {
+    display: block;
+    padding: 4px 0;
+    color: #337ab7;
+    font-size: 85%;
+    text-align: center;
+    text-decoration: none;
+    border: 1px dashed transparent;
+}
+.multipicker-column-more > a:hover {
+    color: #31708f;
+    border-color: #dddddd;
+    background-color: #F1F5F6;
+}
+.multipicker-column-more.loading > a,
+.multipicker-column-more.loading > a:hover,
+.multipicker-column-more.done > a,
+.multipicker-column-more.done > a:hover {
+    cursor: default;
+}
+.multipicker-column-more.loading > a,
+.multipicker-column-more.loading > a:hover {
+    color: #8a6d3b;
+}
+.multipicker-column-more.loading > a:hover,
+.multipicker-column-more.done > a:hover {
+    border-color: transparent;
+    background-color: transparent;
+}
+.multipicker-column-more.loading > a:before {
+    display: inline-block;
+    font-family: FontAwesome;
+    content: '\f110';
+    -webkit-animation: fa-spin 2s infinite linear;
+    animation: fa-spin 2s infinite linear;
+    margin-right: .25em;
+}
+.multipicker-column-more.done > a,
+.multipicker-column-more.done > a:hover {
+    color: #777;
+}
+.multipicker-column-more.error > a,
+.multipicker-column-more.error > a:hover {
+    color: #a94442;
+}
