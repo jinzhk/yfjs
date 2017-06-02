@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Daterangepicker | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+	<h2>日期区间选择示例</h2>
+  <h3>Date Range Picker</h3>
+  <p>The Date Range Picker is attached to a text input. It will use the current value of the input to initialize, and update the input if new dates are chosen.</p>
+  <div class="example-box example-box-daterangepicker">
+    <input class="form-control" name="daterange" value="2015年1月15日 - 2015年2月15日" type="text">
+  </div>
+  <pre><code class="html">&lt;input class="form-control" name="daterange" value="2015年1月15日 - 2015年2月15日" type="text"&gt;
+
+&lt;script type="text/javascript"&gt;
+$('input[name="daterange"]').daterangepicker();
+&lt;/script&gt;</code></pre>
+  <h3>Date and Time</h3>
+  <p>The Date Range Picker can also be used to select times. Hour, minute and (optional) second dropdowns are added below the calendars. An option exists to set the increment count of the minutes dropdown to e.g. offer only 15-minute or 30-minute increments.</p>
+  <div class="example-box example-box-daterangepicker">
+    <input class="form-control" name="daterange2" value="2015/01/01 1:30 下午 - 2015/01/01 2:00 下午" type="text">
+  </div>
+  <pre><code class="html">&lt;input class="form-control" name="daterange" value="2015/01/01 1:30 下午 - 2015/01/01 2:00 下午" type="text"&gt;
+
+&lt;script type="text/javascript"&gt;
+$('input[name="daterange"]').daterangepicker({
+  timePicker: true,
+  timePickerIncrement: 30, 
+  locale: {
+    format: 'YYYY/MM/DD h:mm A' 
+  }
+});
+&lt;/script&gt;</code></pre>
+  <h3>Single Date Picker</h3>
+  <p>The Date Range Picker can be turned into a single date picker widget with only one calendar. In this example, dropdowns to select a month and year have also been enabled at the top of the calendar to quickly jump to different months.</p>
+  <div class="example-box example-box-daterangepicker">
+    <input class="form-control" name="birthdate" value="1984年10月24日" type="text">
+  </div>
+  <pre><code class="html">&lt;input class="form-control" name="birthdate" value="1984年10月24日" type="text"&gt;
+
+&lt;script type="text/javascript"&gt;
+$('input[name="birthdate"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true
+}, function(start, end, label) {
+    var years = moment().diff(start, 'years');
+    alert("You are " + years + " years old.");
+});
+&lt;/script&gt;</code></pre>
+  <h3>Predefined Ranges</h3>
+  <p>This example shows the option to predefine date ranges that the user can choose from a list.</p>
+  <div class="example-box example-box-daterangepicker">
+    <div class="dropdown" id="reportrange">
+      <button class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-calendar"></i>&nbsp;
+        <span>April 3, 2017 - May 2, 2017</span>
+        <i class="caret"></i>
+      </button>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="dropdown" id="reportrange"&gt;
+  &lt;button class="btn btn-default" type="button"&gt;
+    &lt;i class="glyphicon glyphicon-calendar"&gt;&lt;/i&gt;&nbsp;
+    &lt;span&gt;April 3, 2017 - May 2, 2017&lt;/span&gt;
+    &lt;i class="caret"&gt;&lt;/i&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var start = moment().subtract(29, 'days');
+var end = moment();
+
+function cb(start, end) {
+    $('#reportrange > button > span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+}
+
+$('#reportrange').daterangepicker({
+    startDate: start,
+    endDate: end,
+    ranges: {
+       'Today': [moment(), moment()],
+       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+       'This Month': [moment().startOf('month'), moment().endOf('month')],
+       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    }
+}, cb);
+
+cb(start, end);
+&lt;/script&gt;</code></pre>
+  <h3>Input Initially Empty</h3>
+  <p>If you're using a date range as a filter, you may want to attach a picker to an input but leave it empty by default. This example shows how to accomplish that using the <code>autoUpdateInput</code> setting, and the <code>apply</code> and <code>cancel</code> events.</p>
+  <div class="example-box example-box-daterangepicker">
+    <input class="form-control" name="datefilter" value="" type="text">
+  </div>
+  <pre><code class="html">&lt;input class="form-control" name="datefilter" value="" type="text"&gt;
+
+&lt;script type="text/javascript"&gt;
+$('input[name="datefilter"]').daterangepicker({
+    autoUpdateInput: false,
+    locale: {
+        cancelLabel: 'Clear'
+    }
+});
+
+$('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+    $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+});
+
+$('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+    $(this).val('');
+});
+&lt;/script&gt;</code></pre>
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['moment', 'bs/daterangepicker'], function(moment) {
+      $('input[name="daterange"]').daterangepicker();
+
+      $('input[name="daterange2"]').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30, 
+        locale: {
+          format: 'YYYY/MM/DD h:mm A' 
+        }
+      });
+
+      $('input[name="birthdate"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true
+      }, function(start, end, label) {
+          var years = moment().diff(start, 'years');
+          alert("You are " + years + " years old.");
+      });
+
+      var start = moment().subtract(29, 'days');
+      var end = moment();
+
+      function cb(start, end) {
+          $('#reportrange > button > span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+      }
+
+      $('#reportrange').daterangepicker({
+          startDate: start,
+          endDate: end,
+          ranges: {
+             'Today': [moment(), moment()],
+             'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+             'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+             'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+             'This Month': [moment().startOf('month'), moment().endOf('month')],
+             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          }
+      }, cb);
+
+      cb(start, end);
+
+      $('input[name="datefilter"]').daterangepicker({
+          autoUpdateInput: false,
+          locale: {
+              cancelLabel: 'Clear'
+          }
+      });
+
+      $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+          $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+      });
+
+      $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+          $(this).val('');
+      });
+	});
+</script>
+</body>
+</html>

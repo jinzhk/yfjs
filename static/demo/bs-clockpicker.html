@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Clockpicker | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+	<h2>实例</h2>
+  <h3>默认</h3>
+  <div class="example-box example-box-clockpicker">
+    <div class="input-group clockpicker">
+      <input class="form-control" value="09:30" type="text">
+      <span class="input-group-addon">
+        <i class="glyphicon glyphicon-time"></i>
+      </span>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="input-group clockpicker"&gt; 
+  &lt;input type="text" class="form-control" value="09:30"&gt; 
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-time"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+&lt;/div&gt; 
+&lt;script type="text/javascript"&gt;
+$('.clockpicker').clockpicker();
+&lt;/script&gt;</code></pre>
+  <h3>显示在左侧，箭头自动对齐在顶部，并自动关闭。</h3>
+  <div class="example-box example-box-clockpicker">
+    <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+      <input class="form-control" value="13:14" type="text">
+      <span class="input-group-addon">
+        <i class="glyphicon glyphicon-time"></i>
+      </span>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true"&gt; 
+  &lt;input type="text" class="form-control" value="13:14"&gt; 
+    &lt;span class="input-group-addon"&gt; 
+      &lt;i class="glyphicon glyphicon-time"&gt;&lt;/i&gt; 
+    &lt;/span&gt; 
+&lt;/div&gt; 
+&lt;script type="text/javascript"&gt;
+$('.clockpicker').clockpicker();
+&lt;/script&gt;</code></pre>
+  <h3>通过 JavaScript 设置配置项，代替 <code>data-*</code></h3>
+  <div class="example-box example-box-clockpicker">
+    <div class="input-group clockpicker-top"> 
+      <input type="text" class="form-control" value="18:00"> 
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-time"></i> 
+      </span> 
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="input-group clockpicker"&gt; 
+  &lt;input type="text" class="form-control" value="18:00"&gt; 
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-time"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+&lt;/div&gt; 
+&lt;script type="text/javascript"&gt;
+$('.clockpicker').clockpicker({
+    placement: 'top',
+    align: 'left',
+    donetext: 'Done'
+});
+&lt;/script&gt;</code></pre>
+  <h3>设置默认值，不使用输入框组，自定义操作：</h3>
+  <div class="example-box example-box-clockpicker">
+    <input class="form-control" id="single-input" value="" placeholder="Now">
+    <button class="btn btn-default" type="button" id="check-minutes">获取当前时间</button>
+  </div>
+  <pre><code class="html">&lt;input class="form-control" id="single-input" value="" placeholder="Now"&gt;
+&lt;button type="button" id="check-minutes"&gt;Check the minutes&lt;/button&gt;
+
+&lt;script type="text/javascript"&gt;
+var input = $('#single-input').clockpicker({
+    placement: 'bottom',
+    align: 'left',
+    autoclose: true,
+    'default': 'now'
+});
+
+// Manually toggle to the minutes view
+$('#check-minutes').click(function(e){
+    // Have to stop propagation here
+    e.stopPropagation();
+    input.clockpicker('show')
+          .clockpicker('toggleView', 'minutes');
+});
+&lt;/script&gt;</code></pre>
+  <h3>事件回调</h3>
+  <div class="example-box example-box-clockpicker">
+    <div class="input-group clockpicker-with-callbacks">
+      <input class="form-control" value="10:10" type="text">
+      <span class="input-group-addon">
+        <i class="glyphicon glyphicon-time"></i>
+      </span>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="input-group clockpicker-with-callbacks"&gt;
+  &lt;input class="form-control" value="10:10" type="text"&gt;
+  &lt;span class="input-group-addon"&gt;
+    &lt;i class="glyphicon glyphicon-time"&gt;&lt;/i&gt;
+  &lt;/span&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var input = $('.clockpicker-with-callbacks').clockpicker({
+    donetext: 'Done',
+    init: function() { 
+        console.log("colorpicker initiated");
+    },
+    beforeShow: function() {
+        console.log("before show");
+    },
+    afterShow: function() {
+        console.log("after show");
+    },
+    beforeHide: function() {
+        console.log("before hide");
+    },
+    afterHide: function() {
+        console.log("after hide");
+    },
+    beforeHourSelect: function() {
+        console.log("before hour selected");
+    },
+    afterHourSelect: function() {
+        console.log("after hour selected");
+    },
+    beforeDone: function() {
+        console.log("before done");
+    },
+    afterDone: function() {
+        console.log("after done");
+    }
+});
+&lt;/script&gt;</code></pre>
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/clockpicker'], function() {
+		$('.clockpicker').clockpicker();
+
+    $('.clockpicker-top').clockpicker({
+      placement: 'top',
+      align: 'left',
+      donetext: 'Done'
+    });
+
+    var input = $('#single-input').clockpicker({
+        placement: 'bottom',
+        align: 'left',
+        autoclose: true,
+        'default': 'now'
+    });
+    $('#check-minutes').click(function(e){
+        // Have to stop propagation here
+        e.stopPropagation();
+        input.clockpicker('show')
+              .clockpicker('toggleView', 'minutes');
+    });
+
+    $('.clockpicker-with-callbacks').clockpicker({
+        donetext: 'Done',
+        init: function() { 
+            console.log("colorpicker initiated");
+        },
+        beforeShow: function() {
+            console.log("before show");
+        },
+        afterShow: function() {
+            console.log("after show");
+        },
+        beforeHide: function() {
+            console.log("before hide");
+        },
+        afterHide: function() {
+            console.log("after hide");
+        },
+        beforeHourSelect: function() {
+            console.log("before hour selected");
+        },
+        afterHourSelect: function() {
+            console.log("after hour selected");
+        },
+        beforeDone: function() {
+            console.log("before done");
+        },
+        afterDone: function() {
+            console.log("after done");
+        }
+    });
+	});
+</script>
+</body>
+</html>

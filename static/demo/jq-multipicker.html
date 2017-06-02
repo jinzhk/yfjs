@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Multipicker | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+  <h2>双列选择框示例</h2>
+
+  <h3>基本示例</h3>
+  <p>双列选择框需要通过 JavaScript 和一个 HTML 元素容器初始化内容。</p>
+  <div class="example-box">
+    <div class="row">
+      <div class="col-md-8 col-sm-10 col-xs-12" id="multipicker1"></div>   
+    </div>
+  </div>
+  <pre><code class="html">&lt;div id="multipicker">&lt;/div>
+
+&lt;script type="text/javascript">
+$("#multipicker").multiPicker({
+    fromColumn: {
+        items: [
+            "item1", "item2", "item3", "item4", "item5",
+            "item6", "item7", "item8", "item9", "item10"
+        ]
+    },
+    toColumn: {
+        items: [
+            "item_1", "item_2", "item_3", "item_4", "item_5"
+        ]
+    }
+});
+&lt;/script></code></pre>
+
+  <h3>异步加载更多数据</h3>
+  <p>双列选择框的可选列和已选列都支持通过配置项方法 <code>loadMore</code> 异步加载更多内容。</p>
+  <div class="example-box">
+    <div class="row">
+      <div class="col-md-8 col-sm-10 col-xs-12" id="multipicker2"></div>   
+    </div>
+  </div>
+  <pre><code class="html">&lt;div id="multipicker">&lt;/div>
+
+&lt;script type="text/javascript">
+$("#multipicker").multiPicker({
+    fromColumn: {
+        items: [
+            "item1", "item2", "item3"
+        ],
+        loadMore: function(num) {
+            if (num >= 6) {
+                this.doneMoreFrom();
+                return false;
+            }
+            var def = $.Deferred();
+            // 模拟异步 ajax
+            setTimeout(function() {
+                // 如果没有更多数据，可以 resolve(null) 或 resolve([])
+                def.resolve([
+                    "item1" + fromCount, "item2" + fromCount
+                ]);
+                fromCount ++;
+            }, 1500);
+            return def;
+        }
+    },
+    toColumn: {
+        items: [
+            "item_1", "item_2", "item_3"
+        ],
+        loadMore: function(num) {
+            if (num >= 6) {
+                this.doneMoreTo();
+                return false;
+            }
+            var def = $.Deferred();
+            // 模拟异步 ajax
+            setTimeout(function() {
+                if (toCount > 2) {
+                    // 如果请求数据失败，可以 reject(-1)
+                    def.reject(-1);
+                    toCount = 2;
+                } else {
+                    // 如果没有更多数据，可以 resolve(null) 或 resolve([])
+                    def.resolve([
+                        "item_1" + toCount, "item_2" + toCount
+                    ]);
+                    toCount ++;
+                }
+            }, 1500);
+            return def;
+        }
+    }
+});
+&lt;/script></code></pre>
+
+  <h3>高度限制</h3>
+  <p>可以通过配置项 <code>height</code>、<code>minHeight</code>、<code>maxHeight</code> 限制双列选择框的高度。<code>height</code> 默认值为 <code>'auto'</code>，<code>minHeight</code> 默认值为 <code>'300px'</code>，<code>maxHeight</code> 默认值为 <code>'400px'</code>。默认 <code>height</code> 下，内容高度超出 <code>maxHeight</code> 时，将显示滚动条，内容高度小于 <code>minHeight</code> 时，将保持高度不变，不再自动适应。</p>
+  <div class="example-box">
+    <div class="row">
+      <div class="col-md-8 col-sm-10 col-xs-12" id="multipicker3"></div>   
+    </div>
+  </div>
+  <pre><code class="html">&lt;div id="multipicker">&lt;/div>
+
+&lt;script type="text/javascript">
+$("#multipicker").multiPicker({
+    minHeight: 220,
+    maxHeight: 220,
+    fromColumn: {
+        items: [
+            "item1", "item2", "item3", "item4", "item5",
+            "item6", "item7", "item8", "item9", "item10"
+        ]
+    },
+    toColumn: {
+        items: [
+            "item_1", "item_2", "item_3", "item_4", "item_5"
+        ]
+    }
+});
+&lt;/script></code></pre>
+
+  <h3>使用更丰富的数据源</h3>
+  <p>通过配置项 <code>items</code> 指定双列选择框的数据源时每项可以设为 String 类型或更丰富的 Object 类型。当设为 Object 类型时，必须含有属性 <code>name</code>，用以指定当前项的显示名称。</p>
+  <div class="example-box">
+    <div class="row">
+      <div class="col-md-8 col-sm-10 col-xs-12" id="multipicker4"></div>   
+    </div>
+  </div>
+  <pre><code class="html">&lt;div id="multipicker">&lt;/div>
+
+&lt;script type="text/javascript">
+$("#multipicker").multiPicker({
+    fromColumn: {
+        items: [
+            "item1", 
+            {
+                name: "item2",
+                id: "2",
+                key1: "value1"
+            }, 
+            {
+                name: "item3",
+                id: "3",
+                key1: "value1"
+            },
+            "item4",
+            "item5"
+        ]
+    }
+});
+&lt;/script></code></pre>
+
+  <h3>获取数据信息</h3>
+  <p>可以通过双列选择框提供的方法获取初始化时使用的数据，并通过配置项 <code>dataSrc</code> 过滤这些数据（只对 Object 类型的数据项有效）。</p>
+  <div class="example-box">
+    <div class="row">
+      <div class="col-md-8 col-sm-10 col-xs-12" id="multipicker5"></div>   
+    </div>
+  </div>
+  <pre><code class="html">&lt;div id="multipicker">&lt;/div>
+
+&lt;script type="text/javascript">
+$("#multipicker").multiPicker({
+    dataSrc: 'id',
+    fromColumn: {
+        items: [
+            {
+                name: "item1",
+                id: "1",
+                key1: "value1"
+            }, 
+            {
+                name: "item2",
+                id: "2",
+                key1: "value1"
+            }, 
+            {
+                name: "item3",
+                id: "3",
+                key1: "value1"
+            }, 
+            {
+                name: "item4",
+                id: "4",
+                key1: "value1"
+            }, 
+            {
+                name: "item5",
+                id: "5",
+                key1: "value1"
+            }
+        ]
+    }
+});
+
+var unSelectData = $("#multipicker").multiPicker('getUnSelectedData');
+// returns ['1', '2', '3', '4', '5']
+&lt;/script></code></pre>
+  <p>如果想过滤多个属性值，可以将 <code>dataSrc</code> 设为一个数组。</p>
+  <pre><code class="html">&lt;div id="multipicker">&lt;/div>
+
+&lt;script type="text/javascript">
+$("#multipicker").multiPicker({
+    dataSrc: ['id', 'key1'],
+    fromColumn: {
+        items: [
+            {
+                name: "item1",
+                id: "1",
+                key1: "value1"
+            }, 
+            {
+                name: "item2",
+                id: "2",
+                key1: "value1"
+            }, 
+            {
+                name: "item3",
+                id: "3",
+                key1: "value1"
+            }, 
+            {
+                name: "item4",
+                id: "4",
+                key1: "value1"
+            }, 
+            {
+                name: "item5",
+                id: "5",
+                key1: "value1"
+            }
+        ]
+    }
+});
+
+var unSelectData = $("#multipicker").multiPicker('getUnSelectedData');
+// returns [{id: '1', key1: "value1"}, {id: '2', key1: "value1"}, {id: '3', key1: "value1"}, {id: '4', key1: "value1"}, {id: '5', key1: "value1"}]
+&lt;/script></code></pre>
+    
+  <h3>动态设置/更新数据</h3>
+  <p>可以通过双列选择框的 <code>setUnSelectedItems</code> 或 <code>setSelectedItems</code> 方法动态设置待选列或已选列的数据源。</p>
+  <div class="example-box">
+    <div class="row">
+      <div class="col-md-8 col-sm-10 col-xs-12" id="multipicker6"></div>   
+    </div>
+  </div>
+  <pre><code class="html">&lt;div id="multipicker">&lt;/div>
+
+&lt;script type="text/javascript">
+// 预先初始化双列选择框
+$("#multipicker").multiPicker();
+// 手动设置/更新待选列和已选列的数据
+$("#multipicker").multiPicker('setUnSelectedItems', [
+    "item1", "item2", "item3", "item4", "item5",
+    "item6", "item7", "item8", "item9", "item10"
+]);
+$("#multipicker").multiPicker('setSelectedItems', [
+    "item_1", "item_2", "item_3", "item_4", "item_5"
+]);
+&lt;/script></code></pre>
+
+  <h3>事件回调</h3>
+  <p>双列选择框组件提供了一些配置项方法，用以处理一些事件触发后的操作。</p>
+  <ul>
+      <li>
+          <p>oncreated - 初始化双列选择框后触发。</p>
+      </li>
+      <li>
+          <p>onselected - 从待选列选择一项到已选列后触发。</p>
+      </li>
+      <li>
+          <p>ondeselected - 从已选列取消选择一项到待选列后触发。</p>
+      </li>
+      <li>
+          <p>onchanged - 选择或取消选择任一项后，已选列内容相对于初始化时有改变方触发。</p>
+      </li>
+  </ul>
+  <div class="example-box">
+    <div class="row">
+      <div class="col-md-8 col-sm-10 col-xs-12" id="multipicker7"></div>
+      <div class="col-md-4 col-sm-2 col-xs-12">
+          <ul>
+              <li>
+                  <p id="multipicker-text-created">--oncreated--</p>
+              </li>
+              <li>
+                  <p id="multipicker-text-selected">--onselected--</p>
+              </li>
+              <li>
+                  <p id="multipicker-text-deselected">--ondeselected--</p>
+              </li>
+              <li>
+                  <p id="multipicker-text-changed">--onchanged--</p>
+              </li>
+          </ul>
+      </div>   
+    </div>
+  </div>
+  <pre><code class="html">&lt;div id="multipicker">&lt;/div>
+
+&lt;script type="text/javascript">
+$("#multipicker").multiPicker({
+    fromColumn: {
+        items: [
+            "item1", "item2", "item3", "item4", "item5"
+        ]
+    },
+    oncreated: function() {
+        $('#multipicker-text-created').text('multipikcer created!');
+    },
+    onselected: function(evt) {
+        var selectedData = this.getSelectedData();
+        $('#multipicker-text-selected').text('select: ' + evt.data + '. selected: ' + selectedData.join(', '));
+        var unSelectedData = this.getUnSelectedData();
+        $('#multipicker-text-deselected').text('unselected: ' + (unSelectedData.join(', ') || 'NONE'));
+        if (!this.isChanged()) {
+            $('#multipicker-text-changed').text('--onchanged--');
+        }
+    },
+    ondeselected: function(evt) {
+        var unSelectedData = this.getUnSelectedData();
+        $('#multipicker-text-deselected').text('deselect: ' + evt.data + '. unselected: ' + unSelectedData.join(', '));
+        var selectedData = this.getSelectedData();
+        $('#multipicker-text-selected').text('selected: ' + (selectedData.join(', ') || 'NONE'));
+        if (!this.isChanged()) {
+            $('#multipicker-text-changed').text('--onchanged--');
+        }
+    },
+    onchanged: function(evt) {
+        $('#multipicker-text-changed').text('change item: ' + evt.data);
+    }
+});
+&lt;/script></code></pre>
+
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+    require(['jq/multipicker'], function() {
+        $("#multipicker1").multiPicker({
+            fromColumn: {
+                items: [
+                    "item1", "item2", "item3", "item4", "item5",
+                    "item6", "item7", "item8", "item9", "item10"
+                ]
+            },
+            toColumn: {
+                items: [
+                    "item_1", "item_2", "item_3", "item_4", "item_5"
+                ]
+            }
+        });
+
+        var fromCount = 1, toCount = 1;
+        $("#multipicker2").multiPicker({
+            fromColumn: {
+                items: [
+                    "item1", "item2", "item3"
+                ],
+                loadMore: function(num) {
+                    if (num >= 6) {
+                        this.doneMoreFrom();
+                        return false;
+                    }
+                    var def = $.Deferred();
+                    setTimeout(function() {
+                        def.resolve([
+                            "item1" + fromCount, "item2" + fromCount
+                        ]);
+                        fromCount ++;
+                    }, 1500);
+                    return def;
+                }
+            },
+            toColumn: {
+                items: [
+                    "item_1", "item_2", "item_3"
+                ],
+                loadMore: function(num) {
+                    if (num >= 6) {
+                        this.doneMoreTo();
+                        return false;
+                    }
+                    var def = $.Deferred();
+                    setTimeout(function() {
+                        if (toCount > 2) {
+                            def.reject(-1);
+                            toCount = 2;
+                        } else {
+                            def.resolve([
+                                "item_1" + toCount, "item_2" + toCount
+                            ]);
+                            toCount ++;
+                        }
+                    }, 1500);
+                    return def;
+                }
+            }
+        });
+
+        $("#multipicker3").multiPicker({
+            minHeight: 220,
+            maxHeight: 220,
+            fromColumn: {
+                items: [
+                    "item1", "item2", "item3", "item4", "item5",
+                    "item6", "item7", "item8", "item9", "item10"
+                ]
+            },
+            toColumn: {
+                items: [
+                    "item_1", "item_2", "item_3", "item_4", "item_5"
+                ]
+            }
+        });
+
+        $("#multipicker4").multiPicker({
+            fromColumn: {
+                items: [
+                    "item1", 
+                    {
+                        name: "item2",
+                        id: "2",
+                        key1: "value1"
+                    }, 
+                    {
+                        name: "item3",
+                        id: "3",
+                        key1: "value1"
+                    },
+                    "item4",
+                    "item5"
+                ]
+            }
+        });
+
+        $("#multipicker5").multiPicker({
+            fromColumn: {
+                items: [
+                    {
+                        name: "item1",
+                        id: "1",
+                        key1: "value1"
+                    }, 
+                    {
+                        name: "item2",
+                        id: "2",
+                        key1: "value1"
+                    }, 
+                    {
+                        name: "item3",
+                        id: "3",
+                        key1: "value1"
+                    }, 
+                    {
+                        name: "item4",
+                        id: "4",
+                        key1: "value1"
+                    }, 
+                    {
+                        name: "item5",
+                        id: "5",
+                        key1: "value1"
+                    }
+                ]
+            }
+        });
+
+        $("#multipicker6").multiPicker();
+        $("#multipicker6").multiPicker('setUnSelectedItems', [
+            "item1", "item2", "item3", "item4", "item5",
+            "item6", "item7", "item8", "item9", "item10"
+        ]);
+        $("#multipicker6").multiPicker('setSelectedItems', [
+            "item_1", "item_2", "item_3", "item_4", "item_5"
+        ]);
+
+        $("#multipicker7").multiPicker({
+            fromColumn: {
+                items: [
+                    "item1", "item2", "item3", "item4", "item5"
+                ]
+            },
+            oncreated: function() {
+                $('#multipicker-text-created').text('multipikcer created!');
+            },
+            onselected: function(evt) {
+                var selectedData = this.getSelectedData();
+                $('#multipicker-text-selected').text('select: ' + evt.data + '. selected: ' + selectedData.join(', '));
+                var unSelectedData = this.getUnSelectedData();
+                $('#multipicker-text-deselected').text('unselected: ' + (unSelectedData.join(', ') || 'NONE'));
+                if (!this.isChanged()) {
+                    $('#multipicker-text-changed').text('--onchanged--');
+                }
+            },
+            ondeselected: function(evt) {
+                var unSelectedData = this.getUnSelectedData();
+                $('#multipicker-text-deselected').text('deselect: ' + evt.data + '. unselected: ' + unSelectedData.join(', '));
+                var selectedData = this.getSelectedData();
+                $('#multipicker-text-selected').text('selected: ' + (selectedData.join(', ') || 'NONE'));
+                if (!this.isChanged()) {
+                    $('#multipicker-text-changed').text('--onchanged--');
+                }
+            },
+            onchanged: function(evt) {
+                $('#multipicker-text-changed').text('change item: ' + evt.data);
+            }
+        });
+    });
+</script>
+</body>
+</html>

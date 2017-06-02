@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo QRCode | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+    
+    <h2>Render in table</h2>
+
+    <div id="qrcodeTable"></div>
+
+    <h2>Render in canvas</h2>
+
+    <div id="qrcodeCanvas"></div>
+
+</div>
+<script type="text/javascript">
+    require(['jq/qrcode'], function() {
+        // $('#qrcode').qrcode("this plugin is great");
+        $('#qrcodeTable').qrcode({
+            render  : "table",
+            text    : "http://jetienne.com"
+        });
+
+        $('#qrcodeCanvas').qrcode({
+            text    : "http://jetienne.com"
+        }); 
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Paging | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+	<h2>分页插件示例</h2>
+
+  <h3>基本示例</h3>
+  <p>分页插件默认显示第一页，每页显示 5 项条目，指定 <code>totalCount</code> 即可显示分页情况。</p>
+  <div class="example-box example-box-paging">
+    <div id="paging-ex1"></div>
+  </div>
+  <pre><code class="html">&lt;div id="paging-ex1"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#paging-ex1').paging({
+    totalCount: 50
+}); 
+&lt;/script&gt;</code></pre>
+
+  <h3>定义每页显示条目数，以及页码链接</h3>
+  <p>通过配置项 <code>numberOfPages</code> 指定每页显示的条目数，配置项方法 <code>pageUrl</code> 定义页码链接。</p>
+  <div class="example-box example-box-paging">
+    <div id="paging-ex2"></div>
+  </div>
+  <pre><code class="html">&lt;div id="paging-ex2"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+var _currentPage = (window.location.href + '').match(/p=(\d+)/);
+if (_currentPage) {
+    _currentPage = Number(_currentPage[1]);
+}
+_currentPage = _currentPage || 1;
+$('#paging-ex2').paging({
+    currentPage: _currentPage,
+    numberOfPages: 10,
+    totalCount: 50,
+    pageUrl: function(type, page, current) {
+        if (page == current) {
+            return null;
+        } else {
+            return '?p='+page;
+        }
+    }
+}); 
+&lt;/script&gt;</code></pre>
+
+  <h3>自定义页码处理（Ajax刷新内容）</h3>
+  <p>如果你的每页内容是通过 Ajax 异步获取（不跳转页面）的，则可以使用配置项方法 <code>onPageClicked</code> 自行处理。</p>
+  <div class="example-box example-box-paging">
+    <div id="paging-ex3-content">
+      <p>page content.</p>
+    </div>
+    <div id="paging-ex3"></div>
+  </div>
+  <pre><code class="html">&lt;div id="paging-ex3-content"&gt;
+  &lt;p&gt;page content.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="paging-ex3"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#paging-ex3').paging({
+    numberOfPages: 10,
+    totalCount: 50,
+    onPageClicked: function(evt, e, type, current) {
+        var pages = $(this).paging('getPages');
+        if (pages.current == pages.next && type == 'next') {
+            return;
+        }
+        if (pages.current == 1 && type == 'prev') {
+            return;
+        }
+        if (current > 0 && current <= pages.total) {
+            renderContent(current, pages.numberOfPages);
+        }
+    }
+});
+function renderContent(page, pageSize) {
+    // 模拟异步处理
+    var $content = $('#paging-ex3-content');
+    $content.html('&lt;p&gt;getting content from page ' + page + '.&lt;/p&gt;');
+    setTimeout(function() {
+        $content.html('&lt;p&gt;page content in page ' + page + '.&lt;/p&gt;');
+    }, 1000);
+}
+&lt;/script&gt;</code></pre>
+
+  <h3>更多分页控件</h3>
+  <p>可以通过配置项 <code>info</code>, <code>currentPageInfo</code>, <code>numbers</code> 和 <code>dom</code> 的配合显示更多的分页控件。</p>
+  <div class="example-box example-box-paging">
+    <div id="paging-ex4"></div>
+  </div>
+  <pre><code class="html">&lt;div id="paging-ex4"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#paging-ex4').paging({
+    // dom 用以指定分页插件显示的 DOM 结构内容，
+    // p 代表分页内容
+    // i 代表总数信息 info
+    // c 代表页码信息 currentPageInfo
+    // n 代表每页显示条目数选择框 numbers
+    dom: 'pnci',
+    info: true,
+    currentPageInfo: true,
+    numbers: true,
+    totalCount: 50
+});
+&lt;/script&gt;</code></pre>
+
+  <h3>改变每页显示条目数</h3>
+  <p>配置项方法 <code>onPageNumberChanged</code> 在切换每页显示条目数触发执行。</p>
+  <div class="example-box example-box-paging">
+    <div id="paging-ex5-content">
+      <p>page content with 5 items.</p>
+    </div>
+    <div id="paging-ex5"></div>
+  </div>
+  <pre><code class="html">&lt;div id="paging-ex5-content"&gt;
+  &lt;p&gt;page content with 5 items.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="paging-ex5"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#paging-ex5').paging({
+    dom: 'pnci',
+    info: true,
+    currentPageInfo: true,
+    numbers: true,
+    onPageNumberChanged: function(evt, e, oldNum) {
+        var newNum = $(e.target).val() || oldNum;
+        $('#paging-ex5-content').html(
+            '&lt;p&gt;page content with ' + newNum + ' items.&lt;/p&gt;'
+        );
+    },
+    totalCount: 50
+});  
+&lt;/script&gt;</code></pre>
+
+  <h3>水平对齐方式</h3>
+  <p>通过配置项 <code>alignment</code> 可以定义分页显示的水平对齐方式。</p>
+  <div class="example-box example-box-paging">
+    <p class="text-center">居中对齐 <code>alignment: "center"</code>：</p>
+    <div id="paging-ex6"></div>
+    <p class="text-right">居右对齐 <code>alignment: "right"</code>：</p>
+    <div id="paging-ex6-1"></div>
+  </div>
+  <pre><code class="html">&lt;div id="paging-ex6"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#paging-ex6').paging({
+    alignment: "center", // 或居右对齐 "right"
+    totalCount: 50
+});
+&lt;/script&gt;</code></pre>
+
+  <h3>其他尺寸</h3>
+  <p>通过配置项 <code>size</code> 可以定义分页以其他尺寸显示。</p>
+  <div class="example-box example-box-paging">
+    <p>更大尺寸 <code>size: "large"</code>：</p>
+    <div id="paging-ex7"></div>
+    <p>更小尺寸 <code>size: "small"</code>：</p>
+    <div id="paging-ex7-1"></div>
+  </div>
+  <pre><code class="html">&lt;div id="paging-ex7"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#paging-ex7').paging({
+    size: "large", // 或更小尺寸 "small"
+    totalCount: 50
+});
+&lt;/script&gt;</code></pre>
+
+  <h3>工具提示</h3>
+  <p>通过配置项 <code>tooltip</code> 可以定义是否以工具提示的方式显示页码按钮的标题提示。</p>
+  <div class="example-box example-box-paging">
+    <div id="paging-ex8"></div>
+  </div>
+  <pre><code class="html">&lt;div id="paging-ex8"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#paging-ex8').paging({
+    tooltip: true,
+    totalCount: 50
+});
+&lt;/script&gt;</code></pre>
+
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/paging'], function() {
+		  $('#paging-ex1').paging({
+          totalCount: 50
+      });
+
+      var _currentPage = (window.location.href + '').match(/p=(\d+)/);
+      if (_currentPage) {
+          _currentPage = Number(_currentPage[1]);
+      }
+      _currentPage = _currentPage || 1;
+      $('#paging-ex2').paging({
+          currentPage: _currentPage,
+          numberOfPages: 10,
+          totalCount: 50,
+          pageUrl: function(type, page, current) {
+              if (page == current) {
+                  return null;
+              } else {
+                  return '?p='+page;
+              }
+          }
+      });
+
+      $('#paging-ex3').paging({
+          numberOfPages: 10,
+          totalCount: 50,
+          onPageClicked: function(evt, e, type, current) {
+              var pages = $(this).paging('getPages');
+              if (pages.current == pages.next && type == 'next') {
+                  return;
+              }
+              if (pages.current == 1 && type == 'prev') {
+                  return;
+              }
+              if (current > 0 && current <= pages.total) {
+                  renderContent(current, pages.numberOfPages);
+              }
+          }
+      });
+      function renderContent(page, pageSize) {
+          // 模拟异步处理
+          var $content = $('#paging-ex3-content');
+          $content.html('<p>getting content from page ' + page + '.</p>');
+          setTimeout(function() {
+              $content.html('<p>page content in page ' + page + '.</p>');
+          }, 1000);
+      }
+
+      $('#paging-ex4').paging({
+          dom: 'pnci',
+          info: true,
+          currentPageInfo: true,
+          numbers: true,
+          totalCount: 50
+      });
+
+      $('#paging-ex5').paging({
+          dom: 'pnci',
+          info: true,
+          currentPageInfo: true,
+          numbers: true,
+          onPageNumberChanged: function(evt, e, oldNum) {
+              var newNum = $(e.target).val() || oldNum;
+              $('#paging-ex5-content').html(
+                  '<p>page content with ' + newNum + ' items.</p>'
+              );
+          },
+          totalCount: 50
+      });
+
+      $('#paging-ex6').paging({
+          alignment: "center",
+          totalCount: 50
+      });
+
+      $('#paging-ex6-1').paging({
+          alignment: "right",
+          totalCount: 50
+      });
+
+      $('#paging-ex7').paging({
+          size: "large",
+          totalCount: 50
+      });
+
+      $('#paging-ex7-1').paging({
+          size: "small",
+          totalCount: 50
+      });
+
+      $('#paging-ex8').paging({
+          tooltip: true,
+          totalCount: 50
+      });
+	});
+</script>
+</body>
+</html>

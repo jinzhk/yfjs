@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Spinbox | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+  <h2>Spinbox 示例</h2>
+  <p>Spinbox 是一个对原生的输入框进行数字输入增强的组件，模拟 HTML5 的新增元素 <code>&lt;input type="number"&gt;</code>。</p>
+
+  <h3>设置默认值及 3 位数字长度限制</h3>
+  <p>需要使用 Spinbox 默认类名 <code>.spinbox</code> 包裹输入框和 <code>.spinbox-up</code>/<code>.spinbox-down</code> 递增/递减 按钮。可以使用 <code>.digits-3</code> 类使数字框显示为 3 个数字的宽度。</p>
+  <div class="example-box">
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <label for="spinboxIllustration">spinbox: </label>
+        <div id="spinboxIllustration" class="spinbox digits-3" data-provide="spinbox">
+          <input id="overviewSpinboxInput" type="text" value="3" class="form-control input-mini spinbox-input">
+          <div class="spinbox-buttons btn-group btn-group-vertical">
+            <button type="button" class="btn btn-default btn-xs spinbox-up">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+              <span class="sr-only">Increase</span>
+            </button>
+            <button type="button" class="btn btn-default btn-xs spinbox-down">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+              <span class="sr-only">Decrease</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <pre><code class="html">&lt;div id="spinboxIllustration" class="spinbox digits-3" data-provide="spinbox"&gt;
+  &lt;input id="overviewSpinboxInput" type="text" value="3" class="form-control input-mini spinbox-input"&gt;
+  &lt;div class="spinbox-buttons btn-group btn-group-vertical"&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-up"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-up"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Increase&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-down"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-down"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Decrease&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  
+  <h3>长按时禁止自动滚动</h3>
+  <div class="example-box">
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <div id="mySpinboxWithHold" class="spinbox digits-3">
+          <input type="text" value="3" class="form-control input-mini spinbox-input">
+          <div class="spinbox-buttons btn-group btn-group-vertical">
+            <button type="button" class="btn btn-default btn-xs spinbox-up">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+              <span class="sr-only">Increase</span>
+            </button>
+            <button type="button" class="btn btn-default btn-xs spinbox-down">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+              <span class="sr-only">Decrease</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <pre><code class="html">&lt;div id="mySpinboxWithHold" class="spinbox digits-3"&gt;
+  &lt;input type="text" value="3" class="form-control input-mini spinbox-input"&gt;
+  &lt;div class="spinbox-buttons btn-group btn-group-vertical"&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-up"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-up"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Increase&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-down"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-down"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Decrease&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#mySpinboxWithHold').spinbox({
+    hold: false
+});  
+&lt;/script&gt;</code></pre>
+
+  <h3>设置单位</h3>
+  <div class="example-box">
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <div id="mySpinboxWithUnits" class="spinbox digits-3">
+          <input type="text" value="3px" class="form-control input-mini spinbox-input">
+          <div class="spinbox-buttons btn-group btn-group-vertical">
+            <button type="button" class="btn btn-default btn-xs spinbox-up">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+              <span class="sr-only">Increase</span>
+            </button>
+            <button type="button" class="btn btn-default btn-xs spinbox-down">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+              <span class="sr-only">Decrease</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <pre><code class="html">&lt;div id="mySpinboxWithUnits" class="spinbox digits-3"&gt;
+  &lt;input type="text" value="3px" class="form-control input-mini spinbox-input"&gt;
+  &lt;div class="spinbox-buttons btn-group btn-group-vertical"&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-up"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-up"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Increase&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-down"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-down"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Decrease&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    
+&lt;script type="text/javascript"&gt;
+$('#mySpinboxWithUnits').spinbox({
+    units: ['px']
+});
+&lt;/script&gt;</code></pre>
+
+  <h3>调用方法</h3>
+  <div class="example-box">
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <div id="mySpinboxWithDefault" class="spinbox digits-3" data-provide="spinbox">
+          <input id="mySpinboxWithDefaultInput" type="text" value="3" class="form-control input-mini spinbox-input" disabled="disabled">
+          <div class="spinbox-buttons btn-group btn-group-vertical">
+            <button type="button" class="btn btn-default btn-xs spinbox-up">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+              <span class="sr-only">Increase</span>
+            </button>
+            <button type="button" class="btn btn-default btn-xs spinbox-down">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+              <span class="sr-only">Decrease</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <br>
+    <div class="btn-group">
+      <button id="btnSpinboxSetValue" type="button" class="btn btn-default">set value (4)</button>
+      <button id="btnSpinboxGetValue" type="button" class="btn btn-info">get value</button>
+      <button id="btnEnableSpinbox" type="button" class="btn btn-primary">enable</button>
+      <button id="btnDisableSpinbox" type="button" class="btn btn-warning">disable</button>
+      <button id="btnSpinboxDestroy" type="button" class="btn btn-danger">destroy</button>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div id="mySpinboxWithDefault" class="spinbox digits-3" data-provide="spinbox"&gt;
+  &lt;input id="mySpinboxWithDefaultInput" type="text" value="3" class="form-control input-mini spinbox-input" disabled="disabled"&gt;
+  &lt;div class="spinbox-buttons btn-group btn-group-vertical"&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-up"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-up"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Increase&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-down"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-down"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Decrease&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#btnSpinboxSetValue').click(function() {
+    $('#mySpinboxWithDefault').spinbox('value', 4);
+});
+$('#btnSpinboxGetValue').click(function() {
+    alert("value: " + $('#mySpinboxWithDefault').spinbox('value'));
+});
+$('#btnEnableSpinbox').click(function() {
+    $('#mySpinboxWithDefault').spinbox('enable');
+});
+$('#btnDisableSpinbox').click(function() {
+    $('#mySpinboxWithDefault').spinbox('disable');
+});
+$('#btnSpinboxDestroy').click(function() {
+    $('#mySpinboxWithDefault').spinbox('destroy');
+});
+&lt;/script&gt;</code></pre>
+
+  <h3>事件监听</h3>
+  <div class="example-box">
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <div id="mySpinboxWithEvents" class="spinbox digits-3" data-provide="spinbox">
+          <input type="text" value="3" class="form-control input-mini spinbox-input">
+          <div class="spinbox-buttons btn-group btn-group-vertical">
+            <button type="button" class="btn btn-default btn-xs spinbox-up">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+              <span class="sr-only">Increase</span>
+            </button>
+            <button type="button" class="btn btn-default btn-xs spinbox-down">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+              <span class="sr-only">Decrease</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <pre><code class="html">&lt;div id="mySpinboxWithEvents" class="spinbox digits-3" data-provide="spinbox"&gt;
+  &lt;input type="text" value="3" class="form-control input-mini spinbox-input"&gt;
+  &lt;div class="spinbox-buttons btn-group btn-group-vertical"&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-up"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-up"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Increase&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button type="button" class="btn btn-default btn-xs spinbox-down"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-down"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Decrease&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    
+&lt;script type="text/javascript"&gt;
+$('#mySpinboxWithEvents').on('changed.bs.spinbox', function(event, value) {
+    console.log('Current spinbox value: ' + value);
+});
+&lt;/script&gt;</code></pre>
+
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/spinbox'], function() {
+      $('#mySpinboxWithHold').spinbox({
+          hold: false
+      });
+
+      $('#mySpinboxWithUnits').spinbox({
+          units: ['px']
+      });
+
+      var $spinboxDefault = $('#mySpinboxWithDefault');
+      $('#btnSpinboxSetValue').click(function() {
+          $spinboxDefault.spinbox('value', 4);
+      });
+      $('#btnSpinboxGetValue').click(function() {
+          alert("value: " + $spinboxDefault.spinbox('value'));
+      });
+      $('#btnEnableSpinbox').click(function() {
+          $spinboxDefault.spinbox('enable');
+      });
+      $('#btnDisableSpinbox').click(function() {
+          $spinboxDefault.spinbox('disable');
+      });
+      $('#btnSpinboxDestroy').click(function() {
+          $spinboxDefault.spinbox('destroy');
+      });
+
+      $('#mySpinboxWithEvents').on('changed.bs.spinbox', function(event, value) {
+          console.log('Current spinbox value: ' + value);
+      });
+	});
+</script>
+</body>
+</html>

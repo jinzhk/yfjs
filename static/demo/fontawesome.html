@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>FontAwesome Icons | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+  <h2>FontAwesome 图标 <small id="fa-no"></small></h2>
+  <p>
+    也可在 <a href="http://fontawesome.io/icons/" target="_blank">官方网站</a> 查看。
+  </p>
+  <ul class="list-unstyled clearfix" id="example-fa"></ul>
+</div>
+<script type="text/javascript">
+  $.ajax({
+    url: "../yfjs-lib/minified/styles/base.css",
+    success: function(resp, textStatus, xhr) {
+      var cssRules = resp + '', 
+          matches = null,
+          reg_fa = /\.fa\-([^\:]+)\:{1,2}before/g;
+      var reg_fa_selector = /^\.fa\-([^\:]+)\:{1,2}before$/,
+          reg_fa_content = /^\{\s*content:\s*"\\([^"]+)";?\s*\}$/;
+      var faList = [], faExampleHtml = '';
+      while (matches = reg_fa.exec(cssRules)) {
+          var selector = '';
+          for (var i = matches.index; i < cssRules.length; i++) {
+              if (cssRules[i] != "{") {
+                  selector += cssRules[i];
+              } else {
+                break;
+              }
+          }
+          var selectors = $.trim(selector).split(/,\s*/);
+          var faSelector = $.map(selectors, function(item, idx) {
+              return item.replace(/^\./, "").replace(/\:{1,2}before$/, "");
+          }).join(' ');
+          var faName = $.map(selectors, function(item, idx) {
+              return item.replace(reg_fa_selector, "$1");
+          }).join(' ');
+          var content = '';
+          for (var j = i; j < cssRules.length; j++) {
+              if (cssRules[j] != "}") {
+                  content += cssRules[j];
+              } else {
+                j += 1;
+                content += '}';
+                break;
+              }
+          }
+          content = content.replace(reg_fa_content, '$1');
+          faList.push({
+              selector: faSelector,
+              name: faName,
+              content: content
+          });
+          var exampleHtml = $(
+            '<li><a href="javascript:;"><i class="fa fa-fw" aria-hidden="true"></i></a></li>'
+          );
+          var faSelectors = faSelector.split(/\s+/);
+          exampleHtml
+            .find('.fa').addClass(faSelectors[0])
+            .end()
+            .children('a').append(faName.split(/\s+/).join(' / '))
+            .end()
+            .append(
+              '<p class="help-block">' +
+                'Unicode: ' + content + 
+                '&emsp;<a href="javascript:;">实例 &raquo;</a>' +
+              '</p>'
+            );
+          var exmapleCodeHtml = '';
+          for (var k=0; k<faSelectors.length; k++) {
+            exampleHtml.append(
+              '<pre class="fade">'+
+                '<code class="html">' + 
+                  escapeHTML('<i class="fa ' + faSelectors[k] + '"></i>') + 
+                '</code>' +
+              '</pre>'
+            );
+          }
+          exampleHtml.append(exmapleCodeHtml);
+          if (faExampleHtml) {
+              faExampleHtml = faExampleHtml.add(exampleHtml);
+          } else {
+              faExampleHtml = exampleHtml;
+          }
+          reg_fa.lastIndex = j;
+      }
+      var reg_fa_version = /fontawesome-webfont\.eot\?v=(\d+(\.\d+)*)/,
+          match_fa_version, faVersion;
+      if (match_fa_version = cssRules.match(reg_fa_version)) {
+          faVersion = match_fa_version[1];
+      }
+      if (faExampleHtml) {
+          $('#fa-no').html(
+              '（' + 
+                (faVersion ? 'Verison: ' + faVersion + '&emsp;' : '') + 
+                'Icons: ' + faList.length + 
+              '）'
+            );
+          var $exampleFa = $('#example-fa');
+          $exampleFa.html(faExampleHtml).on("click", "li>a,li>.help-block>a", function() {
+              var $inPre = $('li>pre.in', $exampleFa);
+              var $this = $(this),
+                  $li = $this.parents('li:first'),
+                  $pre = $li.children('pre');
+              var offsetTop = 5;
+              $pre.each(function() {
+                  var $pre = $(this);
+                  var prevTop = $pre.css('top');
+                  $pre.css('top', $this.position().top + $this.outerHeight() + offsetTop);
+                  offsetTop += parseInt($pre.outerHeight()) + 5;
+                  if ($pre.hasClass("in") && prevTop == $pre.css('top')) {
+                      $pre.removeClass("in");
+                  } else {
+                      $pre.addClass("in");
+                  }
+                  if ($inPre[0] !== $pre[0]) {
+                      $inPre.removeClass("in");
+                  }
+              });
+          });
+          $(document).on("click", function(evt) {
+              var $target = $(evt.target);
+              if (!$target.is("a") && !$target.is(".btn-clipboard")) {
+                  $('li>pre.in', $exampleFa).removeClass("in");
+              }
+          });
+          $('body').append(
+            '<script src="../js/yfjs-demo-highlight.js" type="text/javascript"><\/script>'
+          )
+      }
+    },
+    error: function() {
+       // load error
+    }
+  });
+  function escapeHTML(html) {
+      return $.trim(html).replace(/\</g, "&lt;").replace(/\>/g, "&gt;")
+  }
+</script>
+</body>
+</html>

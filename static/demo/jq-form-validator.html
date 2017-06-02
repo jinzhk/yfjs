@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Form Validator | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+
+    <h1>jquery validator fixed to bootstrap3.</h1>
+
+    <!-- 水平排列的表单 -->
+    <form class="form-horizontal"  id="form1" action="#" role="form">
+        <div class="form-group">
+            <label for="mail" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-6">
+                <input name="mail" type="text" class="form-control" id="mail" placeholder="xxxx@qq.com" data-error-placement="bottom left">
+            </div>
+            <div class="col-sm-offset-2 col-sm-10">
+                <span class="help-block" style="color: #000000;padding-top: 10px;">请填写真实的邮箱，在注册之前会将验证码发送到你的邮箱内.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-6">
+                <input name="name" type="text" class="form-control" id="name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="pwd" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-6">
+                <input name="pwd" type="password" class="form-control" id="pwd">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_pwd" class="col-sm-2 control-label">确认密码</label>
+            <div class="col-sm-6">
+                <input name="confirm_pwd" type="password" class="form-control" id="confirm_pwd">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="vercode" class="col-sm-2 control-label">验证码</label>
+            <div class="col-sm-6">
+                <input name="vercode" type="text" class="form-control" id="vercode">
+                <button class="btn btn-link" type="button" data-toggle="tooltip" title="验证码会以邮件的方式发送到你的上面填写的邮箱内" data-placement="right" id="getvercode" >获取验证码</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="vercode" class="col-sm-2 control-label">备注</label>
+            <div class="col-sm-6">
+                <textarea name="vercode2"  class="form-control" id="vercode2" rows="3"></textarea>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" id="submit1" class="btn btn-primary col-sm-4">注册</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="reset" id="reset1" class="btn btn-default col-sm-4">重置</button>
+            </div>
+        </div>
+
+
+    </form>
+
+    <!-- 基本表单 -->
+    <div class="container">
+        <h1>基本表单</h1>
+        <form role="form" id="form2">
+            <div class="form-group has-error">
+                <label for="exampleInputEmail1" >Email address</label>
+                <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" >Password</label>
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group ">
+                <label for="exampleInputFile">File input</label>
+                <input name="file_up" type="File" id="exampleInputFile" class="form-control" check-type="required">
+                <p class="help-block">Example block-level help text here.</p>
+            </div>
+
+            <div class="checkbox ">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
+            </div>
+
+            <button type="submit" id="submit2" class="btn btn-primary col-sm-4">提交</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h1>内联表单</h1>
+        <form class="form-inline" role="form" id="form3">
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputPassword2">Password</label>
+                <input name="password" type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input name="check_remember" type="checkbox" > Remember me<span></span>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit3">确定</button>
+        </form>
+    </div>
+
+    <hr/>
+    <footer class="text-center">更详细的接口文档推荐 <a href="http://www.w3cschool.cc/jquery/jquery-plugin-validate.html?utm_source=tuicool" target="_blank">jQuery Validate | w3cSchool</a> 或者 <a href="http://jqueryvalidation.org/documentation/" target="_blank">jQuery Validate 官网</a>.</footer>
+    <hr/>
+</div>
+<script type="text/javascript">
+    require(['jq/form/validator-bs3'], function() {
+        var form1Validator = $("#form1").validate({
+            // default:
+            // errorContainer: $('body'),
+            // in current form:
+            // errorContainer: '#form1',
+            // or:
+            // errorContainer: $('#form1'),
+            // or:
+            errorContainer: '_form',
+            rules: {
+                mail: {
+                    required: true,
+                    email: true
+                },
+                name: {
+                    required: true,
+                    remote: {
+                        url: 'http://localhost:8080/cloud-web/resources/data/bservice/oss/bucket.txt',
+                        type: 'get'
+                    }
+                },
+                pwd: {
+                    required: true,
+                    minlength: 6
+                },
+                confirm_pwd: {
+                    required: true,
+                    minlength: 6,
+                    equalTo: "#pwd"
+                }
+            }
+        });
+        $("#reset1").on('click', function(e) {
+            e.preventDefault();
+            form1Validator.resetForm();
+        });
+        $("#form2").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true
+                },
+                file_up: {
+                    required: true
+                }
+            }
+        });
+        $("#form3").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
