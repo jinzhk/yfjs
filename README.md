@@ -42,7 +42,7 @@ Node.js 自 `0.6.x` 系列版本开始集成了 NPM (Node Package Manager, Node.
 
 如果您是第一次启动文档页面，需要先运行
 
-    npm build
+    npm run build
 
 如果您更改了文档内容，想要查看更改效果，运行
 
