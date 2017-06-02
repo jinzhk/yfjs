@@ -12,9 +12,14 @@
 // https://github.com/umdjs/umd/blob/master/jqueryPlugin.js
 
 /*================================
- * Updated by jinzhk @ 2015/5/18
+ * Updated by jinzhk on 2015/5/18
  * 1、原fu标记改为了bs
- * 2、data-initialize初始化接口改为了data-spy，以符合bootstrap风格
+ * 2、data-initialize 初始化接口改为了 data-spy，以符合bootstrap风格
+ * 
+ * Updated by jinzhk on 2017/5/8
+ * 1. 添加了属性初始化接口 data-provide，以符合组件库整体风格（原 data-spy 方式依旧保留）
+ * 2. 添加了初始化对元素禁用状态的判断
+ * 3. 更改了滚轮事件处理，使与递增/递减按钮方向一致
  * ===============================
  */
 
@@ -47,6 +52,20 @@
 		this.$element.on('focusout.bs.spinbox', this.$input, $.proxy(this.change, this));
 		this.$element.on('keydown.bs.spinbox', this.$input, $.proxy(this.keydown, this));
 		this.$element.on('keyup.bs.spinbox', this.$input, $.proxy(this.keyup, this));
+
+		// init disable option
+		if (!this.options.disabled) {
+			this.options.disabled = 
+				this.$element.hasClass('disabled') 
+				|| this.$input.prop('disabled') || this.$input.hasClass('disabled');
+		}
+		if (!this.options.disabled) {
+			var $btnUp = $('.spinbox-up', this.$element),
+				$btnDown = $('.spinbox-down', this.$element);
+			this.options.disabled = 
+				$btnUp.prop('disabled') || $btnUp.hasClass('disabled')
+				$btnDown.prop('disabled') || $btnDown.hasClass('disabled')
+		}
 
 		this.bindMousewheelListeners();
 		this.mousewheelTimeout = {};
@@ -95,13 +114,17 @@
 		constructor: Spinbox,
 
 		destroy: function () {
-			this.$element.remove();
 			// any external bindings
 			// [none]
 			// set input value attrbute
+			var $inputs = $([]);
 			this.$element.find('input').each(function () {
-				$(this).attr('value', $(this).val());
+				var $this = $(this);
+				$this.attr('value', $this.val());
+				$inputs = $inputs.add($this);
 			});
+			// replace input
+			this.$element.replaceWith($inputs);
 			// empty elements to return to original markup
 			// [none]
 			// returns string of markup
@@ -371,9 +394,9 @@
 				}, 300);
 
 				if (delta < 0) {
-					this.step(true);
-				} else {
 					this.step(false);
+				} else {
+					this.step(true);
 				}
 
 				if (e.preventDefault) {
@@ -435,7 +458,7 @@
 
 	// DATA-API
 
-	$(document).on('mousedown.bs.spinbox.data-api', '[data-spy="spinbox"]', function (e) {
+	$(document).on('mousedown.bs.spinbox.data-api', '[data-spy="spinbox"],[data-provide="spinbox"]', function (e) {
 		var $control = $(e.target).closest('.spinbox');
 		if (!$control.data('bs.spinbox')) {
 			$control.spinbox($control.data());
@@ -444,7 +467,7 @@
 
 	// Must be domReady for AMD compatibility
 	$(function () {
-		$('[data-spy="spinbox"]').each(function () {
+		$('[data-spy="spinbox"],[data-provide="spinbox"]').each(function () {
 			var $this = $(this);
 			if (!$this.data('bs.spinbox')) {
 				$this.spinbox($this.data());

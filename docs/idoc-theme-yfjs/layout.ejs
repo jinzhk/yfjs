@@ -1,0 +1,20 @@
+<% include head.ejs %>
+
+<div class="container">
+
+    <div class="page-toc">
+        <%- toc_html %>
+        <ul class="sidetools">
+	      <li>
+	        <a class="link-back-top" href="javascript:;">返回顶部</a>
+	      </li>
+	    </ul>
+    </div>
+    
+    <div class="content markdown-body">
+        <%- markdown_html %>
+    </div>
+
+</div>
+
+<% include footer.ejs %>

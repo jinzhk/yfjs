@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>YFjs SPA Demo</title>
+    <script type="text/javascript">
+        (function(window, document) {
+            var PROTOCOL = document.location.protocol || '';
+            var HOST = document.location.hostname || document.location.host || '';
+            var PORT = document.location.port || '';
+
+            var ROOT_URL = (function() {
+                var rootUrl;
+
+                var portEnds = ':' + PORT,
+                        posPortEnd = HOST.indexOf(portEnds);
+
+                if (posPortEnd == HOST.length - portEnds.length) {
+                    HOST = HOST.substring(0, posPortEnd);
+                }
+
+                rootUrl = PROTOCOL + '//' + HOST;
+
+                if (PORT) {
+                    rootUrl += portEnds;
+                }
+
+                if (rootUrl === '//') {
+                    rootUrl = '';
+                }
+
+                rootUrl += '/';
+
+                return rootUrl;
+            })();
+
+            var path = (document.location.href || '').replace(ROOT_URL, '/');
+
+            var posHash = path.indexOf('#');
+            if (posHash > -1) {
+                path = path.substring(0, posHash);
+            }
+
+            var posQuery = path.indexOf('?');
+            if (posQuery > -1) {
+                path = path.substring(0, posQuery);
+            }
+
+            if (!/\/$/.test(path)) {
+                var posLastSlash = path.lastIndexOf('/');
+                if (posLastSlash > -1) {
+                    path = path.substring(0, posLastSlash + 1);
+                } else {
+                    path = path + '/';
+                }
+            }
+
+            document.writeln('<base href="'+path+'"/>');
+        })(window || this || {}, document || ((window || this || {}).document || {}));
+    </script>
+    <!-- YFjs Lib -->
+    <script src="../../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-cache="false"
+            data-debug="true"
+            data-base-require="app"
+            data-main="app">
+    </script>
+    <!-- stylesheets -->
+    <link href="assets/css/core.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+</body>
+</html>

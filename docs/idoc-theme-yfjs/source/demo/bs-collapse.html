@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Collapse | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+	<h2>实例</h2>
+  <p>Click the buttons below to show and hide another element via class changes:</p>
+  <ul>
+    <li><code>.collapse</code> hides content</li>
+    <li><code>.collapsing</code> is applied during transitions</li>
+    <li><code>.collapse.in</code> shows content</li>
+  </ul>
+  <p>You can use a link with the <code>href</code> attribute, or a button with the <code>data-target</code> attribute. In both cases, the <code>data-toggle="collapse"</code> is required.</p>
+  <div class="example-box">
+    <p>
+      <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Link with href
+      </a>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Button with data-target
+      </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="well">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      </div>
+    </div>
+  </div>
+  <pre><code class="html">&lt;a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"&gt;
+  Link with href
+&lt;/a&gt;
+&lt;button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"&gt;
+  Button with data-target
+&lt;/button&gt;
+&lt;div class="collapse" id="collapseExample"&gt;
+  &lt;div class="well"&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <h3>Accordion example</h3>
+  <p>Extend the default collapse behavior to create an accordion with the panel component.</p>
+  <div class="example-box" data-example-id="collapse-accordion">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Collapsible Group Item #1
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Collapsible Group Item #2
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Collapsible Group Item #3
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"&gt;
+  &lt;div class="panel panel-default"&gt;
+    &lt;div class="panel-heading" role="tab" id="headingOne"&gt;
+      &lt;h4 class="panel-title"&gt;
+        &lt;a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"&gt;
+          Collapsible Group Item #1
+        &lt;/a&gt;
+      &lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"&gt;
+      &lt;div class="panel-body"&gt;
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel panel-default"&gt;
+    &lt;div class="panel-heading" role="tab" id="headingTwo"&gt;
+      &lt;h4 class="panel-title"&gt;
+        &lt;a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"&gt;
+          Collapsible Group Item #2
+        &lt;/a&gt;
+      &lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"&gt;
+      &lt;div class="panel-body"&gt;
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="panel panel-default"&gt;
+    &lt;div class="panel-heading" role="tab" id="headingThree"&gt;
+      &lt;h4 class="panel-title"&gt;
+        &lt;a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"&gt;
+          Collapsible Group Item #3
+        &lt;/a&gt;
+      &lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree"&gt;
+      &lt;div class="panel-body"&gt;
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <p>It's also possible to swap out <code>.panel-body</code>s with <code>.list-group</code>s.</p>
+  <div class="panel-group" role="tablist">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="false" aria-controls="collapseListGroup1">
+            Collapsible list group
+          </a>
+        </h4>
+      </div>
+      <div id="collapseListGroup1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="false" style="height: 0px;">
+        <ul class="list-group">
+          <li class="list-group-item">Bootply</li>
+          <li class="list-group-item">One itmus ac facilin</li>
+          <li class="list-group-item">Second eros</li>
+        </ul>
+        <div class="panel-footer">Footer</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout callout-warning" id="callout-collapse-accessibility">
+    <h4>Make expand/collapse controls accessible</h4>
+    <p>Be sure to add <code>aria-expanded</code> to the control element. This attribute explicitly defines the current state of the collapsible element to screen readers and similar assistive technologies. If the collapsible element is closed by default, it should have a value of <code>aria-expanded="false"</code>. If you've set the collapsible element to be open by default using the <code>in</code> class, set <code>aria-expanded="true"</code> on the control instead. The plugin will automatically toggle this attribute based on whether or not the collapsible element has been opened or closed.</p>
+    <p>Additionally, if your control element is targeting a single collapsible element – i.e. the <code>data-target</code> attribute is pointing to an <code>id</code> selector – you may add an additional <code>aria-controls</code> attribute to the control element, containing the <code>id</code> of the collapsible element. Modern screen readers and similar assistive technologies make use of this attribute to provide users with additional shortcuts to navigate directly to the collapsible element itself.</p>
+  </div>
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/collapse'], function() {
+		
+	});
+</script>
+</body>
+</html>

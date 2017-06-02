@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Wizard | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+  <h2>步骤向导示例</h2>
+  
+  <p>A wizard divides a complex goal into multiple steps by separating sub-tasks or content into panes. You can add or remove panes. Completed steps remain clickable.</p>
+  
+  <h3>基本示例</h3>
+  <div class="example-box">
+    <div class="wizard-step" id="wizardIllustration" data-toggle="wizardStep">
+      <ul class="steps">
+        <li data-step="1" data-name="campaign" class="complete">
+          <span class="badge badge-success">1</span>Campaign<span class="chevron"></span>
+        </li>
+        <li data-step="2" class="active">
+          <span class="badge badge-info">2</span>Recipients<span class="chevron"></span>
+        </li>
+        <li data-step="3" data-name="template" class="">
+          <span class="badge">3</span>Template<span class="chevron"></span>
+        </li>
+      </ul>
+      <div class="actions">
+        <button type="button" class="btn btn-default btn-prev">
+          <span class="glyphicon glyphicon-arrow-left"></span>Prev
+        </button>
+        <button type="button" class="btn btn-default btn-next" data-last="Complete">
+          Next<span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+      </div>
+      <div class="step-content">
+        <div class="step-pane sample-pane alert" data-step="1">
+          <h4>Setup Campaign</h4>
+          <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Beetroot water spinach okra water chestnut ricebean pea catsear courgette.</p>
+        </div>
+        <div class="step-pane sample-pane bg-info alert active" data-step="2">
+          <h4>Choose Recipients</h4>
+          <p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard. </p>
+        </div>
+        <div class="step-pane sample-pane bg-danger alert" data-step="3">
+          <h4>Design Template</h4>
+          <p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jícama salsify. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="wizard-step" id="wizardIllustration" data-toggle="wizardStep"&gt;
+  &lt;ul class="steps"&gt;
+    &lt;li data-step="1" data-name="campaign" class="complete"&gt;
+      &lt;span class="badge badge-success"&gt;1&lt;/span&gt;Campaign&lt;span class="chevron"&gt;&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li data-step="2" class="active"&gt;
+      &lt;span class="badge badge-info"&gt;2&lt;/span&gt;Recipients&lt;span class="chevron"&gt;&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li data-step="3" data-name="template" class=""&gt;
+      &lt;span class="badge"&gt;3&lt;/span&gt;Template&lt;span class="chevron"&gt;&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div class="actions"&gt;
+    &lt;button type="button" class="btn btn-default btn-prev"&gt;
+      &lt;span class="glyphicon glyphicon-arrow-left"&gt;&lt;/span&gt;Prev
+    &lt;/button&gt;
+    &lt;button type="button" class="btn btn-default btn-next" data-last="Complete"&gt;
+      Next&lt;span class="glyphicon glyphicon-arrow-right"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="step-content"&gt;
+    &lt;div class="step-pane sample-pane alert" data-step="1"&gt;
+      &lt;h4&gt;Setup Campaign&lt;/h4&gt;
+      &lt;p&gt;Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Beetroot water spinach okra water chestnut ricebean pea catsear courgette.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="step-pane sample-pane bg-info alert active" data-step="2"&gt;
+      &lt;h4&gt;Choose Recipients&lt;/h4&gt;
+      &lt;p&gt;Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard. &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="step-pane sample-pane bg-danger alert" data-step="3"&gt;
+      &lt;h4&gt;Design Template&lt;/h4&gt;
+      &lt;p&gt;Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jícama salsify. &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    
+  <h3>调用方法</h3>
+  <p>Wrap the input and wizard button within <code>.wizard-step</code></p>
+  <div class="example-box">
+    <div class="wizard-step" id="myWizard">
+      <ul class="steps">
+        <li data-step="1" data-name="campaign" class="active">
+          <span class="badge badge-info">1</span>Campaign<span class="chevron"></span>
+        </li>
+        <li data-step="2">
+          <span class="badge">2</span>Recipients<span class="chevron"></span>
+        </li>
+        <li data-step="3" data-name="template">
+          <span class="badge">3</span>Template<span class="chevron"></span>
+        </li>
+      </ul>
+      <div class="actions">
+        <button type="button" class="btn btn-default btn-prev" disabled="disabled">
+          <span class="glyphicon glyphicon-arrow-left"></span>Prev
+        </button>
+        <button type="button" class="btn btn-default btn-next" data-last="Complete">
+          Next<span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+      </div>
+      <div class="step-content">
+        <div class="step-pane sample-pane alert active" data-step="1">
+          <h4>Setup Campaign</h4>
+          <p>Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Beetroot water spinach okra water chestnut ricebean pea catsear courgette.</p>
+        </div>
+        <div class="step-pane sample-pane bg-info alert" data-step="2">
+          <h4>Choose Recipients</h4>
+          <p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard. </p>
+        </div>
+        <div class="step-pane sample-pane bg-danger alert" data-step="3">
+          <h4>Design Template</h4>
+          <p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jícama salsify. </p>
+        </div>
+      </div>
+    </div>
+
+    <h4 id="wizard-examples-sample-methods">Sample Methods</h4>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default" id="btnWizardPrev">previous</button>
+      <button type="button" class="btn btn-default" id="btnWizardNext">next</button>
+      <button type="button" class="btn btn-default" id="btnWizardStep">log current step index</button>
+      <button type="button" class="btn btn-default" id="btnWizardSetStep">jump to step 3</button>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default" id="btnWizardAddSteps">add step at index 2</button>
+      <button type="button" class="btn btn-default" id="btnWizardRemoveStep">remove step 3</button>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="wizard-step" id="myWizard"&gt;
+  &lt;ul class="steps"&gt;
+    &lt;li data-step="1" data-name="campaign" class="active"&gt;
+      &lt;span class="badge badge-info"&gt;1&lt;/span&gt;Campaign&lt;span class="chevron"&gt;&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li data-step="2"&gt;
+      &lt;span class="badge"&gt;2&lt;/span&gt;Recipients&lt;span class="chevron"&gt;&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li data-step="3" data-name="template"&gt;
+      &lt;span class="badge"&gt;3&lt;/span&gt;Template&lt;span class="chevron"&gt;&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div class="actions"&gt;
+    &lt;button type="button" class="btn btn-default btn-prev" disabled="disabled"&gt;
+      &lt;span class="glyphicon glyphicon-arrow-left"&gt;&lt;/span&gt;Prev
+    &lt;/button&gt;
+    &lt;button type="button" class="btn btn-default btn-next" data-last="Complete"&gt;
+      Next&lt;span class="glyphicon glyphicon-arrow-right"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="step-content"&gt;
+    &lt;div class="step-pane sample-pane alert active" data-step="1"&gt;
+      &lt;h4&gt;Setup Campaign&lt;/h4&gt;
+      &lt;p&gt;Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Beetroot water spinach okra water chestnut ricebean pea catsear courgette.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="step-pane sample-pane bg-info alert" data-step="2"&gt;
+      &lt;h4&gt;Choose Recipients&lt;/h4&gt;
+      &lt;p&gt;Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard. &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="step-pane sample-pane bg-danger alert" data-step="3"&gt;
+      &lt;h4&gt;Design Template&lt;/h4&gt;
+      &lt;p&gt;Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip. Sea lettuce lettuce water chestnut eggplant winter purslane fennel azuki bean earthnut pea sierra leone bologi leek soko chicory celtuce parsley jícama salsify. &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#myWizard').wizardStep();
+$('#btnWizardPrev').on('click',function(){
+  $('#myWizard').wizardStep('previous');
+});
+$('#btnWizardNext').on('click',function(){
+  $('#myWizard').wizardStep('next');
+});
+$('#btnWizardStep').on('click',function(){
+  alert($('#myWizard').wizardStep('selectStep').step);
+});
+$('#btnWizardSetStep').on('click',function(){
+  $('#myWizard').wizardStep('selectStep', 3);
+});
+$('#btnWizardAddSteps').on('click',function(){
+  $('#myWizard').wizardStep('addSteps', 4, [
+      {
+          //badge: 'badge-customicon',
+          label: 'A Step Label',
+          pane: '&lt;div&gt;Content&lt;/div&gt;'
+      }
+  ]);
+});
+$('#btnWizardRemoveStep').on('click',function(){
+  console.log($('#myWizard').wizardStep('removeSteps',3,1));
+});
+&lt;/script&gt;</code></pre>
+
+  <h3>步骤表单</h3>
+  <div class="example-box">
+    <div class="wizard-step" id="wizardForm">
+      <ul class="steps">
+        <li class="active" data-step="1" data-name="step1" class="complete">
+          <span class="badge badge-info">1</span>Step1<span class="chevron"></span>
+        </li>
+        <li data-step="2" data-name="step2">
+          <span class="badge">2</span>Step2<span class="chevron"></span>
+        </li>
+        <li data-step="3" data-name="review">
+          <span class="badge">3</span>Review<span class="chevron"></span>
+        </li>
+      </ul>
+      <div class="step-content">
+        <div class="step-pane active" data-step="1">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-6">
+                <input class="form-control" id="label" name="label" type="text" placeholder="Server label">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-8">
+                <p>Full Qualified Domain Name</p>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="fqdn" name="fqdn" placeholder="FQDN" data-validate="validateFQDN" data-is-valid="0" data-lookup="0" />
+                  <span class="input-group-btn" id="btn-fqdn">
+                    <button class="btn btn-default" type="button" onclick='lookup();'>Lookup</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-8">
+                <p>Server ip.</p>
+                <input type="text" class="form-control" id="ip" name="ip" placeholder="IP" data-serialize="1" />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="step-pane" data-step="2">
+          <form class="form-horizontal">
+            <p>
+                Please choose the services you'd like Panopta to
+                monitor.  Any service you select will be given a default
+                check frequency of 1 minute.
+            </p>
+            <select id="first-disabled" name="select1" data-spy="iSelect" data-hide-disabled="true" data-live-search="false">
+              <optgroup disabled="disabled" label="disabled">
+                <option>Hidden</option>
+              </optgroup>
+              <optgroup label="Fruit">
+                <option>Apple</option>
+                <option>Orange</option>
+              </optgroup>
+              <optgroup label="Vegetable">
+                <option>Corn</option>
+                <option>Carrot</option>
+              </optgroup>
+            </select>
+          </form>
+        </div>
+        <div class="step-pane alert" data-step="3">
+
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-default btn-prev">
+          <span class="glyphicon glyphicon-arrow-left"></span>Prev
+        </button>
+        <button type="button" class="btn btn-success btn-submit">
+          <span class="glyphicon glyphicon-floppy-saved"></span>Submit
+        </button>
+        <button type="button" class="btn btn-default btn-next" data-last="Submit">
+          Next<span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+      </div>
+    </div>
+
+    <h4 id="wizard-examples-sample-methods-form">Sample Methods</h4>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default" id="btnWizardSetSubmitDisable">
+        设置第二步不可提交
+      </button>
+      <button type="button" class="btn btn-default" id="btnWizardSetSubmitEnable">
+        设置第二步可提交
+      </button>
+    </div>
+  </div>
+<pre><code class="html">&lt;div class="wizard-step" id="wizardForm">
+  &lt;ul class="steps">
+    &lt;li class="active" data-step="1" data-name="step1" class="complete">
+      &lt;span class="badge badge-info">1&lt;/span>Step1&lt;span class="chevron">&lt;/span>
+    &lt;/li>
+    &lt;li data-step="2" data-name="step2">
+      &lt;span class="badge">2&lt;/span>Step2&lt;span class="chevron">&lt;/span>
+    &lt;/li>
+    &lt;li data-step="3" data-name="review">
+      &lt;span class="badge">3&lt;/span>Review&lt;span class="chevron">&lt;/span>
+    &lt;/li>
+  &lt;/ul>
+  &lt;div class="step-content">
+    &lt;div class="step-pane active" data-step="1">
+      &lt;form class="form-horizontal">
+        &lt;div class="form-group">
+          &lt;div class="col-sm-6">
+            &lt;input class="form-control" id="label" name="label" type="text" placeholder="Server label">
+          &lt;/div>
+        &lt;/div>
+        &lt;div class="form-group">
+          &lt;div class="col-sm-8">
+            &lt;p>Full Qualified Domain Name&lt;/p>
+            &lt;div class="input-group">
+              &lt;input type="text" class="form-control" id="fqdn" name="fqdn" placeholder="FQDN" data-validate="validateFQDN" data-is-valid="0" data-lookup="0" />
+              &lt;span class="input-group-btn" id="btn-fqdn">
+                &lt;button class="btn btn-default" type="button" onclick='lookup();'>Lookup&lt;/button>
+              &lt;/span>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+        &lt;div class="form-group">
+          &lt;div class="col-sm-8">
+            &lt;p>Server ip.&lt;/p>
+            &lt;input type="text" class="form-control" id="ip" name="ip" placeholder="IP" data-serialize="1" />
+          &lt;/div>
+        &lt;/div>
+      &lt;/form>
+    &lt;/div>
+    &lt;div class="step-pane" data-step="2">
+      &lt;form class="form-horizontal">
+        &lt;p>
+            Please choose the services you'd like Panopta to
+            monitor.  Any service you select will be given a default
+            check frequency of 1 minute.
+        &lt;/p>
+        &lt;select id="first-disabled" name="select1" data-spy="iSelect" data-hide-disabled="true" data-live-search="false">
+          &lt;optgroup disabled="disabled" label="disabled">
+            &lt;option>Hidden&lt;/option>
+          &lt;/optgroup>
+          &lt;optgroup label="Fruit">
+            &lt;option>Apple&lt;/option>
+            &lt;option>Orange&lt;/option>
+          &lt;/optgroup>
+          &lt;optgroup label="Vegetable">
+            &lt;option>Corn&lt;/option>
+            &lt;option>Carrot&lt;/option>
+          &lt;/optgroup>
+        &lt;/select>
+      &lt;/form>
+    &lt;/div>
+    &lt;div class="step-pane alert" data-step="3">
+
+    &lt;/div>
+  &lt;/div>
+  &lt;div class="actions">
+    &lt;button type="button" class="btn btn-default btn-prev">
+      &lt;span class="glyphicon glyphicon-arrow-left">&lt;/span>Prev
+    &lt;/button>
+    &lt;button type="button" class="btn btn-success btn-submit">
+      &lt;span class="glyphicon glyphicon-floppy-saved">&lt;/span>Submit
+    &lt;/button>
+    &lt;button type="button" class="btn btn-default btn-next" data-last="Submit">
+      Next&lt;span class="glyphicon glyphicon-arrow-right">&lt;/span>
+    &lt;/button>
+  &lt;/div>
+&lt;/div>
+
+&lt;script type="text/javascript">
+$("#wizardForm").wizardStep({
+    orient: "vertical",
+    formMode: true,
+    formSubmitting: {
+        steps: [2],
+        ajaxOptions: {
+            url: window.location.href,
+            success: function() {
+                debugger;
+            }
+        },
+        validations: {
+            'step1': function($stepPane) {
+                var $form = $('form', $stepPane);
+
+                var name = $("#label", $form).val();
+                if (name == "") {
+                    alert("Please enter a label");
+                    return false;
+                }
+
+                var $fqdn = $("#fqdn", $form);
+                if ($fqdn.is(':disabled')) {
+                    return true;
+                } else {
+                    if ($fqdn.data('lookup') === 0) {
+                        alert("Preform lookup first");
+                        return false;
+                    } else {
+                        if ($fqdn.data('is-valid') === 0) {
+                            alert("Lookup Failed");
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            },
+            'step2': function() {
+                var def = $.Deferred();
+                setTimeout(function() {
+                    def.resolve(true);
+                }, 2000);
+                return def;
+            }
+        }
+    },
+    onChanged: function(step) {
+        if (step.name == "review") {
+            var data = this.serializeObject(), $stepPane = this.getStepPane(), html = '&lt;dl class="dl-horizontal">';
+            $.each(data, function(key, value) {
+                html += (
+                    '&lt;dt class="form-control-static">' + key + '&lt;/dt>' +
+                    '&lt;dd class="form-control-static">' + value + '&lt;/dd>'
+                );
+            });
+            html += "&lt;/dl>";
+            this.setStepPane(html);
+        }
+    }
+});
+
+$('#btnWizardSetSubmitEnable').on('click',function(){
+    $('#wizardForm').wizardStep('setSubmitStep',2,true);
+});
+$('#btnWizardSetSubmitDisable').on('click',function(){
+    $('#wizardForm').wizardStep('setSubmitStep',2,false);
+});
+
+function lookup() {
+    // Normally a ajax call to the server to preform a lookup
+    $('#fqdn').data('lookup', 1);
+    $('#fqdn').data('is-valid', 1);
+    $('#ip').val('127.0.0.1');
+}
+&lt;/script></code></pre>
+
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/wizard'], function() {
+		  $('#myWizard').wizardStep();
+      $('#btnWizardPrev').on('click',function(){
+        $('#myWizard').wizardStep('previous');
+      });
+      $('#btnWizardNext').on('click',function(){
+        $('#myWizard').wizardStep('next');
+      });
+      $('#btnWizardStep').on('click',function(){
+        alert($('#myWizard').wizardStep('selectStep').step);
+      });
+      $('#btnWizardSetStep').on('click',function(){
+        $('#myWizard').wizardStep('selectStep', 3);
+      });
+      $('#btnWizardAddSteps').on('click',function(){
+        $('#myWizard').wizardStep('addSteps', 4, [
+            {
+                //badge: 'badge-customicon',
+                label: 'A Step Label',
+                pane: '<div>Content</div>'
+            }
+        ]);
+      });
+      $('#btnWizardRemoveStep').on('click',function(){
+        console.log($('#myWizard').wizardStep('removeSteps',3,1));
+      });
+
+      $("#wizardForm").wizardStep({
+          orient: "vertical",
+          formMode: true,
+          formSubmitting: {
+              steps: [2],
+              ajaxOptions: {
+                  url: window.location.href,
+                  success: function() {
+                      debugger;
+                  }
+              },
+              validations: {
+                  'step1': function($stepPane) {
+                      var $form = $('form', $stepPane);
+
+                      var name = $("#label", $form).val();
+                      if (name == "") {
+                          alert("Please enter a label");
+                          return false;
+                      }
+
+                      var $fqdn = $("#fqdn", $form);
+                      if ($fqdn.is(':disabled')) {
+                          return true;
+                      } else {
+                          if ($fqdn.data('lookup') === 0) {
+                              alert("Preform lookup first");
+                              return false;
+                          } else {
+                              if ($fqdn.data('is-valid') === 0) {
+                                  alert("Lookup Failed");
+                                  return false;
+                              }
+                          }
+                      }
+
+                      return true;
+                  },
+                  'step2': function() {
+                      var def = $.Deferred();
+                      setTimeout(function() {
+                          def.resolve(true);
+                      }, 2000);
+                      return def;
+                  }
+              }
+          },
+          onChanged: function(step) {
+              if (step.name == "review") {
+                  var data = this.serializeObject(), $stepPane = this.getStepPane(), html = '<dl class="dl-horizontal">';
+                  $.each(data, function(key, value) {
+                      html += (
+                          '<dt class="form-control-static">' + key + '</dt>' +
+                          '<dd class="form-control-static">' + value + '</dd>'
+                      );
+                  });
+                  html += "</dl>";
+                  this.setStepPane(html);
+              }
+          }
+      });
+
+      $('#btnWizardSetSubmitEnable').on('click',function(){
+          $('#wizardForm').wizardStep('setSubmitStep',2,true);
+      });
+      $('#btnWizardSetSubmitDisable').on('click',function(){
+          $('#wizardForm').wizardStep('setSubmitStep',2,false);
+      });
+	});
+  function lookup() {
+      // Normally a ajax call to the server to preform a lookup
+      $('#fqdn').data('lookup', 1);
+      $('#fqdn').data('is-valid', 1);
+      $('#ip').val('127.0.0.1');
+  }
+</script>
+</body>
+</html>

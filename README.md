@@ -32,17 +32,23 @@ Node.js 自 `0.6.x` 系列版本开始集成了 NPM (Node Package Manager, Node.
 
 如果您在调试某（些）组件，并想查看调试结果，可以运行文档。
 
-组件库的文档使用了 Express(4) 框架进行编写，在组件库的工程根目录下运行
+从 `0.8.2` 版本开始，组件库的文档改用 Markdown 进行编写，并通过自行修改后的文档生成插件 [idoc](http://jaywcjlove.github.io/idoc/) 编译生成静态 HTML 文件进行浏览。
+
+当然，仍旧支持 HTTP 方式访问。在组件库的工程根目录下运行
 
     npm start
 
 即可启动文档页面。访问地址为 <http://localhost:3000/>
 
-某（些）组件被更改后，如果想要在文档中查看更改效果，需要在组件库根目录下执行编译命令
+如果您是第一次启动文档页面，需要先运行
 
-    grunt
-  
-重新刷新页面后，就可以查看和应用更改后组件的内容了。
+    npm build
+
+如果您更改了文档内容，想要查看更改效果，运行
+
+    npm run idoc build
+
+重新编译生成文档静态页面即可。
 
 ### 编译完整包
 
@@ -70,7 +76,7 @@ Node.js 自 `0.6.x` 系列版本开始集成了 NPM (Node Package Manager, Node.
     <meta name="renderer" content="webkit">
     <title>Web Title</title>
     <!-- YFjs Lib -->
-    <script src="[yfjs-lib path]/yfjs.js?v=0.8.1"></script>
+    <script src="[yfjs-lib path]/yfjs.js?v=0.8.2"></script>
   </head>
   <body>
   </body>
@@ -96,7 +102,7 @@ Node.js 自 `0.6.x` 系列版本开始集成了 NPM (Node Package Manager, Node.
   <body>
     <script type="text/javascript">
       var yfjsScript = document.createElement("script");
-      yfjsScript.setAttribute('src', "[yfjs-lib path]/yfjs.js?v=0.8.1");
+      yfjsScript.setAttribute('src', "[yfjs-lib path]/yfjs.js?v=0.8.2");
       document.head.appendChild(yfjsScript);
       yfjsScript.addEventListener("load", function() {
         YFjs.ready(function() {
@@ -112,28 +118,8 @@ Node.js 自 `0.6.x` 系列版本开始集成了 NPM (Node Package Manager, Node.
 
 当然，我们一般情况下很少会使用这种写法，我们也建议若非是当前需求，请在 `head` 标签最开始引入资源的地方引入组件库的入口文件。
 
-## 更新说明
+### 单元测试
 
-### 版本号
+组件库已加入了单元测试脚本。在 `test` 目录下直接在浏览器中打开 index.html 文件即可。
 
-1. 当前组件库版本号为 `0.8.1`
-2. 当前组件库内置的 SPA 框架的版本号为 `1.0.0-rc.1`
-
-### 库更新
-
-1. 加入了单元测试脚本。测试框架使用 Mocha (BDD)，断言库使用 should。
-2. 为配合单元测试，调整了模块编译方式。加入了 `build.js` 和 `build.json` 用以处理模块的编译。
-3. YFjs的核心库进行了调整，去除了默认加入的 `Modernizr`，支持自动检测并加入兼容脚本。
-
-### 组件更新
-
-1. 双列框选择组件 `jq/multiselect` 更名为 `jq/multipicker`，同时 jQuery 扩展名称由 `multiSelect` 更名为 `multiPicker`。因为 multiselect 名称概念易和 multiple 的 select 控件混淆
-2. 加密解密工具库 `crypto-js` 更名为 `crypto`
-3. 表格组件 dataTables 删除了 `dataTables-jui` 和 `dataTables-foundation` 相关样式。为了表格组件样式的统一设置。
-4. 修复了引入图表组件 `echarts2/chart/wordCloud` 时依赖出错的问题。
-
-### SPA 框架更新
-
-1. 视图和布局的配置项 `styles` 更名为 `style`。为了与整体配置项风格一致。
-2. 视图和布局实例的 `load` 方法增强：支持自动查找元素容器下引入（include）的子页面了。
-3. 布局模板内的 `{{body}}` 写法更改为 `{{{body}}}`（由两个大括号更改为三个）。解决了无法向布局模板内传入自定义的 body 变量数据的问题。
+组件库的单元测试使用了 [mocha](https://mochajs.org/) 框架，断言库使用的是基于 BDD 模式的 [should](http://shouldjs.github.io/) 工具插件。

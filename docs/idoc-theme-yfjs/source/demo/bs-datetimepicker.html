@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Datetimepicker | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+	<h2>日期选择框示例</h2>
+  <h3>默认输入</h3>
+  <div class="example-box example-box-datetimepicker">
+    <input class="form-control control-datetimepicker" id="control-datetimepicker-basic" value="2012-06-15 14:45" type="text" readonly="readonly">
+  </div>
+  <pre><code class="html">&lt;input class="form-control control-datetimepicker" value="2012-06-15 14:45" type="text" readonly="readonly"&gt;
+ 
+&lt;script type="text/javascript"&gt;
+    $(".control-datetimepicker").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+&lt;/script&gt;</code></pre>
+  <h3>默认组件</h3>
+  <div class="example-box example-box-datetimepicker">
+    <div class="input-group date control-datetimepicker" id="control-datetimepicker-component"> 
+      <input class="form-control" type="text" value="" readonly="readonly"> 
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-th"></i> 
+      </span> 
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="input-group date control-datetimepicker"&gt; 
+  &lt;input class="form-control" type="text" value="" readonly="readonly"&gt; 
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-th"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$(".control-datetimepicker").datetimepicker({
+    format: "dd MM yyyy - hh:ii"
+});
+&lt;/script&gt;</code></pre>
+  <h3>定位</h3>
+  <p>日期选择框的默认位置是在输入组件的下方以及图标按钮的右侧。在某些情况下，可以通过 <code>pickerPosition</code> 配置项定义其位置。</p>
+  <div class="example-box example-box-datetimepicker">
+    <div class="input-group date control-datetimepicker" id="control-datetimepicker-position"> 
+      <input class="form-control" type="text" value="" readonly="readonly"> 
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-th"></i> 
+      </span> 
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="input-group date control-datetimepicker"&gt; 
+  &lt;input class="form-control" type="text" value="" readonly="readonly"&gt; 
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-th"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+$(".control-datetimepicker").datetimepicker({
+    format: "dd MM yyyy - hh:ii",
+    autoclose: true,
+    todayBtn: true,
+    pickerPosition: "bottom-left"
+});
+&lt;/script&gt;</code></pre>
+  <h3>高级设置</h3>
+  <p>输入组件下含有样式类 <code>glyphicon</code> 和 <code>glyphicon-remove</code> 的图标按钮将作为重置按钮。在下面的示例中，日期视图被默认设置为了 <code>2013年2月21日</code>，并且不能选择 <code>2013年2月14日</code> 之前的日期；一旦日期和时间都设置完毕，日期选择框将自动关闭；点击 <code>tody</code> 按钮时会自动填入当天的日期时间；<code>minuteStep</code> 配置项用来设置小时视图下设置分钟时的间隔。</p>
+  <div class="example-box example-box-datetimepicker">
+    <div class="input-group date control-datetimepicker" id="control-datetimepicker-advanced" data-date="2013-02-21T15:25:00Z"> 
+      <input class="form-control" type="text" value="" readonly="readonly">
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-remove"></i> 
+      </span> 
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-th"></i> 
+      </span> 
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="input-group date control-datetimepicker" data-date="2013-02-21T15:25:00Z"&gt; 
+  &lt;input class="form-control" type="text" value="" readonly="readonly"&gt;
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-remove"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-th"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+$(".control-datetimepicker").datetimepicker({
+    format: "dd MM yyyy - hh:ii",
+    autoclose: true,
+    todayBtn: true,
+    startDate: "2013-02-14 10:00",
+    minuteStep: 10
+});
+&lt;/script&gt;</code></pre>
+  <h3>设置镜像区域</h3>
+  <p>每次触发更新时，第二个与之关联的区域也会随之以另一种格式化后的日期时间更新。需要同时设置 <code>id</code> 和 <code>format</code>。点击重置按钮会同时清空两个区域内的值。</p>
+  <div class="example-box example-box-datetimepicker">
+    <div class="input-group date control-datetimepicker" id="control-datetimepicker-mirror" data-date="2012-12-21T15:25:00Z"> 
+      <input class="form-control" type="text" value="" readonly="readonly">
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-remove"></i> 
+      </span> 
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-th"></i> 
+      </span> 
+    </div>
+    <input class="form-control" id="mirror-field" type="text" value="" readonly="readonly" />
+  </div>
+  <pre><code class="html">&lt;div class="input-group date control-datetimepicker" data-date="2012-12-21T15:25:00Z"&gt; 
+  &lt;input class="form-control" type="text" value="" readonly="readonly"&gt;
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-remove"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-th"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+&lt;/div&gt;
+&lt;input class="form-control" id="mirror-field" type="text" value="" readonly="readonly" /&gt;
+&lt;script type="text/javascript"&gt;
+$(".control-datetimepicker").datetimepicker({
+    format: "dd MM yyyy - hh:ii",
+    linkField: "mirror-field",
+    linkFormat: "yyyy-mm-dd hh:ii"
+});
+&lt;/script&gt;</code></pre>
+  <h3>12小时制</h3>
+  <p>通过设置配置项 <code>showMeridian</code> 为 <code>true</code> 可以开启12小时制格式。你可以在日期视图下选择 上午/下午（标记 <code>P</code>），同时，小时（标记 <code>HH</code>）将变为12小时格式。</p>
+  <div class="example-box example-box-datetimepicker">
+    <div class="input-group date control-datetimepicker" id="control-datetimepicker-meridian" data-date="2012-12-21T15:25:00Z"> 
+      <input class="form-control" type="text" value="" readonly="readonly">
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-remove"></i> 
+      </span> 
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-th"></i> 
+      </span> 
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="input-group date control-datetimepicker" data-date="2012-12-21T15:25:00Z"&gt; 
+  &lt;input class="form-control" type="text" value="" readonly="readonly"&gt;
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-remove"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-th"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+$('.control-datetimepicker').datetimepicker({
+    format: "dd MM yyyy - HH:ii P",
+    showMeridian: true,
+    autoclose: true,
+    todayBtn: true
+});
+&lt;/script&gt;</code></pre>
+  <h3>响应鼠标滚轮事件</h3>
+  <p>建议将配置项 <code>viewSelect</code> 设为 <code>4</code>。</p>
+  <div class="example-box example-box-datetimepicker">
+    <div class="input-group date control-datetimepicker" id="control-datetimepicker-mousewheel"> 
+      <input class="form-control" type="text" value="" readonly="readonly">
+      <span class="input-group-addon"> 
+        <i class="glyphicon glyphicon-th"></i> 
+      </span> 
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="input-group date control-datetimepicker"&gt; 
+  &lt;input class="form-control" type="text" value="" readonly="readonly"&gt;
+  &lt;span class="input-group-addon"&gt; 
+    &lt;i class="glyphicon glyphicon-th"&gt;&lt;/i&gt; 
+  &lt;/span&gt; 
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+$('#control-datetimepicker').datetimepicker({
+    viewSelect: 4,
+    wheelViewModeNavigation: true
+});
+&lt;/script&gt;</code></pre>
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/datetimepicker'], function() {
+      $('#control-datetimepicker-basic').datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+
+      $('#control-datetimepicker-component').datetimepicker({format: "dd MM yyyy - hh:ii"});
+
+      $('#control-datetimepicker-position').datetimepicker({
+          format: "dd MM yyyy - hh:ii",
+          autoclose: true,
+          todayBtn: true,
+          pickerPosition: "bottom-left"
+      });
+
+      $('#control-datetimepicker-advanced').datetimepicker({
+          format: "dd MM yyyy - hh:ii",
+          autoclose: true,
+          todayBtn: true,
+          startDate: "2013-02-14 10:00",
+          minuteStep: 10
+      });
+
+      $('#control-datetimepicker-mirror').datetimepicker({
+          format: "dd MM yyyy - hh:ii",
+          linkField: "mirror-field",
+          linkFormat: "yyyy-mm-dd hh:ii"
+      });
+
+      $('#control-datetimepicker-meridian').datetimepicker({
+          format: "dd MM yyyy - HH:ii P",
+          showMeridian: true,
+          autoclose: true,
+          todayBtn: true
+      });
+
+      $('#control-datetimepicker-mousewheel').datetimepicker({
+          viewSelect: 4,
+          wheelViewModeNavigation: true
+      });
+	});
+</script>
+</body>
+</html>

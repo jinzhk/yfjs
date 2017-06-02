@@ -5,12 +5,14 @@ var tmplConf = buildConf.template || {};
 
 var building = buildConf.building || {};
 
-var copyDevTasks = [], copyBuildTasks = [];
+var copyDevTasks = [], copyBuildTasks = [], copyDocsTasks = [];
 
 var reg_end_org = /\$Org$/, reg_end_min = /\$Min$/;
 
 for (var taskId in building.copy) {
-    if (reg_end_min.test(taskId)) {
+    if (taskId == "Docs") {
+        copyDocsTasks.push("copy:"+taskId);
+    } else if (reg_end_min.test(taskId)) {
         copyBuildTasks.push("copy:"+taskId);
     } else {
         copyDevTasks.push("copy:"+taskId);
@@ -25,7 +27,9 @@ module.exports = function(grunt) {
             dev: [buildConf.dir.destOrg],
             // build clean
             all: [buildConf.dir.dest],
-            yfjs: [path.join(buildConf.dir.dest, "yfjs.js")]
+            yfjs: [path.join(buildConf.dir.dest, "yfjs.js")],
+            // doc clean
+            doc: [buildConf.dir.destDoc]
         },
         template: {
             yfjsTest: {
@@ -101,10 +105,12 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dev', ['template', 'cleanDev', 'concat', 'copyDev', 'uglify:yfjs']);
 
-    grunt.registerTask('cleanBuild', ['clean:all', 'clean:yfjs']);
+    grunt.registerTask('cleanBuild', ['clean:all', 'clean:yfjs', 'clean:doc']);
     grunt.registerTask('copyBuild', ['copyDev'].concat(copyBuildTasks));
 
-    grunt.registerTask('build', ['template', 'cleanBuild', 'concat', 'copyBuild', 'cssmin', 'uglify']);
+    grunt.registerTask('copyDocs', copyDocsTasks);
+
+    grunt.registerTask('build', ['template', 'cleanBuild', 'concat', 'copyBuild', 'cssmin', 'uglify', 'copyDocs']);
 
     grunt.registerTask('default', ['dev']);
 };

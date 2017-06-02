@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Alert | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+	<h2>实例</h2>
+  <p>通过此插件可以为警告信息添加点击并消失的功能。</p>
+  <p>当使用 <code>.close</code> 按钮时，它必须是 <code>.alert-dismissible</code> 的第一个子元素，并且在它之前不能有任何文本内容。</p>
+  <div class="example-box example-box-standalone" data-example-id="dismissible-alert-js">
+    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <h4>Oh snap! You got an error!</h4>
+      <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+      <p>
+        <button type="button" class="btn btn-danger">Take this action</button>
+        <button type="button" class="btn btn-default">Or do this</button>
+      </p>
+    </div>
+  </div>
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/alert'], function() {
+		
+	});
+</script>
+</body>
+</html>

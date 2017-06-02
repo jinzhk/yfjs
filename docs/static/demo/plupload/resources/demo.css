@@ -1,0 +1,106 @@
+code {
+	font-family: "Source Code Pro", Consolas, Menlo, Monaco, "Courier New", monospace;
+	padding: 1px 4px;
+	font-size: 0.8em;
+
+	color: #444;
+	background-color: #fcfcfc;
+
+	border: 1px solid #e0e0e0;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+}
+
+code > span {
+	border-left: 1px solid rgba( 0, 0, 0, 0.2 );
+	margin-left: 4px;
+	padding-left: 4px;
+	opacity: 0.5;
+}
+
+code.option {
+	color: #D14; /* red */
+	background-color: #fcf6f8;
+	border: 1px solid #f7d6df;
+}
+
+code.path {
+	color: #095c05; /* dark green */
+	border: 1px solid #D6E9C6;
+}
+
+code.tag {
+	color: #a1a713; /* yellow */
+	background-color: #f7f8e6;
+	border: 1px solid #D6E9C6;
+}
+
+code.api {
+	color: #0c199c; /* dark blue */
+	background-color: #f4f5fc;
+	border: 1px solid #c6cbe9;
+}
+
+code.type {
+	color: #d119cf; /* purple */
+	background-color: #faebfa;
+	border: 1px solid #f3aef2;
+}
+
+code.event {
+	color: #2a839e; /* deep aqua */
+	background-color: #f5fafb;
+	border: 1px solid #a8ddec;
+}
+
+code.string {
+	color: #e8941e; /* orange */
+	background-color: #fcf8f1;
+	border: 1px solid #f7e4c9;
+}
+
+code.field {
+	color: #ad1ee8; /* purple */
+	background-color: #f9f1fc;
+	border: 1px solid #ebc9f7;
+}
+
+code.multiline {
+	display: inline-block;
+	width: 95%;
+}
+
+.tab-content > .tab-pane {
+    padding-top: 15px;
+}
+
+[id^="console"] {
+    margin-top: 10px;
+}
+
+.accordion-group {
+    margin-bottom: 2px;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.accordion-heading {
+    border-bottom: 0;
+}
+
+.accordion-heading .accordion-toggle {
+    display: block;
+    padding: 8px 15px;
+}
+
+.accordion-toggle {
+    cursor: pointer;
+}
+
+.accordion-inner {
+    padding: 9px 15px;
+    border-top: 1px solid #e5e5e5;
+}

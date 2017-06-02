@@ -1,17 +1,31 @@
 {
-  "name": "docs",
-  "version": "0.8.1",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "~1.16.0",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.0",
-    "express": "~4.14.1",
-    "hbs": "~4.0.1",
-    "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.2"
-  }
+    "name": "yfjs-docs",
+    "title": "YFjs Library",
+    "version": "0.8.2",
+    "description": "一个基于AMD规范的组件库，内含简洁SPA框架，便于快速构建单页面应用系统",
+    "keywords": [
+        ""
+    ],
+    "scripts": {
+        "build": "cd .. && npm run build",
+        "idoc": "node idoc.js",
+        "start": "node idoc.js server"
+    },
+    "homepage": "http://jinzhk.github.io/yfjs",
+    "author": "jinzhk <jinzhk@inspur.com>",
+    "repository": {
+        "type": "git",
+        "url": "http://gitserver/framework/yfjs.git"
+    },
+    "licenses": "MIT",
+    "idoc": {
+        "theme": "idoc-theme-yfjs",
+        "md": [
+            "开始使用.md",
+            "Base样式.md",
+            "YFjs工具.md",
+            "组件模块.md",
+            "SPA框架.md"
+        ]
+    }
 }

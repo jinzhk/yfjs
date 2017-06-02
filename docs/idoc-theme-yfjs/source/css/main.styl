@@ -1,0 +1,384 @@
+@import('vendor.styl');
+@import('markdown.styl');
+@import('highlight.styl');
+
+tocwidth = 220px
+nav-height = 44px
+nav-link-shadow = 1px 1px 1px #000, 0 0 10px rgba(255, 255, 255, .4), 0 0 15px rgba(255, 255, 255, .6), 0 0 25px rgba(255, 255, 255, .8), 0 0 30px #fff
+
+*
+    box-sizing: border-box
+
+body,html
+    height:100%
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+body
+    padding-top: nav-height
+
+.logo
+    float:left
+    padding: 0 20px 0 0px
+    font-size: 20px
+    font-weight: 500;
+    color: #eee;
+
+.container
+    position: relative
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 1170px
+    margin 0 auto
+    &:before
+        display: table;
+        content: " ";
+    &:after
+        display: table;
+        content: " ";
+        clear: both;
+
+body > .navbar
+    height: nav-height
+    min-height: nav-height
+    line-height: nav-height
+    margin-bottom: 0
+    font-size: 16px
+    background: #191919
+    border-bottom: 1px solid #080808
+    box-shadow: 0 0 5px rgba(0,0,0,.5)
+    ul  
+        position: relative
+        display: inline-table
+        float: left
+        padding-left: 0
+        margin-bottom: 0
+        list-style: none
+        ul
+            display: none
+            background: #FFFFFF
+            border-radius: 0 0 5px 5px
+            padding: 3px
+            position: absolute
+            top: 100%
+            z-index: 9
+            li.active
+                a
+                    color: #463265
+                    background-color: #f9f9f9
+                    line-height:29px
+                    height:29px
+            li 
+                float: none
+                border-bottom: 1px solid #F7F2FF
+                position: relative
+                a:hover 
+                    color:#573E7D
+            a
+                color: #fff
+                line-height: 29px
+                white-space:nowrap
+                word-break:keep-all
+            ul
+                position: absolute
+                left: 100%
+                top:0
+        li
+            float: left
+            line-height: nav-height
+            a
+                display: block
+                color: #757575
+                text-decoration: none
+                padding: 0 15px
+        li:hover,
+        li.active
+            a
+                color: #fff
+                text-shadow: nav-link-shadow
+    ul li:hover > ul
+        display: block
+    ul:after
+        content: ""
+        clear: both
+        display: block
+    
+.bs-docs-header
+    background-color: #0A64A4
+    background-image: linear-gradient(to bottom,#0A64A4 0,#04a5e6 100%)
+    background-repeat: repeat-x
+    position: relative
+    padding: 45px 0
+    color: #fff
+    font-size: 24px
+    text-align: center
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6)
+    h1
+        color: #fff
+        font-family: inherit
+        font-weight: 500
+        margin: .67em 0
+        margin-bottom: 10px
+        margin-top: 0
+        font-size: 60px
+        line-height: 1
+        text-align: center
+    p 
+        margin-bottom: 0
+        font-weight: 300
+        line-height: 1.4
+    .buttons
+        padding-top: 15px
+        .btn
+            margin: 0 .5em
+            padding: 8px 12px
+            font-size: 20px
+            border-radius: 0
+            text-shadow: none
+            small
+                font-size: 85%
+
+.markdown-body
+    margin-right:tocwidth
+    font-size: 15px
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif
+    > p em
+        padding-right: .25em
+    > p.lead,
+    > h1 + p
+        code, 
+        tt
+            &,
+            &:before, 
+            &:after
+                vertical-align: middle
+    > p.lead
+        font-size: 20px
+    > h1 + p
+        font-size: 22px
+        font-weight: normal
+        line-height: 1.5em;
+    p.lead-code
+        margin-top: -11px
+        margin-bottom: 5px
+    pre
+        position: relative
+        padding: 12px 15px 10px
+        border: 1px solid #e1e1e8;
+        .btn-clipboard
+            position: absolute
+            top: 0
+            right: 0
+            z-index: 10
+            border-top: 0 none
+            border-right: 0 none
+            border-top-left-radius: 0
+            border-top-right-radius: 4px
+            border-bottom-right-radius: 0
+
+    h3
+        font-size: 1.25em
+    .table
+        display: table
+    ul,
+    ol
+        p
+            margin-bottom: 10px
+            line-height: 1.5em
+    .img-responsive
+        max-height: 100%
+
+#img-spa-widgets
+    height: 330px
+
+#img-spa-lifecycle-desc-app,
+#img-spa-lifecycle-desc-view
+    height: 70px
+
+#img-spa-lifecycle-app
+    height: 412px
+
+#img-spa-lifecycle-view
+    height: 384px
+
+.page-toc
+    position: absolute
+    right: 0
+    top: 0
+    width: tocwidth
+    padding: 6px 0 25px 20px 
+    margin-top: 41px
+    border-left: 1px solid #EEE
+    background: #fff
+    font-family: "Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,sans-serif !important
+    &.affix
+        position: fixed
+    ul
+        list-style-type: none
+        margin: 0
+        padding: 0
+        a 
+            display: block
+            padding: 5px 15px
+            color: #555
+            text-decoration: none
+            word-break: break-word
+            font-weight: bold
+            line-height: 16px
+            font-size: 14px
+            ^[-1] .active > a,
+            &:hover,
+            &:focus
+                padding-left: 14px
+                color: #0e90d2
+                border-left: 1px solid #0e90d2
+                background-color: #eee
+                text-decoration: none
+        li 
+            text-align:left
+            float: initial
+            &.active 
+                > a
+                    &,
+                    &:hover,
+                    &:focus
+                        padding-left: 13px
+                        border-left-width: 2px
+                > ul
+                    display: block 
+                
+        ul
+            li 
+                a 
+                    padding-left: 25px
+                    font-size: 90%
+                    font-weight: normal
+                    border-bottom: 0
+                    &:hover,
+                    &:focus
+                        padding-left: 24px
+                &.active > a
+                    &,
+                    &:hover,
+                    &:focus
+                        padding-left: 23px
+            ul
+                display: none
+                li
+                    a
+                        padding-left: 35px
+                        &:hover,
+                        &:focus
+                            padding-left: 34px
+                    &.active > a
+                        &,
+                        &:hover,
+                        &:focus
+                            padding-left: 33px
+                ul
+                    li
+                        a
+                            padding-left: 45px
+                            &:hover,
+                            &:focus
+                                padding-left: 44px
+                        &.active > a
+                            &,
+                            &:hover,
+                            &:focus
+                                padding-left: 43px
+                    ul
+                        li
+                            a
+                                padding-left: 55px
+                                &:hover,
+                                &:focus
+                                    padding-left: 54px
+                            &.active > a
+                                &,
+                                &:hover,
+                                &:focus
+                                    padding-left: 53px
+                        ul
+                            li
+                                a
+                                    padding-left: 65px
+                                    &:hover,
+                                    &:focus
+                                        padding-left: 64px
+                                &.active > a
+                                    &,
+                                    &:hover,
+                                    &:focus
+                                        padding-left: 63px
+    .sidetools
+        margin-top: 10px
+        li
+            position: relative
+            > a
+                color: #999
+                font-weight: normal
+                &:hover
+                    color: #444
+                &.link-back-top:after
+                    position: relative
+                    top: -1px
+                    left: .5em
+                    content: "\f176"
+                    font-family: FontAwesome
+.copyright
+    border-top: 1px dashed #E9E9E9
+    padding: 6px 0 5px 2px
+    margin: 32px 0 0 0
+    line-height: 16px
+    font-size: 12px
+    color: #dfdfdf
+    a 
+        color: #D6DDF8
+        text-decoration: underline
+        &:hover
+            color:#333
+
+.forkgithub
+    a 
+        float right
+        color: #757575
+        &:hover
+            color: #fff
+            text-decoration: none
+            text-shadow: nav-link-shadow
+
+.icon-browser
+    display: inline-block
+    width: 56px
+    height: 56px
+    background: url("../images/browsers.png") no-repeat 0 -100%
+    &.ie8
+        background-position: 0 0
+    &.ff
+        background-position: 0 -56px
+    &.chrome
+        background-position: 0 -112px
+    &.opera
+        background-position: 0 -168px
+    &.safari
+        background-position: 0 -224px
+
+.table
+    > thead > tr > th,
+    > tbody > tr > td 
+        text-align: left
+        vertical-align: middle
+        ^[0].text-center ^[1..-1]
+            text-align: center
+        .control-label
+            display: block
+            font-weight: normal
+
+#table-compatible-browsers tr > td
+    &:nth-child(1)
+        width: 8%
+    &:nth-child(2)
+        width: 12%
+    &:nth-child(n+3)
+        width: 20%
+
+@import('demo.styl')

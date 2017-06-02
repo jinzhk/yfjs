@@ -29,6 +29,8 @@ var buildConf = {
 		"srcCore"    : joinPath(b.srcDir, "scripts/core"),
 		"srcModules" : joinPath(b.srcDir, "scripts/modules"),
 
+		"destDoc"    : b.docDir,
+
 		"dest"       : b.destDir,
 		"destOrg"    : joinPath(b.destDir, b.orgDir),
 		"destMin"    : joinPath(b.destDir, b.minDir),
@@ -115,6 +117,13 @@ buildConf.building.copy.ModulesOther$Min = {
     cwd: buildConf.dir.destOrgModules,
     src: ['**', '!**/*.{css,js,html}'],
     dest: joinPath(buildConf.dir.destMin, "modules")
+}
+
+buildConf.building.copy.Docs = {
+    expand: true,
+    cwd: buildConf.dir.dest,
+    src: ['**'],
+    dest: buildConf.dir.destDoc
 }
 
 buildConf.building.concat.Core = {

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Datatables | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <h3>默认示例</h3>
+    <div class="example-box">
+      <div class="row">
+        <div class="col-md-4">
+          <h4>原生表格：</h4>
+          <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+                <tr>
+                    <td>Row 2 Data 1</td>
+                    <td>Row 2 Data 2</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-8">
+          <h4>使用插件的表格：</h4>
+          <table id="table_id">
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+                <tr>
+                    <td>Row 2 Data 1</td>
+                    <td>Row 2 Data 2</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <pre><code class="html">&lt;table id="table_id">
+  &lt;thead>
+      &lt;tr>
+          &lt;th>Column 1&lt;/th>
+          &lt;th>Column 2&lt;/th>
+      &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+      &lt;tr>
+          &lt;td>Row 1 Data 1&lt;/td>
+          &lt;td>Row 1 Data 2&lt;/td>
+      &lt;/tr>
+      &lt;tr>
+          &lt;td>Row 2 Data 1&lt;/td>
+          &lt;td>Row 2 Data 2&lt;/td>
+      &lt;/tr>
+  &lt;/tbody>
+&lt;/table>
+
+&lt;script type="text/javascript">
+require(['jq/dataTables'], function() {
+  $('#table_id').dataTable();
+});
+&lt;/script></code></pre>
+  </div>
+</div>
+	
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['jq/dataTables'], function() {
+		$('#table_id').dataTable({
+      initComplete: function() {
+        resizeIframesH();
+      }
+    });
+	});
+</script>
+</body>
+</html>

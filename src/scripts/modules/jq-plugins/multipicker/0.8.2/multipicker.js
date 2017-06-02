@@ -19,13 +19,13 @@
  *          // 已选列表，每项可为string或object，object必须含有name字段属性
  *          items: [],
  *          // "加载更多"功能默认显示文本
-            loadText: "加载更多",
-            // "加载更多"功能加载中显示文本
-            loadingText: "正在加载...",
-            // "加载更多"功能加载失败现实文本
-            loadErrorText: "加载失败！点击重新加载",
-            // "加载更多"功能全部加载完毕显示文本
-            loadEmpty: "没有更多项了",
+ *          loadText: "加载更多",
+ *          // "加载更多"功能加载中显示文本
+ *          loadingText: "正在加载...",
+ *          // "加载更多"功能加载失败现实文本
+ *          loadErrorText: "加载失败！点击重新加载",
+ *          // "加载更多"功能全部加载完毕显示文本
+ *          loadEmpty: "没有更多项了",
  *          // "加载更多"功能，function。若返回 Deferred 或 Promise 对象，将自动处理相关状态并添加数据
  *          loadMore: null
  *      },
@@ -38,13 +38,13 @@
  *          // 已选列表，每项可为string或object，object必须含有name字段属性
  *          items: [],
  *          // "加载更多"功能默认显示文本
-            loadText: "加载更多",
-            // "加载更多"功能加载中显示文本
-            loadingText: "正在加载...",
-            // "加载更多"功能加载失败现实文本
-            loadErrorText: "加载失败！点击重新加载",
-            // "加载更多"功能全部加载完毕显示文本
-            loadEmpty: "没有更多项了",
+ *          loadText: "加载更多",
+ *          // "加载更多"功能加载中显示文本
+ *          loadingText: "正在加载...",
+ *          // "加载更多"功能加载失败现实文本
+ *          loadErrorText: "加载失败！点击重新加载",
+ *          // "加载更多"功能全部加载完毕显示文本
+ *          loadEmpty: "没有更多项了",
  *          // "加载更多"功能，function。若返回 Deferred 或 Promise 对象，将自动处理相关状态并添加数据
  *          loadMore: null
  *      },
@@ -132,6 +132,7 @@
  * Updated by jinzhk on 2017/04/24
  * 1. 组件会自动判断并添加上层容器了，修复了某些情况下容器内容溢出的问题
  * 2. 添加了实例方法 getSelectedElements 和 getUnSelectedElements，用以获取选择列和未选择列的行元素
+ * 3. 版本号由 0.8.1 更新为 0.8.2
  */
 define(['jquery'], function($) {
 

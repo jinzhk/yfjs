@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Popover | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+	<h2>实例</h2>
+  <h3>静态弹出框</h3>
+  <p>4+4个可能的弹出方向：顶部、右侧、底部和左侧以及左上角、右上角、左下角和右下角。</p>
+  <div class="example-box example-box-popover" data-example-id="static-popovers">
+    <div class="popover top">
+      <div class="arrow"></div>
+      <h3 class="popover-title">Popover 顶部</h3>
+      <div class="popover-content">
+        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+      </div>
+    </div>
+
+    <div class="popover right">
+      <div class="arrow"></div>
+      <h3 class="popover-title">Popover 右侧</h3>
+      <div class="popover-content">
+        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+      </div>
+    </div>
+
+    <div class="popover bottom">
+      <div class="arrow"></div>
+      <h3 class="popover-title">Popover 顶部</h3>
+
+      <div class="popover-content">
+        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+      </div>
+    </div>
+
+    <div class="popover left">
+      <div class="arrow"></div>
+      <h3 class="popover-title">Popover 左侧</h3>
+      <div class="popover-content">
+        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+      </div>
+    </div>
+
+    <div class="popover top-left">
+      <div class="arrow"></div>
+      <h3 class="popover-title">Popover 左上角</h3>
+      <div class="popover-content">
+        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+      </div>
+    </div>
+
+    <div class="popover top-right">
+      <div class="arrow"></div>
+      <h3 class="popover-title">Popover 右上角</h3>
+      <div class="popover-content">
+        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+      </div>
+    </div>
+
+    <div class="popover bottom-left">
+      <div class="arrow"></div>
+      <h3 class="popover-title">Popover 左下角</h3>
+      <div class="popover-content">
+        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+      </div>
+    </div>
+
+    <div class="popover bottom-right">
+      <div class="arrow"></div>
+      <h3 class="popover-title">Popover 右下角</h3>
+      <div class="popover-content">
+        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+  </div> 
+  <h3>实例演示</h3>
+  <div class="example-box example-box-padded-bottom">
+    <button type="button" class="btn btn-lg btn-danger bs-docs-popover" data-toggle="popover" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="Popover title">点我弹出/隐藏弹出框</button>
+  </div>
+  <pre><code class="html">&lt;button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"&gt;点我弹出/隐藏弹出框&lt;/button&gt;</code></pre>
+  <h4>4+4个弹出方向</h4>
+  <div class="example-box popover-demo">
+    <div class="example-box-popovers">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on right
+      </button>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on top
+      </button>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on bottom
+      </button>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on left
+      </button>
+      <br>
+      <br>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on top-left
+      </button>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on top-right
+      </button>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on bottom-left
+      </button>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Popover on bottom-right
+      </button>
+    </div>
+  </div>
+  <pre><code class="html">&lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&gt;
+  Popover on 左侧
+&lt;/button&gt;
+
+&lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&gt;
+  Popover on 顶部
+&lt;/button&gt;
+
+&lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus."&gt;
+  Popover on 底部
+&lt;/button&gt;
+
+&lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&gt;
+  Popover on 右侧
+&lt;/button&gt;
+
+&lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&gt;
+  Popover on 左上角
+&lt;/button&gt;
+
+&lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&gt;
+  Popover on 右上角
+&lt;/button&gt;
+
+&lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom left" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus."&gt;
+  Popover on 左下角
+&lt;/button&gt;
+
+&lt;button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."&gt;
+  Popover on 右下角
+&lt;/button&gt;</code></pre>
+  <h4>点击并让弹出框消失</h4>
+  <p>通过使用 focus 触发器可以在用户点击弹出框是让其消失。</p>
+  <div class="callout callout-danger" id="callout-popover-dismiss-click">
+    <h4>实现“点击并让弹出框消失”的效果需要一些额外的代码</h4>
+    <p>为了更好的跨浏览器和跨平台效果，你必须使用 <code>&lt;a&gt;</code> 标签，<i>不能</i>使用 <code>&lt;button&gt;</code> 标签，并且，还必须包含 <code>role="button"</code> 和 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#tabindex" target="_blank"><code>tabindex</code></a> 属性。</p>
+  </div>
+  <div class="example-box example-box-padded-bottom">
+    <a tabindex="0" class="btn btn-lg btn-danger bs-docs-popover" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="Dismissible popover">可消失的弹出框</a>
+  </div>
+  <pre><code class="html">&lt;a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?"&gt;可消失的弹出框&lt;/a&gt;</code></pre>
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/popover'], function() {
+		$('[data-toggle="popover"]').popover();
+	});
+</script>
+</body>
+</html>

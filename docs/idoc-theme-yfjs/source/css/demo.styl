@@ -1,0 +1,560 @@
+@import('vendor.styl')
+
+.btn-clipboard
+    display: block
+    padding: 5px 8px
+    font-size: 12px
+    color: #767676
+    cursor: pointer
+    visibility: hidden
+    background-color: #fff
+    border: 1px solid #e1e1e8
+    &.hover,
+    &:hover,
+    &:focus
+        color: #fff
+        background-color: #0E90D2
+        border-color: #0E90D2
+    &:focus,
+    &:active
+        outline: 0 none
+    &.actived
+        visibility: visible
+
+/*
+ * Examples
+ *
+ * Isolated sections of example content for each component or feature. Usually
+ * followed by a code snippet.
+ */
+.example-box
+    position: relative
+    margin: 1.2em auto 15px
+    padding: 45px 15px 15px
+    border-color: #e5e5e5 #eee #eee
+    border-style: solid
+    border-width: 1px 0
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05)
+    &>*:last-child
+        margin-bottom: 0
+    /* Echo out a label for the example */
+    &:after
+        position: absolute
+        top: 15px
+        left: 15px
+        font-size: 12px
+        font-weight: bold
+        color: #959595
+        text-transform: uppercase
+        letter-spacing: 1px
+        content: "实例："
+    /* Make the examples and snippets not full-width */
+    @media (min-width: 768px)
+        margin-right: 0
+        margin-left: 0
+        background-color: #fff
+        border-color: #ddd
+        border-width: 1px
+        border-radius: 4px 4px 0 0
+        -webkit-box-shadow: none
+        box-shadow: none
+    /* Tweak display of the code snippets when following an example */
+    + pre,
+    + .zero-clipboard + pre 
+        margin: -15px -15px 15px
+        border-width: 0 0 1px
+        border-radius: 0
+        .btn-clipboard
+            border-top-right-radius: 0
+        /* Make the examples and snippets not full-width */
+        @media (min-width: 768px)
+            margin-top: -16px
+            margin-right: 0
+            margin-left: 0
+            border-width: 1px
+            border-bottom-right-radius: 4px
+            border-bottom-left-radius: 4px
+    /* Undo width of container */
+    .container
+        width: auto
+    p > .close
+        float: none
+
+.example-box-padded-bottom
+    padding-bottom: 24px
+
+.example-box-standalone
+    @media (min-width: 768px)
+        border-radius: 4px
+
+/*
+ * FontAwesome examples
+ */
+#example-fa
+    margin-left: -10px
+    margin-right: -10px
+    li
+        position: relative
+        float: left
+        width: 33.333333333%
+        padding-left: 10px
+        padding-right: 8%
+        > a
+            display: block
+            padding: 10px 0 10px 30px
+            font-size: 16px
+            line-height: 1
+            color: #222
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+            text-decoration: none
+            &:hover
+                color: #fff
+                background: #0e90d2
+                border-radius: 4px
+                i
+                    font-size: 120%
+                    left: 10px
+        i
+            position: absolute
+            left: 15px
+            top: 10px
+            margin-top: -1px
+        > .help-block
+            font-size: 85%
+            padding-left: 30px
+        > pre
+            position: absolute
+            top: 66px
+            left: 26px
+            right: 5%
+            z-index: -1
+            &.in
+                z-index: 100
+
+/*
+ * Grid examples
+ *
+ * Highlight the grid columns within the docs so folks can see their padding,
+ * alignment, sizing, etc.
+ */
+.show-grid
+    margin-bottom: 1.2em
+    [class^="col-"]
+        padding-top: 10px
+        padding-bottom: 10px
+        background-color: #eee
+        background-color: rgba(86,61,124,.15)
+        border: 1px solid #ddd
+        border: 1px solid rgba(86,61,124,.2)
+
+/*
+ * Callouts
+ *
+ * Not quite alerts, but custom and helpful notes for folks reading the docs.
+ * Requires a base and modifier class.
+ */
+
+/* Common styles for all types */
+.callout
+    padding: 15px
+    margin: 20px 0
+    border: 1px solid #eee
+    border-left-width: 5px
+    border-radius: 3px
+    h4
+        margin-top: 0
+        margin-bottom: 8px
+    p
+        margin: 0 0 2px
+        padding: 0
+        &:last-child
+            margin-bottom: 0
+    code 
+        border-radius: 3px
+    > *:last-child
+    	margin-bottom: 0
+
+/* Variations */
+.callout-danger
+    border-left-color: #ce4844
+    h4
+        color: #ce4844
+
+.callout-warning
+    border-left-color: #aa6708
+    h4
+        color: #aa6708
+.callout-info
+    border-left-color: #1b809e
+    h4
+        color: #1b809e
+
+/*
+ * Glyphicons
+ *
+ * Special styles for displaying the icons and their classes in the docs.
+ */
+
+.glyphicons
+    margin: 1.2em -10px 20px
+    overflow: hidden
+    @media (min-width: 768px)
+        margin-right: 0;
+        margin-left: 0;
+    li 
+        float: left
+        width: 25%
+        height: 115px
+        padding: 10px
+        font-size: 10px
+        line-height: 1.4
+        text-align: center
+        background-color: #f9f9f9
+        border: 1px solid #fff
+        @media (min-width: 768px)
+            width: 12.5%
+            font-size: 12px
+        &:hover
+            color: #fff
+            background-color: #0E90D2
+    .glyphicon
+        margin-top: 5px
+        margin-bottom: 10px
+        font-size: 24px
+    .glyphicon-class 
+        display: block
+        text-align: center
+        word-wrap: break-word /* Help out IE10+ with class names */
+
+.glyphicons-list
+    padding-left: 0
+    list-style: none
+
+/* Typography */
+.example-box-type 
+    .table 
+        .type-info
+            color: #767676
+            vertical-align: middle
+        td 
+            padding: 15px 0
+            border-color: #eee
+        ^[-1] tr:first-child td
+            border-top: 0
+    for i in 1 2 3 4 5 6
+        h{i}
+            margin: 0
+
+/* Contextual background colors */
+.example-box-bg-classes 
+    p 
+        padding: 15px
+
+/* Images */
+.example-box > 
+    .img-circle,
+    .img-rounded,
+    .img-thumbnail
+        margin: 5px
+
+/* Tables */
+.example-box > .table-responsive > .table
+    background-color: #fff
+
+/* Buttons */
+.example-box 
+    > .btn,
+    > .btn-group
+        margin-top: 5px
+        margin-bottom: 5px
+    > .btn-toolbar + .btn-toolbar
+        margin-top: 10px
+    button.list-group-item 
+        width: 100%
+        text-align: left
+
+/* Forms */
+.example-box-control-sizing 
+    select,
+    input[type="text"] + input[type="text"] 
+        margin-top: 10px
+
+.example-box-form 
+    .input-group 
+        margin-bottom: 10px
+
+.example-box 
+    > textarea.form-control 
+        resize: vertical
+
+/* List groups */
+.example-box 
+    > .list-group 
+        max-width: 400px
+
+/*
+ * Navbars
+ */
+.example-box 
+    .navbar:last-child 
+        margin-bottom: 0
+    .navbar-fixed-top,
+    .navbar-fixed-bottom
+        position: relative
+        margin-right: 0
+        margin-left: 0
+    .navbar-fixed-top 
+        top: -1px
+        @media (min-width: 768px)
+            top: 0
+    .navbar-fixed-bottom 
+        bottom: -1px
+        @media (min-width: 768px)
+            bottom: 0
+
+.example-navbar-top,
+.example-navbar-bottom 
+    z-index: 1
+    padding: 0
+    overflow: hidden /* cut the drop shadows off */
+    .navbar-header
+        margin-left: 0
+    /.example-box &
+        position: relative
+        margin-right: 0
+        margin-left: 0
+        @media (min-width: 768px)
+            position: absolute
+
+.example-navbar-top 
+    padding-top: 0
+    padding-bottom: 45px
+    &:after 
+        top: auto
+        bottom: 15px
+
+.example-navbar-bottom 
+    padding-top: 45px
+    padding-bottom: 0
+
+/* Pagination */
+.example-box .pagination 
+    margin-top: 10px
+    margin-bottom: 10px
+
+/* Pager */
+.example-box > .pager 
+    margin-top: 0
+
+/* Example modals */
+.example-box-modal 
+    background-color: #f5f5f5
+    .modal 
+        position: relative
+        top: auto
+        right: auto
+        bottom: auto
+        left: auto
+        z-index: 1
+        display: block
+    .modal-dialog 
+        left: auto
+        margin-right: auto
+        margin-left: auto
+
+/* Example dropdowns */
+.example-box 
+    > .dropdown 
+        > .dropdown-toggle 
+            float: left
+        > .dropdown-menu 
+            position: static
+            display: block
+            margin-bottom: 5px
+            clear: left
+
+/* Example tabbable tabs */
+.example-box-tabs 
+    .nav-tabs 
+        margin-bottom: 15px
+
+/* Tooltips */
+.example-box-tooltip
+	.tooltip
+		position: relative
+		display: inline-block
+		margin: 10px 20px
+		opacity: 1
+.example-box-tooltips 
+    text-align: center
+    > .btn 
+        margin-top: 5px
+        margin-bottom: 5px
+
+/* Popovers */
+.example-box-popover 
+    padding-bottom: 24px
+    background-color: #f9f9f9
+    .popover 
+        position: relative
+        display: block
+        float: left
+        width: 260px
+        margin: 20px
+
+.example-box-tooltips,
+.example-box-popovers
+    .btn-default
+	    text-shadow: 0 1px 0 #fff
+	    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%)
+	    background-repeat: repeat-x
+	    border-color: #dbdbdb
+	    border-color: #ccc
+
+/* Scrollspy demo on fixed height div */
+.example-scrollspy 
+    position: relative
+    height: 200px
+    margin-top: 10px
+    overflow: auto
+
+.example-box > .example-nav-pills-stacked 
+    max-width: 300px
+
+/* Simple collapse example */
+#collapseExample .well 
+    margin-bottom: 0
+
+/*
+ * Responsive tests
+ *
+ * Generate a set of tests to show the responsive utilities in action.
+ */
+
+/* Responsive (scrollable) doc tables */
+.table-responsive .highlight pre 
+    white-space: normal
+
+/* Utility classes table  */
+.bs-table,
+.responsive-utilities 
+    tbody th 
+        font-weight: normal
+    th small
+        display: block
+        font-weight: normal
+        color: #999
+    td 
+        text-align: center
+        &.is-visible 
+            color: #468847
+            background-color: #dff0d8 !important
+        &.is-hidden 
+            color: #ccc
+            background-color: #f9f9f9 !important
+
+/* Responsive tests */
+.responsive-utilities-test 
+    margin-top: 1.2em
+    .col-xs-6 
+        margin-bottom: 10px
+    span 
+        display: block
+        padding: 15px 10px
+        font-size: 14px
+        font-weight: bold
+        line-height: 1.1
+        text-align: center
+        border-radius: 4px
+
+.visible-on,
+.hidden-on
+    .col-xs-6 
+        .hidden-xs,
+        .hidden-sm,
+        .hidden-md,
+        .hidden-lg
+            color: #999
+            border: 1px solid #ddd
+        .visible-xs-block,
+        .visible-sm-block,
+        .visible-md-block,
+        .visible-lg-block
+            color: #468847
+            background-color: #dff0d8
+            border: 1px solid #d6e9c6
+
+.scrollspy-example 
+    height: 200px
+    margin-top: 10px
+    overflow: auto
+    position: relative
+
+.example-box 
+    > .nav-pills-stacked-example 
+        max-width: 300px
+
+#collapseExample
+    .well 
+        margin-bottom: 0
+
+#carousel-example-generic,
+#carousel-example-captions
+    max-width: 900px
+    margin-left: auto
+    margin-right: auto
+
+.example-box-clockpicker
+    > .input-group
+        width: 110px
+        &[data-placement="left"]
+            margin: 0 auto
+    #single-input
+        display: inline-block
+        width: 80px;
+        margin-right: 20px;
+
+.example-box-datetimepicker
+    > input,
+    > .input-group
+        width: 20em
+        margin-bottom: 5px
+    > *:last-child
+        margin-bottom: 0
+
+.example-box-daterangepicker
+    > input
+        width: 20em
+
+.example-box-paging
+    .pagination
+        margin-top: 0
+        margin-bottom: 0
+
+table#example-hr-ver 
+    th, td
+        white-space: nowrap
+
+
+.bs-events-table 
+    > tbody > tr > td:first-child,
+    > thead > tr > th:first-child
+        white-space: nowrap
+    > thead > tr > th:first-child 
+        width: 150px
+
+.js-options-table 
+    > thead > tr > th
+        &:nth-child(1),
+        &:nth-child(2) 
+            width: 100px
+        &:nth-child(3) 
+            width: 150px
+
+.js-options-3-table 
+    > thead > tr > th
+        &:nth-child(1),
+        &:nth-child(2) 
+            width: 150px

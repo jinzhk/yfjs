@@ -144,6 +144,15 @@ describe("Test YFjs", function() {
 			should.exist(window.jQuery.parseQuery);
 		});
 
+		it("YFjs load jQuery Plugin - $.fn.mousewheel & $.fn.unmousewheel by default", function() {
+			should.exist(evt);
+			should.not.exist(evt.error);
+			should.exist(window);
+			should.exist(window.jQuery);
+			should.exist(window.jQuery.fn.mousewheel);
+			should.exist(window.jQuery.fn.unmousewheel);
+		});
+
 		it("YFjs load jQuery Plugin - $.support.transition by default", function() {
 			should.exist(evt);
 			should.not.exist(evt.error);

@@ -1,0 +1,20 @@
+<div class="tab-box" id="tab-profile">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#profile" role="tab" data-toggle="tab" data-reload="false">用户信息</a>
+        </li>
+        <li role="presentation">
+            <a href="#list" role="tab" data-toggle="tab" data-reload="false">列表</a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="profile">
+            {{include("+/profile")}}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="list">
+            {{include("+/list", "trigger")}}
+        </div>
+    </div>
+</div>

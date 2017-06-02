@@ -2,6 +2,7 @@
   "testDir": "test",
   "srcDir": "src",
   "destDir": "dist/lib",
+  "docDir": "docs/static/yfjs-lib",
   "orgDir": "original",
   "minDir": "minified",
   "scripts": {
@@ -24,6 +25,7 @@
           "rq/css!lib/codemirror"
         ]
       },
+      "cookie": "0.8.2",
       "crypto": {
         "version": "3.1.6",
         "main": "crypto-js"
@@ -838,7 +840,7 @@
         "path": "jq-plugins",
         "modules": {
           "chosen": {
-            "version": "1.4.2+20170408",
+            "version": "1.4.2+20170512",
             "main": "chosen.jquery",
             "shim": [
               "rq/css!chosen-bs"
@@ -846,10 +848,6 @@
             "deps": [
               "img/**"
             ]
-          },
-          "cookie": {
-            "version": "1.4.1",
-            "main": "jquery.cookie"
           },
           "dataTables": {
             "version": "1.10.7+20170516",
@@ -870,7 +868,7 @@
           },
           "dragsort": "0.5.2",
           "form": {
-            "version": "3.51.0_x1",
+            "version": "4.2.1",
             "main": "jquery.form",
             "modules": {
               "validator": {
@@ -884,13 +882,6 @@
                 "path": "validator",
                 "shim": [
                   "@jq/form/validator",
-                  "@bs/popover"
-                ]
-              },
-              "wizard": {
-                "version": "bs3",
-                "shim": [
-                  "@bs/modal",
                   "@bs/popover"
                 ]
               }
@@ -969,19 +960,19 @@
           },
           "collapse": "3.3.4",
           "daterangepicker": {
-            "version": "2.0.8",
+            "version": "2.1.15",
             "shim": [
-              "rq/css!daterangepicker-bs3"
+              "rq/css!daterangepicker"
             ]
           },
           "datetimepicker": {
-            "version": "3.0.0",
+            "version": "2.4.4",
             "shim": [
               "rq/css!datetimepicker"
             ]
           },
           "modal": "3.3.4+20170424",
-          "paging": "1.0.2+20161114",
+          "paging": "1.0.2+20170508",
           "popover": {
             "version": "3.3.4+20150609",
             "shim": [
@@ -989,14 +980,14 @@
             ]
           },
           "slider": {
-            "version": "4.5.6",
+            "version": "9.8.0",
             "shim": [
               "rq/css!slider"
             ]
           },
           "spinbox": "3.6.3+20150518",
           "switcher": {
-            "version": "3.3.2+20150513",
+            "version": "3.3.4+20170504",
             "shim": [
               "rq/css!switcher-bs2"
             ]
@@ -1090,7 +1081,7 @@
         }
       },
       "ueditor": {
-        "version": "1.4.3.3",
+        "version": "1.4.3.3+20170526",
         "main": "ueditor.all",
         "package": true
       },
@@ -1100,7 +1091,7 @@
         "deps": "ZeroClipboard.swf"
       },
       "yfjs/spa": {
-        "version": "1.0.0-rc.1",
+        "version": "1.0.0-rc.2",
         "main": "spa",
         "path": "spa",
         "pathTo": "spa",

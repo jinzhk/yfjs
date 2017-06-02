@@ -4056,9 +4056,6 @@
 
                     ret = tr.getResponseAsJson() || {};
                     ret._raw = tr.getResponse();
-                    if (reject == "http") {
-                        ret.error = true;
-                    }
                     fn = function( value ) {
                         reject = value;
                     };
@@ -4085,7 +4082,7 @@
                     } else {
 
                         // http status 500 ~ 600
-                        if ( !flag && (type === 'server' || type === 'http') ) {
+                        if ( !flag && type === 'server' ) {
                             type = requestAccept( type );
                         }
 
@@ -6926,9 +6923,6 @@
                     } else if ( xhr.status >= 500 && xhr.status < 600 ) {
                         me._response = xhr.responseText;
                         return me.trigger( 'error', 'server' );
-                    } else if ( xhr.status >= 400 && xhr.status < 500 ) {
-                        me._response = xhr.responseText;
-                        return me.trigger( 'error', 'http' );
                     }
 
 

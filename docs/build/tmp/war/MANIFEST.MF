@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+DisableIBMJAXWSEngine: true
+Version: 0.5-SNAPSHOT
+Class-Path: 
+date: Tue Jan 10 16:22:24 CST 2017
+

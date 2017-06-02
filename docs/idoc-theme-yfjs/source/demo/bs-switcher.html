@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Switcher | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+  <h2>开关（Switcher）控件示例</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>尺寸（Size）</h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-size="large" />
+        </label>
+
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-size="normal" />
+        </label>
+
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-size="small" />
+        </label>
+
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-size="mini" />
+        </label>
+      </div>
+      <pre><code class="html">&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-size="large" /&gt;
+&lt;/label&gt;
+
+&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-size="normal" /&gt;
+&lt;/label&gt;
+
+&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-size="small" /&gt;
+&lt;/label&gt;
+
+&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-size="mini" /&gt;
+&lt;/label&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>颜色（Colors）</h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-on-color="primary" data-off-color="info" />
+        </label>
+
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-on-color="info" data-off-color="success" />
+        </label>
+
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-on-color="success" data-off-color="warning" />
+        </label>
+
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-on-color="warning" data-off-color="danger" />
+        </label>
+
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-on-color="danger" data-off-color="primary" />
+        </label>
+      </div>
+      <pre><code class="html">&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-on-color="primary" data-off-color="info" /&gt;
+&lt;/label&gt;
+
+&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-on-color="info" data-off-color="success" /&gt;
+&lt;/label&gt;
+
+&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-on-color="success" data-off-color="warning" /&gt;
+&lt;/label&gt;
+
+&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-on-color="warning" data-off-color="danger" /&gt;
+&lt;/label&gt;
+
+&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-on-color="danger" data-off-color="primary" /&gt;
+&lt;/label&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>动画（Animation）</h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-animate="false" />
+        </label>
+      </div>
+      <pre><code class="html">&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-animate="false" /&gt;
+&lt;/label&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>禁用（Disabled）</h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" disabled="disabled" />
+        </label>
+      </div>
+      <pre><code class="html">&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" disabled="disabled" /&gt;
+&lt;/label&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>文本（Text）</h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-on-text="SI" data-off-text="NO" />
+        </label>
+      </div>
+      <pre><code class="html">&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-on-text="SI" data-off-text="NO" /&gt;
+&lt;/label&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>HTML文本（HTML text）</h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-on-text="<i class='fa fa-check fa-inverse'></i>" data-off-text="<i class='fa fa-remove'></i>" />
+        </label>
+      </div>
+      <pre><code class="html">&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-on-text="&lt;i class='fa fa-check fa-inverse'&gt;&lt;/i&gt;" data-off-text="&lt;i class='fa fa-remove'&gt;&lt;/i&gt;" /&gt;
+&lt;/label&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>逆向显示</h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-inverse="true" />
+        </label>
+      </div>
+      <pre><code class="html">&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-inverse="true" /&gt;
+&lt;/label&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>不确定状态</h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input type="checkbox" checked="checked" data-indeterminate="true" />
+        </label>
+      </div>
+      <pre><code class="html">&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" checked="checked" data-indeterminate="true" /&gt;
+&lt;/label&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>事件处理（Event handler） <small>javascript</small></h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input id="mySwitch" type="checkbox" checked="checked" />
+        </label>
+      </div>
+      <pre><code class="javascript">$('#mySwitch').on('switchChange.bs.switcher', function (e, data) {
+  var $el = $(this);
+  console.log(e, $el, data);
+});</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Toggle State <small>javascript</small></h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input id="toggle-state-switch" type="checkbox" checked="checked" />
+        </label>
+        <br>
+        <br>
+        <button id="toggle-state-switch-button-on" class="btn btn-primary">ON!</button>
+        <button id="toggle-state-switch-button-off" class="btn btn-primary">OFF!</button>
+        <button id="toggle-state-switch-button" class="btn btn-primary">Toggle me!</button>
+      </div>
+      <pre><code class="javascript">$('#toggle-state-switch').switcher('toggleState');
+$('#toggle-state-switch').switcher('state', false); // true || false</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>销毁（Destroy） <small>javascript</small></h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input id="destroy-switch" type="checkbox" checked="checked" />
+        </label>
+        <br>
+        <br>
+        <button id="btn-destroy-switch" class="btn btn-danger">
+          Destroy me!
+        </button>
+      </div>
+      <pre><code class="javascript">$('#destroy-switch').switcher('destroy');</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>创建（Create） <small>javascript</small></h3>
+      <div class="example-box">
+        <input id="create-switch" type="checkbox" checked="checked" />
+        <br>
+        <br>
+        <div id="btn-create" class="btn btn-success">Create</div>
+      </div>
+      <pre><code class="javascript">$('#create-switch').wrap('&lt;label class="checkbox-inline" /&gt;').switcher();</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>禁用（Disabled） <small>javascript</small></h3>
+      <div class="example-box">
+        <label class="checkbox-inline">
+          <input id="disable-switch" type="checkbox" checked="checked" />
+        </label>
+        <br>
+        <br>
+        <button id="btn-is-active-switch" class="btn btn-info">
+          Is active?
+        </button>
+        <button id="btn-toggle-activation-switch" class="btn btn-primary">
+          Toggle activation!
+        </button>
+        <button id="btn-disable-switch" class="btn btn-default">
+          Disable!
+        </button>
+        <button id="btn-activate-switch" class="btn btn-warning">
+          Activate!
+        </button>
+      </div>
+      <pre><code class="javascript">$('#disable-switch').switcher('disabled');
+$('#disable-switch').switcher('toggleDisabled');
+$('#disable-switch').switcher('disabled', true);  // true || false</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>一组单选按钮</h3>
+      <div class="example-box">
+        <label class="radio-inline">
+          <input name="radio" type="radio" checked="checked" />
+        </label>
+        <label class="radio-inline">
+          <input name="radio" type="radio" />
+        </label>
+        <label class="radio-inline">
+          <input name="radio" type="radio" />
+        </label>
+        <br>
+        <br>
+        <button id="btn-radio-all-off" class="btn btn-primary">
+          Toggle radioAllOff
+        </button>
+        <span class="text-danger">radioAllOff: false</span>
+      </div>
+      <pre><code class="javascript">$('input[name="radio"]').switcher({
+    radioAllOff: true
+});</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>表单（Form） <small>- try to use tab and space</small></h3>
+      <div class="example-box">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-md-2" for="inputEmail">Email</label>
+            <div class="col-md-6">
+              <input class="form-control" id="inputEmail" type="text" placeholder="Email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-2" for="notification1">Notification 1</label>
+            <div class="col-md-6">
+              <label class="checkbox">
+                <input id="notification1" type="checkbox" />
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-2" for="notification2">Notification 2</label>
+            <div class="col-md-6">
+              <label class="checkbox">
+                <input id="notification2" type="checkbox" />
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <pre><code class="html">&lt;form class="form-horizontal"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="control-label col-md-2" for="inputEmail"&gt;Email&lt;/label&gt;
+    &lt;div class="col-md-6"&gt;
+      &lt;input class="form-control" id="inputEmail" type="text" placeholder="Email"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;label class="control-label col-md-2" for="notification1"&gt;Notification 1&lt;/label&gt;
+    &lt;div class="col-md-6"&gt;
+      &lt;label class="checkbox"&gt;
+        &lt;input id="notification1" type="checkbox" /&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;label class="control-label col-md-2" for="notification2"&gt;Notification 2&lt;/label&gt;
+    &lt;div class="col-md-6"&gt;
+      &lt;label class="checkbox"&gt;
+        &lt;input id="notification2" type="checkbox" /&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>在模态框内（Modal）</h3>
+      <div class="example-box">
+        <a class="btn btn-default" id="btn-modal">Open Modal</a>
+      </div>
+      <pre><code class="html">&lt;a class="btn btn-default" id="btn-modal"&gt;Open Modal&lt;/a&gt;
+
+&lt;script type="text/javascript"&gt;
+$('#btn-modal').click(function() {
+  Modal.show({
+      title: "Switcher in Modal",
+      message: (
+          '&lt;div class="text-center"&gt;' + 
+            '&lt;label class="checkbox-inline"&gt;' +
+              '&lt;input type="checkbox" checked="checked" /&gt;' +
+            '&lt;/label&gt;' +
+          '&lt;/div&gt;'
+      ),
+      onshow: function(dialog) {
+          var $dialog = dialog.getModalDialog();
+          $('input[type="checkbox"]', $dialog).switcher();
+      }
+  });
+});
+&lt;/script&gt;</code></pre>
+    </div>
+  </div>
+
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/modal', 'bs/switcher'], function(Modal) {
+      $('input[type="checkbox"]:not(#create-switch)').switcher();
+
+      $('#mySwitch').on('switchChange.bs.switcher', function (e, data) {
+          var $el = $(this);
+          console.log(e, $el, data);
+      });
+
+      var $toggleStateSwitch = $('#toggle-state-switch');
+      $('#toggle-state-switch-button-on').click(function() {
+          $toggleStateSwitch.switcher('state', true);
+      });
+      $('#toggle-state-switch-button-off').click(function() {
+          $toggleStateSwitch.switcher('state', false);
+      });
+      $('#toggle-state-switch-button').click(function() {
+          $toggleStateSwitch.switcher('toggleState');
+      });
+
+      $('#btn-destroy-switch').click(function() {
+          $('#destroy-switch').switcher('destroy');
+      });
+
+      $('#btn-create').click(function() {
+          if (!$('#create-switch').data('bs-switcher')) {
+              $('#create-switch').wrap('<label class="checkbox-inline" />').switcher();
+          }
+      });
+
+      var $disableSwitch = $('#disable-switch');
+      $('#btn-is-active-switch').click(function() {
+          alert("Is active ? " + !$disableSwitch.switcher('disabled'));
+      });
+      $('#btn-toggle-activation-switch').click(function() {
+          $disableSwitch.switcher('toggleDisabled');
+      });
+      $('#btn-disable-switch').click(function() {
+          $disableSwitch.switcher('disabled', true);
+      });
+      $('#btn-activate-switch').click(function() {
+          $disableSwitch.switcher('disabled', false);
+      });
+
+      var bRadioAllOff = false;
+      $('input[name="radio"]').switcher({
+          radioAllOff: bRadioAllOff
+      });
+      $('#btn-radio-all-off').click(function() {
+          bRadioAllOff = !bRadioAllOff;
+          $('input[name="radio"]').switcher('radioAllOff', bRadioAllOff);
+          $(this).next().text('radioAllOff: ' + bRadioAllOff);
+      });
+
+      $('#btn-modal').click(function() {
+          Modal.show({
+              title: "Switcher in Modal",
+              message: (
+                  '<div class="text-center">' + 
+                    '<label class="checkbox-inline">' +
+                      '<input type="checkbox" checked="checked" />' +
+                    '</label>' +
+                  '</div>'
+              ),
+              onshow: function(dialog) {
+                  var $dialog = dialog.getModalDialog();
+                  $('input[type="checkbox"]', $dialog).switcher();
+              }
+          });
+      });
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+node_modules/
+examples/
+.DS_Store
+*.swo
+*.swp
+*.swn
+idoc-theme-*/
+.idea/

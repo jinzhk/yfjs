@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>Demo Button | YFjs Library</title>
+    <!-- YFjs Lib  -->
+    <script src="../yfjs-lib/yfjs.js?v=0.8.2" type="text/javascript" 
+            data-debug-module="true">
+    </script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/demo.css" type="text/css">
+</head>
+<body>
+<div class="container">
+	<h2>实例</h2>
+  <h3>状态</h3>
+  <p>通过添加 <code>data-loading-text="Loading..."</code> 可以为按钮设置正在加载的状态。</p>
+  <p><strong class="text-danger">从 v3.3.5 版本开始，此特性不再建议使用，并且已经在 v4 版本中删除了。</strong></p>
+  <div class="example-box">
+    <button type="button" id="loading-example-btn" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+      Loading state
+    </button>
+  </div>
+  <pre><code class="html">&lt;button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off"&gt;
+  Loading state
+&lt;/button&gt;
+
+&lt;script&gt;
+  $('#myButton').on('click', function () {
+    var $btn = $(this).button('loading')
+    // business logic...
+    setTimeout(function() {
+      $btn.button('reset')
+    }, 1000)
+  })
+&lt;/script&gt;</code></pre>
+  <h3>单独按钮切换</h3>
+  <p>为单独按钮添加属性 <code>data-toggle="button"</code> 以激活状态切换。</p>
+  <div class="callout callout-warning" id="callout-buttons-single-pretoggled">
+    <h4>切换之前的按钮状态需要添加 <code>.active</code> 和 <code>aria-pressed="true"</code></h4>
+    <p>为了切换之前的按钮状态, 必须自己为按钮添加样式 class <code>.active</code> 和属性 <code>aria-pressed="true"</code>。</p>
+  </div>
+  <div class="example-box">
+    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+      Single toggle
+    </button>
+  </div>
+  <pre><code class="html">&lt;button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"&gt;
+  Single toggle
+&lt;/button&gt;</code></pre>
+  <h3>复选框 / 单选按钮</h3>
+  <p>为一个包含复选框或单选按钮的按钮组 <code>.btn-group</code> 添加属性 <code>data-toggle="buttons"</code>，可以激活它们的选中状态的自动切换。</p>
+  <div class="callout callout-warning" id="callout-buttons-multi-preselected">
+    <h4>预选状态需要添加 <code>.active</code></h4>
+    <p>为了显示预选状态，需要自行为复选框或单选按钮的 <code>label</code> 元素添加样式 class <code>.active</code>。</p>
+  </div>
+  <div class="callout callout-warning" id="callout-buttons-only-click">
+    <h4>仅支持响应 click 事件自动检查更新状态</h4>
+    <p>如果一个复选框或单选按钮的选中状态不是通过按钮的 <code>click</code> 事件触发（比如通过重置按钮 <code>&lt;input type="reset"&gt;</code> 或通过设置选中属性 <code>checked</code>），需要手动自行为复选框或单选按钮的 <code>label</code> 元素切换样式 class <code>.active</code>。</p>
+  </div>
+  <div class="example-box" data-example-id="buttons-checkbox">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-primary active">
+        <input checked="" autocomplete="off" type="checkbox"> Checkbox 1 (pre-checked)
+      </label>
+      <label class="btn btn-primary">
+        <input autocomplete="off" type="checkbox"> Checkbox 2
+      </label>
+      <label class="btn btn-primary">
+        <input autocomplete="off" type="checkbox"> Checkbox 3
+      </label>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="btn-group" data-toggle="buttons"&gt;
+  &lt;label class="btn btn-primary active"&gt;
+    &lt;input type="checkbox" autocomplete="off" checked&gt; Checkbox 1 (pre-checked)
+  &lt;/label&gt;
+  &lt;label class="btn btn-primary"&gt;
+    &lt;input type="checkbox" autocomplete="off"&gt; Checkbox 2
+  &lt;/label&gt;
+  &lt;label class="btn btn-primary"&gt;
+    &lt;input type="checkbox" autocomplete="off"&gt; Checkbox 3
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+  <div class="example-box" data-example-id="buttons-radio">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-primary active">
+        <input name="options" id="option1" autocomplete="off" checked="" type="radio"> Radio 1 (preselected)
+      </label>
+      <label class="btn btn-primary">
+        <input name="options" id="option2" autocomplete="off" type="radio"> Radio 2
+      </label>
+      <label class="btn btn-primary">
+        <input name="options" id="option3" autocomplete="off" type="radio"> Radio 3
+      </label>
+    </div>
+  </div>
+  <pre><code class="html">&lt;div class="btn-group" data-toggle="buttons"&gt;
+  &lt;label class="btn btn-primary active"&gt;
+    &lt;input type="radio" name="options" id="option1" autocomplete="off" checked&gt; Radio 1 (preselected)
+  &lt;/label&gt;
+  &lt;label class="btn btn-primary"&gt;
+    &lt;input type="radio" name="options" id="option2" autocomplete="off"&gt; Radio 2
+  &lt;/label&gt;
+  &lt;label class="btn btn-primary"&gt;
+    &lt;input type="radio" name="options" id="option3" autocomplete="off"&gt; Radio 3
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<script src="../js/yfjs-demo-highlight.js"></script>
+<script type="text/javascript">
+	require(['bs/button'], function() {
+		$('#loading-example-btn').on('click', function () {
+      var $btn = $(this).button('loading');
+      // business logic...
+      setTimeout(function() {
+        $btn.button('reset');
+      }, 1000);
+    });
+	});
+</script>
+</body>
+</html>

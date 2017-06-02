@@ -148,7 +148,7 @@
 
     var _Constructor = function() {
         // 当前版本
-        this.VERSION = '0.8.1.4' || '@version';
+        this.VERSION = '0.8.2' || '@version';
 
         // 浏览器版本
         this.browser = _browser;
