@@ -1,7 +1,7 @@
 {
   "name": "yfjs",
   "description": "一个基于AMD规范的组件库，内含简洁SPA框架，便于快速构建单页面应用系统",
-  "version": "0.8.2",
+  "version": "0.8.2-rc.0",
   "scripts": {
     "build": "npm install && grunt build",
     "idoc": "cd docs && node idoc.js",

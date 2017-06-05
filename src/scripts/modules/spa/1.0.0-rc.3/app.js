@@ -2214,7 +2214,7 @@ define('yfjs/spa/app', [
         },
         // current view instance
         getView: function() {
-            return App.LAST_VIEW;
+            return this.afterState("beforeLoad") ? App.LAST_VIEW : Route.LAST_VIEW.getInstance();
         },
         // history go api
         go: function() {

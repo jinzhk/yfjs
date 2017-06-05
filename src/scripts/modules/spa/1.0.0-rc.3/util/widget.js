@@ -800,7 +800,6 @@ define('yfjs/spa/util/widget', [
                                 var stateInclude = resLoad.getState('include'),
                                     context = stateInclude ? stateInclude.context : null;
                                 if (self.instanceof(context, self.Creator)) {
-                                    _.def(resLoad.getInstance(), 'context', context);
                                     context.__included__.push(resLoad);
                                 }
                                 // load
@@ -2060,7 +2059,13 @@ define('yfjs/spa/util/widget', [
             });
 
             // 当前上下文
-            _.def(this, 'context', widget.CONTEXT || this, {
+            var context;
+            if (state.include && widget.instanceof(state.include.context, widget.Creator)) {
+                context = state.include.context;
+            } else {
+                context = widget.CONTEXT || this;
+            }
+            _.def(this, 'context', context, {
                 writable: false
             });
 
