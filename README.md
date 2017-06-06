@@ -60,6 +60,8 @@ Node.js 自 `0.6.x` 系列版本开始集成了 NPM (Node Package Manager, Node.
 
 **minified** 目录下是混淆压缩后的代码文件；**original** 目录下是经过合并未压缩的代码文件；`yfjs.js` 为组件库的入口 JS 文件。
 
+另外，我们也提供了编译好后的 YFjs Zip 包，点击 [这里](https://github.com/jinzhk/yfjs-compiled/archive/master.zip) 下载最新版本或访问 [编译包](https://github.com/jinzhk/yfjs-compiled) 地址自行选择下载。
+
 ### 使用组件库
 
 将组件库编译生成的文件拷贝至自己所开发的工程的固定目录下即可使用。
