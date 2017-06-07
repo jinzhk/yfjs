@@ -1091,7 +1091,7 @@
         "deps": "ZeroClipboard.swf"
       },
       "yfjs/spa": {
-        "version": "1.0.0-rc.3",
+        "version": "1.0.0-rc.4",
         "main": "spa",
         "path": "spa",
         "pathTo": "spa",

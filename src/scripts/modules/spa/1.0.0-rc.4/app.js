@@ -2214,7 +2214,11 @@ define('yfjs/spa/app', [
         },
         // current view instance
         getView: function() {
-            return this.afterState("beforeLoad") ? App.LAST_VIEW : Route.LAST_VIEW.getInstance();
+            if (this.afterState("beforeLoad")) {
+                return App.LAST_VIEW;
+            } else {
+                return Route.LAST_VIEW ? Route.LAST_VIEW.getInstance() : Route.LAST_VIEW;
+            }
         },
         // history go api
         go: function() {
