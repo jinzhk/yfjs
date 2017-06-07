@@ -850,7 +850,7 @@
             ]
           },
           "dataTables": {
-            "version": "1.10.7+20170516",
+            "version": "1.10.7+20170606",
             "main": "jquery.dataTables",
             "package": true,
             "shim": [
@@ -858,7 +858,7 @@
             ]
           },
           "dataTables-bs3": {
-            "version": "1.10.7+20170516",
+            "version": "1.10.7+20170606",
             "main": "dataTables.bs3",
             "path": "dataTables",
             "shim": [

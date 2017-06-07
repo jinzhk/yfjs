@@ -4197,12 +4197,13 @@
 			// Clean up the table body
 			tmpTable.find('tbody tr').remove();
 			var tr = $('<tr/>').appendTo( tmpTable.find('tbody') );
-	
-			// Remove any assigned widths from the footer (from scrolling)
-			tmpTable.find('tfoot th, tfoot td').css('width', '');
-	
+
+            // Remove any assigned widths from the footer (from scrolling)
+            tmpTable.find('tfoot th, tfoot td').css('width', '');
+
 			// Apply custom sizing to the cloned header
-			headerCells = _fnGetUniqueThs( oSettings, tmpTable.find('thead')[0] );
+			//动态显示隐藏列时，会造成列宽计算有误，暂时注释
+			//headerCells = _fnGetUniqueThs( oSettings, tmpTable.find('thead')[0] );
 
             var width, outerWidth, innerWidth, $th, pdh, differW, bAutoW = false;
 
