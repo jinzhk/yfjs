@@ -1958,8 +1958,7 @@ define('yfjs/spa/util/widget', [
             // destroy included ajax
             $.each(instance.__included__, function(i, included) {
                 if (widget.instanceof(included)) {
-                    Widget.updateState.call(included.getInstance(), 'dispose');
-                    included.ajax.abort(false);
+                    included.dispose();
                 }
             });
 
