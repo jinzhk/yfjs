@@ -1401,6 +1401,9 @@ define('yfjs/spa/app', [
                 stateHash = state.hash.replace(App.REGEXP_HASH_START, "");
 
                 if (stateHash !== curStateHash) {
+                    if (reloadPage) {
+                        self.go.reloadPage = reloadPage;
+                    }
                     _.def(self.go, '__before_destroy__', true, {
                         configurable: true
                     });
@@ -1427,6 +1430,9 @@ define('yfjs/spa/app', [
                 stateHash = state.hash.replace(App.REGEXP_HASH_START, "");
 
                 if (stateHash !== curStateHash) {
+                    if (reloadPage) {
+                        self.go.reloadPage = reloadPage;
+                    }
                     _.def(self.go, '__before_destroy__', true, {
                         configurable: true
                     });
